@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>PlayPlex</title>
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=0.37, user-scalable=no" />
+	<link href='https://fonts.googleapis.com/css?family=Roboto:500,400,900' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="./css/ppallview.css" type="text/css" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/ppallview.js"></script>
+	<script type="text/javascript">
+			$(document).ready(function() {
+				makeTheScreen();
+			});
+	</script>
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-47959509-1', 'mikeprevette.com');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+<div id="overlay"><div id="closeButton" onclick="$(overlay).toggle();body.classList.toggle('noscroll');">X</div><span id ="cardJson"></span></div>
+<div id="top">
+			<form id="form">
+			<select id="selector" onChange="stringToParams(this.value);">
+			</select>
+		</form>
+	<div id="buttons">
+	</div>
+	</div>
+<!-- <div class="overlay"><h1>LOADING</h1></div> -->
+<div id="containers"></div>
+</body>
+</html>

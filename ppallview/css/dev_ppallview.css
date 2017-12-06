@@ -1,0 +1,388 @@
+<style type="text/css">
+
+
+html {
+    margin: 0;
+    overflow-y: scroll; overflow-x:hidden;
+}
+
+body {
+	background-color: #333333;
+	font-size: 75%;
+	color: white;
+	font-family: 'Roboto', helvetica, sans-serif;
+	margin: 0;
+	}
+
+.noscroll { 
+	position: fixed;
+  overflow: hidden;
+}
+
+#form {
+	float:left;
+	margin:1em;
+}
+
+#top {
+	background-color: rgba(0,0,0,0.85);
+	left: 0px;
+	top: 0px;
+	text-align: center;
+	position: fixed;
+	display: block;
+	width: 100%;
+  z-index: 998;
+}
+
+#top span {
+	background-color:#333;
+	padding: 10px;
+	border-radius : 5px;
+}
+p {
+	margin: 0;
+	white-space: nowrap;
+  overflow: hidden;
+}
+
+#containers {
+/* 	margin-top: 60pt; */
+  width: 10000px;
+	height: 100%;
+  width: 100%;
+	margin-top: 2.5em;
+  overflow: hidden;
+}
+
+.container {
+	color: #EEE;
+	display: block;
+	margin-bottom: 1em;
+	overflow-x: scroll;
+	height: 100%;
+	white-space: nowrap;
+}
+
+.containerHeader {
+	left: 0;
+	width: 100%;
+	margin-top:1em;
+	margin-bottom:1em;
+	padding: 5px;
+	background-color: rgba(0,0,0,0.5);
+}
+
+.containerHeaderText {
+	margin: 1em;
+	vertical-align: middle;
+}
+
+.containerApiButton {
+	margin-left: 10px;
+	margin-right: 5px;
+	padding: 2px;
+	border-radius: 2px;
+	color: #84ccff;
+/* 	position: relative; */
+	font-weight: 400;
+	background-color: #7f7f7f;
+}
+
+.containerApiButton:hover {
+	color: #ffffff;
+	cursor: pointer;
+}
+
+
+
+#container_Content {
+	height: 350px;
+}
+
+/* .container::-webkit-scrollbar { 
+    display: none; 
+} */
+
+
+
+#overlay {
+	  height: 100%; /* Full height (cover the whole page) */
+	  width: 100%; /* Full width (cover the whole page) */
+    position: fixed; /* Sit on top of the page content */
+	  bottom: 0;
+		top: 0;
+		left: 0;
+    display: none; /* Hidden by default */
+    background-color: rgba(0,0,0,0.75); /* Black background with opacity */
+    z-index: 999; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+#overlay h1 {
+	margin-left: 5em;
+}
+
+#cardJson {
+	position: fixed;
+	margin-left:10%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.85);
+	color: #00ff00;
+	font-size: 1em;
+	text-wrap: break-word;
+	white-space: pre;
+	overflow-y: scroll;
+	z-index: 99999;
+}
+
+#closeButton {
+	display: block;
+	padding: 5px;
+	float: left;
+	background-color : black;
+	color : red;
+ 	font-size : 6em;
+}
+
+.CardGrad {
+	display: block;
+	width: 100%;
+	height: 100%;
+  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.75)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.75) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.75) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.75) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.75) 100%); /* W3C */
+ /*  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */ 
+}
+
+.error {
+	margin-bottom: 1em;
+	text-align: center;
+	overflow: visible;
+	width: 100%;
+	white-space: normal;
+	font-size: 2em;
+	color: red;
+	background-color: rgba(0,0,0,0.5);
+}
+
+.errorbox {
+	position: absolute;
+	top: 4em;
+	width: 100%;
+}
+
+.contentError {
+	position: absolute;
+	left: 0px;
+	top: 400px;
+	text-align: center;
+	overflow: visible;
+	width: 100%;
+	white-space: normal;
+	font-size: 2em;
+	color: red;
+	background-color: rgba(0,0,0,0.5);
+}
+
+.Card {
+	display: inline-block;
+	position: relative;
+	width: 450px;
+	height: 675px;
+	margin-right: 2em;
+/*	background-color: red;*/
+	background-repeat: no-repeat;
+	background-size: 100% 540px;
+/*	border: solid;*/
+}
+
+.contentCard {
+	display: inline-block;
+	position: relative;
+	width: 480px;
+	height: 270px;
+	margin-right: 2em;
+/*	background-color: red;*/
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-image: url("http://via.placeholder.com/480x270")
+/*	border: solid;*/
+}
+
+.CardMeta {
+	display: block;
+	width: 100%;
+	background: rgba(0,0,0,0.5);
+	font-size: 1em;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.CardSubHeader {
+	color:  white;
+	position: relative;
+	font-size: 1em;
+	left: 1em;
+	margin-top: 0.5em;
+	font-weight: 400;
+	text-overflow: ellipsis;
+	max-width: 95%;
+}
+
+.CardHeader {
+	color: white;
+	font-size: 1em;
+	position: relative;
+	margin-bottom: 0.5em;
+	left: 0.75em;
+	font-weight: 500;
+	text-overflow: ellipsis;
+	max-width: 600px;
+}
+
+.CardHeaderLink {
+	position: relative;
+	left: 1em;
+	color: #84ccff;
+	text-decoration: underline;
+	style: underline;
+	margin-bottom: 0.5em;
+}
+
+.CardHeaderLink:hover {
+		color: #ffffff;
+		cursor: pointer;
+}
+
+
+.showCard_2x3 {
+	display: inline-block;
+	position: relative;
+	width: 450px;
+	height: 675px;
+	margin-right: 2em;
+	margin-bottom: 3em;
+/*	background-color: red;*/
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+/*	border: solid;*/
+}
+
+.showCard_1x1 {
+	display: inline-block;
+	position: relative;
+	width: 450px;
+	height: 450px;
+	margin-right: 2em;
+	margin-bottom: 3em;
+/*	background-color: red;*/
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+/*	border: solid;*/
+}
+
+.showCardMeta {
+	width: 100%;
+	font-size: 1em;
+	position: absolute;
+	left: 0px;
+	background-color: rgba(0,0,0,0.5)
+}
+
+.showCardButtons {
+	  position: absolute;
+    width: 100%;
+    font-size: 2.5em;
+    left: 0px;
+    bottom: 0;
+		display: block;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.showCardButton {
+	width: 50%;
+	display: inline-block;
+	float: left;
+	margin-top; 0.5em;
+	height: 2.5em;
+	text-align: center;
+	background-color: rgba(0,0,0,0.25)
+}
+
+.showCardButton:hover {
+	cursor: pointer;
+	background-color: rgba(0,0,0,0.75)
+}
+
+
+.showCardHeader {
+	margin-left: 10px;
+	color:  white;
+	position: relative;
+	font-weight: 400;
+}
+
+.showCardJsonButton {
+	margin-left: 10px;
+	margin-right: 5px;
+	padding: 2px;
+	border-radius: 2px;
+	color: #84ccff;
+/* 	position: relative; */
+	float: right;
+	font-weight: 400;
+	background-color: #7f7f7f;
+}
+.showCardJsonButton:hover {
+	color: #ffffff;
+	cursor: pointer;
+}
+
+.showCardLink {
+	margin-left: 10px;
+	color: #84ccff;
+	text-decoration: underline;
+	style: underline;
+}
+
+.showCardLink:hover {
+	color: #ffffff;
+	cursor: pointer;
+}
+
+.lock {
+	display:block;
+	background-image: url(../img/black_lock.png);
+	background-size: 100% 100%;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.downloadButton {
+	z-index: 9999;
+	border-radius: 5px;
+	color: #84ccff;
+	margin: 5px;
+	text-align: middle;
+	text-decoration: underline;
+	size: 1.5em;
+	display: inline-block;
+	padding: 8px;
+	background-color: #7f7f7f;
+}
+
+.downloadButton:hover {
+	color: #ffffff;
+	cursor: pointer;
+}
+
+
+</style>

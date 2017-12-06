@@ -1,0 +1,207 @@
+{
+  "apps": [{
+      "app": {
+        "name": "MTV UK",
+        "brand": "mtv",
+        "platform": "ios",
+        "country": "gb",
+        "stage": "live",
+        "arcSpace": "mtv-intl-uk-authoring",
+        "apiVersion":"1.7",
+        "appVersion":"4.1"
+      }
+    },
+           {
+      "app": {
+        "name": "MTV UK Staging",
+        "brand": "mtv",
+        "platform": "ios",
+        "country": "gb",
+        "stage": "staging",
+        "arcSpace": "mtv-intl-uk-authoring",
+        "apiVersion":"1.7",
+        "appVersion":"4.1"
+      }
+    },
+    {
+      "app": {
+        "name": "MTV DE",
+        "brand": "MTV",
+        "platform": "ios",
+        "country": "DE",
+        "stage": "live",
+        "arcSpace": "mtv-intl-germany-authoring",
+        "apiVersion":"1.7",
+        "appVersion":"4.1"
+      }
+    },
+     {
+      "app": {
+        "name": "MTV DK",
+        "brand": "MTV",
+        "platform": "ios",
+        "country": "DK",
+        "stage": "live",
+        "arcSpace": "mtv-intl-dk-authoring",
+        "apiVersion":"1.7",
+        "appVersion":"4.1"
+      }
+    },
+    {
+      "app": {
+        "name": "MTV BR",
+        "brand": "MTV",
+        "platform": "ios",
+        "country": "br",
+        "stage": "live",
+        "arcSpace": "mtv-intl-br-authoring",
+        "apiVersion":"1.7",
+        "appVersion":"4.1"
+      }
+    },
+     {
+      "app": {
+        "name": "MTV BE",
+        "brand": "MTV",
+        "platform": "ios",
+        "country": "be",
+        "stage": "live",
+        "arcSpace": "mtv-intl-be-authoring",
+        "apiVersion":"1.7",
+        "appVersion":"4.1"
+      }
+    },
+    {
+      "app": {
+        "name": "MTV MX",
+        "brand": "MTV",
+        "platform": "ios",
+        "country": "mx",
+        "stage": "live",
+        "arcSpace": "mtv-intl-latam-authoring",
+        "apiVersion":"1.7",
+        "appVersion":"4.1"
+      }
+    },
+    {
+      "app": {
+        "name": "MTV PL",
+        "brand": "MTV",
+        "platform": "ios",
+        "country": "pl",
+        "stage": "live",
+        "arcSpace": "mtv-intl-poland",
+        "apiVersion":"1.7",
+        "appVersion":"4.1"
+      }
+    },
+    {
+      "app": {
+        "name": "MTV NO",
+        "brand": "MTV",
+        "platform": "ios",
+        "country": "NO",
+        "stage": "live",
+        "arcSpace": "mtv-intl-no-authoring",
+        "apiVersion":"1.7",
+        "appVersion":"4.1"
+      }
+    },
+    {
+      "app": {
+        "name": "MTV ES",
+        "brand": "mtv",
+        "platform": "ios",
+        "country": "es",
+        "stage": "live",
+        "arcSpace": "mtv-intl-Spain-authoring",
+        "apiVersion":"1.7",
+        "appVersion":"4.1"
+      }
+    },
+      {
+      "app": {
+        "name": "CC UK Live",
+        "brand": "cc",
+        "platform": "ios",
+        "country": "gb",
+        "stage": "live",
+        "arcSpace": "comedy-intl-uk-authoring",
+        "apiVersion":"1.7",
+        "appVersion":"4.1"
+      }
+    },
+    {
+      "app": {
+        "name": "CC UK Staging",
+        "brand": "cc",
+        "platform": "ios",
+        "country": "gb",
+        "stage": "staging",
+        "arcSpace": "comedy-intl-uk-authoring",
+        "apiVersion":"1.7",
+        "appVersion":"4.1"
+      }
+    },
+    {
+      "app": {
+        "name": "CMT US",
+        "brand": "cmt",
+        "platform": "ios",
+        "country": "us",
+        "stage": "live",
+        "arcSpace": "cmt-authoring-site",
+        "apiVersion":"1.7",
+        "appVersion":"4.1"
+      }
+    },
+     {
+      "app": {
+        "name": "Paramount Live",
+        "brand": "paramountnetwork",
+        "platform": "android",
+        "country": "us",
+        "stage": "live",
+        "arcSpace": "arc-ent-paramount-network-site",
+        "apiVersion":"1.7",
+        "appVersion":"4.1"
+      }
+    },
+    {
+      "app": {
+        "name": "Paramount Staging 1.9",
+        "brand": "paramountnetwork",
+        "platform": "android",
+        "country": "us",
+        "stage": "staging",
+        "arcSpace": "arc-ent-paramount-network-site",
+        "apiVersion":"1.9",
+        "appVersion":"4.3"
+      }
+    },
+     {
+      "app": {
+        "name": "TVLAnd US",
+        "brand": "tvland",
+        "platform": "ios",
+        "country": "us",
+        "stage": "live",
+        "arcSpace": "tvland-authoring-site",
+        "apiVersion":"1.7",
+        "appVersion":"4.1"
+      }
+    },
+     {
+      "app": {
+        "name": "VH1 US",
+        "brand": "vh1",
+        "platform": "ios",
+        "country": "us",
+        "stage": "live",
+        "arcSpace": "vh1-authoring-site",
+        "apiVersion":"1.7",
+        "appVersion":"4.1"
+      }
+    }
+]
+}
