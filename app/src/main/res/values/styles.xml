@@ -1,9 +1,0 @@
-<resources>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Material">
-        <item name="android:icon">@drawable/mtv</item>
-        <!-- Customize your theme here. -->
-    </style>
-
-</resources>
