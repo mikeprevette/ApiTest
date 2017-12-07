@@ -65,13 +65,10 @@ function stringToParams(buildString) {
 	buildPlayPlex(brand, stage, platform, region, apiVersion, appVersion);
 }
 
-//####################################----Build The Series Modules----####################################
+//####################################----Build The Screens----####################################
 
 function buildPlayPlex(brand, stage, platform, region, apiVersion, appVersion) {
-	// 	functionIsRunning = true;
-	// 	$('.overlay').show();
-	// 	$.ajaxSetup({ cache: false });
-	// Poll the home screen, and get it's modules
+
 	firstRun = false;
 	nuclear();
 	console.log(stage);
@@ -164,12 +161,9 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
 function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 	$.getJSON(moduleURL, function(playplexData) {
 		$.each(playplexData.data.items, function(i, cardVal) {
-
-			//build the card
-			// Check subType:"empty"
-			card[cardVal.id];
-			card[cardVal.id] = cardVal;
-			type = playplexData.data.alias;
+			card[cardVal.id]; // make a independent object to refer to later
+			card[cardVal.id] = cardVal; // dump the data for this card into it and call it the MGID
+			type = playplexData.data.alias; 
 			propertyMgid = cardVal.id;
 			propertyID = uuidMaker(cardVal.id);
 			seriesTitle = cardVal.title.replace(/ /g, "_");
@@ -259,14 +253,7 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 						'id': 'showCardButtonBar_' + propertyCardID,
 						'class': 'showCardButtons',
 					}).appendTo('#' + propertyCardID);
-
-					//console.log(apiVerison);
-					// 													if (apiVerson == '1.9') {
-					// 														fullMgid = cardVal.id;
-					// 													} else { fullMgid = cardval.mgid;}
-
-					// 												if has clips add button, if has episodes add button
-					if (cardVal.hasPromos == true) {
+				if (cardVal.hasPromos == true) {
 						$('<p />', {
 							'id': 'showCardButtons_' + z + i,
 							'class': 'showCardButton',
@@ -274,7 +261,7 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 							'onclick': 'loadContent("' + propertyMgid + '","clip","' + seriesTitle + '");'
 						}).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
 					}
-					if (cardVal.hasSubItems == true) {
+				if (cardVal.hasSubItems == true) {
 						$('<p />', {
 							'id': 'showCardButtons_' + z + i,
 							'class': 'showCardButton',
@@ -373,22 +360,14 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 					aspectError = "true";
 				}
 			}
-			//console.log(contentCardVal.images[0])
-
-			// 					link = contentCardVal.id; // grabs the ID field
-			// 					link = link.substr(link.length - 36); // takes the UUID off the MGID
-			// 					link = deeplinkBase.concat(deeplinkPath,link); // ads the Deeplink app root to path + uuid
 			link = uuidMaker(contentCardVal.id);
-			/* console.log(cardVal.title); */
 
 			//Make a CSV index
 			cardLinks.push({
 				title: title,
 				uuid: link
 			});
-
-
-
+			
 			$('<div />', {
 				'id': i + z,
 				'class': 'contentCard',
@@ -444,7 +423,7 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 	});
 }
 
-//####################################----Build The Series Modules 19----####################################
+//####################################----Build The Series Modules 1.9----####################################
 function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 	console.log("USING 1.9 LOGIC")
 	$.getJSON(moduleURL, function(playplexData) {
@@ -567,12 +546,6 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 					'class': 'showCardButtons',
 				}).appendTo('#' + propertyCardID);
 
-				//console.log(apiVerison);
-				// 													if (apiVerson == '1.9') {
-				// 														fullMgid = cardVal.id;
-				// 													} else { fullMgid = cardval.mgid;}
-
-				// 												if has clips add button, if has episodes add button
 				if (hasVideos === true) {
 					$('<p />', {
 						'id': 'showCardButtons_Video' + z + i,
@@ -655,10 +628,6 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 			imgError = "false";
 			title = '"' + contentCardVal.title + '"';
 			txtObject = JSON.stringify(contentCardVal, null, 4);
-			//title = title.replace(",", "%2C");
-
-			//title = JSON.stringify(String(contentCardVal.title));
-			//console.log(cardVal.distPolicy);
 			if (contentCardVal.authRequired === true) {
 				tve = "true";
 			}
@@ -687,29 +656,17 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 				aspectError = "false";
 				imgError = "true";
 			}
-
-			//console.log(contentCardVal.images[0])
-
-			// 					link = contentCardVal.id; // grabs the ID field
-			// 					link = link.substr(link.length - 36); // takes the UUID off the MGID
-			// 					link = deeplinkBase.concat(deeplinkPath,link); // ads the Deeplink app root to path + uuid
 			link = uuidMaker(contentCardVal.id);
-			/* console.log(cardVal.title); */
-
 			//Make a CSV index
 			cardLinks.push({
 				title: title,
 				uuid: link
 			});
-
-
-
-			$('<div />', {
+		$('<div />', {
 				'id': i + z,
 				'class': 'contentCard',
 				'style': 'background-image: url(' + imgUrl + ')'
 			}).appendTo('#container_Content');
-
 
 			$('<p />', {
 				'id': 'showCardJsonButton_' + propertyCardID,
@@ -810,8 +767,6 @@ function deeplinkBuilder(mgid, parentMgid) {
 			deeplink = deeplinkBase.concat(deeplinkUSPath, mgid); // ads the Deeplink app root to path + uuid
 		}
 	}
-
-
 	if (xrsBool !== false) {
 		deeplink = deeplink.concat(xrs);
 	}
@@ -866,12 +821,6 @@ function showOverlayJson(mgid) {
 //####################################----URL Param----####################################
 
 function addURLParam(paramName, paramValue) {
-	// 		var url=window.location.href,
-	// 				separator = (url.indexOf("?")===-1)?"?":"&",
-	// 				newParam=separator + paramName + '=' + paramValue;
-	// 				newUrl=url.replace(newParam,"");
-	// 				newUrl+=newParam;
-	// 				window.location.href =newUrl;
 
 	var loc = location.href;
 	if (loc.indexOf("?") === -1) {
@@ -895,8 +844,6 @@ function addURLParam(paramName, paramValue) {
 			})
 		}
 	}
-	//if (indexOf(paramName))
-
 
 	loc = loc + paramName + '=' + paramValue;
 	window.history.pushState({}, '', loc);
