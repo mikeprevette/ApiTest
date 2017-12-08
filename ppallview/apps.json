@@ -118,6 +118,18 @@
         "apiVersion":"1.7",
         "appVersion":"4.1"
       }
+    },    
+    {
+      "app": {
+        "name": "MTV ROKU US",
+        "brand": "mtv",
+        "platform": "roku",
+        "country": "us",
+        "stage": "live",
+        "arcSpace": "mtv-intl-Spain-authoring",
+        "apiVersion":"1.9",
+        "appVersion":"2.0"
+      }
     },
       {
       "app": {
