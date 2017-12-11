@@ -332,6 +332,8 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 	$('.overlay').show();
 	$.getJSON(targetLink, function(playplexContent) {
 		$.each(playplexContent.data.items, function(i, contentCardVal) {
+			card[contentCardVal.mgid];
+			card[contentCardVal.mgid] = contentCardVal;
 			tve = "false";
 			z = "content";
 			imgUrl = "";
@@ -396,6 +398,13 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 			$('<div />', {
 				'id': 'CardMeta_' + i + z,
 				'class': 'CardMeta'
+			}).appendTo('#' + i + z);
+			
+			$('<p />', {
+				'id': 'showCardJsonButton_' + propertyCardID,
+				'class': 'showCardJsonButton',
+				'text': 'API OUTPUT',
+				'onclick': 'showOverlayJson("' + contentCardVal.mgid + '");'
 			}).appendTo('#' + i + z);
 
 			//build the meta objects
