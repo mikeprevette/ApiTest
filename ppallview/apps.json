@@ -118,7 +118,19 @@
         "apiVersion":"1.7",
         "appVersion":"4.1"
       }
-    },    
+    },
+    {
+      "app": {
+        "name": "MTV ES Staging",
+        "brand": "mtv",
+        "platform": "ios",
+        "country": "es",
+        "stage": "staging",
+        "arcSpace": "mtv-intl-Spain-authoring",
+        "apiVersion":"1.7",
+        "appVersion":"4.1"
+      }
+    },      
     {
       "app": {
         "name": "MTV ROKU US",
@@ -126,7 +138,7 @@
         "platform": "roku",
         "country": "us",
         "stage": "live",
-        "arcSpace": "mtv-intl-Spain-authoring",
+        "arcSpace": "mtv-authoring-site",
         "apiVersion":"1.9",
         "appVersion":"2.0"
       }
@@ -175,8 +187,8 @@
         "country": "us",
         "stage": "live",
         "arcSpace": "arc-ent-paramount-network-site",
-        "apiVersion":"1.7",
-        "appVersion":"4.1"
+        "apiVersion":"1.9",
+        "appVersion":"4.3"
       }
     },
     {
