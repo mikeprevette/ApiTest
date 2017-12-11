@@ -32,7 +32,7 @@ function makeTheScreen() {
 	});
 
 	if (firstRun === true) {
-		alert("Hello! This is an unsupported tool, and will likely break often. \n\n Things to note: \n -- no loading spinners (be patient) \n -- no pagination (25item max)\n -- error if you change brands while its still loading");
+		alert("Hello! This is an unsupported tool, and will likely break often. \n\n Things to note: \n NEW URL!!: http://mikeprevette.github.io/ApiTest/ppallview/index.html \n -- no loading spinners (be patient) \n -- no pagination (25item max)\n -- error if you change brands while its still loading");
 		stringToParams("mtv,ios,gb,live,mtv-intl-uk-authoring,1.7,4.1");
 	}
 }
