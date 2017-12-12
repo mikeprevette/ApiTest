@@ -32,7 +32,7 @@ function makeTheScreen() {
 	});
 
 	if (firstRun === true) {
-		alert("Hello! This is an unsupported tool, and will likely break often. \n\n Things to note: \n -- no loading spinners (be patient) \n -- no pagination (25item max)\n -- error if you change brands while its still loading");
+		alert("Hello! This is an unsupported tool, and will likely break often. \n\n Things to note: \n NEW URL!!: http://mikeprevette.github.io/ApiTest/ppallview/index.html \n -- no loading spinners (be patient) \n -- no pagination (25item max)\n -- error if you change brands while its still loading");
 		stringToParams("mtv,ios,gb,live,mtv-intl-uk-authoring,1.7,4.1");
 	}
 }
@@ -142,7 +142,7 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
 			//add a Link to the container Header
 			$('<span />', {
 				'id': 'containerApiButton_' + containerId,
-				'class': 'containerApiButton',
+				'class': 'button',
 				'text': 'PromoList API Output',
 				'onclick': 'window.open("' + target + '");'
 			}).appendTo('#moduleHeader_' + containerId);
@@ -234,7 +234,7 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 
 				$('<p />', {
 					'id': 'showCardJsonButton_' + propertyCardID,
-					'class': 'showCardJsonButton',
+					'class': 'button',
 					'text': 'API OUTPUT',
 					'onclick': 'showOverlayJson("' + propertyMgid + '");'
 				}).appendTo('#showCardMeta_' + propertyCardID);
@@ -301,7 +301,7 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 
 	$('<div />', {
 		'id': 'CSV',
-		'class': 'downloadButton',
+		'class': 'button',
 		'text': 'DOWNLOAD CONTENT CSV',
 		'onclick': 'downloadCSV({ filename: "' + seriesTitle + '_data.csv" });'
 	}).appendTo('#buttons');
@@ -313,7 +313,7 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 		targetLink = episodeLink;
 		$('<div />', {
 			'id': 'episodeAPI',
-			'class': 'downloadButton',
+			'class': 'button',
 			'text': 'OPEN EPISODE API',
 			'onclick': 'window.open("' + episodeLink + '");'
 		}).appendTo('#buttons');
@@ -321,7 +321,7 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 		targetLink = clipLink;
 		$('<div />', {
 			'id': 'clipAPI',
-			'class': 'downloadButton',
+			'class': 'button',
 			'text': 'OPEN CLIP API',
 			'onclick': 'window.open("' + clipLink + '");'
 		}).appendTo('#buttons');
@@ -402,7 +402,7 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 			
 			$('<p />', {
 				'id': 'showCardJsonButton_' + propertyCardID,
-				'class': 'showCardJsonButton',
+				'class': 'button',
 				'text': 'API OUTPUT',
 				'onclick': 'showOverlayJson("' + contentCardVal.mgid + '");'
 			}).appendTo('#' + i + z);
@@ -509,7 +509,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 
 			$('<p />', {
 				'id': 'showCardJsonButton_' + propertyCardID,
-				'class': 'showCardJsonButton',
+				'class': 'button',
 				'text': 'API OUTPUT',
 				'onclick': 'showOverlayJson("' + propertyMgid + '");'
 			}).appendTo('#showCardMeta_' + propertyCardID);
@@ -546,10 +546,17 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 				} else {
 					hasPlaylists = false
 				}
+				if (cardVal.links.hasOwnProperty("movie")) {
+// 					console.log(cardVal.links.movie);
+					movieLink = cardVal.links.movie;
+					hasMovie = true;
+				} else {
+					hasMovie = false
+				}
 			}
 
 
-			if (hasEpisodes === true || hasVideos === true || hasPlaylists === true) {
+			if (hasEpisodes === true || hasVideos === true || hasPlaylists === true || hasMovie === true) {
 				$('<div />', {
 					'id': 'showCardButtonBar_' + propertyCardID,
 					'class': 'showCardButtons',
@@ -577,6 +584,14 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 						'class': 'showCardButton',
 						'text': 'Playlists',
 						'onclick': 'loadContentLink("' + playlistLink + '","playlists","' + seriesTitle + '");'
+					}).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
+				}
+				if (hasMovie === true) {
+					$('<p />', {
+						'id': 'showCardButtons_Movie' + z + i,
+						'class': 'showCardButton',
+						'text': 'Movie',
+						'onclick': 'loadContentLink("' + movieLink + '","movie","' + seriesTitle + '");'
 					}).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
 				}
 			} else if (isPromoError === false) {
@@ -609,7 +624,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 
 	$('<div />', {
 		'id': 'CSV',
-		'class': 'downloadButton',
+		'class': 'button',
 		'text': 'DOWNLOAD CONTENT CSV',
 		'onclick': 'downloadCSV({ filename: "' + seriesTitle + '_data.csv" });'
 	}).appendTo('#buttons');
@@ -617,7 +632,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 
 	$('<div />', {
 		'id': 'episodeAPI',
-		'class': 'downloadButton',
+		'class': 'button',
 		'text': 'OPEN API',
 		'onclick': 'window.open("' + contentLink + '");'
 	}).appendTo('#buttons');
@@ -679,7 +694,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 
 			$('<p />', {
 				'id': 'showCardJsonButton_' + propertyCardID,
-				'class': 'showCardJsonButton',
+				'class': 'button',
 				'text': 'API OUTPUT',
 				'onclick': 'showOverlayJson("' + contentCardVal.mgid + '");'
 			}).appendTo('#' + i + z);
