@@ -30,7 +30,9 @@ function makeTheScreen() {
 					.text(apps.app.name));
 		})
 	});
-
+	$(window).load(function() {
+     $('#loadingOverlay').hide();
+	});
 	if (firstRun === true) {
 		alert("Hello! This is an unsupported tool, and will likely break often. \n\n Things to note: \n NEW URL!!: http://mikeprevette.github.io/ApiTest/ppallview/index.html \n -- no loading spinners (be patient) \n -- no pagination (25item max)\n -- error if you change brands while its still loading");
 		stringToParams("mtv,ios,gb,live,mtv-intl-uk-authoring,1.7,4.1");
@@ -218,8 +220,6 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 						'text': "Broken IMAGE ERROR - Likely no aspectRatio on configObj Art, images not published, or bad image DP"
 					}).appendTo('#errorbox' + '_' + z + i);
 				}
-
-
 				//build the meta
 				$('<div />', {
 					'id': 'showCardMeta_' + propertyCardID,
@@ -329,7 +329,6 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 	//activeSeries = seriesMgid;
 	//build the container
 
-	$('.overlay').show();
 	$.getJSON(targetLink, function(playplexContent) {
 		$.each(playplexContent.data.items, function(i, contentCardVal) {
 			card[contentCardVal.mgid];
@@ -640,7 +639,6 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 	//activeSeries = seriesMgid;
 	//build the container
 
-	$('.overlay').show();
 	$.getJSON(contentLink, function(playplexContent) {
 		$.each(playplexContent.data.items, function(i, contentCardVal) {
 			card[contentCardVal.mgid];
@@ -753,8 +751,6 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 
 		});
 	});
-	$('.overlay').hide();
-	functionIsRunning = false;
 }
 //####################################----Make a UUID----####################################
 
