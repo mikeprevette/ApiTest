@@ -304,7 +304,7 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 		'class': 'button',
 		'text': 'DOWNLOAD CONTENT CSV',
 		'onclick': 'downloadCSV({ filename: "' + seriesTitle + '_data.csv" });'
-	}).appendTo('#buttons');
+	}).appendTo('#contentContainerHeader');
 
 	episodeLink = seriesItemsURL + seriesMgid + params;
 	clipLink = seriesClipsURL + seriesMgid + params;
@@ -316,7 +316,7 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 			'class': 'button',
 			'text': 'OPEN EPISODE API',
 			'onclick': 'window.open("' + episodeLink + '");'
-		}).appendTo('#buttons');
+		}).appendTo('#contentContainerHeader');
 	} else if (contentType == "clip") {
 		targetLink = clipLink;
 		$('<div />', {
@@ -324,7 +324,7 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 			'class': 'button',
 			'text': 'OPEN CLIP API',
 			'onclick': 'window.open("' + clipLink + '");'
-		}).appendTo('#buttons');
+		}).appendTo('#contentContainerHeader');
 	}
 	//activeSeries = seriesMgid;
 	//build the container
@@ -627,7 +627,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 		'class': 'button',
 		'text': 'DOWNLOAD CONTENT CSV',
 		'onclick': 'downloadCSV({ filename: "' + seriesTitle + '_data.csv" });'
-	}).appendTo('#buttons');
+	}).appendTo('#contentContainerHeader');
 
 
 	$('<div />', {
@@ -635,7 +635,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 		'class': 'button',
 		'text': 'OPEN API',
 		'onclick': 'window.open("' + contentLink + '");'
-	}).appendTo('#buttons');
+	}).appendTo('#contentContainerHeader');
 
 	//activeSeries = seriesMgid;
 	//build the container
