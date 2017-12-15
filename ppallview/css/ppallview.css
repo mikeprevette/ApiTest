@@ -109,6 +109,19 @@ p {
 	margin-left: 5em;
 }
 
+#loadingOverlay {
+	  height: 100%; /* Full height (cover the whole page) */
+	  width: 100%; /* Full width (cover the whole page) */
+    position: fixed; /* Sit on top of the page content */
+	  bottom: 0;
+		top: 0;
+		left: 0;
+    background-color: rgba(0,0,0,0.75); /* Black background with opacity */
+    z-index: 999; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+
 #cardJson {
 	position: fixed;
 	margin-left:10%;
@@ -370,6 +383,24 @@ p {
 @-webkit-keyframes bounceright {
 	from { -webkit-transform: translateX(0); }
 	to   { -webkit-transform: translateX(3px); }
+}
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+		margin: -60px 0 0 -60px;
+		position: absolute;
+ 		top: 50%;
+  	left: 50%;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 </style>

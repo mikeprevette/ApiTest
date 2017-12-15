@@ -30,9 +30,11 @@ function makeTheScreen() {
 					.text(apps.app.name));
 		})
 	});
-
+// 	$("#containers").load(function() {
+//      $('#loadingOverlay').hide();
+// 	});
 	if (firstRun === true) {
-		alert("Hello! This is an unsupported tool, and will likely break often. \n\n Things to note: \n NEW URL!!: http://mikeprevette.github.io/ApiTest/ppallview/index.html \n -- no loading spinners (be patient) \n -- no pagination (25item max)\n -- error if you change brands while its still loading");
+		alert("Hello! This is an unsupported tool, and will likely break often. \n\n Things to note: \n NEW URL!!: http://mikeprevette.github.io/ApiTest/ppallview/index.html \n -- no pagination (25item max)\n -- error if you change brands while its still loading");
 		stringToParams("mtv,ios,gb,live,mtv-intl-uk-authoring,1.7,4.1");
 	}
 }
@@ -40,6 +42,7 @@ function makeTheScreen() {
 //####################################----Turn the form input into params for the main function----####################################
 
 function stringToParams(buildString) {
+	$('#loadingOverlay').show();
 	console.log(buildString);
 	var splits = buildString.split(',');
 	brand = splits[0];
@@ -152,7 +155,8 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
 				getModule(target, screenID, containerId, z, aspectRatio);
 			}
 		})
-	})
+	}) 
+	$('#loadingOverlay').hide();
 };
 
 
@@ -218,8 +222,6 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 						'text': "Broken IMAGE ERROR - Likely no aspectRatio on configObj Art, images not published, or bad image DP"
 					}).appendTo('#errorbox' + '_' + z + i);
 				}
-
-
 				//build the meta
 				$('<div />', {
 					'id': 'showCardMeta_' + propertyCardID,
@@ -278,6 +280,7 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 			}
 		});
 	});
+	$('#loadingOverlay').hide();
 }
 
 //####################################----Load Content----####################################
@@ -304,7 +307,7 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 		'class': 'button',
 		'text': 'DOWNLOAD CONTENT CSV',
 		'onclick': 'downloadCSV({ filename: "' + seriesTitle + '_data.csv" });'
-	}).appendTo('#contentContainerHeader');
+	}).appendTo('#buttons');
 
 	episodeLink = seriesItemsURL + seriesMgid + params;
 	clipLink = seriesClipsURL + seriesMgid + params;
@@ -316,7 +319,7 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 			'class': 'button',
 			'text': 'OPEN EPISODE API',
 			'onclick': 'window.open("' + episodeLink + '");'
-		}).appendTo('#contentContainerHeader');
+		}).appendTo('#buttons');
 	} else if (contentType == "clip") {
 		targetLink = clipLink;
 		$('<div />', {
@@ -324,12 +327,11 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 			'class': 'button',
 			'text': 'OPEN CLIP API',
 			'onclick': 'window.open("' + clipLink + '");'
-		}).appendTo('#contentContainerHeader');
+		}).appendTo('#buttons');
 	}
 	//activeSeries = seriesMgid;
 	//build the container
 
-	$('.overlay').show();
 	$.getJSON(targetLink, function(playplexContent) {
 		$.each(playplexContent.data.items, function(i, contentCardVal) {
 			card[contentCardVal.mgid];
@@ -616,6 +618,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 			'class': 'container',
 		}).prependTo('#containers');
 	}
+	
 	$('<div />', {
 		'id': 'contentContainerHeader',
 		'class': 'containerHeader',
@@ -627,7 +630,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 		'class': 'button',
 		'text': 'DOWNLOAD CONTENT CSV',
 		'onclick': 'downloadCSV({ filename: "' + seriesTitle + '_data.csv" });'
-	}).appendTo('#contentContainerHeader');
+	}).appendTo('#buttons');
 
 
 	$('<div />', {
@@ -635,12 +638,11 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 		'class': 'button',
 		'text': 'OPEN API',
 		'onclick': 'window.open("' + contentLink + '");'
-	}).appendTo('#contentContainerHeader');
+	}).appendTo('#buttons');
 
 	//activeSeries = seriesMgid;
 	//build the container
 
-	$('.overlay').show();
 	$.getJSON(contentLink, function(playplexContent) {
 		$.each(playplexContent.data.items, function(i, contentCardVal) {
 			card[contentCardVal.mgid];
@@ -753,8 +755,6 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 
 		});
 	});
-	$('.overlay').hide();
-	functionIsRunning = false;
 }
 //####################################----Make a UUID----####################################
 

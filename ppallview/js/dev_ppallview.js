@@ -30,11 +30,11 @@ function makeTheScreen() {
 					.text(apps.app.name));
 		})
 	});
-	$(window).load(function() {
-     $('#loadingOverlay').hide();
-	});
+// 	$("#containers").load(function() {
+//      $('#loadingOverlay').hide();
+// 	});
 	if (firstRun === true) {
-		alert("Hello! This is an unsupported tool, and will likely break often. \n\n Things to note: \n NEW URL!!: http://mikeprevette.github.io/ApiTest/ppallview/index.html \n -- no loading spinners (be patient) \n -- no pagination (25item max)\n -- error if you change brands while its still loading");
+		//alert("Hello! This is an unsupported tool, and will likely break often. \n\n Things to note: \n NEW URL!!: http://mikeprevette.github.io/ApiTest/ppallview/index.html \n -- no loading spinners (be patient) \n -- no pagination (25item max)\n -- error if you change brands while its still loading");
 		stringToParams("mtv,ios,gb,live,mtv-intl-uk-authoring,1.7,4.1");
 	}
 }
@@ -42,6 +42,7 @@ function makeTheScreen() {
 //####################################----Turn the form input into params for the main function----####################################
 
 function stringToParams(buildString) {
+	$('#loadingOverlay').show();
 	console.log(buildString);
 	var splits = buildString.split(',');
 	brand = splits[0];
@@ -154,7 +155,8 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
 				getModule(target, screenID, containerId, z, aspectRatio);
 			}
 		})
-	})
+	}) 
+	$('#loadingOverlay').hide();
 };
 
 
@@ -278,6 +280,7 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 			}
 		});
 	});
+	$('#loadingOverlay').hide();
 }
 
 //####################################----Load Content----####################################
@@ -615,6 +618,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 			'class': 'container',
 		}).prependTo('#containers');
 	}
+	
 	$('<div />', {
 		'id': 'contentContainerHeader',
 		'class': 'containerHeader',
