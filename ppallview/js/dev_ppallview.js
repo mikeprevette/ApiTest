@@ -42,7 +42,7 @@ function makeTheScreen() {
 //####################################----Turn the form input into params for the main function----####################################
 
 function stringToParams(buildString) {
-	$('#loadingOverlay').show();
+	$('#loadingOverlay').hide();
 	console.log(buildString);
 	var splits = buildString.split(',');
 	brand = splits[0];
@@ -202,8 +202,16 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 				$('<div />', {
 					'id': propertyCardID,
 					'class': 'showCard_' + cardAspectRatio,
-					'style': 'background-image: url(' + imgUrl + ')'
+					'data-src': imgUrl
+					//'style': 'background-image: url(' + imgUrl + ')'
 				}).appendTo('#module_' + containerId);
+						$('#' + propertyCardID).Lazy({
+							scrollDirection: 'vertical',
+							effect: 'fadeIn',
+							effectTime: 2500,
+							visibleOnly: true,
+							onError: function(element) {console.log("hi!");}
+		});
 
 				$('<div />', {
 					'id': 'errorbox' + '_' + z + i,

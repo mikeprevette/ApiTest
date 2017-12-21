@@ -1,0 +1,16 @@
+<style type="text/css">
+#list{
+  display: table;
+}
+
+.lineItem {
+  display: table-cell;
+  text-align: center;
+  margin-left: 10px;
+  border: 1px solid black;
+}
+
+.line {
+  display: table-row;
+}
+</style>
