@@ -32,6 +32,7 @@
     var pauseChecked = false;
     var printStepChecked = false;
     var exportCsv = [];
+    var files;
 
     $(function() {
       $('#submit-parse').click(function() {
@@ -39,10 +40,11 @@
         chunks = 0;
         rows = 0;
 
-        var txt = $('#input').val();
-        var localChunkSize = $('#localChunkSize').val();
-        var remoteChunkSize = $('#remoteChunkSize').val();
-        var files = $('#files')[0].files;
+        var txt = '';
+        var localChunkSize;
+        var remoteChunkSize;
+        
+        files = $('#files')[0].files;
         var config = buildConfig();
 
         // NOTE: Chunk size does not get reset if changed and then set back to empty/default value
@@ -51,8 +53,8 @@
         if (remoteChunkSize)
           Papa.RemoteChunkSize = remoteChunkSize;
 
-        pauseChecked = $('#step-pause').prop('checked');
-        printStepChecked = $('#print-steps').prop('checked');
+        //pauseChecked = $('#step-pause').prop('checked');
+        //printStepChecked = $('#print-steps').prop('checked');
 
 
         if (files.length > 0) {
@@ -83,23 +85,6 @@
         }
       });
 
-      $('#submit-unparse').click(function() {
-        var input = $('#input').val();
-        var delim = $('#delimiter').val();
-
-        var results = Papa.unparse(input, {
-          delimiter: delim,
-        });
-
-        console.log("Unparse complete!");
-        console.log("--------------------------------------");
-        console.log(results);
-        console.log("--------------------------------------");
-      });
-
-      $('#insert-tab').click(function() {
-        $('#delimiter').val('\t');
-      });
       $('#download').click(function(){
         makeCSVFile(exportCsv);
       });
@@ -236,10 +221,20 @@
                 'class': 'lineItem',
                 'text': item.event
               }).appendTo('#line' + i);
+              
+              $('<div />', {
+                'class': 'lineItem',
+                'text': 'auth: ' + obj.auth
+              }).appendTo('#line' + i);
                       
               $('<div />', {
                 'class': 'lineItem',
                 'text': obj.id
+              }).appendTo('#line' + i);
+              
+              $('<div />', {
+                'class': 'lineItem',
+                'text': 'type: ' + obj.type
               }).appendTo('#line' + i);
               
                $('<div />', {
@@ -262,7 +257,7 @@
       //console.log(output[3]);
 
       exportCsv = arguments[0].data;
-
+  $('#download').toggle();
       //exportCsv = Papa.unparse(exportCsv);
 
       //console.log(exportCsv);
@@ -274,7 +269,7 @@
   exportCsv = Papa.unparse(exportCsv);
   if (exportCsv == null) return;
 
-  filename = 'export.csv';
+  filename = files[0].name + 'export.csv';
 
   if (!exportCsv.match(/^data:text\/csv/i)) {
     exportCsv = 'data:text/csv;charset=utf-8,' + exportCsv;

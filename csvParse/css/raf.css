@@ -13,4 +13,8 @@
 .line {
   display: table-row;
 }
+
+#download {
+  display:none;
+}
 </style>
