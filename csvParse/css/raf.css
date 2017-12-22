@@ -1,5 +1,6 @@
 <style type="text/css">
-#list{
+
+#list {
   display: table;
 }
 
@@ -11,7 +12,7 @@
 }
 
 .lineItem.red {
-color:red;
+  color: red;
 }
 
 .line {
@@ -25,4 +26,5 @@ color:red;
 #controls {
   margin-bottom: 25px;
 }
+
 </style>
