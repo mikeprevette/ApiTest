@@ -10,11 +10,19 @@
   border: 1px solid black;
 }
 
+.lineItem.red {
+color:red;
+}
+
 .line {
   display: table-row;
 }
 
 #download {
   display:none;
+}
+
+#controls {
+  margin-bottom: 25px;
 }
 </style>

@@ -25,8 +25,8 @@
   <script>
     var output;
     var stepped = 0,
-      chunks = 0,
-      rows = 0;
+        chunks = 0,
+        rows = 0;
     var start, end;
     var parser;
     var pauseChecked = false;
@@ -43,7 +43,7 @@
         var txt = '';
         var localChunkSize;
         var remoteChunkSize;
-        
+
         files = $('#files')[0].files;
         var config = buildConfig();
 
@@ -78,25 +78,21 @@
               console.log("Done with all files.");
             }
           });
-        } else {
-          start = performance.now();
-          var results = Papa.parse(txt, config);
-          console.log("Synchronous parse results:", results);
         }
       });
 
-      $('#download').click(function(){
+      $('#download').click(function() {
         makeCSVFile(exportCsv);
       });
     });
-    
+
 
 
 
     function buildConfig() {
       return {
         delimiter: $('#delimiter').val(),
-        newline: getLineEnding(),
+        newline: "",
         header: true,
         dynamicTyping: $('#dynamicTyping').prop('checked'),
         preview: parseInt($('#preview').val() || 0),
@@ -112,17 +108,6 @@
         chunk: $('#chunk').prop('checked') ? chunkFn : undefined,
         beforeFirstChunk: undefined,
       };
-
-      function getLineEnding() {
-        if ($('#newline-n').is(':checked'))
-          return "\n";
-        else if ($('#newline-r').is(':checked'))
-          return "\r";
-        else if ($('#newline-rn').is(':checked'))
-          return "\r\n";
-        else
-          return "";
-      }
     }
 
     function stepFn(results, parserHandle) {
@@ -175,6 +160,17 @@
       //console.log("Rows:", rows, "Stepped:", stepped, "Chunks:", chunks);
       //console.log(arguments[0].data);
       output = arguments[0].data;
+      
+      // Make a set of divs based on the number of lines in the CSV
+      for (let c = 0, l = output.length; c < l; c++) {
+                  $('<div />', {
+                  'id': c,
+                  'class': 'line'
+                }).appendTo('#list');
+      };
+      
+      
+      // Add content to the line that you have data for
       $.each(output, function(i, item) {
         var obj = JSON.parse(item.correlator);
         var url = "http://testing.api.playplex.viacom.vmn.io/feeds/networkapp/intl/property/1.9/"
@@ -184,109 +180,148 @@
           var fullUrl = url + itemMGID + params;
           //console.log(obj);
           if (itemMGID != "") {
-          $.getJSON(fullUrl, function(itemApiData) {
-            //console.log(fullUrl);
-            if (itemApiData.data != undefined) {
-              if (itemApiData.data.item.title != undefined) {
+            $.getJSON(fullUrl, function(itemApiData) {
+              console.log(fullUrl);
+              if (itemApiData.data !== undefined && itemApiData.data !== null) {
+                if (itemApiData.data.item.title !== undefined) {
                   itemTitle = itemApiData.data.item.title;
+                } else {
+                  itemTitle = "null";
+                }
+                if (itemApiData.data.item.subTitle !== undefined) {
+                  itemSubTitle = itemApiData.data.item.subTitle;
+                } else {
+                  itemSubTitle = "null";
+                }
+                if (itemApiData.data.item.parentEntity !== undefined) {
+                  parentSeries = itemApiData.data.item.parentEntity.title;
+                } else {
+                  parentSeries = "null"
+                }
+
+                //console.log(itemTitle + " , " + itemSubTitle + " , Series: " + parentSeries);
+                obj.id = itemTitle + " , " + itemSubTitle + " , Series: " + parentSeries;
+                item.correlator = JSON.stringify(obj);
+                //console.log(item);
+                lineId = item[''];
+                 $('<div />', {
+                  'class': 'lineItem',
+                  'text': item['']
+                }).appendTo('#' + lineId);
+                
+                $('<div />', {
+                  'class': 'lineItem',
+                  'text': item.eventday
+                }).appendTo('#' + lineId);
+
+                $('<div />', {
+                  'class': 'lineItem',
+                  'text': item.event
+                }).appendTo('#' + lineId);
+
+                $('<div />', {
+                  'class': 'lineItem',
+                  'text': 'auth: ' + obj.auth
+                }).appendTo('#' + lineId);
+
+                $('<div />', {
+                  'class': 'lineItem',
+                  'text': obj.id
+                }).appendTo('#' + lineId);
+
+                $('<div />', {
+                  'class': 'lineItem',
+                  'text': 'type: ' + obj.type
+                }).appendTo('#' + lineId);
+
+                $('<div />', {
+                  'class': 'lineItem',
+                  'text': item.rida
+                }).appendTo('#' + lineId);
+
+                //console.log(item.correlator);
+                arguments[0].data[i] = item;
               } else {
-                itemTitle = "null";
-              }       
-              if (itemApiData.data.item.subTitle != undefined) {
-                 itemSubTitle =  itemApiData.data.item.subTitle;
-              } else {
-                itemSubTitle = "null";
+                lineId = item[''];
+                obj.id = obj.id + " API ERROR";                
+                $('<div />', {
+                  'class': 'lineItem',
+                  'text': item['']
+                }).appendTo('#' + lineId);
+
+                $('<div />', {
+                  'class': 'lineItem',
+                  'text': item.eventday
+                }).appendTo('#' + lineId);
+
+                $('<div />', {
+                  'class': 'lineItem',
+                  'text': item.event
+                }).appendTo('#' + lineId);
+
+                $('<div />', {
+                  'class': 'lineItem',
+                  'text': 'auth: ' + obj.auth
+                }).appendTo('#' + lineId);
+
+                $('<div />', {
+                  'class': 'lineItem red',
+                  'text': obj.id
+                }).appendTo('#' + lineId);
+
+                $('<div />', {
+                  'class': 'lineItem',
+                  'text': 'type: ' + obj.type
+                }).appendTo('#' + lineId);
+
+                $('<div />', {
+                  'class': 'lineItem',
+                  'text': item.rida
+                }).appendTo('#' + lineId);
+                item.correlator = JSON.stringify(obj);
+                arguments[0].data[i] = item;
               }
-              if (itemApiData.data.item.parentEntity != undefined) {
-                 parentSeries = itemApiData.data.item.parentEntity.title;
-              } else {
-                parentSeries = "null"
-              }
-              
-              //console.log(itemTitle + " , " + itemSubTitle + " , Series: " + parentSeries);
-              obj.id = itemTitle + " , " + itemSubTitle + " , Series: " + parentSeries;
-              item.correlator = JSON.stringify(obj);
-              //console.log(item);
-              $('<div />', {
-                'id': 'line' + i,
-                'class': 'line'
-              }).appendTo('#list');
-              
-              $('<div />', {
-                'class': 'lineItem',
-                'text': item.eventday
-              }).appendTo('#line' + i);
-              
-              $('<div />', {
-                'class': 'lineItem',
-                'text': item.event
-              }).appendTo('#line' + i);
-              
-              $('<div />', {
-                'class': 'lineItem',
-                'text': 'auth: ' + obj.auth
-              }).appendTo('#line' + i);
-                      
-              $('<div />', {
-                'class': 'lineItem',
-                'text': obj.id
-              }).appendTo('#line' + i);
-              
-              $('<div />', {
-                'class': 'lineItem',
-                'text': 'type: ' + obj.type
-              }).appendTo('#line' + i);
-              
-               $('<div />', {
-                'class': 'lineItem',
-                'text': item.rida
-              }).appendTo('#line' + i);
-                          
-              //console.log(item.correlator);
-              arguments[0].data[i] = item;
-            } else {
-              obj.id = obj.id + " Error";
-              arguments[0].data[i] = item;
-            }
-          });
+            });
           };
         };
       });
-      
+
       console.log(arguments[0]);
       //console.log(output[3]);
 
       exportCsv = arguments[0].data;
-  $('#download').toggle();
+      $('#download').toggle();
+
       //exportCsv = Papa.unparse(exportCsv);
 
       //console.log(exportCsv);
     }
-  
-  
-    
-  function makeCSVFile(){
-  exportCsv = Papa.unparse(exportCsv);
-  if (exportCsv == null) return;
 
-  filename = files[0].name + 'export.csv';
 
-  if (!exportCsv.match(/^data:text\/csv/i)) {
-    exportCsv = 'data:text/csv;charset=utf-8,' + exportCsv;
-  }
-  data = encodeURI(exportCsv);
 
-  link = document.createElement('a');
-  link.setAttribute('href', data);
-  link.setAttribute('download', filename);
-  link.click();
- }
+    function makeCSVFile() {
+      exportCsv = Papa.unparse(exportCsv);
+      if (exportCsv == null) return;
+
+      filename = files[0].name + 'export.csv';
+
+      if (!exportCsv.match(/^data:text\/csv/i)) {
+        exportCsv = 'data:text/csv;charset=utf-8,' + exportCsv;
+      }
+      data = encodeURI(exportCsv);
+
+      link = document.createElement('a');
+      link.setAttribute('href', data);
+      link.setAttribute('download', filename);
+      link.click();
+    }
   </script>
 
 </head>
 
-<body><input type="file" id="files" multiple>
-  <button id="submit-parse">Parse</button><button id="download">Download</button>
+<body>
+  <div id="controls"><input type="file" id="files" multiple>
+    <button id="submit-parse">Parse</button><button id="download">Download</button></br>Only events with content display below, however they will be in the download. </div>
   <div id="list"></div>
   </div>
 </body>
