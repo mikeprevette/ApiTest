@@ -21,7 +21,7 @@ var card = Object.create(null);
 //####################################----on load parse the apps.json file and prefil the form----####################################
 
 
-function makeTheScreen() {
+function makeTheScreen(mode) {
 	$.getJSON("apps.json", function(appsList) {
 		$.each(appsList.apps, function(z, apps) {
 			$('#selector')
@@ -33,8 +33,11 @@ function makeTheScreen() {
 // 	$("#containers").load(function() {
 //      $('#loadingOverlay').hide();
 // 	});
-	if (firstRun === true) {
-		//alert("Hello! This is an unsupported tool, and will likely break often. \n\n Things to note: \n NEW URL!!: http://mikeprevette.github.io/ApiTest/ppallview/index.html \n -- no loading spinners (be patient) \n -- no pagination (25item max)\n -- error if you change brands while its still loading");
+	if (firstRun === true && mode == "live") {
+		alert("Hello! This is an unsupported tool, and will likely break often. \n\n Things to note: \n NEW URL!!: http://mikeprevette.github.io/ApiTest/ppallview/index.html \n -- no pagination (25item max)\n -- error if you change brands while its still loading");
+		stringToParams("mtv,ios,gb,live,mtv-intl-uk-authoring,1.7,4.1");
+	} else {
+		console.log("Dev Mode");
 		stringToParams("mtv,ios,gb,live,mtv-intl-uk-authoring,1.7,4.1");
 	}
 }
@@ -42,7 +45,7 @@ function makeTheScreen() {
 //####################################----Turn the form input into params for the main function----####################################
 
 function stringToParams(buildString) {
-	$('#loadingOverlay').hide();
+	$('#loadingOverlay').show();
 	console.log(buildString);
 	var splits = buildString.split(',');
 	brand = splits[0];
@@ -105,7 +108,7 @@ function buildPlayPlex(brand, stage, platform, region, apiVersion, appVersion) {
 	});
 }
 
-//####################################----Build The Series Modules----####################################
+//####################################----Build The Series Screens & Modules----####################################
 function getScreen(screenURL, screenName, screenID, screenIndex) {
 	$.getJSON(screenURL, function(playplexHome) {
 		$.each(playplexHome.data.screen.modules, function(z, modules) {
@@ -161,7 +164,7 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
 
 
 
-//####################################----Build The Series Modules----####################################
+//####################################----Build The Series Modules for 1.8 & Below----####################################
 function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 	$.getJSON(moduleURL, function(playplexData) {
 		$.each(playplexData.data.items, function(i, cardVal) {
@@ -202,16 +205,8 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 				$('<div />', {
 					'id': propertyCardID,
 					'class': 'showCard_' + cardAspectRatio,
-					'data-src': imgUrl
-					//'style': 'background-image: url(' + imgUrl + ')'
+					'style': 'background-image: url(' + imgUrl + ')'
 				}).appendTo('#module_' + containerId);
-						$('#' + propertyCardID).Lazy({
-							scrollDirection: 'vertical',
-							effect: 'fadeIn',
-							effectTime: 2500,
-							visibleOnly: true,
-							onError: function(element) {console.log("hi!");}
-		});
 
 				$('<div />', {
 					'id': 'errorbox' + '_' + z + i,
@@ -309,13 +304,18 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 		'class': 'containerHeader',
 		'text': contentType
 	}).appendTo('#container_Content');
+	
+	$('<div />', {
+		'id': 'contentContainerItems',
+		'class': 'container'
+	}).appendTo('#container_Content');
 
 	$('<div />', {
 		'id': 'CSV',
 		'class': 'button',
 		'text': 'DOWNLOAD CONTENT CSV',
 		'onclick': 'downloadCSV({ filename: "' + seriesTitle + '_data.csv" });'
-	}).appendTo('#buttons');
+	}).appendTo('#contentContainerHeader');
 
 	episodeLink = seriesItemsURL + seriesMgid + params;
 	clipLink = seriesClipsURL + seriesMgid + params;
@@ -327,7 +327,7 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 			'class': 'button',
 			'text': 'OPEN EPISODE API',
 			'onclick': 'window.open("' + episodeLink + '");'
-		}).appendTo('#buttons');
+		}).appendTo('#contentContainerHeader');
 	} else if (contentType == "clip") {
 		targetLink = clipLink;
 		$('<div />', {
@@ -335,7 +335,7 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 			'class': 'button',
 			'text': 'OPEN CLIP API',
 			'onclick': 'window.open("' + clipLink + '");'
-		}).appendTo('#buttons');
+		}).appendTo('#contentContainerHeader');
 	}
 	//activeSeries = seriesMgid;
 	//build the container
@@ -384,7 +384,7 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 				'id': i + z,
 				'class': 'contentCard',
 				'style': 'background-image: url(' + imgUrl + ')'
-			}).appendTo('#container_Content');
+			}).appendTo('#contentContainerItems');
 			$('<div />', {
 				'id': 'contentErrorbox' + '_' + i + z,
 				'class': 'errorbox'
@@ -632,13 +632,18 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 		'class': 'containerHeader',
 		'text': contentType
 	}).appendTo('#container_Content');
+	
+		$('<div />', {
+		'id': 'contentContainerItems',
+		'class': 'container'
+	}).appendTo('#container_Content');
 
 	$('<div />', {
 		'id': 'CSV',
 		'class': 'button',
 		'text': 'DOWNLOAD CONTENT CSV',
 		'onclick': 'downloadCSV({ filename: "' + seriesTitle + '_data.csv" });'
-	}).appendTo('#buttons');
+	}).appendTo('#contentContainerHeader');
 
 
 	$('<div />', {
@@ -646,7 +651,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 		'class': 'button',
 		'text': 'OPEN API',
 		'onclick': 'window.open("' + contentLink + '");'
-	}).appendTo('#buttons');
+	}).appendTo('#contentContainerHeader');
 
 	//activeSeries = seriesMgid;
 	//build the container
@@ -700,7 +705,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 				'id': i + z,
 				'class': 'contentCard',
 				'style': 'background-image: url(' + imgUrl + ')'
-			}).appendTo('#container_Content');
+			}).appendTo('#contentContainerItems');
 
 			$('<p />', {
 				'id': 'showCardJsonButton_' + propertyCardID,
