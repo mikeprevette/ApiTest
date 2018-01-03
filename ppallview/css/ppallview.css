@@ -58,7 +58,6 @@ p {
 .container {
 	color: #EEE;
 	display: block;
-	margin-bottom: 1em;
 	overflow-x: scroll;
 	height: 100%;
 	white-space: nowrap;
@@ -83,7 +82,7 @@ p {
 
 
 #container_Content {
-	height: 350px;
+/* 	height: 350px; */
 }
 
 /* .container::-webkit-scrollbar { 
