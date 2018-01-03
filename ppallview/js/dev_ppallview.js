@@ -10,7 +10,7 @@ var firstRun = true;
 var imageParams = '&width=450&quality=0.2';
 var xrs = '?xrs=vdapi_00_ba851eb8cd0e90efb7d099a8628e05a8';
 var apiVersion = '1.7'; //Default  - Overridden by apps.json
-var appVersion = '4.1'; //Default  - Overridden by apps.json
+var appVersion = '4.2'; //Default  - Overridden by apps.json
 var liveRootURL = 'http://api.playplex.viacom.com/feeds/networkapp/intl';
 var stagingRootURL = 'http://testing.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
 var activeSeries, brand, platform, region, stage, isisURL, params;
@@ -829,16 +829,14 @@ function cleanHouse(div) {
 		while (div.hasChildNodes()) {
 			div.removeChild(div.lastChild);
 		}
-		$("#buttons").empty();
 		cardLinks = [];
 	}
 }
 
-//####################################----Clean Content----####################################
+//####################################----Clean Screen----####################################
 
 function nuclear() {
 	$("#containers").empty();
-	$("#buttons").empty();
 	cardLinks = [];
 }
 
