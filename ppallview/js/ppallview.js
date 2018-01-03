@@ -14,6 +14,7 @@ var appVersion = '4.2'; //Default  - Overridden by apps.json
 var liveRootURL = 'http://api.playplex.viacom.com/feeds/networkapp/intl';
 var stagingRootURL = 'http://testing.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
 var activeSeries, brand, platform, region, stage, isisURL, params;
+var page = 0;
 var cardLinks = [];
 var card = Object.create(null);
 
@@ -34,11 +35,11 @@ function makeTheScreen(mode) {
 //      $('#loadingOverlay').hide();
 // 	});
 	if (firstRun === true && mode == "live") {
-		alert("Hello! This is an unsupported tool, and will likely break often. \n\n Things to note: \n NEW URL!!: http://mikeprevette.github.io/ApiTest/ppallview/index.html \n -- no pagination (25item max)\n -- error if you change brands while its still loading");
-		stringToParams("mtv,ios,gb,live,mtv-intl-uk-authoring,1.7,4.1");
+		alert("Hello! This is an unsupported tool, and will likely break often. \n\n Things to note: \n NEW URL!!: http://mikeprevette.github.io/ApiTest/ppallview/index.html \n -- error if you change brands while its still loading");
+		stringToParams("mtv,ios,gb,live,mtv-intl-uk-authoring,1.7,4.2");
 	} else {
 		console.log("Dev Mode");
-		stringToParams("mtv,ios,gb,live,mtv-intl-uk-authoring,1.7,4.1");
+		stringToParams("mtv,ios,gb,live,mtv-intl-uk-authoring,1.7,4.2");
 	}
 }
 
@@ -282,6 +283,10 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 				}
 			}
 		});
+		if (playplexData.metadata.pagination.next != null) { // checks for a next page then re-triggers itself.
+			moduleURL = playplexData.metadata.pagination.next;
+			getModule(moduleURL, screenID, containerId, z, aspectRatio); //run it all over again
+		}
 	});
 	$('#loadingOverlay').hide();
 }
@@ -289,8 +294,8 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 //####################################----Load Content----####################################
 
 function loadContent(seriesMgid, contentType, seriesTitle) {
-	functionIsRunning = true;
 	window.scrollTo(0, 0);
+	//build the container or empty one if it already exists
 	if (document.getElementById('container_Content') !== null) {
 		cleanHouse(container_Content);
 	} else {
@@ -336,113 +341,131 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 			'text': 'OPEN CLIP API',
 			'onclick': 'window.open("' + clipLink + '");'
 		}).appendTo('#contentContainerHeader');
-	}
-	//activeSeries = seriesMgid;
-	//build the container
+	}		
+	fillContentModule(targetLink);
+}
 
+//####################################----Fill the Content Module with items----####################################
+
+function fillContentModule(targetLink) {
 	$.getJSON(targetLink, function(playplexContent) {
+		console.log("total items: " + playplexContent.metadata.pagination.totalItems);
 		$.each(playplexContent.data.items, function(i, contentCardVal) {
-			card[contentCardVal.mgid];
-			card[contentCardVal.mgid] = contentCardVal;
-			tve = "false";
-			z = "content";
-			imgUrl = "";
-			aspectError = "false";
-			title = '"' + contentCardVal.title + '"';
-			//title = title.replace(",", "%2C");
+			//check to see if the item is valid
+			if (contentCardVal.hasOwnProperty("id")) {
+				card[contentCardVal.mgid];
+				card[contentCardVal.mgid] = contentCardVal;
+				tve = "false";
+				imgUrl = "";
+				aspectError = "false";
+				title = '"' + contentCardVal.title + '"';
+				cardId = contentCardVal.id;
+				//title = title.replace(",", "%2C");
 
-			//title = JSON.stringify(String(contentCardVal.title));
-			//console.log(cardVal.distPolicy);
-			if (contentCardVal.authRequired === true) {
-				tve = "true";
-			}
-
-
-			//Since this is only for Content, Lets assume we're always 16:9
-			aspectRatio = "16:9";
-			//Set the imag URL based on the aspecRatio
-			for (let v = 0, l = contentCardVal.images.length; v < l; v++) {
-				if (contentCardVal.images[v].aspectRatio === aspectRatio) {
-					imgUrl = contentCardVal.images[v].url + imageParams;
-					aspectError = "false";
-					console.log("Good Image");
-					break;
-				} else {
-					imgUrl = contentCardVal.images[0].url + imageParams;
-					aspectError = "true";
+				//title = JSON.stringify(String(contentCardVal.title));
+				//console.log(cardVal.distPolicy);
+				if (contentCardVal.authRequired === true) {
+					tve = "true";
 				}
-			}
-			link = uuidMaker(contentCardVal.id);
+				//Since this is only for Content, Lets assume we're always 16:9
+				aspectRatio = "16:9";
+				//Set the image URL based on the aspecRatio
+				if (contentCardVal.hasOwnProperty("images") && contentCardVal.images.length > 0) {
+					for (let v = 0, l = contentCardVal.images.length; v < l; v++) {
+						if (contentCardVal.images[v].aspectRatio === aspectRatio) {
+							imgUrl = contentCardVal.images[v].url + imageParams;
+							aspectError = "false";
+							console.log("Good Image");
+							break;
+						} else {
+							imgUrl = contentCardVal.images[0].url + imageParams;
+							aspectError = "true";
+						}
+					}
+				} else {
+					aspectError = "true";
+					imgUrl = "./img/error.jpg"
+				}
 
-			//Make a CSV index
-			cardLinks.push({
-				title: title,
-				uuid: link
-			});
-			
-			$('<div />', {
-				'id': i + z,
-				'class': 'contentCard',
-				'style': 'background-image: url(' + imgUrl + ')'
-			}).appendTo('#contentContainerItems');
-			$('<div />', {
-				'id': 'contentErrorbox' + '_' + i + z,
-				'class': 'errorbox'
-			}).appendTo('#' + i + z);
+				link = uuidMaker(contentCardVal.id);
 
-			// put the lock on the card	
-			if (tve === "true") {
+				//Make a CSV index
+				cardLinks.push({
+					title: title,
+					uuid: link
+				});
+
 				$('<div />', {
-					'id': 'lock_' + i + z,
-					'class': 'lock',
-				}).appendTo('#' + i + z);
-			}
-			if (aspectError === "true") {
+					'id': link,
+					'class': 'contentCard',
+					'style': 'background-image: url(' + imgUrl + ')'
+				}).appendTo('#contentContainerItems');
+				
+				$('<div />', {
+					'id': 'contentErrorbox' + '_' + link,
+					'class': 'errorbox'
+				}).appendTo('#' + link);
+
+				// put the lock on the card	
+				if (tve === "true") {
+					$('<div />', {
+						'id': 'lock_' + link,
+						'class': 'lock',
+					}).appendTo('#' + link);
+				}
+				if (aspectError === "true") {
+					$('<p />', {
+						'class': 'error',
+						'text': "IMG Error - No 16:9 aspectRatio match, using fallback"
+					}).appendTo('#contentErrorbox' + '_' + link);
+				}
+
+				//build the meta
+				$('<div />', {
+					'id': 'CardMeta_' + link,
+					'class': 'CardMeta'
+				}).appendTo('#' + link);
+
 				$('<p />', {
-					'class': 'error',
-					'text': "IMG Error - No 16:9 aspectRatio match, using fallback"
-				}).appendTo('#contentErrorbox' + '_' + i + z);
+					'id': 'showCardJsonButton_' + propertyCardID,
+					'class': 'button',
+					'text': 'API OUTPUT',
+					'onclick': 'showOverlayJson("' + contentCardVal.mgid + '");'
+				}).appendTo('#' + link);
+
+				//build the meta objects
+
+				$('<p />', {
+					'id': 'CardSubHeader_' + link,
+					'class': 'CardSubHeader',
+					'text': contentCardVal.subTitle
+				}).appendTo('#CardMeta_' + link);
+
+				$('<p />', {
+					'id': 'CardHeader_' + link,
+					'class': 'CardHeader',
+					'text': contentCardVal.title
+				}).appendTo('#CardMeta_' + link);
+
+				$('<p />', {
+					'id': 'CardHeaderLink_' + link,
+					'class': 'CardHeaderLink',
+					'text': 'ARC ID: ' + link,
+					'onclick': 'window.open("' + isisURL + link + '");'
+				}).appendTo('#CardMeta_' + link);
 			}
-
-			//build the meta
-			$('<div />', {
-				'id': 'CardMeta_' + i + z,
-				'class': 'CardMeta'
-			}).appendTo('#' + i + z);
-			
-			$('<p />', {
-				'id': 'showCardJsonButton_' + propertyCardID,
-				'class': 'button',
-				'text': 'API OUTPUT',
-				'onclick': 'showOverlayJson("' + contentCardVal.mgid + '");'
-			}).appendTo('#' + i + z);
-
-			//build the meta objects
-
-			$('<p />', {
-				'id': 'CardSubHeader_' + i + z,
-				'class': 'CardSubHeader',
-				'text': contentCardVal.subTitle
-			}).appendTo('#CardMeta_' + i + z);
-
-			$('<p />', {
-				'id': 'CardHeader_' + i + z,
-				'class': 'CardHeader',
-				'text': contentCardVal.title
-			}).appendTo('#CardMeta_' + i + z);
-
-			$('<p />', {
-				'id': 'CardHeaderLink_' + i + z,
-				'class': 'CardHeaderLink',
-				'text': 'ARC ID: ' + link,
-				'onclick': 'window.open("' + isisURL + link + '");'
-			}).appendTo('#CardMeta_' + i + z);
-
 		});
+		if (playplexContent.metadata.pagination.next != null) { // checks for a next page then re-triggers itself.
+			targetLink = playplexContent.metadata.pagination.next;
+			page = playplexContent.metadata.pagination.page;
+			console.log(page);
+			fillContentModule(targetLink); //run it all over again
+		}
 	});
 }
 
-//####################################----Build The Series Modules 1.9----####################################
+
+//####################################----Build The Series Modules (1.9 api)----####################################
 function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 	console.log("USING 1.9 LOGIC")
 	$.getJSON(moduleURL, function(playplexData) {
@@ -611,10 +634,14 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 				}).appendTo('#' + propertyCardID);
 			}
 		});
+		if (playplexData.metadata.pagination.next != null) { // checks for a next page then re-triggers itself.
+			moduleURL = playplexData.metadata.pagination.next;
+			getModule19(moduleURL, screenID, containerId, z, aspectRatio); //run it all over again
+		}
 	});
 }
 
-//####################################----Load Content Links----####################################
+//####################################----Load Content Links (1.9 api)----####################################
 
 function loadContentLink(contentLink, contentType, seriesTitle) {
 	window.scrollTo(0, 0);
@@ -655,12 +682,16 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 
 	//activeSeries = seriesMgid;
 	//build the container
+	fillContentModule19(contentLink);
+}
 
+//####################################----Fill the Content Module with items (1.9 api)----####################################
+function fillContentModule19(contentLink){
 	$.getJSON(contentLink, function(playplexContent) {
+			console.log("total items: " + playplexContent.metadata.pagination.totalItems);
 		$.each(playplexContent.data.items, function(i, contentCardVal) {
 			card[contentCardVal.mgid];
 			card[contentCardVal.mgid] = contentCardVal;
-			z = "content";
 			imgUrl = "";
 			tve = "false";
 			aspectError = "false";
@@ -702,7 +733,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 				uuid: link
 			});
 		$('<div />', {
-				'id': i + z,
+				'id': link,
 				'class': 'contentCard',
 				'style': 'background-image: url(' + imgUrl + ')'
 			}).appendTo('#contentContainerItems');
@@ -712,61 +743,67 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 				'class': 'button',
 				'text': 'API OUTPUT',
 				'onclick': 'showOverlayJson("' + contentCardVal.mgid + '");'
-			}).appendTo('#' + i + z);
+			}).appendTo('#' + link);
 
 			$('<div />', {
-				'id': 'contentErrorbox_' + i + z,
+				'id': 'contentErrorbox_' + link,
 				'class': 'errorbox'
-			}).appendTo('#' + i + z);
+			}).appendTo('#' + link);
 
 			// put the lock on the card	
 			if (tve === "true") {
 				$('<div />', {
-					'id': 'lock_' + i + z,
+					'id': 'lock_' + link,
 					'class': 'lock',
-				}).appendTo('#' + i + z);
+				}).appendTo('#' + link);
 			}
 			if (aspectError === "true") {
 				$('<p />', {
 					'class': 'error',
 					'text': "IMG Error - No 16:9 aspectRatio match, using fallback"
-				}).appendTo('#contentErrorbox' + '_' + i + z);
+				}).appendTo('#contentErrorbox' + '_' + link);
 			}
 			if (imgError === "true") {
 				$('<p />', {
 					'class': 'error',
 					'text': "IMG Error -Empty or missing images"
-				}).appendTo('#contentErrorbox' + '_' + i + z);
+				}).appendTo('#contentErrorbox' + '_' + link);
 			}
 
 			//build the meta
 			$('<div />', {
-				'id': 'CardMeta_' + i + z,
+				'id': 'CardMeta_' + link,
 				'class': 'CardMeta'
-			}).appendTo('#' + i + z);
+			}).appendTo('#' + link);
 
 			//build the meta objects
 
 			$('<p />', {
-				'id': 'CardSubHeader_' + i + z,
+				'id': 'CardSubHeader_' + link,
 				'class': 'CardSubHeader',
 				'text': contentCardVal.subTitle
-			}).appendTo('#CardMeta_' + i + z);
+			}).appendTo('#CardMeta_' + link);
 
 			$('<p />', {
-				'id': 'CardHeader_' + i + z,
+				'id': 'CardHeader_' + link,
 				'class': 'CardHeader',
 				'text': contentCardVal.title
-			}).appendTo('#CardMeta_' + i + z);
+			}).appendTo('#CardMeta_' + link);
 
 			$('<p />', {
-				'id': 'CardHeaderLink_' + i + z,
+				'id': 'CardHeaderLink_' + link,
 				'class': 'CardHeaderLink',
 				'text': 'ARC ID: ' + link,
 				'onclick': 'window.open("' + isisURL + link + '");'
-			}).appendTo('#CardMeta_' + i + z);
+			}).appendTo('#CardMeta_' + link);
 
 		});
+		if (playplexContent.metadata.pagination.next != null) { // checks for a next page then re-triggers itself.
+			contentLink = playplexContent.metadata.pagination.next;
+			page = playplexContent.metadata.pagination.page;
+			console.log(page);
+			fillContentModule19(contentLink); //run it all over again
+		}
 	});
 }
 //####################################----Make a UUID----####################################
