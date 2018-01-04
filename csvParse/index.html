@@ -169,7 +169,7 @@
       
       
       // Add content to the line that you have data for
-      $.each(output, function(i, item) {
+      var cow = $.each(output, function(i, item) {
         var obj = JSON.parse(item.correlator);
         var brand = "paramountnetwork";
         var url = "http://testing.api.playplex.viacom.vmn.io/feeds/networkapp/intl/property/1.9/"
@@ -278,18 +278,22 @@
                   'text': item.rida
                 }).appendTo('#' + lineId);
                 item.correlator = JSON.stringify(obj);
-                arguments[0].data[i] = item;
+                if (item === null) {
+                  arguments[0].data[i] = item;
+                }
               }
             });
           };
         };
       });
+        
+     $.when(cow).done(function() {
+        document.getElementById("download").disabled = false;
+      });
 
       //console.log(arguments[0]);
       //console.log(output[3]);
-
       exportCsv = arguments[0].data;
-      document.getElementById("download").disabled = false;
 
       //exportCsv = Papa.unparse(exportCsv);
 
