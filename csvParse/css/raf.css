@@ -1,4 +1,3 @@
-<style type="text/css">
 
 body {
   font: 300 1em sans-serif;
@@ -7,7 +6,7 @@ body {
   align-items: center;
   text-align: center;
   min-height: 100vh;
-  display: flex;
+/*   display: flex; */
 }
 
 p {
@@ -103,7 +102,7 @@ p {
 }
 
 #controls {
-  min-width: 650px;
+  min-width: 675px;
   margin-bottom: 25px;
   margin-left: auto;
   margin-right: auto;
@@ -112,5 +111,3 @@ p {
   background-color: rgba(0,0,0,0.25);
   border-radius: 15px;
 }
-
-</style>

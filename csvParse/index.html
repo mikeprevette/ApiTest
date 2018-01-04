@@ -171,15 +171,16 @@
       // Add content to the line that you have data for
       $.each(output, function(i, item) {
         var obj = JSON.parse(item.correlator);
+        var brand = "paramountnetwork";
         var url = "http://testing.api.playplex.viacom.vmn.io/feeds/networkapp/intl/property/1.9/"
-        var params = "?key=networkapp1.0&brand=paramountnetwork&platform=roku&region=us&version=2.0"
+        var params = "?key=networkapp1.0&platform=roku&region=us&version=2.0&brand="
         if (obj.id != undefined) {
           var itemMGID = obj.id;
-          var fullUrl = url + itemMGID + params;
+          var fullUrl = url + itemMGID + params + brand;
           //console.log(obj);
           if (itemMGID != "") {
             $.getJSON(fullUrl, function(itemApiData) {
-              console.log(fullUrl);
+              //console.log(fullUrl);
               if (itemApiData.data !== undefined && itemApiData.data !== null) {
                 if (itemApiData.data.item.title !== undefined) {
                   itemTitle = itemApiData.data.item.title;
@@ -284,7 +285,7 @@
         };
       });
 
-      console.log(arguments[0]);
+      //console.log(arguments[0]);
       //console.log(output[3]);
 
       exportCsv = arguments[0].data;
@@ -320,7 +321,7 @@
 
 </head>
 <body>
-      <p>Only events that have content ID's display below, however all events will be in the CSV download. <br/> FYI- Safari Doesn't properly name the file when downloading, please rename file and add .csv</p>
+  <p>Only events that have content ID's display below, however all events will be in the CSV download. <br/> FYI- Safari Doesn't properly name the file when downloading, please rename file and add .csv</p><br/>
   <div id="controls">
     <input type="file" id="files" class="inputs" multiple onchange="document.getElementById('submit-parse').disabled = false;"/>
     <button id="submit-parse" class="inputs" disabled="disabled">Parse File</button>
