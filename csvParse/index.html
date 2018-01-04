@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en-US">
-
 <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-47959509-2"></script>
@@ -37,6 +36,7 @@
         stepped = 0;
         chunks = 0;
         rows = 0;
+        document.getElementById("submit-parse").disabled = true;
 
         var txt = '';
         var localChunkSize;
@@ -288,7 +288,7 @@
       //console.log(output[3]);
 
       exportCsv = arguments[0].data;
-      $('#download').toggle();
+      document.getElementById("download").disabled = false;
 
       //exportCsv = Papa.unparse(exportCsv);
 
@@ -316,10 +316,14 @@
   </script>
 
 </head>
-
 <body>
-  <div id="controls"><input type="file" id="files" multiple><button id="submit-parse">Parse</button><button id="download">Download</button></br>Only events that have content ID's display below, however all events will be in the CSV download. </div>
+      <p>Only events that have content ID's display below, however all events will be in the CSV download.</p>
+  <div id="controls">
+    <input type="file" id="files" class="inputs" multiple onchange="document.getElementById('submit-parse').disabled = false;"/>
+    <button id="submit-parse" class="inputs" disabled="disabled">Parse File</button>
+    <button id="download" class="inputs" disabled="disabled">Download Output</button>
+    </br>
+  </div>
   <div id="list"></div>
 </body>
-
 </html>

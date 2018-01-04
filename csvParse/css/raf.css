@@ -1,7 +1,25 @@
 <style type="text/css">
 
+body {
+  font: 300 1em sans-serif;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+}
+
+p {
+  text-align: center;
+  width: 50%;
+  margin-left:auto;
+  margin-right:auto;
+}
+
 #list {
   display: table;
+  align-content: center;
 }
 
 .lineItem {
@@ -17,14 +35,80 @@
 
 .line {
   display: table-row;
+  
+}
+
+.inputs {
+ display: inline-block;
+ margin-left: 4em;
+}
+
+.inputs:disabled {
+ opacity: 0.5;
+}
+
+.inputs:focus {
+  outline: none;
+}
+
+#files {
+
+}
+
+#submit-parse {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+  border-radius: 4px;
+  -webkit-transition: background-color 0.25s ease-out;
+  -moz-transition: background-color 0.25s ease-out;
+  -o-transition: background-color 0.25s ease-out;
+  transition: background-color 0.25s ease-out;
+}
+
+
+#submit-parse:enabled:hover {
+  background-color: #50f442;
+  cursor: pointer;
+}
+
+#submit-parse:active {
+  background-color: #cbffc6;
 }
 
 #download {
-  display:none;
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+   -webkit-transition: background-color 0.25s ease-out;
+  -moz-transition: background-color 0.25s ease-out;
+  -o-transition: background-color 0.25s ease-out;
+  transition: background-color 0.25s ease-out;
+}
+
+#download:enabled:hover {
+ background-color: #50f442;
+ cursor: pointer;
+}
+
+#download:active {
+  background-color: #cbffc6;
 }
 
 #controls {
   margin-bottom: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 4em;
+  background-color: rgba(0,0,0,0.25);
+  border-radius: 15px;
 }
 
 </style>
