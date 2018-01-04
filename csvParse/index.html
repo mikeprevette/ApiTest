@@ -309,15 +309,18 @@
       data = encodeURI(exportCsv);
 
       link = document.createElement('a');
-      link.setAttribute('href', data);
-      link.setAttribute('download', filename);
+      link.type = "text/csv";
+      link.rel = "noopener noreferrer";
+      link.href = "data:application/octet-stream," + data;
+      link.download = filename;
+      link.target = "_blank";
       link.click();
     }
   </script>
 
 </head>
 <body>
-      <p>Only events that have content ID's display below, however all events will be in the CSV download. <br/> Downloading only seems to work in chrome.</p>
+      <p>Only events that have content ID's display below, however all events will be in the CSV download. <br/> FYI- Safari Doesn't properly name the file when downloading, please rename file and add .csv</p>
   <div id="controls">
     <input type="file" id="files" class="inputs" multiple onchange="document.getElementById('submit-parse').disabled = false;"/>
     <button id="submit-parse" class="inputs" disabled="disabled">Parse File</button>
