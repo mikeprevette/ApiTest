@@ -54,7 +54,7 @@ p {
 
 }
 
-#submit-parse {
+#clear {
   background: none;
   border: 2px solid;
   font: inherit;
@@ -69,12 +69,12 @@ p {
 }
 
 
-#submit-parse:enabled:hover {
+#clear:enabled:hover {
   background-color: #50f442;
   cursor: pointer;
 }
 
-#submit-parse:active {
+#clear:active {
   background-color: #cbffc6;
 }
 
