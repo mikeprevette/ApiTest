@@ -174,7 +174,7 @@
         var brand = "failboat";
         var url = "http://testing.api.playplex.viacom.vmn.io/feeds/networkapp/intl/property/1.9/"
         var params = "?key=networkapp1.0&platform=roku&region=us&version=2.0&brand="
-        if (obj.id != undefined) {
+        if (obj.id != undefined && obj.id !== "") {
           var itemMGID = obj.id;
           
           if (itemMGID.indexOf("paramountnetwork") !== -1) {
