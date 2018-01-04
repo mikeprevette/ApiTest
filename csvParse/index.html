@@ -304,9 +304,9 @@
       filename = files[0].name + 'export.csv';
 
       if (!exportCsv.match(/^data:text\/csv/i)) {
-        exportCsv = 'data:text/csv;charset=utf-8,' + exportCsv;
+        data = encodeURI(exportCsv);
       }
-      data = encodeURI(exportCsv);
+      
 
       link = document.createElement('a');
       link.type = "text/csv";
