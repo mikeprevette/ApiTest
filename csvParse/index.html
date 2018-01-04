@@ -31,12 +31,10 @@
     var exportCsv = [];
     var files;
 
-    $(function() {
-      $('#submit-parse').click(function() {
+    function run() {
         stepped = 0;
         chunks = 0;
         rows = 0;
-        document.getElementById("submit-parse").disabled = true;
 
         var txt = '';
         var localChunkSize;
@@ -77,12 +75,10 @@
             }
           });
         }
-      });
-
       $('#download').click(function() {
         makeCSVFile(exportCsv);
       });
-    });
+    };
 
 
 
@@ -177,6 +173,7 @@
         if (obj.id != undefined && obj.id !== "") {
           var itemMGID = obj.id;
           
+          //figure out what brand we are getting
           if (itemMGID.indexOf("paramountnetwork") !== -1) {
             brand = "paramountnetwork";
           } else if (itemMGID.indexOf("mtv.com") !== -1) {
@@ -314,8 +311,6 @@
       //console.log(exportCsv);
     }
 
-
-
     function makeCSVFile() {
       exportCsv = Papa.unparse(exportCsv);
       if (exportCsv == null) return;
@@ -341,8 +336,7 @@
 <body>
   <p><b>NOTES</b><br/> 1) Only events that have content ID's display below, however all events will be in the CSV download. <br/> 2) Safari doesn't properly name the file when downloading, please rename file and add .csv or use Chrome.</p><br/>
   <div id="controls">
-    <input type="file" id="files" class="inputs" multiple onchange="document.getElementById('submit-parse').disabled = false;"/>
-    <button id="submit-parse" class="inputs" disabled="disabled">Parse File</button>
+    <input type="file" id="files" class="inputs" multiple onchange="run();document.getElementById('files').disabled = true;"/>
     <button id="download" class="inputs" disabled="disabled">Download Output</button>
     </br>
   </div>
