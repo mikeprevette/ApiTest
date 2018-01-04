@@ -160,7 +160,7 @@
       output = arguments[0].data;
       
       // Make a set of divs based on the number of lines in the CSV
-      for (let c = 0, l = output.length; c < l; c++) {
+      for (let c = output.length, l = 0; c > l; c--) {
                   $('<div />', {
                   'id': c,
                   'class': 'line'
@@ -171,11 +171,25 @@
       // Add content to the line that you have data for
       var cow = $.each(output, function(i, item) {
         var obj = JSON.parse(item.correlator);
-        var brand = "paramountnetwork";
+        var brand = "failboat";
         var url = "http://testing.api.playplex.viacom.vmn.io/feeds/networkapp/intl/property/1.9/"
         var params = "?key=networkapp1.0&platform=roku&region=us&version=2.0&brand="
         if (obj.id != undefined) {
           var itemMGID = obj.id;
+          
+          if (itemMGID.indexOf("paramountnetwork") !== -1) {
+            brand = "paramountnetwork";
+          } else if (itemMGID.indexOf("mtv.com") !== -1) {
+            brand = "mtv";
+          } else if (itemMGID.indexOf("cc.com") !== -1) {
+            brand = "cc";
+          } else if (itemMGID.indexOf("vh1.com") !== -1) {
+            brand = "vh1";
+          } else {
+            return false;
+          };
+          
+          
           var fullUrl = url + itemMGID + params + brand;
           //console.log(obj);
           if (itemMGID != "") {
@@ -199,7 +213,7 @@
                 }
 
                 //console.log(itemTitle + " , " + itemSubTitle + " , Series: " + parentSeries);
-                obj.id = itemTitle + " , " + itemSubTitle + " , Series: " + parentSeries;
+                obj.id = itemTitle + ", " + itemSubTitle + ", Series: " + parentSeries;
                 item.correlator = JSON.stringify(obj);
                 //console.log(item);
                 lineId = item[''];
