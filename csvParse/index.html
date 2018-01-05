@@ -20,16 +20,14 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script type="text/javascript" src="./js/papaparse.min.js"></script>
   <script>
-    var output;
+    var output, parser, files, start, end;
     var stepped = 0,
         chunks = 0,
         rows = 0;
-    var start, end;
-    var parser;
     var pauseChecked = false;
     var printStepChecked = false;
     var exportCsv = [];
-    var files;
+
 
     function run() {
         stepped = 0;
@@ -82,7 +80,7 @@
 
 
 
-// most of this is BS as I coied this from an example project 
+// most of this is BS as I copied this from an example project 
     function buildConfig() {
       return {
         delimiter: $('#delimiter').val(),
@@ -154,25 +152,25 @@
       //console.log("Rows:", rows, "Stepped:", stepped, "Chunks:", chunks);
       //console.log(arguments[0].data);
       output = arguments[0].data;
-      
+
       // Make a set of divs based on the number of lines in the CSV
       for (let c = output.length, l = 0; c > l; c--) {
-                  $('<div />', {
-                  'id': c,
-                  'class': 'line'
-                }).appendTo('#list');
+        $('<div />', {
+          'id': c,
+          'class': 'line'
+        }).appendTo('#list');
       };
-      
-      
+
+
       // Add content to the line that you have data for
       var cow = $.each(output, function(i, item) {
         var obj = JSON.parse(item.correlator);
-        var brand = "failboat";
+        var brand = "paramountnetwork";
         var url = "http://testing.api.playplex.viacom.vmn.io/feeds/networkapp/intl/property/1.9/"
         var params = "?key=networkapp1.0&platform=roku&region=us&version=2.0&brand="
         if (obj.id != undefined && obj.id !== "") {
           var itemMGID = obj.id;
-          
+
           //figure out what brand we are getting
           if (itemMGID.indexOf("paramountnetwork") !== -1) {
             brand = "paramountnetwork";
@@ -185,8 +183,8 @@
           } else {
             return false;
           };
-          
-          
+
+
           var fullUrl = url + itemMGID + params + brand;
           //console.log(obj);
           if (itemMGID != "") {
@@ -196,29 +194,28 @@
                 if (itemApiData.data.item.title !== undefined) {
                   itemTitle = itemApiData.data.item.title;
                 } else {
-                  itemTitle = "null";
+                  itemTitle = "null Title";
                 }
                 if (itemApiData.data.item.subTitle !== undefined) {
-                  itemSubTitle = itemApiData.data.item.subTitle;
+                  itemSubTitle = itemApiData.data.item.subTitle;  
                 } else {
-                  itemSubTitle = "null";
+                  itemSubTitle = "null Season, null Episode #";
                 }
                 if (itemApiData.data.item.parentEntity !== undefined) {
                   parentSeries = itemApiData.data.item.parentEntity.title;
                 } else {
-                  parentSeries = "null"
+                  parentSeries = "null Parent Series"
                 }
-
-                //console.log(itemTitle + " , " + itemSubTitle + " , Series: " + parentSeries);
+                
                 obj.id = itemTitle + ", " + itemSubTitle + ", Series: " + parentSeries;
                 item.correlator = JSON.stringify(obj);
                 //console.log(item);
                 lineId = item[''];
-                 $('<div />', {
+                $('<div />', {
                   'class': 'lineItem',
                   'text': item['']
                 }).appendTo('#' + lineId);
-                
+
                 $('<div />', {
                   'class': 'lineItem',
                   'text': item.eventday
@@ -253,7 +250,7 @@
                 arguments[0].data[i] = item;
               } else {
                 lineId = item[''];
-                obj.id = obj.id + " API ERROR";                
+                obj.id = obj.id + " API ERROR";
                 $('<div />', {
                   'class': 'lineItem',
                   'text': item['']
@@ -293,22 +290,18 @@
                   arguments[0].data[i] = item;
                 }
               }
+            }).done(function() {
+              document.getElementById("download").disabled = false;
+              document.getElementById("clear").disabled = false;
+              exportCsv = arguments[0].data;
+            }).fail(function() {
+              console.log("BROKE IT");
             });
           };
         };
       });
-        
-     $.when(cow).done(function() {
-       document.getElementById("download").disabled = false;
-       document.getElementById("clear").disabled = false;
-      });
-
       //console.log(arguments[0]);
       //console.log(output[3]);
-      exportCsv = arguments[0].data;
-
-      //exportCsv = Papa.unparse(exportCsv);
-
       //console.log(exportCsv);
     }
 

@@ -110,6 +110,7 @@ function buildPlayPlex(brand, stage, platform, region, apiVersion, appVersion) {
 }
 
 //####################################----Build The Series Screens & Modules----####################################
+
 function getScreen(screenURL, screenName, screenID, screenIndex) {
 	$.getJSON(screenURL, function(playplexHome) {
 		$.each(playplexHome.data.screen.modules, function(z, modules) {
@@ -163,9 +164,8 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
 	$('#loadingOverlay').hide();
 };
 
-
-
 //####################################----Build The Series Modules for 1.8 & Below----####################################
+
 function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 	$.getJSON(moduleURL, function(playplexData) {
 		$.each(playplexData.data.items, function(i, cardVal) {
@@ -390,9 +390,22 @@ function fillContentModule(targetLink) {
 				link = uuidMaker(contentCardVal.id);
 
 				//Make a CSV index
+				if (aspectError =="true"){
+				aspectErrorMessage = "Aspect Ratio Error";
+				} else {
+					aspectErrorMessage = "";
+				}
+				if (imgError == "true"){
+				imgErrorMessage = "Image Error";
+				} else {
+					imgErrorMessage = "";
+				}
+				
 				cardLinks.push({
 					title: title,
-					uuid: link
+					uuid: link,
+					aspectError: aspectErrorMessage,
+					imageError: imgErrorMessage
 				});
 
 				$('<div />', {
@@ -463,7 +476,6 @@ function fillContentModule(targetLink) {
 		}
 	});
 }
-
 
 //####################################----Build The Series Modules (1.9 api)----####################################
 function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
@@ -570,21 +582,21 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 					videoLink = cardVal.links.video;
 					hasVideos = true;
 				} else {
-					hasVideos = false
+					hasVideos = false;
 				}
 				if (cardVal.links.hasOwnProperty("playlist")) {
 					//console.log(cardVal.links.playlist);
 					playlistLink = cardVal.links.playlist;
 					hasPlaylists = true;
 				} else {
-					hasPlaylists = false
+					hasPlaylists = false;
 				}
 				if (cardVal.links.hasOwnProperty("movie")) {
 // 					console.log(cardVal.links.movie);
 					movieLink = cardVal.links.movie;
 					hasMovie = true;
 				} else {
-					hasMovie = false
+					hasMovie = false;
 				}
 			}
 
@@ -686,6 +698,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 }
 
 //####################################----Fill the Content Module with items (1.9 api)----####################################
+
 function fillContentModule19(contentLink){
 	$.getJSON(contentLink, function(playplexContent) {
 			console.log("total items: " + playplexContent.metadata.pagination.totalItems);
@@ -726,12 +739,29 @@ function fillContentModule19(contentLink){
 				aspectError = "false";
 				imgError = "true";
 			}
+			
 			link = uuidMaker(contentCardVal.id);
+			
 			//Make a CSV index
-			cardLinks.push({
-				title: title,
-				uuid: link
-			});
+			
+				if (aspectError =="true"){
+				aspectErrorMessage = "Aspect Ratio Error";
+				} else {
+					aspectErrorMessage = "";
+				}
+				if (imgError == "true"){
+				imgErrorMessage = "Image Error";
+				} else {
+					imgErrorMessage = "";
+				}
+				
+				cardLinks.push({
+					title: title,
+					uuid: link,
+					aspectError: aspectErrorMessage,
+					imageError: imgErrorMessage
+				});
+			
 		$('<div />', {
 				'id': link,
 				'class': 'contentCard',
@@ -798,6 +828,7 @@ function fillContentModule19(contentLink){
 			}).appendTo('#CardMeta_' + link);
 
 		});
+		
 		if (playplexContent.metadata.pagination.next != null) { // checks for a next page then re-triggers itself.
 			contentLink = playplexContent.metadata.pagination.next;
 			page = playplexContent.metadata.pagination.page;
@@ -806,6 +837,7 @@ function fillContentModule19(contentLink){
 		}
 	});
 }
+
 //####################################----Make a UUID----####################################
 
 function uuidMaker(mgid) {
@@ -814,7 +846,6 @@ function uuidMaker(mgid) {
 }
 
 //####################################----Make a Deeplink----####################################
-
 
 function deeplinkBuilder(mgid, parentMgid) {
 	UUID = uuidMaker(mgid); // takes the UUID off the MGID
@@ -860,7 +891,6 @@ function seriesTapHandlerDeeplink(loadMgid) {
 
 //####################################----Clean Content----####################################
 
-
 function cleanHouse(div) {
 	if (div != null) {
 		while (div.hasChildNodes()) {
@@ -887,8 +917,6 @@ function showOverlayJson(mgid) {
 	txtObject = JSON.stringify(card[mgid], null, 4);
 	document.getElementById('cardJson').innerHTML = txtObject;
 }
-
-
 
 //####################################----URL Param----####################################
 
@@ -920,6 +948,7 @@ function addURLParam(paramName, paramValue) {
 	loc = loc + paramName + '=' + paramValue;
 	window.history.pushState({}, '', loc);
 }
+
 //####################################----CSV----####################################
 
 function convertArrayOfObjectsToCSV(args) {
@@ -963,12 +992,14 @@ function downloadCSV(args) {
 	filename = args.filename || 'export.csv';
 
 	if (!csv.match(/^data:text\/csv/i)) {
-		csv = 'data:text/csv;charset=utf-8,' + csv;
+			data = encodeURI(csv);
 	}
-	data = encodeURI(csv);
 
 	link = document.createElement('a');
-	link.setAttribute('href', data);
-	link.setAttribute('download', filename);
+	link.type = "text/csv";
+	link.rel = "noopener noreferrer";
+	link.href = "data:application/octet-stream," + data;
+	link.download = filename;
+	link.target = "_blank";
 	link.click();
 }
