@@ -358,6 +358,7 @@ function fillContentModule(targetLink) {
 				tve = "false";
 				imgUrl = "";
 				aspectError = "false";
+				imgError = "false";
 				title = '"' + contentCardVal.title + '"';
 				cardId = contentCardVal.id;
 				//title = title.replace(",", "%2C");
@@ -383,7 +384,7 @@ function fillContentModule(targetLink) {
 						}
 					}
 				} else {
-					aspectError = "true";
+					imgError = "true";	
 					imgUrl = "./img/error.jpg"
 				}
 
