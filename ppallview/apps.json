@@ -7,11 +7,11 @@
         "country": "gb",
         "stage": "live",
         "arcSpace": "mtv-intl-uk-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
-           {
+    {
       "app": {
         "name": "MTV UK - Staging",
         "brand": "mtv",
@@ -19,6 +19,18 @@
         "country": "gb",
         "stage": "staging",
         "arcSpace": "mtv-intl-uk-authoring",
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
+      }
+    },
+    {
+      "app": {
+        "name": "MTV AT - Live",
+        "brand": "mtv",
+        "platform": "ios",
+        "country": "AT",
+        "stage": "live",
+        "arcSpace": "mtv-intl-at",
         "apiVersion":"1.7",
         "appVersion":"4.2"
       }
@@ -31,11 +43,11 @@
         "country": "DE",
         "stage": "live",
         "arcSpace": "mtv-intl-germany-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
-     {
+    {
       "app": {
         "name": "MTV DK - Live",
         "brand": "MTV",
@@ -43,8 +55,8 @@
         "country": "DK",
         "stage": "live",
         "arcSpace": "mtv-intl-dk-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
     {
@@ -55,11 +67,11 @@
         "country": "br",
         "stage": "live",
         "arcSpace": "mtv-intl-br-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
-     {
+    {
       "app": {
         "name": "MTV BE - Live",
         "brand": "MTV",
@@ -67,8 +79,8 @@
         "country": "be",
         "stage": "live",
         "arcSpace": "mtv-intl-be-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
     {
@@ -79,8 +91,8 @@
         "country": "mx",
         "stage": "live",
         "arcSpace": "mtv-intl-latam-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
     {
@@ -91,8 +103,8 @@
         "country": "pl",
         "stage": "live",
         "arcSpace": "mtv-intl-poland",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
     {
@@ -103,8 +115,8 @@
         "country": "NO",
         "stage": "live",
         "arcSpace": "mtv-intl-no-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
     {
@@ -115,8 +127,8 @@
         "country": "es",
         "stage": "live",
         "arcSpace": "mtv-intl-Spain-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
     {
@@ -127,8 +139,8 @@
         "country": "es",
         "stage": "staging",
         "arcSpace": "mtv-intl-Spain-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
     {
@@ -139,10 +151,10 @@
         "country": "sg",
         "stage": "staging",
         "arcSpace": "mtv-intl-asia-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
-    },     
+    },
     {
       "app": {
         "name": "MTV ROKU US - Live",
@@ -151,11 +163,11 @@
         "country": "us",
         "stage": "live",
         "arcSpace": "mtv-authoring-site",
-        "apiVersion":"1.9",
-        "appVersion":"2.0"
+        "apiVersion": "1.9",
+        "appVersion": "2.0"
       }
     },
-      {
+    {
       "app": {
         "name": "CC UK - Live",
         "brand": "cc",
@@ -163,8 +175,8 @@
         "country": "gb",
         "stage": "live",
         "arcSpace": "comedy-intl-uk-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
     {
@@ -175,10 +187,10 @@
         "country": "gb",
         "stage": "staging",
         "arcSpace": "comedy-intl-uk-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
-    },    
+    },
     {
       "app": {
         "name": "CC MX - Live",
@@ -187,8 +199,8 @@
         "country": "mx",
         "stage": "Live",
         "arcSpace": "comedy-intl-latam-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
     {
@@ -199,11 +211,11 @@
         "country": "us",
         "stage": "live",
         "arcSpace": "cmt-authoring-site",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
-     {
+    {
       "app": {
         "name": "Paramount US - Live",
         "brand": "paramountnetwork",
@@ -211,8 +223,8 @@
         "country": "us",
         "stage": "live",
         "arcSpace": "arc-ent-paramount-network-site",
-        "apiVersion":"1.9",
-        "appVersion":"4.3"
+        "apiVersion": "1.9",
+        "appVersion": "4.3"
       }
     },
     {
@@ -223,11 +235,11 @@
         "country": "us",
         "stage": "staging",
         "arcSpace": "arc-ent-paramount-network-site",
-        "apiVersion":"1.9",
-        "appVersion":"4.3"
+        "apiVersion": "1.9",
+        "appVersion": "4.3"
       }
     },
-     {
+    {
       "app": {
         "name": "TVLAnd US - Live",
         "brand": "tvland",
@@ -235,11 +247,11 @@
         "country": "us",
         "stage": "live",
         "arcSpace": "tvland-authoring-site",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
-     {
+    {
       "app": {
         "name": "VH1 US - Live",
         "brand": "vh1",
@@ -247,9 +259,9 @@
         "country": "us",
         "stage": "live",
         "arcSpace": "vh1-authoring-site",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     }
-]
+  ]
 }
