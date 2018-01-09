@@ -17,8 +17,6 @@
 	<link href='https://fonts.googleapis.com/css?family=Roboto:500,400,900' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="./css/dev_ppallview.css" type="text/css" />
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<!--     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.6/jquery.lazy.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.6/jquery.lazy.plugins.min.js"></script> -->
 	<script type="text/javascript" src="./js/dev_ppallview.js"></script>
 	<script type="text/javascript">
 			$(document).ready(function() {
@@ -33,9 +31,12 @@
 <div id="loadingOverlay"><div class="loader"></div></div>
 <div id="overlay"><div id="closeButton" onclick="$(overlay).toggle();body.classList.toggle('noscroll');">X</div><span id ="cardJson"></span></div>
 <div id="top">
-			<form id="form">DEV!
-			<select id="selector" onChange="stringToParams(this.value);"></select>
-				<a class="button" id="stageToggle" onclick="toggleStage();" href="#">STAGING</a>
+		<form id="form">DEV! - QuickLinks : 
+			<select id="quickSelector" onChange="stringToParams(this.value);"></select>
+				| Brands: <select id="brands" onChange="brand=this.value;$('#quickSelector').val('---');buildPlayPlex();"></select>
+				Countries: <select id="countries" onChange="region=this.value;buildPlayPlex();"></select>
+				Platfoms: <select id="platforms" onChange="platform=this.value;buildPlayPlex();"></select>
+				Stage: <select id="stages" onChange="stage=this.value;buildPlayPlex();"></select>
 				</button>
 		</form>
 	<div id="buttons"></div>

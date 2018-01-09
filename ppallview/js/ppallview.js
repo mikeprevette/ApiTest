@@ -30,10 +30,34 @@ function makeTheScreen(mode) {
 
 	$.getJSON(appsJsonFile, function(appsList) {
 		$.each(appsList.apps, function(z, apps) {
-			$('#selector')
+			$('#quickSelector')
 				.append($("<option></option>")
 					.attr("value", apps.app.brand + ',' + apps.app.platform + ',' + apps.app.country + ',' + apps.app.stage + ',' + apps.app.arcSpace + ',' + apps.app.apiVersion + ',' + apps.app.appVersion)
 					.text(apps.app.name));
+		})
+		$.each(appsList.brands, function(z, brands) {
+			$('#brands')
+				.append($("<option></option>")
+					.attr("value", brands)
+					.text(brands));
+		})
+		$.each(appsList.countries, function(z, countries) {
+			$('#countries')
+				.append($("<option></option>")
+					.attr("value", countries)
+					.text(countries));
+		})
+		$.each(appsList.platforms, function(z, platforms) {
+			$('#platforms')
+				.append($("<option></option>")
+					.attr("value", platforms)
+					.text(platforms));
+		})
+		$.each(appsList.stages, function(z, stages) {
+			$('#stages')
+				.append($("<option></option>")
+					.attr("value", stages)
+					.text(stages));
 		})
 	});
 	stringToParams("mtv,ios,gb,live,mtv-intl-uk-authoring,1.7,4.2");
@@ -89,7 +113,11 @@ function buildPlayPlex() {
 		seriesClipsURL = liveRootURL + seriesClipsPath;
 	}
 	console.log(apiUrl);
-	$('#stageToggle').text(stage);
+	$("#brands").val(brand);
+	$("#countries").val(region);
+	$("#stages").val(stage);
+	$("#platforms").val(platform);
+	console.log(brand,region,platform,stage);
 
 	$.getJSON(apiUrl, function(playplexMain) {
 		$.each(playplexMain.data.appConfiguration.screens, function(z, screens) {
@@ -101,6 +129,10 @@ function buildPlayPlex() {
 				console.log(screens.screen.name + ' ' + toLoad);
 			}
 		});
+	}).fail(function() {
+		alert("OMG FaiL WHAle!!1! \n Something went horribly wrong, let's start over.");
+		stringToParams("mtv,ios,gb,live,mtv-intl-uk-authoring,1.7,4.2");
+		
 	});
 }
 
@@ -870,17 +902,6 @@ function showOverlayJson(mgid) {
 	txtObject = JSON.stringify(card[mgid], null, 4);
 	document.getElementById('cardJson').innerHTML = txtObject;
 }
-
-//####################################----Toggle Stage----####################################
-
-function toggleStage() {
-	if (stage == 'staging') {
-		stage = 'live';
-	} else {
-		stage = 'staging'
-	}
-	buildPlayPlex();
-}	
 
 //####################################----URL Param----####################################
 

@@ -31,9 +31,12 @@
 <div id="loadingOverlay"><div class="loader"></div></div>
 <div id="overlay"><div id="closeButton" onclick="$(overlay).toggle();body.classList.toggle('noscroll');">X</div><span id ="cardJson"></span></div>
 <div id="top">
-			<form id="form">DEV!
-			<select id="selector" onChange="stringToParams(this.value);"></select>
-				<a class="button" id="stageToggle" onclick="toggleStage();" href="#"></a>
+		<form id="form">- QuickLinks : 
+			<select id="quickSelector" onChange="stringToParams(this.value);"></select>
+				| Brands: <select id="brands" onChange="brand=this.value;$('#quickSelector').val('---');buildPlayPlex();"></select>
+				Countries: <select id="countries" onChange="region=this.value;buildPlayPlex();"></select>
+				Platfoms: <select id="platforms" onChange="platform=this.value;buildPlayPlex();"></select>
+				Stage: <select id="stages" onChange="stage=this.value;buildPlayPlex();"></select>
 				</button>
 		</form>
 	<div id="buttons"></div>

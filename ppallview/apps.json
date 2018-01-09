@@ -7,92 +7,92 @@
         "country": "gb",
         "stage": "live",
         "arcSpace": "mtv-intl-uk-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
     {
       "app": {
         "name": "MTV DE",
-        "brand": "MTV",
+        "brand": "mtv",
         "platform": "ios",
-        "country": "DE",
+        "country": "de",
         "stage": "live",
         "arcSpace": "mtv-intl-germany-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
-     {
+    {
       "app": {
         "name": "MTV DK",
-        "brand": "MTV",
+        "brand": "mtv",
         "platform": "ios",
-        "country": "DK",
+        "country": "dk",
         "stage": "live",
         "arcSpace": "mtv-intl-dk-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
     {
       "app": {
         "name": "MTV BR",
-        "brand": "MTV",
+        "brand": "mtv",
         "platform": "ios",
         "country": "br",
         "stage": "live",
         "arcSpace": "mtv-intl-br-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
-     {
+    {
       "app": {
         "name": "MTV BE",
-        "brand": "MTV",
+        "brand": "mtv",
         "platform": "ios",
         "country": "be",
         "stage": "live",
         "arcSpace": "mtv-intl-be-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
     {
       "app": {
         "name": "MTV MX",
-        "brand": "MTV",
+        "brand": "mtv",
         "platform": "ios",
         "country": "mx",
         "stage": "live",
         "arcSpace": "mtv-intl-latam-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
     {
       "app": {
         "name": "MTV PL",
-        "brand": "MTV",
+        "brand": "mtv",
         "platform": "ios",
         "country": "pl",
         "stage": "live",
         "arcSpace": "mtv-intl-poland",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
     {
       "app": {
         "name": "MTV NO",
-        "brand": "MTV",
+        "brand": "mtv",
         "platform": "ios",
-        "country": "NO",
+        "country": "no",
         "stage": "live",
         "arcSpace": "mtv-intl-no-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
     {
@@ -103,10 +103,10 @@
         "country": "es",
         "stage": "live",
         "arcSpace": "mtv-intl-Spain-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
-    },      
+    },
     {
       "app": {
         "name": "MTV ROKU US",
@@ -115,11 +115,11 @@
         "country": "us",
         "stage": "live",
         "arcSpace": "mtv-authoring-site",
-        "apiVersion":"1.9",
-        "appVersion":"2.0"
+        "apiVersion": "1.9",
+        "appVersion": "2.0"
       }
     },
-      {
+    {
       "app": {
         "name": "CC UK",
         "brand": "cc",
@@ -127,8 +127,8 @@
         "country": "gb",
         "stage": "live",
         "arcSpace": "comedy-intl-uk-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
     {
@@ -139,23 +139,23 @@
         "country": "us",
         "stage": "live",
         "arcSpace": "cmt-authoring-site",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
-     {
+    {
       "app": {
         "name": "Paramount Network US",
         "brand": "paramountnetwork",
-        "platform": "android",
+        "platform": "ios",
         "country": "us",
         "stage": "live",
         "arcSpace": "arc-ent-paramount-network-site",
-        "apiVersion":"1.9",
-        "appVersion":"4.3"
+        "apiVersion": "1.9",
+        "appVersion": "4.3"
       }
     },
-     {
+    {
       "app": {
         "name": "TVLand US",
         "brand": "tvland",
@@ -163,11 +163,11 @@
         "country": "us",
         "stage": "live",
         "arcSpace": "tvland-authoring-site",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     },
-     {
+    {
       "app": {
         "name": "VH1 US",
         "brand": "vh1",
@@ -175,9 +175,21 @@
         "country": "us",
         "stage": "live",
         "arcSpace": "vh1-authoring-site",
-        "apiVersion":"1.7",
-        "appVersion":"4.2"
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
       }
     }
-]
+  ],
+  "countries": [
+    "--","at", "be", "br", "ch", "de", "dk", "es", "gb", "mx", "nl", "no", "pl", "sg", "us"
+  ],
+  "brands": [
+    "--","bet", "mtv", "cc", "vh1", "cmt", "tvland", "paramountnetwork"
+  ],
+  "stages": [
+    "--","live", "staging"
+  ],
+  "platforms": [
+    "--","ios", "android", "roku"
+  ]
 }
