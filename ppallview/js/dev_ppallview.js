@@ -29,23 +29,30 @@ function makeTheScreen(mode) {
 	}
 
 	$.getJSON(appsJsonFile, function(appsList) {
+		console.log(appsList.apps);
+		console.log(appsList.apps[0].app.name);
+		appsList.apps.sort(function(a, b) {
+    	var textA = a.app.name.toUpperCase();
+   	 	var textB = b.app.name.toUpperCase();
+    	return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+		});
 		$.each(appsList.apps, function(z, apps) {
 			$('#quickSelector')
 				.append($("<option></option>")
 					.attr("value", apps.app.brand + ',' + apps.app.platform + ',' + apps.app.country + ',' + apps.app.stage + ',' + apps.app.arcSpace + ',' + apps.app.apiVersion + ',' + apps.app.appVersion)
 					.text(apps.app.name));
 		})
-		$.each(appsList.brands, function(z, brands) {
+		$.each(appsList.brands.sort(), function(z, brands) {
 			$('#brands')
 				.append($("<option></option>")
 					.attr("value", brands)
-					.text(brands));
+					.text(brands.toUpperCase()));
 		})
-		$.each(appsList.countries, function(z, countries) {
+		$.each(appsList.countries.sort(), function(z, countries) {
 			$('#countries')
 				.append($("<option></option>")
 					.attr("value", countries)
-					.text(countries));
+					.text(countries.toUpperCase()));
 		})
 		$.each(appsList.platforms, function(z, platforms) {
 			$('#platforms')
@@ -60,7 +67,7 @@ function makeTheScreen(mode) {
 					.text(stages));
 		})
 	});
-	stringToParams("mtv,ios,gb,live,mtv-intl-uk-authoring,1.7,4.2");
+	stringToParams("cc,ios,gb,live,comedy-intl-uk-authoring,1.7,4.2");
 }
 
 //####################################----Turn the form input into params for the main function----####################################
@@ -117,7 +124,7 @@ function buildPlayPlex() {
 	$("#countries").val(region);
 	$("#stages").val(stage);
 	$("#platforms").val(platform);
-	console.log(brand,region,platform,stage);
+	//console.log(brand,region,platform,stage);
 
 	$.getJSON(apiUrl, function(playplexMain) {
 		$.each(playplexMain.data.appConfiguration.screens, function(z, screens) {
@@ -131,8 +138,7 @@ function buildPlayPlex() {
 		});
 	}).fail(function() {
 		alert("OMG FaiL WHAle!!1! \n Something went horribly wrong, let's start over.");
-		stringToParams("mtv,ios,gb,live,mtv-intl-uk-authoring,1.7,4.2");
-		
+		stringToParams("cc,ios,gb,live,comedy-intl-uk-authoring,1.7,4.2");	
 	});
 }
 

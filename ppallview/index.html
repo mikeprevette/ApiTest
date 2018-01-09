@@ -34,9 +34,9 @@
 		<form id="form">- QuickLinks : 
 			<select id="quickSelector" onChange="stringToParams(this.value);"></select>
 				| Brands: <select id="brands" onChange="brand=this.value;$('#quickSelector').val('---');buildPlayPlex();"></select>
-				Countries: <select id="countries" onChange="region=this.value;buildPlayPlex();"></select>
-				Platfoms: <select id="platforms" onChange="platform=this.value;buildPlayPlex();"></select>
-				Stage: <select id="stages" onChange="stage=this.value;buildPlayPlex();"></select>
+				Countries: <select id="countries" onChange="region=this.value;$('#quickSelector').val('---');buildPlayPlex();"></select>
+				Platfoms: <select id="platforms" onChange="platform=this.value;$('#quickSelector').val('---');buildPlayPlex();"></select>
+				Stage: <select id="stages" onChange="stage=this.value;$('#quickSelector').val('---');buildPlayPlex();"></select>
 				</button>
 		</form>
 	<div id="buttons"></div>

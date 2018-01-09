@@ -184,7 +184,7 @@
     "--","at", "be", "br", "ch", "de", "dk", "es", "gb", "mx", "nl", "no", "pl", "sg", "us"
   ],
   "brands": [
-    "--","bet", "mtv", "cc", "vh1", "cmt", "tvland", "paramountnetwork"
+    "bet", "mtv", "cc", "vh1", "cmt", "tvland", "paramountnetwork"
   ],
   "stages": [
     "--","live", "staging"
