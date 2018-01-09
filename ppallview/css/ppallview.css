@@ -1,6 +1,5 @@
 
 
-
 html {
     margin: 0;
     overflow-y: scroll; overflow-x:hidden;
@@ -364,6 +363,8 @@ p {
 	font-weight: 400;
 	background-color: #7f7f7f;
 	transition: .2s;
+	text-transform: uppercase;
+	text-decoration: none;
 }
 
 
@@ -401,4 +402,3 @@ p {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-

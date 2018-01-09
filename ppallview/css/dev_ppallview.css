@@ -363,6 +363,8 @@ p {
 	font-weight: 400;
 	background-color: #7f7f7f;
 	transition: .2s;
+	text-transform: uppercase;
+	text-decoration: none;
 }
 
 

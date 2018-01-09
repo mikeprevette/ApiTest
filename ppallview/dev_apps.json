@@ -8,19 +8,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-uk-authoring",
         "apiVersion":"1.7",
-        "appVersion":"4.1"
-      }
-    },
-           {
-      "app": {
-        "name": "MTV UK Staging",
-        "brand": "mtv",
-        "platform": "ios",
-        "country": "gb",
-        "stage": "staging",
-        "arcSpace": "mtv-intl-uk-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.1"
+        "appVersion":"4.2"
       }
     },
     {
@@ -32,7 +20,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-germany-authoring",
         "apiVersion":"1.7",
-        "appVersion":"4.1"
+        "appVersion":"4.2"
       }
     },
      {
@@ -44,7 +32,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-dk-authoring",
         "apiVersion":"1.7",
-        "appVersion":"4.1"
+        "appVersion":"4.2"
       }
     },
     {
@@ -56,7 +44,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-br-authoring",
         "apiVersion":"1.7",
-        "appVersion":"4.1"
+        "appVersion":"4.2"
       }
     },
      {
@@ -68,7 +56,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-be-authoring",
         "apiVersion":"1.7",
-        "appVersion":"4.1"
+        "appVersion":"4.2"
       }
     },
     {
@@ -80,7 +68,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-latam-authoring",
         "apiVersion":"1.7",
-        "appVersion":"4.1"
+        "appVersion":"4.2"
       }
     },
     {
@@ -92,7 +80,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-poland",
         "apiVersion":"1.7",
-        "appVersion":"4.1"
+        "appVersion":"4.2"
       }
     },
     {
@@ -104,7 +92,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-no-authoring",
         "apiVersion":"1.7",
-        "appVersion":"4.1"
+        "appVersion":"4.2"
       }
     },
     {
@@ -116,19 +104,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-Spain-authoring",
         "apiVersion":"1.7",
-        "appVersion":"4.1"
-      }
-    },
-    {
-      "app": {
-        "name": "MTV ES Staging",
-        "brand": "mtv",
-        "platform": "ios",
-        "country": "es",
-        "stage": "staging",
-        "arcSpace": "mtv-intl-Spain-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.1"
+        "appVersion":"4.2"
       }
     },      
     {
@@ -145,26 +121,14 @@
     },
       {
       "app": {
-        "name": "CC UK Live",
+        "name": "CC UK",
         "brand": "cc",
         "platform": "ios",
         "country": "gb",
         "stage": "live",
         "arcSpace": "comedy-intl-uk-authoring",
         "apiVersion":"1.7",
-        "appVersion":"4.1"
-      }
-    },
-    {
-      "app": {
-        "name": "CC UK Staging",
-        "brand": "cc",
-        "platform": "ios",
-        "country": "gb",
-        "stage": "staging",
-        "arcSpace": "comedy-intl-uk-authoring",
-        "apiVersion":"1.7",
-        "appVersion":"4.1"
+        "appVersion":"4.2"
       }
     },
     {
@@ -176,12 +140,12 @@
         "stage": "live",
         "arcSpace": "cmt-authoring-site",
         "apiVersion":"1.7",
-        "appVersion":"4.1"
+        "appVersion":"4.2"
       }
     },
      {
       "app": {
-        "name": "Paramount Live",
+        "name": "Paramount Network US",
         "brand": "paramountnetwork",
         "platform": "android",
         "country": "us",
@@ -191,28 +155,16 @@
         "appVersion":"4.3"
       }
     },
-    {
-      "app": {
-        "name": "Paramount Staging 1.9",
-        "brand": "paramountnetwork",
-        "platform": "android",
-        "country": "us",
-        "stage": "staging",
-        "arcSpace": "arc-ent-paramount-network-site",
-        "apiVersion":"1.9",
-        "appVersion":"4.3"
-      }
-    },
      {
       "app": {
-        "name": "TVLAnd US",
+        "name": "TVLand US",
         "brand": "tvland",
         "platform": "ios",
         "country": "us",
         "stage": "live",
         "arcSpace": "tvland-authoring-site",
         "apiVersion":"1.7",
-        "appVersion":"4.1"
+        "appVersion":"4.2"
       }
     },
      {
@@ -224,7 +176,7 @@
         "stage": "live",
         "arcSpace": "vh1-authoring-site",
         "apiVersion":"1.7",
-        "appVersion":"4.1"
+        "appVersion":"4.2"
       }
     }
 ]

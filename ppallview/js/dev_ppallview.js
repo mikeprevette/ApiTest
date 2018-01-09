@@ -1,19 +1,13 @@
 // This is total shit JS, please no judgy. 
 
 /* ####################################----PLAYPLEX----#################################### */
-var xrsBool = false;
-var playplexStyle = false;
+const imageParams = '&width=450&quality=0.2';
+const liveRootURL = 'http://api.playplex.viacom.com/feeds/networkapp/intl';
+const stagingRootURL = 'http://testing.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
 var isPromoError = false;
 var isImgError = false;
-var hasAllShows = false;
 var firstRun = true;
-var imageParams = '&width=450&quality=0.2';
-var xrs = '?xrs=vdapi_00_ba851eb8cd0e90efb7d099a8628e05a8';
-var apiVersion = '1.7'; //Default  - Overridden by apps.json
-var appVersion = '4.2'; //Default  - Overridden by apps.json
-var liveRootURL = 'http://api.playplex.viacom.com/feeds/networkapp/intl';
-var stagingRootURL = 'http://testing.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
-var activeSeries, brand, platform, region, stage, isisURL, params;
+var activeSeries, brand, platform, region, stage, isisURL, params, appVersion, apiVersion;
 var page = 0;
 var cardLinks = [];
 var card = Object.create(null);
@@ -23,7 +17,17 @@ var card = Object.create(null);
 
 
 function makeTheScreen(mode) {
-	$.getJSON("apps.json", function(appsList) {
+// 	$("#containers").load(function() {
+//      $('#loadingOverlay').hide();
+// 	});
+	if (firstRun === true && mode == "live") {
+		alert("Hello! This is an unsupported tool, and will likely break often. \n\n Things to note: \n NEW URL!!: http://mikeprevette.github.io/ApiTest/ppallview/index.html \n -- error if you change brands while its still loading");
+		appsJsonFile = "apps.json";
+	} else {
+		console.log("Dev Mode");
+		appsJsonFile = "dev_apps.json";
+	}
+	$.getJSON(appsJsonFile, function(appsList) {
 		$.each(appsList.apps, function(z, apps) {
 			$('#selector')
 				.append($("<option></option>")
@@ -31,22 +35,13 @@ function makeTheScreen(mode) {
 					.text(apps.app.name));
 		})
 	});
-// 	$("#containers").load(function() {
-//      $('#loadingOverlay').hide();
-// 	});
-	if (firstRun === true && mode == "live") {
-		alert("Hello! This is an unsupported tool, and will likely break often. \n\n Things to note: \n NEW URL!!: http://mikeprevette.github.io/ApiTest/ppallview/index.html \n -- error if you change brands while its still loading");
-		stringToParams("mtv,ios,gb,live,mtv-intl-uk-authoring,1.7,4.2");
-	} else {
-		console.log("Dev Mode");
-		stringToParams("mtv,ios,gb,live,mtv-intl-uk-authoring,1.7,4.2");
-	}
+	stringToParams("mtv,ios,gb,live,mtv-intl-uk-authoring,1.7,4.2");
 }
 
 //####################################----Turn the form input into params for the main function----####################################
 
 function stringToParams(buildString) {
-	$('#loadingOverlay').show();
+	//$('#loadingOverlay').show();
 	console.log(buildString);
 	var splits = buildString.split(',');
 	brand = splits[0];
@@ -69,21 +64,19 @@ function stringToParams(buildString) {
 	//addURLParam("stage", stage);
 	appVersion = splits[6];
 	console.log(appVersion);
-	buildPlayPlex(brand, stage, platform, region, apiVersion, appVersion);
+	buildPlayPlex();
 }
 
 //####################################----Build The Screens----####################################
 
-function buildPlayPlex(brand, stage, platform, region, apiVersion, appVersion) {
-
+function buildPlayPlex() {
+	$('#loadingOverlay').show();
 	firstRun = false;
 	nuclear();
-	console.log(stage);
 	mainPath = '/main/' + apiVersion + '/';
 	seriesClipsPath = '/series/clips/' + apiVersion + '/';
 	seriesItemsPath = '/series/items/' + apiVersion + '/';
 	params = '?key=networkapp1.0&brand=' + brand + '&platform=' + platform + '&region=' + region + '&version=' + appVersion;
-
 
 	if (stage == 'staging') {
 		apiUrl = stagingRootURL + mainPath + params;
@@ -95,6 +88,7 @@ function buildPlayPlex(brand, stage, platform, region, apiVersion, appVersion) {
 		seriesClipsURL = liveRootURL + seriesClipsPath;
 	}
 	console.log(apiUrl);
+	$('#stageToggle').text(stage);
 
 	$.getJSON(apiUrl, function(playplexMain) {
 		$.each(playplexMain.data.appConfiguration.screens, function(z, screens) {
@@ -846,49 +840,6 @@ function uuidMaker(mgid) {
 	return (UUID);
 }
 
-//####################################----Make a Deeplink----####################################
-
-function deeplinkBuilder(mgid, parentMgid) {
-	UUID = uuidMaker(mgid); // takes the UUID off the MGID
-	if (mgid.indexOf("mtvplay") !== -1) {
-		deeplinkBase = "mtvnetworkapp://";
-	} else if (mgid.indexOf("comedycentralplay") !== -1) {
-		deeplinkBase = "ccnetworkapp://";
-	} else if (mgid.indexOf("vh1play") !== -1) {
-		deeplinkBase = "vh1networkapp://";
-	} else deeplinkBase = "fail://";
-	//build series deeplinks
-	if (mgid.indexOf("episode") !== -1) {
-		deeplinkUSPath = "episode/";
-		if (playplexStyle === false) {
-			deeplink = deeplinkBase.concat(deeplinkUSPath, UUID); // ads the Deeplink app root to path + uuid
-		} else {
-			deeplink = deeplinkBase.concat('series/', parentMgid, '/', deeplinkUSPath, mgid); // ads the Deeplink app root to path + uuid
-		}
-	} else if (mgid.indexOf("series") !== -1) {
-		deeplinkUSPath = "series/";
-		if (playplexStyle === false) {
-			deeplink = deeplinkBase.concat(deeplinkUSPath, UUID); // ads the Deeplink app root to path + uuid
-		} else {
-			deeplink = deeplinkBase.concat(deeplinkUSPath, mgid); // ads the Deeplink app root to path + uuid
-		}
-	}
-	if (xrsBool !== false) {
-		deeplink = deeplink.concat(xrs);
-	}
-
-	return (deeplink);
-};
-
-//####################################----Handle a Series deeplink----####################################
-
-function seriesTapHandlerDeeplink(loadMgid) {
-	if (confirm("Hit OK to deeplink into series, or hit CANCEL to load it's episodes \n") === true) {
-		window.open(deeplinkBuilder(loadMgid, loadMgid));
-	} else {
-		loadContent(loadMgid);
-	}
-};
 
 //####################################----Clean Content----####################################
 
@@ -918,6 +869,17 @@ function showOverlayJson(mgid) {
 	txtObject = JSON.stringify(card[mgid], null, 4);
 	document.getElementById('cardJson').innerHTML = txtObject;
 }
+
+//####################################----Toggle Stage----####################################
+
+function toggleStage() {
+	if (stage == 'staging') {
+		stage = 'live';
+	} else {
+		stage = 'staging'
+	}
+	buildPlayPlex();
+}	
 
 //####################################----URL Param----####################################
 

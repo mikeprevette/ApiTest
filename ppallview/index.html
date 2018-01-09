@@ -20,20 +20,23 @@
 	<script type="text/javascript" src="./js/ppallview.js"></script>
 	<script type="text/javascript">
 			$(document).ready(function() {
-				makeTheScreen("Live");
+				if (firstRun === true) {
+					makeTheScreen("Live");
+				}
 			});
+
 	</script>
 </head>
 <body>
 <div id="loadingOverlay"><div class="loader"></div></div>
 <div id="overlay"><div id="closeButton" onclick="$(overlay).toggle();body.classList.toggle('noscroll');">X</div><span id ="cardJson"></span></div>
 <div id="top">
-			<form id="form">
-			<select id="selector" onChange="stringToParams(this.value);">
-			</select>
+			<form id="form">DEV!
+			<select id="selector" onChange="stringToParams(this.value);"></select>
+				<a class="button" id="stageToggle" onclick="toggleStage();" href="#"></a>
+				</button>
 		</form>
-	<div id="buttons">
-	</div>
+	<div id="buttons"></div>
 	</div>
 <!-- <div class="overlay"><h1>LOADING</h1></div> -->
 <div id="containers"></div>
