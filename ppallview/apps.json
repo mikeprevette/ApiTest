@@ -191,5 +191,11 @@
   ],
   "platforms": [
     "--","ios", "android", "roku"
+  ],
+    "appVersions": [
+    "--","2.0", "4.2", "4.3"
+  ],
+    "apiVersions": [
+    "--","1.6", "1.7", "1.9"
   ]
 }

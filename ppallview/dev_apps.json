@@ -184,12 +184,18 @@
     "--","at", "be", "br", "ch", "de", "dk", "es", "gb", "mx", "nl", "no", "pl", "sg", "us"
   ],
   "brands": [
-    "bet", "mtv", "cc", "vh1", "cmt", "tvland", "paramountnetwork"
+    "--","bet", "mtv", "cc", "vh1", "cmt", "tvland", "paramountnetwork"
   ],
   "stages": [
     "--","live", "staging"
   ],
   "platforms": [
     "--","ios", "android", "roku"
+  ],
+    "appVersions": [
+    "--","2.0", "4.2", "4.3"
+  ],
+    "apiVersions": [
+    "--","1.6", "1.7", "1.9"
   ]
 }

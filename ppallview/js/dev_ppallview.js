@@ -66,6 +66,18 @@ function makeTheScreen(mode) {
 					.attr("value", stages)
 					.text(stages));
 		})
+		$.each(appsList.appVersions, function(z, appVersions) {
+			$('#appVersions')
+				.append($("<option></option>")
+					.attr("value", appVersions)
+					.text(appVersions));
+		})
+		$.each(appsList.apiVersions, function(z, apiVersions) {
+			$('#apiVersions')
+				.append($("<option></option>")
+					.attr("value", apiVersions)
+					.text(apiVersions));
+		})
 	});
 	stringToParams("cc,ios,gb,live,comedy-intl-uk-authoring,1.7,4.2");
 }
@@ -124,6 +136,8 @@ function buildPlayPlex() {
 	$("#countries").val(region);
 	$("#stages").val(stage);
 	$("#platforms").val(platform);
+	$("#appVersions").val(appVersion);
+	$("#apiVersions").val(apiVersion);
 	//console.log(brand,region,platform,stage);
 
 	$.getJSON(apiUrl, function(playplexMain) {
