@@ -166,7 +166,7 @@
       var cow = $.each(output, function(i, item) {
         var obj = JSON.parse(item.correlator);
         var brand = "paramountnetwork";
-        var url = "http://testing.api.playplex.viacom.vmn.io/feeds/networkapp/intl/property/1.9/"
+        var url = "http://api.playplex.viacom.com/feeds/networkapp/intl/property/1.9/"
         var params = "?key=networkapp1.0&platform=roku&region=us&version=2.0&brand="
         if (obj.id != undefined && obj.id !== "") {
           var itemMGID = obj.id;
@@ -189,7 +189,7 @@
           //console.log(obj);
           if (itemMGID != "") {
             $.getJSON(fullUrl, function(itemApiData) {
-              //console.log(fullUrl);
+              console.log(fullUrl);
               if (itemApiData.data !== undefined && itemApiData.data !== null) {
                 if (itemApiData.data.item.title !== undefined) {
                   itemTitle = itemApiData.data.item.title;
