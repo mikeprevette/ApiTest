@@ -4,6 +4,15 @@
 const imageParams = '&width=450&quality=0.2';
 const liveRootURL = 'http://api.playplex.viacom.com/feeds/networkapp/intl';
 const stagingRootURL = 'http://testing.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
+
+const vh1DeeplinkRoot = 'vh1networkapp://';
+const paramountDeeplinkRoot = 'paramountnetworkapp://';
+const mtvDeeplinkRoot = 'mtvplayla://';
+const ccDeeplinkRoot = 'ccplayla://';
+const tvlandDeeplinkRoot = 'tvland://';
+const cmtDeeplinkRoot = 'cmt://';
+const betDeeplinkRoot = 'betplayintl://';
+
 var isPromoError = false;
 var isImgError = false;
 var firstRun = true;
@@ -32,9 +41,9 @@ function makeTheScreen(mode) {
 		console.log(appsList.apps);
 		console.log(appsList.apps[0].app.name);
 		appsList.apps.sort(function(a, b) {
-    	var textA = a.app.name.toUpperCase();
-   	 	var textB = b.app.name.toUpperCase();
-    	return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+			var textA = a.app.name.toUpperCase();
+			var textB = b.app.name.toUpperCase();
+			return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
 		});
 		$.each(appsList.apps, function(z, apps) {
 			$('#quickSelector')
@@ -140,6 +149,7 @@ function buildPlayPlex() {
 	$("#apiVersions").val(apiVersion);
 	//console.log(brand,region,platform,stage);
 
+
 	$.getJSON(apiUrl, function(playplexMain) {
 		$.each(playplexMain.data.appConfiguration.screens, function(z, screens) {
 			if (screens.screen.name == "home" || screens.screen.name == "allShows" || screens.screen.name == "browse") {
@@ -152,7 +162,7 @@ function buildPlayPlex() {
 		});
 	}).fail(function() {
 		alert("OMG FaiL WHAle!!1! \n Something went horribly wrong, let's start over.");
-		stringToParams("cc,ios,gb,live,comedy-intl-uk-authoring,1.7,4.2");	
+		stringToParams("cc,ios,gb,live,comedy-intl-uk-authoring,1.7,4.2");
 	});
 }
 
@@ -207,9 +217,9 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
 				getModule(target, screenID, containerId, z, aspectRatio);
 			}
 		})
-	}) 
+	})
 	$('#loadingOverlay').hide();
-};
+}
 
 //####################################----Build The Series Modules for 1.8 & Below----####################################
 
@@ -218,8 +228,9 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 		$.each(playplexData.data.items, function(i, cardVal) {
 			card[cardVal.id]; // make a independent object to refer to later
 			card[cardVal.id] = cardVal; // dump the data for this card into it and call it the MGID
-			type = playplexData.data.alias; 
+			type = playplexData.data.alias;
 			propertyMgid = cardVal.id;
+			console.log(propertyMgid);
 			propertyID = uuidMaker(cardVal.id);
 			seriesTitle = cardVal.title.replace(/ /g, "_");
 			propertyCardID = uuidMaker(screenID) + '_' + propertyID + '_' + z + i;
@@ -230,6 +241,7 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 				isPromoError = true;
 			} else {
 				isPromoError = false;
+				let deeplink = makeDeeplink(propertyMgid);
 				if (cardVal.hasOwnProperty("images") && cardVal.images.length > 0) {
 					for (let c = 0, l = cardVal.images.length; c < l; c++) {
 						if (cardVal.images[c].aspectRatio === aspectRatio) {
@@ -247,6 +259,9 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 					isImgError = "true";
 				}
 			}
+
+
+
 
 			if (type == 'featured_list' || 'shows_list') {
 
@@ -294,9 +309,16 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 
 				$('<p />', {
 					'id': 'showCardLink_' + z + i,
-					'text': 'ARC Id ' + propertyID,
-					'class': 'showCardLink',
+					'text': 'ARC',
+					'class': 'button',
 					'onclick': 'window.open("' + isisURL + propertyID + '");'
+				}).appendTo('#showCardMeta_' + propertyCardID);
+
+				$('<p />', {
+					'id': 'showCardDeeplink_' + z + i,
+					'text': 'Deeplink ',
+					'class': 'button',
+					'onclick': 'window.open("' + deeplink + '");'
 				}).appendTo('#showCardMeta_' + propertyCardID);
 
 				//build the Buttons
@@ -306,7 +328,7 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 						'id': 'showCardButtonBar_' + propertyCardID,
 						'class': 'showCardButtons',
 					}).appendTo('#' + propertyCardID);
-				if (cardVal.hasPromos == true) {
+					if (cardVal.hasPromos == true) {
 						$('<p />', {
 							'id': 'showCardButtons_' + z + i,
 							'class': 'showCardButton',
@@ -314,7 +336,7 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 							'onclick': 'loadContent("' + propertyMgid + '","clip","' + seriesTitle + '");'
 						}).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
 					}
-				if (cardVal.hasSubItems == true) {
+					if (cardVal.hasSubItems == true) {
 						$('<p />', {
 							'id': 'showCardButtons_' + z + i,
 							'class': 'showCardButton',
@@ -356,7 +378,7 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 		'class': 'containerHeader',
 		'text': contentType
 	}).appendTo('#container_Content');
-	
+
 	$('<div />', {
 		'id': 'contentContainerItems',
 		'class': 'container'
@@ -388,7 +410,7 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 			'text': 'OPEN CLIP API',
 			'onclick': 'window.open("' + clipLink + '");'
 		}).appendTo('#contentContainerHeader');
-	}		
+	}
 	fillContentModule(targetLink);
 }
 
@@ -408,6 +430,7 @@ function fillContentModule(targetLink) {
 				imgError = "false";
 				title = '"' + contentCardVal.title + '"';
 				cardId = contentCardVal.id;
+				let deeplink = makeDeeplink(contentCardVal.mgid);
 				//title = title.replace(",", "%2C");
 
 				//title = JSON.stringify(String(contentCardVal.title));
@@ -431,24 +454,24 @@ function fillContentModule(targetLink) {
 						}
 					}
 				} else {
-					imgError = "true";	
+					imgError = "true";
 					imgUrl = "./img/error.jpg"
 				}
 
 				link = uuidMaker(contentCardVal.id);
 
 				//Make a CSV index
-				if (aspectError =="true"){
-				aspectErrorMessage = "Aspect Ratio Error";
+				if (aspectError == "true") {
+					aspectErrorMessage = "Aspect Ratio Error";
 				} else {
 					aspectErrorMessage = "";
 				}
-				if (imgError == "true"){
-				imgErrorMessage = "Image Error";
+				if (imgError == "true") {
+					imgErrorMessage = "Image Error";
 				} else {
 					imgErrorMessage = "";
 				}
-				
+
 				cardLinks.push({
 					title: title,
 					uuid: link,
@@ -461,7 +484,7 @@ function fillContentModule(targetLink) {
 					'class': 'contentCard',
 					'style': 'background-image: url(' + imgUrl + ')'
 				}).appendTo('#contentContainerItems');
-				
+
 				$('<div />', {
 					'id': 'contentErrorbox' + '_' + link,
 					'class': 'errorbox'
@@ -487,12 +510,6 @@ function fillContentModule(targetLink) {
 					'class': 'CardMeta'
 				}).appendTo('#' + link);
 
-				$('<p />', {
-					'id': 'showCardJsonButton_' + propertyCardID,
-					'class': 'button',
-					'text': 'API OUTPUT',
-					'onclick': 'showOverlayJson("' + contentCardVal.mgid + '");'
-				}).appendTo('#' + link);
 
 				//build the meta objects
 
@@ -508,12 +525,30 @@ function fillContentModule(targetLink) {
 					'text': contentCardVal.title
 				}).appendTo('#CardMeta_' + link);
 
-				$('<p />', {
-					'id': 'CardHeaderLink_' + link,
-					'class': 'CardHeaderLink',
-					'text': 'ARC ID: ' + link,
+
+
+				$('<div />', {
+					'id': 'contentCardJsonButton_' + link,
+					'class': 'button',
+					'text': 'API OUTPUT',
+					'onclick': 'showOverlayJson("' + contentCardVal.mgid + '");'
+				}).appendTo('#' + link);
+
+				$('<div />', {
+					'id': 'contentCardHeaderLink_' + link,
+					'text': 'ARC',
+					'class': 'button',
 					'onclick': 'window.open("' + isisURL + link + '");'
-				}).appendTo('#CardMeta_' + link);
+				}).appendTo('#' + link);
+
+				$('<div />', {
+					'id': 'contentCardDeeplink_' + link,
+					'text': 'Deeplink ',
+					'class': 'button',
+					'onclick': 'window.open("' + deeplink + '");'
+				}).appendTo('#' + link);
+
+
 			}
 		});
 		if (playplexContent.metadata.pagination.next != null) { // checks for a next page then re-triggers itself.
@@ -544,6 +579,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 				imgUrl = "./img/error.jpg";
 				isPromoError = true;
 			} else {
+				let deeplink = makeDeeplink(propertyMgid);
 				isPromoError = false;
 				if (cardVal.hasOwnProperty("images") && cardVal.images.length > 0) {
 					for (let c = 0, l = cardVal.images.length; c < l; c++) {
@@ -609,9 +645,16 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 
 			$('<p />', {
 				'id': 'showCardLink_' + z + i,
-				'text': 'ARC Id ' + propertyID,
-				'class': 'showCardLink',
+				'text': 'ARC',
+				'class': 'button',
 				'onclick': 'window.open("' + isisURL + propertyID + '");'
+			}).appendTo('#showCardMeta_' + propertyCardID);
+
+			$('<p />', {
+				'id': 'showCardDeeplink_' + z + i,
+				'text': 'Deeplink ',
+				'class': 'button',
+				'onclick': 'window.open("' + deeplink + '");'
 			}).appendTo('#showCardMeta_' + propertyCardID);
 
 			//build the Buttons
@@ -640,7 +683,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 					hasPlaylists = false;
 				}
 				if (cardVal.links.hasOwnProperty("movie")) {
-// 					console.log(cardVal.links.movie);
+					// 					console.log(cardVal.links.movie);
 					movieLink = cardVal.links.movie;
 					hasMovie = true;
 				} else {
@@ -713,14 +756,14 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 			'class': 'container',
 		}).prependTo('#containers');
 	}
-	
+
 	$('<div />', {
 		'id': 'contentContainerHeader',
 		'class': 'containerHeader',
 		'text': contentType
 	}).appendTo('#container_Content');
-	
-		$('<div />', {
+
+	$('<div />', {
 		'id': 'contentContainerItems',
 		'class': 'container'
 	}).appendTo('#container_Content');
@@ -747,9 +790,9 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 
 //####################################----Fill the Content Module with items (1.9 api)----####################################
 
-function fillContentModule19(contentLink){
+function fillContentModule19(contentLink) {
 	$.getJSON(contentLink, function(playplexContent) {
-			console.log("total items: " + playplexContent.metadata.pagination.totalItems);
+		console.log("total items: " + playplexContent.metadata.pagination.totalItems);
 		$.each(playplexContent.data.items, function(i, contentCardVal) {
 			card[contentCardVal.mgid];
 			card[contentCardVal.mgid] = contentCardVal;
@@ -758,6 +801,7 @@ function fillContentModule19(contentLink){
 			aspectError = "false";
 			imgError = "false";
 			title = '"' + contentCardVal.title + '"';
+			let deeplink = makeDeeplink(contentCardVal.mgid);
 			txtObject = JSON.stringify(contentCardVal, null, 4);
 			if (contentCardVal.authRequired === true) {
 				tve = "true";
@@ -787,41 +831,34 @@ function fillContentModule19(contentLink){
 				aspectError = "false";
 				imgError = "true";
 			}
-			
+
 			link = uuidMaker(contentCardVal.id);
-			
+
 			//Make a CSV index
-			
-				if (aspectError =="true"){
+
+			if (aspectError == "true") {
 				aspectErrorMessage = "Aspect Ratio Error";
-				} else {
-					aspectErrorMessage = "";
-				}
-				if (imgError == "true"){
+			} else {
+				aspectErrorMessage = "";
+			}
+			if (imgError == "true") {
 				imgErrorMessage = "Image Error";
-				} else {
-					imgErrorMessage = "";
-				}
-				
-				cardLinks.push({
-					title: title,
-					uuid: link,
-					aspectError: aspectErrorMessage,
-					imageError: imgErrorMessage
-				});
-			
-		$('<div />', {
+			} else {
+				imgErrorMessage = "";
+			}
+
+			cardLinks.push({
+				title: title,
+				uuid: link,
+				aspectError: aspectErrorMessage,
+				imageError: imgErrorMessage
+			});
+
+			$('<div />', {
 				'id': link,
 				'class': 'contentCard',
 				'style': 'background-image: url(' + imgUrl + ')'
 			}).appendTo('#contentContainerItems');
-
-			$('<p />', {
-				'id': 'showCardJsonButton_' + propertyCardID,
-				'class': 'button',
-				'text': 'API OUTPUT',
-				'onclick': 'showOverlayJson("' + contentCardVal.mgid + '");'
-			}).appendTo('#' + link);
 
 			$('<div />', {
 				'id': 'contentErrorbox_' + link,
@@ -856,6 +893,7 @@ function fillContentModule19(contentLink){
 
 			//build the meta objects
 
+
 			$('<p />', {
 				'id': 'CardSubHeader_' + link,
 				'class': 'CardSubHeader',
@@ -868,15 +906,31 @@ function fillContentModule19(contentLink){
 				'text': contentCardVal.title
 			}).appendTo('#CardMeta_' + link);
 
-			$('<p />', {
-				'id': 'CardHeaderLink_' + link,
-				'class': 'CardHeaderLink',
-				'text': 'ARC ID: ' + link,
+			$('<div />', {
+				'id': 'showCardJsonButton_' + propertyCardID,
+				'class': 'button',
+				'text': 'API OUTPUT',
+				'onclick': 'showOverlayJson("' + contentCardVal.mgid + '");'
+			}).appendTo('#' + link);
+
+			$('<div />', {
+				'id': 'contentCardHeaderLink_' + link,
+				'text': 'ARC',
+				'class': 'button',
 				'onclick': 'window.open("' + isisURL + link + '");'
-			}).appendTo('#CardMeta_' + link);
+			}).appendTo('#' + link);
+
+			$('<div />', {
+				'id': 'contentCardDeeplink_' + link,
+				'text': 'Deeplink ',
+				'class': 'button',
+				'onclick': 'window.open("' + deeplink + '");'
+			}).appendTo('#' + link);
+
+
 
 		});
-		
+
 		if (playplexContent.metadata.pagination.next != null) { // checks for a next page then re-triggers itself.
 			contentLink = playplexContent.metadata.pagination.next;
 			page = playplexContent.metadata.pagination.page;
@@ -921,6 +975,51 @@ function showOverlayJson(mgid) {
 	$(overlay).toggle();
 	txtObject = JSON.stringify(card[mgid], null, 4);
 	document.getElementById('cardJson').innerHTML = txtObject;
+}
+
+
+//####################################----Toggle JSON Overlays----####################################
+
+function openMainApi() {
+	window.open(apiUrl);
+}
+
+//####################################----Make a deeplink----####################################
+
+function makeDeeplink(propertyMgid) {
+	var path
+
+	if (propertyMgid.indexOf("episode") !== -1) {
+		path = 'episode/';
+	} else if (propertyMgid.indexOf("series") !== -1) {
+		path = 'series/';
+	} else if (propertyMgid.indexOf("event") !== -1) {
+		path = 'event/';
+	} else if (propertyMgid.indexOf("playlist") !== -1) {
+		path = 'playlist/';
+	} else if (propertyMgid.indexOf("video") !== -1) {
+		path = 'video/';
+	}
+
+	var propertyID = uuidMaker(propertyMgid);
+	if (brand == "paramountnetwork") {
+		deeplink = paramountDeeplinkRoot + path + propertyID;
+	} else if (brand == "vh1") {
+		deeplink = vh1DeeplinkRoot + path + propertyID;
+	} else if (brand == "mtv") {
+		deeplink = mtvDeeplinkRoot + path + propertyID;
+	} else if (brand == "cc") {
+		deeplink = ccDeeplinkRoot + path + propertyID;
+	} else if (brand == "bet") {
+		deeplink = betDeeplinkRoot + path + propertyID;
+	} else if (brand == "tvland") {
+		deeplink = tvlandDeeplinkRoot + path + propertyID;
+	} else if (brand == "cmt") {
+		deeplink = cmtDeeplinkRoot + path + propertyID;
+	} else {
+		deeplink = "NULL";
+	}
+	return deeplink;
 }
 
 //####################################----URL Param----####################################
@@ -997,7 +1096,7 @@ function downloadCSV(args) {
 	filename = args.filename || 'export.csv';
 
 	if (!csv.match(/^data:text\/csv/i)) {
-			data = encodeURI(csv);
+		data = encodeURI(csv);
 	}
 
 	link = document.createElement('a');

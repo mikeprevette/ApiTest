@@ -34,6 +34,10 @@ body {
   z-index: 998;
 }
 
+#mainApiButton {
+	margin: 1em;
+}
+
 #top span {
 	background-color:#333;
 	padding: 10px;
@@ -71,6 +75,11 @@ p {
 	padding: 5px;
 	background-color: rgba(0,0,0,0.5);
 }
+
+.containerHeader .button {
+	margin-right: 1em;
+}
+
 
 .containerHeaderText {
 	margin: 1em;
@@ -288,7 +297,16 @@ p {
 	font-size: 1em;
 	position: absolute;
 	left: 0px;
-	background-color: rgba(0,0,0,0.5)
+	background-color: rgba(0,0,0,0.5);
+	padding-bottom: 5px;
+}
+
+.showCardMeta  .button {
+	margin-left: 2px;
+	float: right;
+	margin-top: 5px;
+	margin-bottom 5px;
+
 }
 
 .showCardButtons {
@@ -318,7 +336,7 @@ p {
 
 .showCardButton:hover {
 	cursor: pointer;
-	background-color: rgba(0,0,0,0.75)
+	background-color: rgba(0,0,0,0.75);
 }
 
 
@@ -354,8 +372,8 @@ p {
 
 
 .button {
-	margin-left: 10px;
-	margin-right: 10px;
+	display: inline-block;
+	margin-right: 5px;
 	padding: 5px;
 	border-radius: 5px;
 	color: #84ccff;
@@ -365,14 +383,16 @@ p {
 	transition: .2s;
 	text-transform: uppercase;
 	text-decoration: none;
+	box-shadow: 1px 1px rgba(255,255,255,0.40);
 }
 
 
 .button:hover {
 	color: #ffffff;
 	cursor: pointer;
-	-webkit-animation: bounceright .3s alternate ease infinite;
-	animation: bounceright .3s alternate ease infinite;
+	-webkit-animation: bounceup .3s alternate ease infinite;
+	animation: bounceup .3s alternate ease infinite;
+	box-shadow: 1px 1px #84ccff;
 }
 
 @keyframes bounceright {
@@ -385,6 +405,15 @@ p {
 	to   { -webkit-transform: translateX(3px); }
 }
 
+@keyframes bounceup {
+	from { transform: translateY(0); }
+	to   { transform: translateY(-3px); }
+}
+
+@-webkit-keyframes bounceup {
+	from { -webkit-transform: translateY(0); }
+	to   { -webkit-transform: translateY(-3px); }
+}
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
