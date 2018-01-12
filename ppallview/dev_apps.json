@@ -187,7 +187,7 @@
     "--","bet", "mtv", "cc", "vh1", "cmt", "tvland", "paramountnetwork"
   ],
   "stages": [
-    "--","live", "staging"
+    "--","live", "staging","hotfix","dev"
   ],
   "platforms": [
     "--","ios", "android", "roku"

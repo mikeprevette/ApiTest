@@ -4,6 +4,8 @@
 const imageParams = '&width=450&quality=0.2';
 const liveRootURL = 'http://api.playplex.viacom.com/feeds/networkapp/intl';
 const stagingRootURL = 'http://testing.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
+const hotfixRootURL = 'http://hotfix.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
+const devRootURL = 'http://dev.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
 
 const vh1DeeplinkRoot = 'vh1networkapp://';
 const paramountDeeplinkRoot = 'paramountnetworkapp://';
@@ -26,6 +28,7 @@ var card = Object.create(null);
 
 
 function makeTheScreen(mode) {
+	console.log("makeTheScreen");
 	// 	$("#containers").load(function() {
 	//      $('#loadingOverlay').hide();
 	// 	});
@@ -38,8 +41,8 @@ function makeTheScreen(mode) {
 	}
 
 	$.getJSON(appsJsonFile, function(appsList) {
-		console.log(appsList.apps);
-		console.log(appsList.apps[0].app.name);
+		//console.log(appsList.apps);
+		//console.log(appsList.apps[0].app.name);
 		appsList.apps.sort(function(a, b) {
 			var textA = a.app.name.toUpperCase();
 			var textB = b.app.name.toUpperCase();
@@ -94,6 +97,7 @@ function makeTheScreen(mode) {
 //####################################----Turn the form input into params for the main function----####################################
 
 function stringToParams(buildString) {
+	console.log("stringToParams");
 	//$('#loadingOverlay').show();
 	console.log(buildString);
 	var splits = buildString.split(',');
@@ -123,6 +127,7 @@ function stringToParams(buildString) {
 //####################################----Build The Screens----####################################
 
 function buildPlayPlex() {
+	console.log("buildPlayPlex");
 	$('#loadingOverlay').show();
 	firstRun = false;
 	nuclear();
@@ -135,6 +140,14 @@ function buildPlayPlex() {
 		apiUrl = stagingRootURL + mainPath + params;
 		seriesItemsURL = stagingRootURL + seriesItemsPath;
 		seriesClipsURL = stagingRootURL + seriesClipsPath;
+	} else if (stage == 'hotfix') {
+		apiUrl = hotfixRootURL + mainPath + params;
+		seriesItemsURL = hotfixRootURL + seriesItemsPath;
+		seriesClipsURL = hotfixRootURL + seriesClipsPath;
+	} else if (stage == 'dev') {
+		apiUrl = devRootURL + mainPath + params;
+		seriesItemsURL = devRootURL + seriesItemsPath;
+		seriesClipsURL = devRootURL + seriesClipsPath;
 	} else {
 		apiUrl = liveRootURL + mainPath + params;
 		seriesItemsURL = liveRootURL + seriesItemsPath;
@@ -169,6 +182,7 @@ function buildPlayPlex() {
 //####################################----Build The Series Screens & Modules----####################################
 
 function getScreen(screenURL, screenName, screenID, screenIndex) {
+	console.log("getScreen");
 	$.getJSON(screenURL, function(playplexHome) {
 		$.each(playplexHome.data.screen.modules, function(z, modules) {
 			target = modules.module.dataSource;
@@ -224,13 +238,14 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
 //####################################----Build The Series Modules for 1.8 & Below----####################################
 
 function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
+	console.log("getModule");
 	$.getJSON(moduleURL, function(playplexData) {
 		$.each(playplexData.data.items, function(i, cardVal) {
 			card[cardVal.id]; // make a independent object to refer to later
 			card[cardVal.id] = cardVal; // dump the data for this card into it and call it the MGID
 			type = playplexData.data.alias;
 			propertyMgid = cardVal.id;
-			console.log(propertyMgid);
+			//console.log(propertyMgid);
 			propertyID = uuidMaker(cardVal.id);
 			seriesTitle = cardVal.title.replace(/ /g, "_");
 			propertyCardID = uuidMaker(screenID) + '_' + propertyID + '_' + z + i;
@@ -363,6 +378,7 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 //####################################----Load Content----####################################
 
 function loadContent(seriesMgid, contentType, seriesTitle) {
+	console.log("loadContent"); 
 	window.scrollTo(0, 0);
 	//build the container or empty one if it already exists
 	if (document.getElementById('container_Content') !== null) {
@@ -417,8 +433,9 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 //####################################----Fill the Content Module with items----####################################
 
 function fillContentModule(targetLink) {
+	console.log("fillContentModule"); 
 	$.getJSON(targetLink, function(playplexContent) {
-		console.log("total items: " + playplexContent.metadata.pagination.totalItems);
+		//console.log("fillContentModule - total items: " + playplexContent.metadata.pagination.totalItems);
 		$.each(playplexContent.data.items, function(i, contentCardVal) {
 			//check to see if the item is valid
 			if (contentCardVal.hasOwnProperty("id")) {
@@ -430,7 +447,8 @@ function fillContentModule(targetLink) {
 				imgError = "false";
 				title = '"' + contentCardVal.title + '"';
 				cardId = contentCardVal.id;
-				let deeplink = makeDeeplink(contentCardVal.mgid);
+				//console.log(cardId);
+				let deeplink = makeDeeplink(contentCardVal.id);
 				//title = title.replace(",", "%2C");
 
 				//title = JSON.stringify(String(contentCardVal.title));
@@ -446,7 +464,7 @@ function fillContentModule(targetLink) {
 						if (contentCardVal.images[v].aspectRatio === aspectRatio) {
 							imgUrl = contentCardVal.images[v].url + imageParams;
 							aspectError = "false";
-							console.log("Good Image");
+							//console.log("Good Image");
 							break;
 						} else {
 							imgUrl = contentCardVal.images[0].url + imageParams;
@@ -562,7 +580,7 @@ function fillContentModule(targetLink) {
 
 //####################################----Build The Series Modules (1.9 api)----####################################
 function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
-	console.log("USING 1.9 LOGIC")
+	console.log("getModule19 - USING 1.9 LOGIC")
 	$.getJSON(moduleURL, function(playplexData) {
 		$.each(playplexData.data.items, function(i, cardVal) {
 			isImgError = false;
@@ -747,6 +765,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 //####################################----Load Content Links (1.9 api)----####################################
 
 function loadContentLink(contentLink, contentType, seriesTitle) {
+	console.log("loadContentLink");
 	window.scrollTo(0, 0);
 	if (document.getElementById('container_Content') !== null) {
 		cleanHouse(container_Content);
@@ -791,6 +810,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 //####################################----Fill the Content Module with items (1.9 api)----####################################
 
 function fillContentModule19(contentLink) {
+	console.log("fillContentModule19");
 	$.getJSON(contentLink, function(playplexContent) {
 		console.log("total items: " + playplexContent.metadata.pagination.totalItems);
 		$.each(playplexContent.data.items, function(i, contentCardVal) {
@@ -818,7 +838,7 @@ function fillContentModule19(contentLink) {
 						imgUrl = contentCardVal.images[v].url + imageParams;
 						aspectError = "false";
 						imgError = "false";
-						console.log("Good Image");
+						//console.log("Good Image");
 						break;
 					} else {
 						imgUrl = contentCardVal.images[0].url + imageParams;
@@ -934,7 +954,7 @@ function fillContentModule19(contentLink) {
 		if (playplexContent.metadata.pagination.next != null) { // checks for a next page then re-triggers itself.
 			contentLink = playplexContent.metadata.pagination.next;
 			page = playplexContent.metadata.pagination.page;
-			console.log(page);
+			console.log("Page:" + page);
 			fillContentModule19(contentLink); //run it all over again
 		}
 	});
@@ -943,6 +963,7 @@ function fillContentModule19(contentLink) {
 //####################################----Make a UUID----####################################
 
 function uuidMaker(mgid) {
+	console.log("uuidMaker");
 	UUID = mgid.substr(mgid.length - 36); // takes the UUID off the MGID
 	return (UUID);
 }
@@ -951,6 +972,7 @@ function uuidMaker(mgid) {
 //####################################----Clean Content----####################################
 
 function cleanHouse(div) {
+	console.log("cleanHouse");
 	if (div != null) {
 		while (div.hasChildNodes()) {
 			div.removeChild(div.lastChild);
@@ -962,6 +984,7 @@ function cleanHouse(div) {
 //####################################----Clean Screen----####################################
 
 function nuclear() {
+	console.log("Nuclear");
 	$("#containers").empty();
 	cardLinks = [];
 }
@@ -969,24 +992,29 @@ function nuclear() {
 //####################################----Toggle JSON Overlays----####################################
 
 function showOverlayJson(mgid) {
-
+	console.log("showOverlayJson");
 	var body = document.body;
 	body.classList.toggle('noscroll');
 	$(overlay).toggle();
 	txtObject = JSON.stringify(card[mgid], null, 4);
+	txtObject = txtObject.replace("&reg","&amp;reg");
 	document.getElementById('cardJson').innerHTML = txtObject;
 }
 
 
+//&amp;
+
 //####################################----Toggle JSON Overlays----####################################
 
 function openMainApi() {
+	console.log("openMainApi");
 	window.open(apiUrl);
 }
 
 //####################################----Make a deeplink----####################################
 
 function makeDeeplink(propertyMgid) {
+	console.log("makeDeeplink");
 	var path
 
 	if (propertyMgid.indexOf("episode") !== -1) {
@@ -1025,7 +1053,7 @@ function makeDeeplink(propertyMgid) {
 //####################################----URL Param----####################################
 
 function addURLParam(paramName, paramValue) {
-
+console.log("addURLParam");
 	var loc = location.href;
 	if (loc.indexOf("?") === -1) {
 		loc += "?";
@@ -1056,6 +1084,7 @@ function addURLParam(paramName, paramValue) {
 //####################################----CSV----####################################
 
 function convertArrayOfObjectsToCSV(args) {
+	console.log("CSV");
 	var result, ctr, keys, columnDelimiter, lineDelimiter, data;
 
 	data = args.data || null;
@@ -1087,6 +1116,7 @@ function convertArrayOfObjectsToCSV(args) {
 }
 
 function downloadCSV(args) {
+	console.log("downloadCSV");
 	var data, filename, link;
 	var csv = convertArrayOfObjectsToCSV({
 		data: cardLinks
