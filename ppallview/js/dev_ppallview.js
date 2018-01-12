@@ -394,6 +394,10 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 		'class': 'containerHeader',
 		'text': contentType
 	}).appendTo('#container_Content');
+	
+		$('<span />', {
+		'id': 'numberOfItems',
+	}).appendTo('#contentContainerHeader');
 
 	$('<div />', {
 		'id': 'contentContainerItems',
@@ -435,6 +439,7 @@ function loadContent(seriesMgid, contentType, seriesTitle) {
 function fillContentModule(targetLink) {
 	console.log("fillContentModule"); 
 	$.getJSON(targetLink, function(playplexContent) {
+	$('#numberOfItems').text(" | total items: " + playplexContent.metadata.pagination.totalItems);
 		//console.log("fillContentModule - total items: " + playplexContent.metadata.pagination.totalItems);
 		$.each(playplexContent.data.items, function(i, contentCardVal) {
 			//check to see if the item is valid
@@ -781,6 +786,10 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 		'class': 'containerHeader',
 		'text': contentType
 	}).appendTo('#container_Content');
+	
+	$('<span />', {
+		'id': 'numberOfItems',
+	}).appendTo('#contentContainerHeader');
 
 	$('<div />', {
 		'id': 'contentContainerItems',
@@ -812,7 +821,8 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 function fillContentModule19(contentLink) {
 	console.log("fillContentModule19");
 	$.getJSON(contentLink, function(playplexContent) {
-		console.log("total items: " + playplexContent.metadata.pagination.totalItems);
+	$('#numberOfItems').text(" | total items: " + playplexContent.metadata.pagination.totalItems);
+	//console.log("total items: " + playplexContent.metadata.pagination.totalItems);
 		$.each(playplexContent.data.items, function(i, contentCardVal) {
 			card[contentCardVal.mgid];
 			card[contentCardVal.mgid] = contentCardVal;
