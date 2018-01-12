@@ -3,7 +3,7 @@
 /* ####################################----PLAYPLEX----#################################### */
 const imageParams = '&width=450&quality=0.2';
 const liveRootURL = 'http://api.playplex.viacom.com/feeds/networkapp/intl';
-const stagingRootURL = 'http://testing.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
+const testingRootURL = 'http://testing.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
 const hotfixRootURL = 'http://hotfix.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
 const devRootURL = 'http://dev.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
 
@@ -136,10 +136,10 @@ function buildPlayPlex() {
 	seriesItemsPath = '/series/items/' + apiVersion + '/';
 	params = '?key=networkapp1.0&brand=' + brand + '&platform=' + platform + '&region=' + region + '&version=' + appVersion;
 
-	if (stage == 'staging') {
-		apiUrl = stagingRootURL + mainPath + params;
-		seriesItemsURL = stagingRootURL + seriesItemsPath;
-		seriesClipsURL = stagingRootURL + seriesClipsPath;
+	if (stage == 'testing') {
+		apiUrl = testingRootURL + mainPath + params;
+		seriesItemsURL = testingRootURL + seriesItemsPath;
+		seriesClipsURL = testingRootURL + seriesClipsPath;
 	} else if (stage == 'hotfix') {
 		apiUrl = hotfixRootURL + mainPath + params;
 		seriesItemsURL = hotfixRootURL + seriesItemsPath;
