@@ -20,12 +20,14 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script>
     var screenURL = "http://api.playplex.viacom.com/feeds/networkapp/intl/tv-schedule/1.9/mgid:arc:tvschedule:paramountnetwork.com:34013b3e-d237-11e1-a549-0026b9414f30?key=networkapp1.0&brand=paramountnetwork&platform=ios&region=us&version=4.3"
+    var page = 1;
+    var pageDepth = 3;
     function buildSchedule() {
       $.getJSON(screenURL, function(playplexHome) {
 
         for (let c = 0, l = playplexHome.data.tvschedules.length; c < l; c++) {
           $('<div />', {
-            'id': c,
+            'id': c + "_" + page,
             'class': 'line'
           }).appendTo('#list');
         };
@@ -40,33 +42,39 @@
           $('<div />', {
             'class': 'lineItem',
             'text': item.seriesTitle
-          }).appendTo('#'+ i);
+          }).appendTo('#'+ i + "_" + page);
           
           $('<div />', {
             'class': 'lineItem',
             'text': item.episode
-          }).appendTo('#'+ i);
+          }).appendTo('#'+ i + "_" + page);
           
           $('<div />', {
             'class': 'lineItem',
             'text': item.episodeTitle
-          }).appendTo('#'+ i);
+          }).appendTo('#'+ i + "_" + page);
           
           $('<div />', {
             'class': 'lineItem',
             'text': d + " (EST)"
-          }).appendTo('#'+ i);
+          }).appendTo('#'+ i + "_" + page);
           
           console.log(item);
         });
        
 
+        if (playplexHome.metadata.next != null && page < pageDepth) { // checks for a next page then re-triggers itself.
+          page++;
+          screenURL = playplexHome.metadata.next;
+          buildSchedule(); //run it all over again
+        }
+        
       }).done(function() {
-          console.log("Done");
-        }).fail(function() {
-          console.log("BROKE IT");
-        });
-    }
+        console.log("Done");
+      }).fail(function() {
+        console.log("BROKE IT");
+      });
+      }
 
   </script>
 
