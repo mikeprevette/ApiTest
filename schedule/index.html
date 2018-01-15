@@ -36,9 +36,14 @@
           
           var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
           d.setUTCSeconds(item.broadcastDate);
-          //d.setUTCHours(-5);
+          //console.log(d);
           d = d.toLocaleString("en-US", {timeZone: "America/New_York"})
+          //d.setUTCHours(-5);
+          var dp = new Date(0);
+          dp.setUTCSeconds(item.broadcastDate);
+          var dp = dp.toLocaleString("en-US", {timeZone: "America/Los_Angeles"})
           
+          //console.log(d);
           $('<div />', {
             'class': 'lineItem',
             'text': item.seriesTitle
@@ -57,6 +62,11 @@
           $('<div />', {
             'class': 'lineItem',
             'text': d + " (EST)"
+          }).appendTo('#'+ i + "_" + page);
+          
+             $('<div />', {
+            'class': 'lineItem',
+            'text': dp + " (PST)"
           }).appendTo('#'+ i + "_" + page);
           
           console.log(item);
