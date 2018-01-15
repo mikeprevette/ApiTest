@@ -1,0 +1,113 @@
+
+body {
+  font: 300 1em sans-serif;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+/*   display: flex; */
+}
+
+p {
+  text-align: center;
+  width: 50%;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+#list {
+  display: table;
+  align-content: center;
+}
+
+.lineItem {
+  display: table-cell;
+  text-align: center;
+  margin-left: 10px;
+  border: 1px solid black;
+}
+
+.lineItem.red {
+  color: red;
+}
+
+.line {
+  display: table-row;
+  
+}
+
+.inputs {
+ display: inline-block;
+ margin-left: 4em;
+}
+
+.inputs:disabled {
+ opacity: 0.5;
+}
+
+.inputs:focus {
+  outline: none;
+}
+
+#files {
+
+}
+
+#clear {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+  border-radius: 4px;
+  -webkit-transition: background-color 0.25s ease-out;
+  -moz-transition: background-color 0.25s ease-out;
+  -o-transition: background-color 0.25s ease-out;
+  transition: background-color 0.25s ease-out;
+}
+
+
+#clear:enabled:hover {
+  background-color: #50f442;
+  cursor: pointer;
+}
+
+#clear:active {
+  background-color: #cbffc6;
+}
+
+#download {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+  border-radius: 4px;
+   -webkit-transition: background-color 0.25s ease-out;
+  -moz-transition: background-color 0.25s ease-out;
+  -o-transition: background-color 0.25s ease-out;
+  transition: background-color 0.25s ease-out;
+}
+
+#download:enabled:hover {
+ background-color: #50f442;
+ cursor: pointer;
+}
+
+#download:active {
+  background-color: #cbffc6;
+}
+
+#controls {
+  min-width: 675px;
+  margin-bottom: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 4em;
+  background-color: rgba(0,0,0,0.25);
+  border-radius: 15px;
+}

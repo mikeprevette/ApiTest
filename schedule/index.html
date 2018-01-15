@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-47959509-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-47959509-2');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=0.37, user-scalable=no" />
+  <title>PlayPlex Schedule</title>
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="./css/schdule.css" type="text/css" />
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script>
+    var screenURL = "http://api.playplex.viacom.com/feeds/networkapp/intl/tv-schedule/1.9/mgid:arc:tvschedule:paramountnetwork.com:34013b3e-d237-11e1-a549-0026b9414f30?key=networkapp1.0&brand=paramountnetwork&platform=ios&region=us&version=4.3"
+    function buildSchedule() {
+      $.getJSON(screenURL, function(playplexHome) {
+
+        for (let c = 0, l = playplexHome.data.tvschedules.length; c < l; c++) {
+          $('<div />', {
+            'id': c,
+            'class': 'line'
+          }).appendTo('#list');
+        };
+
+        var cow = $.each(playplexHome.data.tvschedules, function(i, item) {
+          
+          var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+          d.setUTCSeconds(item.broadcastDate);
+          //d.setUTCHours(-5);
+          d = d.toLocaleString("en-US", {timeZone: "America/New_York"})
+          
+          $('<div />', {
+            'class': 'lineItem',
+            'text': item.seriesTitle
+          }).appendTo('#'+ i);
+          
+          $('<div />', {
+            'class': 'lineItem',
+            'text': item.episode
+          }).appendTo('#'+ i);
+          
+          $('<div />', {
+            'class': 'lineItem',
+            'text': item.episodeTitle
+          }).appendTo('#'+ i);
+          
+          $('<div />', {
+            'class': 'lineItem',
+            'text': d + " (EST)"
+          }).appendTo('#'+ i);
+          
+          console.log(item);
+        });
+       
+
+      }).done(function() {
+          console.log("Done");
+        }).fail(function() {
+          console.log("BROKE IT");
+        });
+    }
+
+  </script>
+
+</head>
+<body>
+<!--   <div id="controls">
+    <input type="file" id="files" class="inputs" multiple onchange="run();document.getElementById('files').disabled = true;"/>   
+    <button id="download" class="inputs" disabled="disabled">Download Output</button>
+    <button id="clear" class="inputs" disabled="disabled" onclick="location.reload();">Clear</button>
+    </br>
+  </div> -->
+  <div id="list"></div>
+</body>
+    <script>
+  	$(document).ready(function() {
+				buildSchedule();
+			});
+  </script>
+</html>
