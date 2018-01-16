@@ -23,9 +23,11 @@
 		http://api.playplex.viacom.com/feeds/networkapp/intl/tv-schedule/1.9/mgid:arc:tvschedule:paramountnetwork.com:34013b3e-d237-11e1-a549-0026b9414f30/2018-01-15?key=networkapp1.0&brand=paramountnetwork&platform=ios&region=us&version=4.3
 		
 		var today = new Date();
-		var dd = today.getDate()-1;
-		var mm = today.getMonth()+1; //January is 0!
+		var dd = today.getDate()-1; // go back one day
+		var mm = today.getMonth()+1; // January is 0!
 		var yyyy = today.getFullYear();
+		var nowHours = today.getHours();
+		var nowMinutes = today.getMinutes();
     var screenURL = "http://api.playplex.viacom.com/feeds/networkapp/intl/tv-schedule/1.9/mgid:arc:tvschedule:paramountnetwork.com:34013b3e-d237-11e1-a549-0026b9414f30/" + yyyy + "-" + mm + "-" + dd + "?key=networkapp1.0&brand=paramountnetwork&platform=ios&region=us&version=4.3";
 		var page = 1;
     var pageDepth = 4;
@@ -45,7 +47,15 @@
           
           var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
           d.setUTCSeconds(item.broadcastDate);
-          //console.log(d);
+					var dHours = d.getHours();
+					var dMinutes = d.getMinutes();
+					var dDay = d.getDate();
+					
+					if (dDay == dd && dHours == nowHours) {
+						$('#'+ i + "_" + page).css("background-color", "yellow");
+					};
+          console.log(dHours);
+					console.log(dMinutes);
           d = d.toLocaleString("en-US", {timeZone: "America/New_York"})
           //d.setUTCHours(-5);
           var dp = new Date(0);
