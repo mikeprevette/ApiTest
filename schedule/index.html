@@ -51,7 +51,7 @@
 					var dMinutes = d.getMinutes();
 					var dDay = d.getDate();
 					
-					if (dDay == dd && dHours == nowHours) {
+					if (dDay == (dd+1) && dHours == nowHours || dDay == (dd+1) && (dHours == nowHours -3)) {
 						$('#'+ i + "_" + page).css("background-color", "yellow");
 					};
           console.log(dHours);
@@ -80,13 +80,13 @@
           
           $('<div />', {
             'class': 'lineItem',
-            'text': d + " (EST)"
+            'text': d
           }).appendTo('#'+ i + "_" + page);
           
-             $('<div />', {
-            'class': 'lineItem',
-            'text': dp + " (PST)"
-          }).appendTo('#'+ i + "_" + page);
+//              $('<div />', {
+//             'class': 'lineItem',
+//             'text': dp + " (PST)"
+//           }).appendTo('#'+ i + "_" + page);
           
           console.log(item);
         });
