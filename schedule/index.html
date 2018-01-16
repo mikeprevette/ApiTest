@@ -19,10 +19,19 @@
   <link rel="stylesheet" href="./css/schdule.css" type="text/css" />
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script>
-    var screenURL = "http://api.playplex.viacom.com/feeds/networkapp/intl/tv-schedule/1.9/mgid:arc:tvschedule:paramountnetwork.com:34013b3e-d237-11e1-a549-0026b9414f30?key=networkapp1.0&brand=paramountnetwork&platform=ios&region=us&version=4.3"
-    var page = 1;
-    var pageDepth = 3;
-    function buildSchedule() {
+		
+		http://api.playplex.viacom.com/feeds/networkapp/intl/tv-schedule/1.9/mgid:arc:tvschedule:paramountnetwork.com:34013b3e-d237-11e1-a549-0026b9414f30/2018-01-15?key=networkapp1.0&brand=paramountnetwork&platform=ios&region=us&version=4.3
+		
+		var today = new Date();
+		var dd = today.getDate()-1;
+		var mm = today.getMonth()+1; //January is 0!
+		var yyyy = today.getFullYear();
+    var screenURL = "http://api.playplex.viacom.com/feeds/networkapp/intl/tv-schedule/1.9/mgid:arc:tvschedule:paramountnetwork.com:34013b3e-d237-11e1-a549-0026b9414f30/" + yyyy + "-" + mm + "-" + dd + "?key=networkapp1.0&brand=paramountnetwork&platform=ios&region=us&version=4.3";
+		var page = 1;
+    var pageDepth = 4;
+
+							
+    function buildSchedule() {			
       $.getJSON(screenURL, function(playplexHome) {
 
         for (let c = 0, l = playplexHome.data.tvschedules.length; c < l; c++) {
@@ -82,6 +91,7 @@
       }).done(function() {
         console.log("Done");
       }).fail(function() {
+				console.log(prevscreenURL);
         console.log("BROKE IT");
       });
       }
