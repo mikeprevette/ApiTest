@@ -33,72 +33,77 @@
 		var westDay = westDate.getDate();
 
     var screenURL = "http://api.playplex.viacom.com/feeds/networkapp/intl/tv-schedule/1.9/mgid:arc:tvschedule:paramountnetwork.com:34013b3e-d237-11e1-a549-0026b9414f30/" + yyyy + "-" + mm + "-" + dd + "?key=networkapp1.0&brand=paramountnetwork&platform=ios&region=us&version=4.3";
-		var page = 1;
+    var page = 1;
     var pageDepth = 4;
 
-							
-    function buildSchedule() {			
-      $.getJSON(screenURL, function(playplexHome) {
 
-        for (let c = 0, l = playplexHome.data.tvschedules.length; c < l; c++) {
-          $('<div />', {
-            'id': c + "_" + page,
-            'class': 'line'
-          }).appendTo('#list');
-        };
+    function buildSchedule() {
+    	$.getJSON(screenURL, function(playplexHome) {
 
-        var cow = $.each(playplexHome.data.tvschedules, function(i, item) {
-          
-          var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-          d.setUTCSeconds(item.broadcastDate);
-					var dHours = d.getHours();
-					var dMinutes = d.getMinutes();
-					var dDay = d.getDate();
-					westHours = westDate.getHours();
-					if (dDay == (dd+1) && dHours == nowHours || dDay == westDay && dHours == westHours) {
-						$('#'+ i + "_" + page).css("background-color", "yellow");
-					};
-          //console.log(dHours);
-					console.log(westHours);
-          d = d.toLocaleString("en-US", {timeZone: "America/New_York"})
-          //d.setUTCHours(-5);
-          var dp = new Date(0);
-          dp.setUTCSeconds(item.broadcastDate);
-          var dp = dp.toLocaleString("en-US", {timeZone: "America/Los_Angeles"})
-          
-          //console.log(d);
-          $('<div />', {
-            'class': 'lineItem',
-            'text': item.seriesTitle
-          }).appendTo('#'+ i + "_" + page);
-          
-          $('<div />', {
-            'class': 'lineItem',
-            'text': item.episode
-          }).appendTo('#'+ i + "_" + page);
-          
-          $('<div />', {
-            'class': 'lineItem',
-            'text': item.episodeTitle
-          }).appendTo('#'+ i + "_" + page);
-          
-          $('<div />', {
-            'class': 'lineItem',
-            'text': d
-          }).appendTo('#'+ i + "_" + page);
-           
-					$('<div />', {
-            'class': 'lineItem',
-            'text': item.broadcastDate
-          }).appendTo('#'+ i + "_" + page);
-          
-//              $('<div />', {
-//             'class': 'lineItem',
-//             'text': dp + " (PST)"
-//           }).appendTo('#'+ i + "_" + page);
-          
-          console.log(item);
-        });
+    				for (let c = 0, l = playplexHome.data.tvschedules.length; c < l; c++) {
+    					$('<div />', {
+    						'id': c + "_" + page,
+    						'class': 'line'
+    					}).appendTo('#list');
+    				};
+
+    				var cow = $.each(playplexHome.data.tvschedules, function(i, item) {
+    					var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+    					d.setUTCSeconds(item.broadcastDate);
+    					var dHours = d.getHours();
+    					var dMinutes = d.getMinutes();
+    					var dDay = d.getDate();
+
+    					//console.log(dHours);
+    					console.log(westHours);
+    					d = d.toLocaleString("en-US", {
+    						timeZone: "America/New_York"
+    					})
+    					//d.setUTCHours(-5);
+    					var dp = new Date(0);
+    					dp.setUTCSeconds(item.broadcastDate);
+    					var dp = dp.toLocaleString("en-US", {
+    						timeZone: "America/Los_Angeles"
+    					})
+
+    					//console.log(d);
+    					$('<div />', {
+    						'class': 'lineItem',
+    						'text': item.seriesTitle
+    					}).appendTo('#' + i + "_" + page);
+
+    					$('<div />', {
+    						'class': 'lineItem',
+    						'text': item.episode
+    					}).appendTo('#' + i + "_" + page);
+
+    					$('<div />', {
+    						'class': 'lineItem',
+    						'text': item.episodeTitle
+    					}).appendTo('#' + i + "_" + page);
+
+    					$('<div />', {
+    						'class': 'lineItem',
+    						'text': d
+    					}).appendTo('#' + i + "_" + page);
+
+    					$('<div />', {
+    						'class': 'lineItem',
+    						'text': item.broadcastDate
+    					}).appendTo('#' + i + "_" + page);
+
+    					westHours = westDate.getHours();
+    					if (dDay == (dd + 1) && dHours == nowHours || dDay == westDay && dHours == westHours) {
+    						$('#' + i + "_" + page).css("background-color", "yellow");
+    						$('<div />', {
+    							'class': 'lineItem',
+    							'text': "Now Playing"
+    						}).appendTo('#' + i + "_" + page);
+
+    					};
+
+    					console.log(item);
+    				});
        
 
         if (playplexHome.metadata.next != null && page < pageDepth) { // checks for a next page then re-triggers itself.
