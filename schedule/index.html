@@ -86,6 +86,11 @@
             'class': 'lineItem',
             'text': d
           }).appendTo('#'+ i + "_" + page);
+           
+					$('<div />', {
+            'class': 'lineItem',
+            'text': item.broadcastDate
+          }).appendTo('#'+ i + "_" + page);
           
 //              $('<div />', {
 //             'class': 'lineItem',
@@ -109,6 +114,11 @@
         console.log("BROKE IT");
       });
       }
+		
+		function updateClock() {
+			epoch = Date.now();
+			$("#clock").text(epoch/1000|0);
+		}
 
   </script>
 
@@ -120,11 +130,16 @@
     <button id="clear" class="inputs" disabled="disabled" onclick="location.reload();">Clear</button>
     </br>
   </div> -->
+	<div id="clock"></div>
   <div id="list"></div>
 </body>
     <script>
   	$(document).ready(function() {
 				buildSchedule();
-			});
+				setInterval(function () {
+					epoch = Date.now();
+					$("#clock").text(epoch/1000|0);
+				}, 1000);
+		});
   </script>
 </html>

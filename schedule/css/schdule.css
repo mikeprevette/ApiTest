@@ -16,6 +16,17 @@ p {
   margin-right:auto;
 }
 
+#clock {
+  position: fixed;
+  top: 0;
+  left 0;
+  background-color: rgba(0,0,0,0.75);
+  display: block;
+  color: red;
+  font-size: 2em;
+  padding: 5px;
+}
+
 #list {
   display: table;
   align-content: center;
