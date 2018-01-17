@@ -28,6 +28,10 @@
 		var yyyy = today.getFullYear();
 		var nowHours = today.getHours();
 		var nowMinutes = today.getMinutes();
+		var westDate = new Date();
+		var westHours = westDate.setHours(westDate.getHours() - 3);
+		var westDay = westDate.getDate();
+
     var screenURL = "http://api.playplex.viacom.com/feeds/networkapp/intl/tv-schedule/1.9/mgid:arc:tvschedule:paramountnetwork.com:34013b3e-d237-11e1-a549-0026b9414f30/" + yyyy + "-" + mm + "-" + dd + "?key=networkapp1.0&brand=paramountnetwork&platform=ios&region=us&version=4.3";
 		var page = 1;
     var pageDepth = 4;
@@ -50,12 +54,12 @@
 					var dHours = d.getHours();
 					var dMinutes = d.getMinutes();
 					var dDay = d.getDate();
-					
-					if (dDay == (dd+1) && dHours == nowHours || dDay == (dd+1) && (dHours == nowHours -3)) {
+					westHours = westDate.getHours();
+					if (dDay == (dd+1) && dHours == nowHours || dDay == westDay && dHours == westHours) {
 						$('#'+ i + "_" + page).css("background-color", "yellow");
 					};
-          console.log(dHours);
-					console.log(dMinutes);
+          //console.log(dHours);
+					console.log(westHours);
           d = d.toLocaleString("en-US", {timeZone: "America/New_York"})
           //d.setUTCHours(-5);
           var dp = new Date(0);
