@@ -7,8 +7,8 @@
         "country": "gb",
         "stage": "live",
         "arcSpace": "mtv-intl-uk-authoring",
-        "apiVersion": "1.7",
-        "appVersion": "4.2"
+        "apiVersion": "1.9",
+        "appVersion": "4.4"
       }
     },
     {
@@ -103,8 +103,8 @@
         "country": "es",
         "stage": "live",
         "arcSpace": "mtv-intl-Spain-authoring",
-        "apiVersion": "1.7",
-        "appVersion": "4.2"
+        "apiVersion": "1.9",
+        "appVersion": "4.4"
       }
     },
     {
@@ -127,8 +127,8 @@
         "country": "gb",
         "stage": "live",
         "arcSpace": "comedy-intl-uk-authoring",
-        "apiVersion": "1.7",
-        "appVersion": "4.2"
+        "apiVersion": "1.9",
+        "appVersion": "4.4"
       }
     },
     {
