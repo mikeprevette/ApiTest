@@ -25,16 +25,7 @@ var card = Object.create(null);
 
 
 //####################################----on load parse the apps.json file and prefil the form----####################################
-function customTarget() {
-				brand=$('#brands').val();
-				region=$('#countries').val();
-				platform=$('#platforms').val();
-				stage=$('#stages').val();
-				appVersion=$('#appVersions').val();
-				apiVersion=$('#apiVersions').val();
-				$('#quickSelector').val('---');
-				buildPlayPlex();
-}
+
 
 function makeTheScreen(mode) {
 	console.log("makeTheScreen");
@@ -1023,11 +1014,31 @@ function showOverlayJson(mgid) {
 
 //&amp;
 
-//####################################----Toggle JSON Overlays----####################################
+//####################################----Open the API----####################################
 
 function openMainApi() {
 	console.log("openMainApi");
 	window.open(apiUrl);
+}
+
+//####################################----Handle custom targets----####################################
+
+function customTarget() {
+				brand=$('#brands').val();
+				region=$('#countries').val();
+				platform=$('#platforms').val();
+				stage=$('#stages').val();
+				appVersion=$('#appVersions').val();
+				apiVersion=$('#apiVersions').val();
+				$('#quickSelector').val('---');
+				buildPlayPlex();
+}
+
+//####################################----Handle custom targets----####################################
+
+function adjustContainers() {
+	var offset = $("#top").height();
+	$('#containers').css('margin-top', offset);
 }
 
 //####################################----Make a deeplink----####################################

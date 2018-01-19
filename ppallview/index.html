@@ -21,10 +21,12 @@
 	<script type="text/javascript">
 			$(document).ready(function() {
 				if (firstRun === true) {
-					makeTheScreen("live");
+					makeTheScreen("Dev");
 				}
+				$( window ).resize(function() {
+ 					adjustContainers();
+				});
 			});
-
 	</script>
 </head>
 <body>

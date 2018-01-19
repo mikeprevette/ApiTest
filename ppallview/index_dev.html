@@ -23,6 +23,9 @@
 				if (firstRun === true) {
 					makeTheScreen("Dev");
 				}
+				$( window ).resize(function() {
+ 					adjustContainers();
+				});
 			});
 
 	</script>
