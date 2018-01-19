@@ -18,6 +18,10 @@ body {
   overflow: hidden;
 }
 
+#execute {
+	margin-left: 1em;
+}
+
 #form {
 	float:left;
 	margin:1em;

@@ -25,7 +25,16 @@ var card = Object.create(null);
 
 
 //####################################----on load parse the apps.json file and prefil the form----####################################
-
+function customTarget() {
+				brand=$('#brands').val();
+				region=$('#countries').val();
+				platform=$('#platforms').val();
+				stage=$('#stages').val();
+				appVersion=$('#appVersions').val();
+				apiVersion=$('#apiVersions').val();
+				$('#quickSelector').val('---');
+				buildPlayPlex();
+}
 
 function makeTheScreen(mode) {
 	console.log("makeTheScreen");
