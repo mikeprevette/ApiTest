@@ -598,7 +598,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 			propertyCardID = uuidMaker(screenID) + '_' + propertyID + '_' + z + i;
 
 			//Check to see if the promo is valid
-			if (propertyType === "empty" || propertyType === "noUrl") {
+			if (propertyType === "empty" || propertyType === "noUrl" || propertyType === "promo") {
 				imgUrl = "./img/error.jpg";
 				isPromoError = true;
 			} else {
