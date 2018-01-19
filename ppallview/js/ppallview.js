@@ -1007,8 +1007,9 @@ function showOverlayJson(mgid) {
 	body.classList.toggle('noscroll');
 	$(overlay).toggle();
 	txtObject = JSON.stringify(card[mgid], null, 4);
-	txtObject = txtObject.replace("&reg","&amp;reg");
+	txtObject = txtObject.replace(/&reg/g,"&amp;reg");
 	document.getElementById('cardJson').innerHTML = txtObject;
+	console.log(txtObject);
 }
 
 
