@@ -91,7 +91,7 @@ function makeTheScreen(mode) {
 					.text(apiVersions));
 		})
 	});
-	stringToParams("cc,ios,gb,live,comedy-intl-uk-authoring,1.7,4.2");
+	stringToParams("cc,ios,gb,live,comedy-intl-uk-authoring,1.9,4.4");
 }
 
 //####################################----Turn the form input into params for the main function----####################################

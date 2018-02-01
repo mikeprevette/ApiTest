@@ -91,7 +91,19 @@ function makeTheScreen(mode) {
 					.text(apiVersions));
 		})
 	});
-	stringToParams("cc,ios,gb,live,comedy-intl-uk-authoring,1.7,4.2");
+	
+	if (window.location.href.indexOf['?'] === -1) {
+		brand = getParameterByName("brand");
+		region = getParameterByName("region");
+		stage = getParameterByName("stage");
+		platform = getParameterByName("platform");
+		apiVersion = getParameterByName("apiVersion");
+		appVersion = getParameterByName("appVersion");
+		stringToParams(getParameterByName("brand") + "," + getParameterByName("platform") + "," + getParameterByName("region") + "," + getParameterByName("stage") + "," + "comedy-intl-uk-authoring" + "," + getParameterByName("apiVersion") + "," + getParameterByName("appVersion"));
+	//buildPlayPlex();
+	} else {
+		stringToParams("cc,ios,gb,live,comedy-intl-uk-authoring,1.7,4.2");
+	}
 }
 
 //####################################----Turn the form input into params for the main function----####################################
@@ -102,26 +114,30 @@ function stringToParams(buildString) {
 	console.log(buildString);
 	var splits = buildString.split(',');
 	brand = splits[0];
+	addURLParam("brand", brand);
+	//brand = getParameterByName("brand")
 	console.log(brand);
-	//addURLParam("brand", brand);
 	platform = splits[1];
 	console.log(platform);
-	//addURLParam("platform", platform);
+	addURLParam("platform", platform);
 	region = splits[2];
 	console.log(region);
-	//addURLParam("region", region);
+	addURLParam("region", region);
 	stage = splits[3];
 	console.log(stage);
+	addURLParam("stage", stage);
 
 	isisURL = 'http://isis.mtvnservices.com/Isis.html#module=content&site=' + splits[4] + '&id=';
 	console.log(splits[4]);
 
 	apiVersion = splits[5];
 	console.log(apiVersion);
+	addURLParam("apiVersion", apiVersion);
 	//addURLParam("stage", stage);
 	appVersion = splits[6];
 	console.log(appVersion);
-	buildPlayPlex();
+	addURLParam("appVersion", appVersion);
+	buildPlayPlex();	
 }
 
 //####################################----Build The Screens----####################################
@@ -131,6 +147,14 @@ function buildPlayPlex() {
 	$('#loadingOverlay').show();
 	firstRun = false;
 	nuclear();
+	
+	brand = getParameterByName("brand");
+	region = getParameterByName("region");
+	stage = getParameterByName("stage");
+	platform = getParameterByName("platform");
+	apiVersion = getParameterByName("apiVersion");
+	appVersion = getParameterByName("appVersion");
+	
 	mainPath = '/main/' + apiVersion + '/';
 	seriesClipsPath = '/series/clips/' + apiVersion + '/';
 	seriesItemsPath = '/series/items/' + apiVersion + '/';
@@ -1026,16 +1050,22 @@ function openMainApi() {
 
 function customTarget() {
 				brand=$('#brands').val();
+				addURLParam("brand", brand);
 				region=$('#countries').val();
+					addURLParam("region", region);
 				platform=$('#platforms').val();
+					addURLParam("platform", platform);
 				stage=$('#stages').val();
+					addURLParam("stage", stage);
 				appVersion=$('#appVersions').val();
+					addURLParam("appVersion", appVersion);
 				apiVersion=$('#apiVersions').val();
+					addURLParam("apiVersion", apiVersion);
 				$('#quickSelector').val('---');
 				buildPlayPlex();
 }
 
-//####################################----Handle custom targets----####################################
+//####################################----Offest the Top header----####################################
 
 function adjustContainers() {
 	var offset = $("#top").height();
@@ -1081,36 +1111,91 @@ function makeDeeplink(propertyMgid) {
 	return deeplink;
 }
 
-//####################################----URL Param----####################################
 
-function addURLParam(paramName, paramValue) {
-console.log("addURLParam");
-	var loc = location.href;
-	if (loc.indexOf("?") === -1) {
-		loc += "?";
-		loc = loc + paramName + '=' + paramValue;
-		window.history.pushState({}, '', loc);
-	} else {
-		if (string.indexOf(paramName) !== -1) {
-			existingParams = loc.split('?');
+//####################################----GET URL Param----####################################
 
-			if (existingParams.indexOf('&') !== -1) {
-				paramToUpdate = existingParams[1].split('&');
-			} else {
-				paramToUpdate = existingParams[0];
-			}
-
-			$.each(paramToUpdate, function(i, param) {
-				if (param.indexOf(paramName) !== -1) {
-
-				}
-			})
-		}
-	}
-
-	loc = loc + paramName + '=' + paramValue;
-	window.history.pushState({}, '', loc);
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
+
+//####################################---- PUT URL Param----####################################
+function addURLParam(sVariable, sNewValue)
+{
+    var aURLParams = [];
+    var aParts;
+    var aParams = (window.location.search).substring(1, (window.location.search).length).split('&');
+
+    for (var i = 0; i < aParams.length; i++)
+    {
+        aParts = aParams[i].split('=');
+        aURLParams[aParts[0]] = aParts[1];
+    }
+
+    if (aURLParams[sVariable] != sNewValue)
+    {
+        if (sNewValue.toUpperCase() == "ALL")
+            aURLParams[sVariable] = null;
+        else
+            aURLParams[sVariable] = sNewValue;
+
+        var sNewURL = window.location.origin + window.location.pathname;
+        var bFirst = true;
+
+        for (var sKey in aURLParams)
+        {
+            if (aURLParams[sKey])
+            {
+                if (bFirst)
+                {
+                    sNewURL += "?" + sKey + "=" + aURLParams[sKey];
+                    bFirst = false;
+                }
+                else
+                    sNewURL += "&" + sKey + "=" + aURLParams[sKey];
+            }
+        }
+
+        //return sNewURL;
+				window.history.pushState({}, '', sNewURL);
+    }
+}
+
+    //this will reload the page, it's likely better to store this until finished
+     
+// function addURLParam(paramName, paramValue) {
+// console.log("addURLParam");
+// 	var loc = location.href;
+// 	if (loc.indexOf("?") === -1) {
+// 		loc += "?";
+// 		loc = loc + paramName + '=' + paramValue;
+// 		window.history.pushState({}, '', loc);
+// 	} else {
+// 		if (string.indexOf(paramName) !== -1) {
+// 			existingParams = loc.split('?');
+
+// 			if (existingParams.indexOf('&') !== -1) {
+// 				paramToUpdate = existingParams[1].split('&');
+// 			} else {
+// 				paramToUpdate = existingParams[0];
+// 			}
+
+// 			$.each(paramToUpdate, function(i, param) {
+// 				if (param.indexOf(paramName) !== -1) {
+
+// 				}
+// 			})
+// 		}
+// 	}
+
+// 	loc = loc + paramName + '=' + paramValue;
+// 	window.history.pushState({}, '', loc);
+// }
 
 //####################################----CSV----####################################
 
