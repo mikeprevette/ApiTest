@@ -92,17 +92,14 @@ function makeTheScreen(mode) {
 		})
 	});
 	
-	if (window.location.href.indexOf['?'] === -1) {
-		brand = getParameterByName("brand");
-		region = getParameterByName("region");
-		stage = getParameterByName("stage");
-		platform = getParameterByName("platform");
-		apiVersion = getParameterByName("apiVersion");
-		appVersion = getParameterByName("appVersion");
-		stringToParams(getParameterByName("brand") + "," + getParameterByName("platform") + "," + getParameterByName("region") + "," + getParameterByName("stage") + "," + "comedy-intl-uk-authoring" + "," + getParameterByName("apiVersion") + "," + getParameterByName("appVersion"));
+	urlString = window.location.href;
+	console.log(urlString);
+	if (urlString.indexOf('?') !== -1) {
+		stringToParams(getParameterByName("brand") + "," + getParameterByName("platform") + "," + getParameterByName("region") + "," + getParameterByName("stage") + "," + getParameterByName("arcSpace") + "," + getParameterByName("apiVersion") + "," + getParameterByName("appVersion"));
 	//buildPlayPlex();
 	} else {
-		stringToParams("cc,ios,gb,live,comedy-intl-uk-authoring,1.7,4.2");
+		$('#loadingOverlay').hide();
+		//stringToParams("cc,ios,gb,live,comedy-intl-uk-authoring,1.7,4.2");
 	}
 }
 
@@ -127,8 +124,9 @@ function stringToParams(buildString) {
 	console.log(stage);
 	addURLParam("stage", stage);
 
-	isisURL = 'http://isis.mtvnservices.com/Isis.html#module=content&site=' + splits[4] + '&id=';
 	console.log(splits[4]);
+	arcSpace = splits[4];
+	addURLParam("arcSpace", arcSpace);
 
 	apiVersion = splits[5];
 	console.log(apiVersion);
@@ -152,8 +150,12 @@ function buildPlayPlex() {
 	region = getParameterByName("region");
 	stage = getParameterByName("stage");
 	platform = getParameterByName("platform");
+	arcSpace = getParameterByName("arcSpace");
 	apiVersion = getParameterByName("apiVersion");
 	appVersion = getParameterByName("appVersion");
+
+	
+	isisURL = 'http://isis.mtvnservices.com/Isis.html#module=content&site=' + arcSpace + '&id=';
 	
 	mainPath = '/main/' + apiVersion + '/';
 	seriesClipsPath = '/series/clips/' + apiVersion + '/';
@@ -178,12 +180,7 @@ function buildPlayPlex() {
 		seriesClipsURL = liveRootURL + seriesClipsPath;
 	}
 	console.log(apiUrl);
-	$("#brands").val(brand);
-	$("#countries").val(region);
-	$("#stages").val(stage);
-	$("#platforms").val(platform);
-	$("#appVersions").val(appVersion);
-	$("#apiVersions").val(apiVersion);
+
 	//console.log(brand,region,platform,stage);
 
 
@@ -201,6 +198,13 @@ function buildPlayPlex() {
 		alert("OMG FaiL WHAle!!1! \n Something went horribly wrong, let's start over.");
 		stringToParams("cc,ios,gb,live,comedy-intl-uk-authoring,1.7,4.2");
 	});
+	
+	$("#brands").val(brand);
+	$("#countries").val(region);
+	$("#stages").val(stage);
+	$("#platforms").val(platform);
+	$("#appVersions").val(appVersion);
+	$("#apiVersions").val(apiVersion);
 }
 
 //####################################----Build The Series Screens & Modules----####################################
