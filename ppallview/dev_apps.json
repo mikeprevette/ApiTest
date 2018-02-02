@@ -1,6 +1,54 @@
 {
   "apps": [{
       "app": {
+        "name": "---",
+        "brand": "mtv",
+        "platform": "ios",
+        "country": "gb",
+        "stage": "live",
+        "arcSpace": "mtv-intl-uk-authoring",
+        "apiVersion": "1.9",
+        "appVersion": "4.4"
+      }
+    },
+    {
+      "app": {
+        "name": "CC US",
+        "brand": "cc",
+        "platform": "ios",
+        "country": "us",
+        "stage": "live",
+        "arcSpace": "comedycentral",
+        "apiVersion": "1.9",
+        "appVersion": "4.4"
+      }
+    },    
+    {
+      "app": {
+        "name": "CC MX",
+        "brand": "cc",
+        "platform": "ios",
+        "country": "mx",
+        "stage": "live",
+        "arcSpace": "comedy-intl-latam-authoring",
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
+      }
+    },    
+    {
+      "app": {
+        "name": "CC BR",
+        "brand": "cc",
+        "platform": "ios",
+        "country": "br",
+        "stage": "live",
+        "arcSpace": "comedy-intl-brazil-authoring",
+        "apiVersion": "1.7",
+        "appVersion": "4.2"
+      }
+    },
+    {
+      "app": {
         "name": "MTV UK",
         "brand": "mtv",
         "platform": "ios",

@@ -94,6 +94,8 @@ function makeTheScreen(mode) {
 	
 	urlString = window.location.href;
 	console.log(urlString);
+	
+	//awefull logic to check to see if a querry param is already added, if there is a ? then it assumas all are there. BAD
 	if (urlString.indexOf('?') !== -1) {
 		stringToParams(getParameterByName("brand") + "," + getParameterByName("platform") + "," + getParameterByName("region") + "," + getParameterByName("stage") + "," + getParameterByName("arcSpace") + "," + getParameterByName("apiVersion") + "," + getParameterByName("appVersion"));
 	//buildPlayPlex();
@@ -110,31 +112,29 @@ function stringToParams(buildString) {
 	//$('#loadingOverlay').show();
 	console.log(buildString);
 	var splits = buildString.split(',');
+	
 	brand = splits[0];
-	addURLParam("brand", brand);
-	//brand = getParameterByName("brand")
 	console.log(brand);
+	
 	platform = splits[1];
 	console.log(platform);
-	addURLParam("platform", platform);
+	
 	region = splits[2];
 	console.log(region);
-	addURLParam("region", region);
+
 	stage = splits[3];
 	console.log(stage);
-	addURLParam("stage", stage);
-
+	
 	console.log(splits[4]);
 	arcSpace = splits[4];
-	addURLParam("arcSpace", arcSpace);
 
 	apiVersion = splits[5];
 	console.log(apiVersion);
-	addURLParam("apiVersion", apiVersion);
-	//addURLParam("stage", stage);
+
 	appVersion = splits[6];
 	console.log(appVersion);
-	addURLParam("appVersion", appVersion);
+	
+	putCustomValues();
 	buildPlayPlex();	
 }
 
@@ -146,13 +146,7 @@ function buildPlayPlex() {
 	firstRun = false;
 	nuclear();
 	
-	brand = getParameterByName("brand");
-	region = getParameterByName("region");
-	stage = getParameterByName("stage");
-	platform = getParameterByName("platform");
-	arcSpace = getParameterByName("arcSpace");
-	apiVersion = getParameterByName("apiVersion");
-	appVersion = getParameterByName("appVersion");
+	getCustomParamValues();
 
 	
 	isisURL = 'http://isis.mtvnservices.com/Isis.html#module=content&site=' + arcSpace + '&id=';
@@ -199,12 +193,8 @@ function buildPlayPlex() {
 		stringToParams("cc,ios,gb,live,comedy-intl-uk-authoring,1.7,4.2");
 	});
 	
-	$("#brands").val(brand);
-	$("#countries").val(region);
-	$("#stages").val(stage);
-	$("#platforms").val(platform);
-	$("#appVersions").val(appVersion);
-	$("#apiVersions").val(apiVersion);
+	// set the custom params by their new values.
+	putCustomValues();
 }
 
 //####################################----Build The Series Screens & Modules----####################################
@@ -315,7 +305,7 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 				}).appendTo('#module_' + containerId);
 
 				$('<div />', {
-					'id': 'errorbox' + '_' + z + i,
+					'id': 'errorbox' + '_' + containerId,
 					'class': 'errorbox'
 				}).appendTo('#' + propertyCardID);
 
@@ -323,13 +313,13 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 					$('<p />', {
 						'class': 'error',
 						'text': "Broken Promo ERROR - Likely expired series, in an active promo"
-					}).appendTo('#errorbox' + '_' + z + i);
+					}).appendTo('#errorbox' + '_' + containerId);
 				}
 				if (isImgError === "true") {
 					$('<p />', {
 						'class': 'error',
 						'text': "Broken IMAGE ERROR - Likely no aspectRatio on configObj Art, images not published, or bad image DP"
-					}).appendTo('#errorbox' + '_' + z + i);
+					}).appendTo('#errorbox' + '_' + containerId);
 				}
 				//build the meta
 				$('<div />', {
@@ -657,7 +647,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 			}).appendTo('#module_' + containerId);
 
 			$('<div />', {
-				'id': 'errorbox' + '_' + z + i,
+				'id': 'errorbox' + '_' + propertyCardID,
 				'class': 'errorbox'
 			}).appendTo('#' + propertyCardID);
 
@@ -665,13 +655,14 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 				$('<p />', {
 					'class': 'error',
 					'text': "Broken Promo ERROR - Likely expired series, in an active promo"
-				}).appendTo('#errorbox' + '_' + z + i);
+				}).appendTo('#errorbox' + '_' + propertyCardID);
 			}
 			if (isImgError === true) {
 				$('<p />', {
+					'id': 'imgError' + containerId,
 					'class': 'error',
 					'text': "Broken IMAGE ERROR - Likely no aspectRatio on configObj Art, images not published, or bad image DP"
-				}).appendTo('#errorbox' + '_' + z + i);
+				}).appendTo('#errorbox' + '_' + propertyCardID);
 			}
 
 
@@ -1041,8 +1032,6 @@ function showOverlayJson(mgid) {
 }
 
 
-//&amp;
-
 //####################################----Open the API----####################################
 
 function openMainApi() {
@@ -1050,23 +1039,54 @@ function openMainApi() {
 	window.open(apiUrl);
 }
 
-//####################################----Handle custom targets----####################################
+//####################################----Get custom targets set custom params----####################################
 
 function customTarget() {
-				brand=$('#brands').val();
-				addURLParam("brand", brand);
-				region=$('#countries').val();
-					addURLParam("region", region);
-				platform=$('#platforms').val();
-					addURLParam("platform", platform);
-				stage=$('#stages').val();
-					addURLParam("stage", stage);
-				appVersion=$('#appVersions').val();
-					addURLParam("appVersion", appVersion);
-				apiVersion=$('#apiVersions').val();
-					addURLParam("apiVersion", apiVersion);
-				$('#quickSelector').val('---');
-				buildPlayPlex();
+	brand = $('#brands').val();
+	addURLParam("brand", brand);
+	region = $('#countries').val();
+	addURLParam("region", region);
+	platform = $('#platforms').val();
+	addURLParam("platform", platform);
+	stage = $('#stages').val();
+	addURLParam("stage", stage);
+	appVersion = $('#appVersions').val();
+	addURLParam("appVersion", appVersion);
+	apiVersion = $('#apiVersions').val();
+	addURLParam("apiVersion", apiVersion);
+	$('#quickSelector').val('---');
+	buildPlayPlex();
+}
+
+//####################################----put custom selectors / params ----####################################
+
+function putCustomValues() {
+		// set the custom params by their new values.
+	addURLParam("brand", brand);
+	addURLParam("platform", platform);
+	addURLParam("region", region);
+	addURLParam("stage", stage);
+	addURLParam("arcSpace", arcSpace);
+	addURLParam("apiVersion", apiVersion);
+	addURLParam("appVersion", appVersion);
+	document.getElementById('brands').value = brand;
+	document.getElementById('countries').value = region;
+	document.getElementById('stages').value = stage;
+	document.getElementById('platforms').value = platform;
+	document.getElementById('appVersions').value = appVersion;
+	document.getElementById('apiVersions').value = apiVersion;
+}
+
+//####################################----update custom selectors----####################################
+
+function getCustomParamValues() {
+	brand = getParameterByName("brand");
+	region = getParameterByName("region");
+	stage = getParameterByName("stage");
+	platform = getParameterByName("platform");
+	arcSpace = getParameterByName("arcSpace");
+	apiVersion = getParameterByName("apiVersion");
+	appVersion = getParameterByName("appVersion");
 }
 
 //####################################----Offest the Top header----####################################
@@ -1119,55 +1139,48 @@ function makeDeeplink(propertyMgid) {
 //####################################----GET URL Param----####################################
 
 function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
+	if (!url) url = window.location.href;
+	name = name.replace(/[\[\]]/g, "\\$&");
+	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return '';
+	return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
 //####################################---- PUT URL Param----####################################
-function addURLParam(sVariable, sNewValue)
-{
-    var aURLParams = [];
-    var aParts;
-    var aParams = (window.location.search).substring(1, (window.location.search).length).split('&');
+function addURLParam(sVariable, sNewValue) {
+	var aURLParams = [];
+	var aParts;
+	var aParams = (window.location.search).substring(1, (window.location.search).length).split('&');
 
-    for (var i = 0; i < aParams.length; i++)
-    {
-        aParts = aParams[i].split('=');
-        aURLParams[aParts[0]] = aParts[1];
-    }
+	for (var i = 0; i < aParams.length; i++) {
+		aParts = aParams[i].split('=');
+		aURLParams[aParts[0]] = aParts[1];
+	}
 
-    if (aURLParams[sVariable] != sNewValue)
-    {
-        if (sNewValue.toUpperCase() == "ALL")
-            aURLParams[sVariable] = null;
-        else
-            aURLParams[sVariable] = sNewValue;
+	if (aURLParams[sVariable] != sNewValue) {
+		if (sNewValue.toUpperCase() == "ALL")
+			aURLParams[sVariable] = null;
+		else
+			aURLParams[sVariable] = sNewValue;
 
-        var sNewURL = window.location.origin + window.location.pathname;
-        var bFirst = true;
+		var sNewURL = window.location.origin + window.location.pathname;
+		var bFirst = true;
 
-        for (var sKey in aURLParams)
-        {
-            if (aURLParams[sKey])
-            {
-                if (bFirst)
-                {
-                    sNewURL += "?" + sKey + "=" + aURLParams[sKey];
-                    bFirst = false;
-                }
-                else
-                    sNewURL += "&" + sKey + "=" + aURLParams[sKey];
-            }
-        }
+		for (var sKey in aURLParams) {
+			if (aURLParams[sKey]) {
+				if (bFirst) {
+					sNewURL += "?" + sKey + "=" + aURLParams[sKey];
+					bFirst = false;
+				} else
+					sNewURL += "&" + sKey + "=" + aURLParams[sKey];
+			}
+		}
 
-        //return sNewURL;
-				window.history.pushState({}, '', sNewURL);
-    }
+		//return sNewURL;
+		window.history.pushState({}, '', sNewURL);
+	}
 }
 
     //this will reload the page, it's likely better to store this until finished
