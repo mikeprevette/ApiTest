@@ -731,10 +731,17 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 				} else {
 					hasMovie = false;
 				}
+				if (cardVal.links.hasOwnProperty("shortForm")) {
+					// 					console.log(cardVal.links.movie);
+					shortFormLink = cardVal.links.shortForm;
+					hasShortform = true;
+				} else {
+					hasShortform = false;
+				}
 			}
 
 
-			if (hasEpisodes === true || hasVideos === true || hasPlaylists === true || hasMovie === true) {
+			if (hasEpisodes === true || hasVideos === true || hasPlaylists === true || hasMovie === true || hasShortform === true) {
 				$('<div />', {
 					'id': 'showCardButtonBar_' + propertyCardID,
 					'class': 'showCardButtons',
@@ -770,6 +777,14 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 						'class': 'showCardButton',
 						'text': 'Movie',
 						'onclick': 'loadContentLink("' + movieLink + '","movie","' + seriesTitle + '");'
+					}).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
+				}
+				if (hasShortform === true) {
+					$('<p />', {
+						'id': 'showCardButtons_ShortForm' + z + i,
+						'class': 'showCardButton',
+						'text': 'ShortForm',
+						'onclick': 'loadContentLink("' + shortFormLink + '","shortForm","' + seriesTitle + '");'
 					}).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
 				}
 			} else if (isPromoError === false) {
