@@ -250,7 +250,6 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
 			}
 		})
 	})
-	$('#loadingOverlay').hide();
 }
 
 //####################################----Build The Series Modules for 1.8 & Below----####################################
@@ -808,6 +807,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 			getModule19(moduleURL, screenID, containerId, z, aspectRatio); //run it all over again
 		}
 	});
+	$('#loadingOverlay').hide();
 }
 
 //####################################----Load Content Links (1.9 api)----####################################
@@ -862,6 +862,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 //####################################----Fill the Content Module with items (1.9 api)----####################################
 
 function fillContentModule19(contentLink) {
+	$('#loadingOverlay').show();
 	console.log("fillContentModule19");
 	$.getJSON(contentLink, function(playplexContent) {
 	$('#numberOfItems').text(" | total items: " + playplexContent.metadata.pagination.totalItems);
@@ -1011,6 +1012,7 @@ function fillContentModule19(contentLink) {
 			fillContentModule19(contentLink); //run it all over again
 		}
 	});
+	$('#loadingOverlay').hide();
 }
 
 //####################################----Make a UUID----####################################
