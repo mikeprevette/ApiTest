@@ -607,6 +607,13 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 	$.getJSON(moduleURL, function(playplexData) {
 		$.each(playplexData.data.items, function(i, cardVal) {
 			isImgError = false;
+			isPromoError = false;
+			hasEpisodes = false;
+			hasVideos = false;
+			hasPlaylists = false;
+			hasMovie = false;
+			hasShortform = false;
+			linksError = false;
 			card[cardVal.mgid];
 			card[cardVal.mgid] = cardVal;
 			propertyMgid = cardVal.mgid;
@@ -738,6 +745,8 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 				} else {
 					hasShortform = false;
 				}
+			} else {
+				linksError = true;
 			}
 
 
@@ -787,7 +796,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 						'onclick': 'loadContentLink("' + shortFormLink + '","shortForm","' + seriesTitle + '");'
 					}).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
 				}
-			} else if (isPromoError === false) {
+			} else if (isPromoError === false || linksError === true) {
 				$('<p />', {
 					'class': 'contentError',
 					'text': "Broken Series - No Content"
