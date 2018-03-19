@@ -20,7 +20,7 @@
         "stage": "live",
         "arcSpace": "comedycentral",
         "apiVersion": "1.9",
-        "appVersion": "4.4"
+        "appVersion": "4.5"
       }
     },
     {
@@ -59,18 +59,6 @@
         "appVersion": "4.4"
       }
     }, 
-    {
-      "app": {
-        "name": "CC US",
-        "brand": "cc",
-        "platform": "ios",
-        "country": "us",
-        "stage": "live",
-        "arcSpace": "comedycentral",
-        "apiVersion": "1.9",
-        "appVersion": "4.5"
-      }
-    },
     {
       "app": {
         "name": "MTV UK",
