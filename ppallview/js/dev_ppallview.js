@@ -612,6 +612,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 			hasPlaylists = false;
 			hasMovie = false;
 			hasShortform = false;
+			hasLongform = false;
 			linksError = false;
 			card[cardVal.mgid];
 			card[cardVal.mgid] = cardVal;
@@ -744,12 +745,19 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 				} else {
 					hasShortform = false;
 				}
+				if (cardVal.links.hasOwnProperty("longForm")) {
+					// 					console.log(cardVal.links.movie);
+					LongFormLink = cardVal.links.longForm;
+					hasLongform = true;
+				} else {
+					hasLongform = false;
+				}
 			} else {
 				linksError = true;
 			}
 
 
-			if (hasEpisodes === true || hasVideos === true || hasPlaylists === true || hasMovie === true || hasShortform === true) {
+			if (hasEpisodes === true || hasVideos === true || hasPlaylists === true || hasMovie === true || hasShortform === true || hasLongform === true) {
 				$('<div />', {
 					'id': 'showCardButtonBar_' + propertyCardID,
 					'class': 'showCardButtons',
@@ -793,6 +801,14 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 						'class': 'showCardButton',
 						'text': 'ShortForm',
 						'onclick': 'loadContentLink("' + shortFormLink + '","shortForm","' + seriesTitle + '");'
+					}).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
+				}
+				if (hasLongform === true) {
+					$('<p />', {
+						'id': 'showCardButtons_ShortForm' + z + i,
+						'class': 'showCardButton',
+						'text': 'LongForm',
+						'onclick': 'loadContentLink("' + LongFormLink + '","longForm","' + seriesTitle + '");'
 					}).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
 				}
 			} else if (isPromoError === false || linksError === true) {
