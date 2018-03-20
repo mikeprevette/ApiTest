@@ -1,0 +1,76 @@
+{
+  "apps": [
+    {
+      "app": {
+        "name": "MTV",
+        "brand": "mtv",
+        "platform": ["ios", "android"],
+        "country": ["at", "ar", "be", "br", "ch", "de", "dk", "es", "gb", "mx", "nl", "no", "pl", "sg", "us", "ch"]
+        "stage": ["live", "testing"],
+        "arcSpace": "mtv-intl-uk-authoring",
+        "apiVersion": ["1.9"],
+        "appVersion": ["4.4","4.5"]
+      }
+    },
+    {
+      "app": {
+        "name": "CC",
+        "brand": "cc",
+        "platform": ["ios", "android"],
+        "country": ["br","gb", "mx","us"],
+        "stage": ["live", "testing"],
+        "arcSpace": "comedy-intl-uk-authoring",
+        "apiVersion": ["1.9"],
+        "appVersion": ["4.4","4.5"]
+      }
+    },
+    {
+      "app": {
+        "name": "CMT",
+        "brand": "cmt",
+        "platform": ["ios", "android"],
+        "country": ["us"],
+        "stage": ["live", "testing"],
+        "arcSpace": "cmt-authoring-site",
+        "apiVersion": ["1.9"],
+        "appVersion": ["4.4","4.5"]
+      }
+    },
+    {
+      "app": {
+        "name": "Paramount Network US",
+        "brand": "paramountnetwork",
+        "platform": ["ios", "android"],
+        "country": ["us"],
+        "stage": ["live", "testing"],
+        "arcSpace": "arc-ent-paramount-network-site",
+        "apiVersion": ["1.9"],
+        "appVersion": ["4.4","4.5"]
+      }
+    },
+    {
+      "app": {
+        "name": "TVLand",
+        "brand": "tvland",
+        "platform": ["ios", "android"],
+        "country": ["us"],
+        "stage": ["live", "testing"],
+        "arcSpace": "tvland-authoring-site",
+        "apiVersion": ["1.9"],
+        "appVersion": ["4.4","4.5"]
+      }
+    },
+    {
+      "app": {
+        "name": "VH1",
+        "brand": "vh1",
+        "platform": ["ios", "android"],
+        "country": ["us"],
+        "stage": ["live", "testing"],
+        "arcSpace": "vh1-authoring-site",
+        "apiVersion": ["1.9"],
+        "appVersion": ["4.4","4.5"]
+      }
+    }
+  ]
+}
