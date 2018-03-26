@@ -49,33 +49,116 @@ function letsDoThis(mode) {
 
 
 	$.getJSON(appsJsonFile, function(appsList) {
+		var i = 0;
 		$.each(appsList.apps, function(z, apps) {
-			var combi = combinations(apps.app.brand, apps.app.country, apps.app.platform, apps.app.stage, apps.app.appVersion, apps.app.apiVersion);
+			$('<div />', {
+				'id': apps.app.brand + '_chart',
+				'class': 'chart',
+				'text': apps.app.brand
+		}).appendTo('#containers');
+			$('<div />', {
+					'id': apps.app.brand + '_header',
+					'class': 'line'
+				}).appendTo('#' + apps.app.brand +'_chart');
+			
+			var combi = combinations(apps.app.brand, apps.app.platform, apps.app.stage, apps.app.country, apps.app.appVersion, apps.app.apiVersion);
 			for (let c of combi ) {
 				//console.log(combi.done);
 				mainPath = '/main/' + c[5] + '/';
-				params = '?key=networkapp1.0&brand=' + c[0] + '&platform=' + c[2] + '&region=' + c[1] + '&version=' + c[4];
-				if (c[3] == 'testing') {
+				params = '?key=networkapp1.0&brand=' + c[0] + '&platform=' + c[1] + '&region=' + c[3] + '&version=' + c[4];
+				if (c[2] == 'testing') {
 					apiUrl = testingRootURL + mainPath + params;
-				} else if (c[3] == 'hotfix') {
+				} else if (c[2] == 'hotfix') {
 					apiUrl = hotfixRootURL + mainPath + params;
-				} else if (c[3] == 'dev') {
+				} else if (c[2] == 'dev') {
 					apiUrl = devRootURL + mainPath + params;
 				} else { // LIVE
 					apiUrl = liveRootURL + mainPath + params;
 				}
-				appMeta = {brand: c[0], country: c[1], platform: c[2], stage: c[3], appVersion: c[4], apiVersion: c[5], apiUrl: apiUrl};
+				appMeta = {brand: c[0], country: c[3], platform: c[1], stage: c[2], appVersion: c[4], apiVersion: c[5], apiUrl: apiUrl};
 				appInstances.push(appMeta); // dump the data into an array
+				drawBrandCountry(i, appMeta); // render this brand
+				i++;
+				drawAppMeta(apps.app.brand, apiUrl);
 			}
 		})
 	})
-	console.log(appInstances);
-//   test();
 }
 
-function test() {
-	for (var i = 0; i < appInstances.length; i++) {
-		console.log(appInstances[i].brand);
-		console.log("hi");
-	}
+function drawAppMeta(brand, apiUrl) {
+				$.getJSON(apiUrl, function(apiEndpoint) {
+						$.each(apiEndpoint.data.appConfiguration, function(key, item) {
+							$('<div />', {
+								'id' : brand + key, 
+								'class': 'line'
+							}).appendTo('#' + brand + '_chart');
+							$('<div />', {
+								'class': 'lineItem',
+								'text': item
+							}).appendTo('#' + brand + key);
+						})
+			})
+}
+
+
+function drawBrand(i, appMeta) {
+					$('<div />', {
+					'id': appMeta.brand + '_' + i,
+					'class': 'line'
+				}).appendTo('#' + appMeta.brand +'_chart');
+				$('<div />', {
+					'class': 'lineItem',
+					'text': appMeta.brand
+				}).appendTo('#' + appMeta.brand + '_' + i);
+				$('<div />', {
+					'class': 'lineItem',
+					'text': appMeta.country //country
+				}).appendTo('#' + appMeta.brand + '_' + i);
+				$('<div />', {
+					'class': 'lineItem',
+					'text': appMeta.platform //country
+				}).appendTo('#' + appMeta.brand + '_' + i);
+				$('<div />', {
+					'class': 'lineItem',
+					'text': appMeta.stage //country
+				}).appendTo('#' + appMeta.brand + '_' + i);
+				$('<div />', {
+					'class': 'lineItem',
+					'text': appMeta.appVersion //country
+				}).appendTo('#' + appMeta.brand + '_' + i);
+				$('<div />', {
+					'class': 'lineItem',
+					'text': appMeta.apiVersion //country
+				}).appendTo('#' + appMeta.brand + '_' + i);
+				$('<div />', {
+					'class': 'lineItem',
+					'text': appMeta.apiUrl
+				}).appendTo('#' + appMeta.brand + '_' + i);
+}
+
+function drawBrandCountry(i, appMeta) {
+				$('<div />', {
+					'class': 'lineItem',
+					'text': appMeta.country + ' ' + appMeta.platform + ' ' + appMeta.stage //country
+				}).appendTo('#' + appMeta.brand + '_header');
+				$('<div />', {
+					'class': 'lineItem',
+					'text': appMeta.platform //country
+				}).appendTo('#' + appMeta.brand + '_' + i);
+				$('<div />', {
+					'class': 'lineItem',
+					'text': appMeta.stage //country
+				}).appendTo('#' + appMeta.brand + '_' + i);
+				$('<div />', {
+					'class': 'lineItem',
+					'text': appMeta.appVersion //country
+				}).appendTo('#' + appMeta.brand + '_' + i);
+				$('<div />', {
+					'class': 'lineItem',
+					'text': appMeta.apiVersion //country
+				}).appendTo('#' + appMeta.brand + '_' + i);
+				$('<div />', {
+					'class': 'lineItem',
+					'text': appMeta.apiUrl
+				}).appendTo('#' + appMeta.brand + '_' + i);
 }
