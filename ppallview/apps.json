@@ -70,6 +70,30 @@
         "apiVersion": "1.9",
         "appVersion": "4.4"
       }
+    },    
+    {
+      "app": {
+        "name": "BET INTL",
+        "brand": "bet",
+        "platform": "ios",
+        "country": "mx",
+        "stage": "live",
+        "arcSpace": "bet-intl-authoring",
+        "apiVersion": "1.9",
+        "appVersion": "4.5"
+      }
+    },    
+    {
+      "app": {
+        "name": "BET US",
+        "brand": "bet",
+        "platform": "ios",
+        "country": "us",
+        "stage": "live",
+        "arcSpace": "bet",
+        "apiVersion": "1.9",
+        "appVersion": "4.5"
+      }
     },
     {
       "app": {
