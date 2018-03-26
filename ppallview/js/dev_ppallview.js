@@ -1,7 +1,7 @@
 // This is total shit JS, please no judgy. 
 
 /* ####################################----PLAYPLEX----#################################### */
-const imageParams = '&width=450&quality=0.2';
+const imageParams = '&width=450&quality=0.7';
 const liveRootURL = 'http://api.playplex.viacom.com/feeds/networkapp/intl';
 const testingRootURL = 'http://testing.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
 const hotfixRootURL = 'http://hotfix.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
@@ -1070,7 +1070,8 @@ function showOverlayJson(mgid) {
 	txtObject = JSON.stringify(card[mgid], null, 4);
 	txtObject = txtObject.replace(/&reg/g,"&amp;reg");
 	document.getElementById('cardJson').innerHTML = txtObject;
-	console.log(txtObject);
+// 	console.log(txtObject);
+	body.classList.toggle('noscroll');
 }
 
 
