@@ -9,7 +9,8 @@ const devRootURL = 'http://dev.api.playplex.viacom.vmn.io/feeds/networkapp/intl'
 
 const vh1DeeplinkRoot = 'vh1networkapp://';
 const paramountDeeplinkRoot = 'paramountnetworkapp://';
-const mtvDeeplinkRoot = 'mtvplayla://';
+const mtvUsDeeplinkRoot = 'mtvnetworkapp://';
+const mtvIntlDeeplinkRoot = 'mtvplayla://';
 const ccDeeplinkRoot = 'ccplayla://';
 const tvlandDeeplinkRoot = 'tvland://';
 const cmtDeeplinkRoot = 'cmt://';
@@ -1162,8 +1163,10 @@ function makeDeeplink(propertyMgid) {
 		deeplink = paramountDeeplinkRoot + path + propertyID;
 	} else if (brand == "vh1") {
 		deeplink = vh1DeeplinkRoot + path + propertyID;
-	} else if (brand == "mtv") {
-		deeplink = mtvDeeplinkRoot + path + propertyID;
+	} else if (brand == "mtv" && region == "us") {
+		deeplink = mtvUsDeeplinkRoot + path + propertyID;
+	} else if (brand == "mtv" && region != "us") {
+		deeplink = mtvIntlDeeplinkRoot + path + propertyID;
 	} else if (brand == "cc") {
 		deeplink = ccDeeplinkRoot + path + propertyID;
 	} else if (brand == "bet") {

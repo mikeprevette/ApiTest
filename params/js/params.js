@@ -139,23 +139,23 @@ function drawBrand(i, appMeta) {
 function drawBrandCountry(i, appMeta) {
 				$('<div />', {
 					'class': 'lineItem',
-					'text': appMeta.country + ' ' + appMeta.platform + ' ' + appMeta.stage //country
+					'text': appMeta.country + ' ' + appMeta.platform + ' ' + appMeta.stage // Header
 				}).appendTo('#' + appMeta.brand + '_header');
 				$('<div />', {
 					'class': 'lineItem',
-					'text': appMeta.platform //country
+					'text': appMeta.platform //platform
 				}).appendTo('#' + appMeta.brand + '_' + i);
 				$('<div />', {
 					'class': 'lineItem',
-					'text': appMeta.stage //country
+					'text': appMeta.stage //stage
 				}).appendTo('#' + appMeta.brand + '_' + i);
 				$('<div />', {
 					'class': 'lineItem',
-					'text': appMeta.appVersion //country
+					'text': appMeta.appVersion //version
 				}).appendTo('#' + appMeta.brand + '_' + i);
 				$('<div />', {
 					'class': 'lineItem',
-					'text': appMeta.apiVersion //country
+					'text': appMeta.apiVersion //apiVersion
 				}).appendTo('#' + appMeta.brand + '_' + i);
 				$('<div />', {
 					'class': 'lineItem',
