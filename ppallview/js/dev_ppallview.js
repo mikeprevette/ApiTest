@@ -11,7 +11,8 @@ const vh1DeeplinkRoot = 'vh1networkapp://';
 const paramountDeeplinkRoot = 'paramountnetworkapp://';
 const mtvUsDeeplinkRoot = 'mtvnetworkapp://';
 const mtvIntlDeeplinkRoot = 'mtvplayla://';
-const ccDeeplinkRoot = 'ccplayla://';
+const ccIntlDeeplinkRoot = 'ccplayla://';
+const ccUsDeeplinkRoot = 'ccnetworkapp://';
 const tvlandDeeplinkRoot = 'tvland://';
 const cmtDeeplinkRoot = 'cmt://';
 const betDeeplinkRoot = 'betplayintl://';
@@ -1167,8 +1168,10 @@ function makeDeeplink(propertyMgid) {
 		deeplink = mtvUsDeeplinkRoot + path + propertyID;
 	} else if (brand == "mtv" && region != "us") {
 		deeplink = mtvIntlDeeplinkRoot + path + propertyID;
-	} else if (brand == "cc") {
-		deeplink = ccDeeplinkRoot + path + propertyID;
+	} else if (brand == "cc" && region == "us") {
+		deeplink = ccUsDeeplinkRoot + path + propertyID;
+	} else if (brand == "cc" && region != "us") {
+		deeplink = ccIntlDeeplinkRoot + path + propertyID;
 	} else if (brand == "bet") {
 		deeplink = betDeeplinkRoot + path + propertyID;
 	} else if (brand == "tvland") {
