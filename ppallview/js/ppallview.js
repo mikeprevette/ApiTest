@@ -623,6 +623,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 			propertyType = cardVal.entityType;
 			seriesTitle = cardVal.title.replace(/ /g, "_");
 			propertyCardID = uuidMaker(screenID) + '_' + propertyID + '_' + z + i;
+			
 
 			//Check to see if the promo is valid
 			if (propertyType === "empty" || propertyType === "noUrl" || propertyType === "promo") {
@@ -641,11 +642,13 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 						} else {
 							imgUrl = "./img/error.jpg";
 							isImgError = true;
+							cardAspectRatio = "2x3";
 						}
 					}
 				} else {
 					imgUrl = "./img/error.jpg";
 					isImgError = true;
+					cardAspectRatio = "2x3";
 				}
 			}
 			// MAKE ALL THE CARDS IN HTML
