@@ -8,7 +8,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-uk-authoring",
         "apiVersion": "1.9",
-        "appVersion": "4.4"
+        "appVersion": "4.5"
       }
     },
     {
@@ -44,7 +44,7 @@
         "stage": "live",
         "arcSpace": "comedy-intl-latam-authoring",
         "apiVersion": "1.9",
-        "appVersion": "4.4"
+        "appVersion": "4.5"
       }
     },    
     {
@@ -56,7 +56,7 @@
         "stage": "live",
         "arcSpace": "comedy-intl-brazil-authoring",
         "apiVersion": "1.9",
-        "appVersion": "4.4"
+        "appVersion": "4.5"
       }
     }, 
     {
@@ -68,7 +68,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-uk-authoring",
         "apiVersion": "1.9",
-        "appVersion": "4.4"
+        "appVersion": "4.5"
       }
     },    
     {
@@ -116,7 +116,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-germany-authoring",
         "apiVersion": "1.9",
-        "appVersion": "4.4"
+        "appVersion": "4.5"
       }
     },
     {
@@ -128,7 +128,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-dk-authoring",
         "apiVersion": "1.9",
-        "appVersion": "4.4"
+        "appVersion": "4.5"
       }
     },
     {
@@ -140,7 +140,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-br-authoring",
         "apiVersion": "1.9",
-        "appVersion": "4.4"
+        "appVersion": "4.5"
       }
     },
     {
@@ -152,7 +152,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-be-authoring",
         "apiVersion": "1.9",
-        "appVersion": "4.4"
+        "appVersion": "4.5"
       }
     },
     {
@@ -164,7 +164,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-latam-authoring",
         "apiVersion": "1.9",
-        "appVersion": "4.4"
+        "appVersion": "4.5"
       }
     },
     {
@@ -176,7 +176,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-poland",
         "apiVersion": "1.9",
-        "appVersion": "4.4"
+        "appVersion": "4.5"
       }
     },
     {
@@ -188,7 +188,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-no-authoring",
         "apiVersion": "1.9",
-        "appVersion": "4.4"
+        "appVersion": "4.5"
       }
     },    
     {
@@ -200,7 +200,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-nl-authoring",
         "apiVersion": "1.9",
-        "appVersion": "4.4"
+        "appVersion": "4.5"
       }
     },
     {
@@ -212,7 +212,7 @@
         "stage": "live",
         "arcSpace": "mtv-intl-Spain-authoring",
         "apiVersion": "1.9",
-        "appVersion": "4.4"
+        "appVersion": "4.5"
       }
     },
     {
@@ -248,7 +248,7 @@
         "stage": "live",
         "arcSpace": "comedy-intl-uk-authoring",
         "apiVersion": "1.9",
-        "appVersion": "4.4"
+        "appVersion": "4.5"
       }
     },
     {
@@ -260,7 +260,7 @@
         "stage": "live",
         "arcSpace": "cmt-authoring-site",
         "apiVersion": "1.9",
-        "appVersion": "4.4"
+        "appVersion": "4.5"
       }
     },
     {
@@ -284,7 +284,7 @@
         "stage": "live",
         "arcSpace": "tvland-authoring-site",
         "apiVersion": "1.9",
-        "appVersion": "4.4"
+        "appVersion": "4.5"
       }
     },
     {
@@ -296,7 +296,7 @@
         "stage": "live",
         "arcSpace": "vh1-authoring-site",
         "apiVersion": "1.9",
-        "appVersion": "4.4"
+        "appVersion": "4.5"
       }
     }
   ],
