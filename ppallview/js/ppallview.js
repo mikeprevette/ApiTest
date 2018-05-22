@@ -258,6 +258,7 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
 
 function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 	console.log("getModule");
+  var screenUUID = uuidMaker(screenID);
 	$.getJSON(moduleURL, function(playplexData) {
 		$.each(playplexData.data.items, function(i, cardVal) {
 			card[cardVal.id]; // make a independent object to refer to later
@@ -267,7 +268,7 @@ function getModule(moduleURL, screenID, containerId, z, aspectRatio) {
 			//console.log(propertyMgid);
 			propertyID = uuidMaker(cardVal.id);
 			seriesTitle = cardVal.title.replace(/ /g, "_");
-			propertyCardID = uuidMaker(screenID) + '_' + propertyID + '_' + z + i;
+			propertyCardID = screenUUID + '_' + propertyID + '_' + z + i;
 
 			//Check to see if the promo is valid
 			if (cardVal.subType === "empty" || cardVal.subType === "noUrl") {
@@ -605,6 +606,7 @@ function fillContentModule(targetLink) {
 //####################################----Build The Series Modules (1.9 api)----####################################
 function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 	console.log("getModule19 - USING 1.9 LOGIC")
+  var screenUUID = uuidMaker(screenID);
 	$.getJSON(moduleURL, function(playplexData) {
 		$.each(playplexData.data.items, function(i, cardVal) {
 			isImgError = false;
@@ -622,13 +624,13 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 			propertyID = cardVal.id;
 			propertyType = cardVal.entityType;
 			seriesTitle = cardVal.title.replace(/ /g, "_");
-			propertyCardID = uuidMaker(screenID) + '_' + propertyID + '_' + z + i;
-			
+			propertyCardID = screenUUID + '_' + propertyID + '_' + z + i;
 
 			//Check to see if the promo is valid
 			if (propertyType === "empty" || propertyType === "noUrl" || propertyType === "promo") {
 				imgUrl = "./img/error.jpg";
 				isPromoError = true;
+        console.log("its an promo error" + propertyID);
 			} else {
 				let deeplink = makeDeeplink(propertyMgid);
 				isPromoError = false;
@@ -642,13 +644,13 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 						} else {
 							imgUrl = "./img/error.jpg";
 							isImgError = true;
-							cardAspectRatio = "2x3";
+              console.log("its an IMG Aspect error " + propertyID);
 						}
 					}
 				} else {
 					imgUrl = "./img/error.jpg";
 					isImgError = true;
-					cardAspectRatio = "2x3";
+          console.log("its an IMG Array error " + propertyID);
 				}
 			}
 			// MAKE ALL THE CARDS IN HTML
@@ -759,6 +761,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 				}
 			} else {
 				linksError = true;
+        console.log("its an series Links error " + propertyID);
 			}
 
 
@@ -817,6 +820,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 					}).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
 				}
 			} else if (isPromoError === false || linksError === true) {
+        console.log("its an Series error " + propertyID);
 				$('<p />', {
 					'class': 'contentError',
 					'text': "Broken Series - No Content"
@@ -1039,7 +1043,7 @@ function fillContentModule19(contentLink) {
 //####################################----Make a UUID----####################################
 
 function uuidMaker(mgid) {
-	console.log("uuidMaker");
+	//console.log("uuidMaker " + mgid);
 	UUID = mgid.substr(mgid.length - 36); // takes the UUID off the MGID
 	return (UUID);
 }
@@ -1147,7 +1151,7 @@ function adjustContainers() {
 //####################################----Make a deeplink----####################################
 
 function makeDeeplink(propertyMgid) {
-	console.log("makeDeeplink");
+	//console.log("makeDeeplink");
 	var path
 
 	if (propertyMgid.indexOf("episode") !== -1) {
