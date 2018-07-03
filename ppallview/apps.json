@@ -298,6 +298,18 @@
         "apiVersion": "1.9",
         "appVersion": "4.5"
       }
+    },
+    {
+      "app": {
+        "name": "MTV PLUS",
+        "brand": "mtvplus",
+        "platform": "ios",
+        "country": "GB",
+        "stage": "nuetron",
+        "arcSpace": "mtv-intl-uk-authoring",
+        "apiVersion": "1.9",
+        "appVersion": "4.5"
+      }
     }
   ],
   "countries": [
@@ -307,7 +319,7 @@
     "--","bet", "mtv", "cc", "vh1", "cmt", "tvland", "paramountnetwork"
   ],
   "stages": [
-    "--","live","testing","hotfix","dev"
+    "--","live","testing","hotfix","dev","nuetron"
   ],
   "platforms": [
     "--","ios", "android", "roku"
@@ -316,7 +328,7 @@
     "--","vh1-authoring-site", "tvland-authoring-site", "arc-ent-paramount-network-site", "cmt-authoring-site", "mtv-authoring-site", "comedycentral"
   ],
     "appVersions": [
-    "--","2.0", "4.2", "4.2.1", "4.2.2", "4.3", "4.3.1", "4.4", "4.5"
+    "--","2.0", "4.2", "4.2.1", "4.2.2", "4.3", "4.3.1", "4.4", "4.5","11"
   ],
     "apiVersions": [
     "--","1.6", "1.7", "1.9", "2.0"

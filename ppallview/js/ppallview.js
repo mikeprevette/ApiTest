@@ -6,6 +6,7 @@ const liveRootURL = 'http://api.playplex.viacom.com/feeds/networkapp/intl';
 const testingRootURL = 'http://testing.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
 const hotfixRootURL = 'http://hotfix.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
 const devRootURL = 'http://dev.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
+const nuetronRootURL = 'http://neutron-api.viacom.tech-q.mtvi.com/feeds/networkapp/intl/'
 
 const vh1DeeplinkRoot = 'vh1networkapp://';
 const paramountDeeplinkRoot = 'paramountnetworkapp://';
@@ -170,6 +171,10 @@ function buildPlayPlex() {
 		apiUrl = devRootURL + mainPath + params;
 		seriesItemsURL = devRootURL + seriesItemsPath;
 		seriesClipsURL = devRootURL + seriesClipsPath;
+	} else if (stage == 'nuetron') {
+		apiUrl = nuetronRootURL + mainPath + params;
+		seriesItemsURL = devRootURL + seriesItemsPath;
+		seriesClipsURL = devRootURL + seriesClipsPath;
 	} else {
 		apiUrl = liveRootURL + mainPath + params;
 		seriesItemsURL = liveRootURL + seriesItemsPath;
@@ -182,7 +187,7 @@ function buildPlayPlex() {
 
 	$.getJSON(apiUrl, function(playplexMain) {
 		$.each(playplexMain.data.appConfiguration.screens, function(z, screens) {
-			if (screens.screen.name == "home" || screens.screen.name == "allShows" || screens.screen.name == "browse") {
+			if (screens.screen.name == "home" || screens.screen.name == "allShows" || screens.screen.name == "browse" || screens.screen.name == "adult") {
 				toLoad = screens.screen.url;
 				screenName = screens.screen.name;
 				screenID = screens.screen.id;
