@@ -301,12 +301,12 @@
     },
     {
       "app": {
-        "name": "MTV PLUS",
+        "name": "MTV PLUS - disabled",
         "brand": "mtvplus",
         "platform": "ios",
         "country": "GB",
         "stage": "nuetron",
-        "arcSpace": "mtv-intl-uk-authoring",
+        "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
         "appVersion": "4.5"
       }

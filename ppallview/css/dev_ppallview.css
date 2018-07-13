@@ -298,6 +298,48 @@ p {
 /*	border: solid;*/
 }
 
+.showCard_L {
+	display: inline-block;
+	position: relative;
+	width: 450px;
+	height: 675px;
+	margin-right: 2em;
+	margin-bottom: 3em;
+/*	background-color: red;*/
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-color: #b7b7b7;
+/*	border: solid;*/
+}
+
+.showCard_M {
+	display: inline-block;
+	position: relative;
+	width: 450px;
+	height: 675px;
+	margin-right: 2em;
+	margin-bottom: 3em;
+/*	background-color: red;*/
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-color: #b7b7b7;
+/*	border: solid;*/
+}
+
+.showCard_S {
+	display: inline-block;
+	position: relative;
+	width: 450px;
+	height: 450px;
+	margin-right: 2em;
+	margin-bottom: 3em;
+/*	background-color: red;*/
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-color: #b7b7b7;
+/*	border: solid;*/
+}
+
 .showCardMeta {
 	width: 100%;
 	font-size: 1em;

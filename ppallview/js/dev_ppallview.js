@@ -6,7 +6,7 @@ const liveRootURL = 'http://api.playplex.viacom.com/feeds/networkapp/intl';
 const testingRootURL = 'http://testing.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
 const hotfixRootURL = 'http://hotfix.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
 const devRootURL = 'http://dev.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
-const nuetronRootURL = 'http://neutron-api.viacom.tech-q.mtvi.com/feeds/networkapp/intl/'
+const nuetronRootURL = 'http://neutron-api.viacom.tech-q.mtvi.com/feeds/networkapp/intl'
 
 const vh1DeeplinkRoot = 'vh1networkapp://';
 const paramountDeeplinkRoot = 'paramountnetworkapp://';
@@ -158,6 +158,7 @@ function buildPlayPlex() {
 	seriesClipsPath = '/series/clips/' + apiVersion + '/';
 	seriesItemsPath = '/series/items/' + apiVersion + '/';
 	params = '?key=networkapp1.0&brand=' + brand + '&platform=' + platform + '&region=' + region + '&version=' + appVersion;
+  cors = '&callback=?';
 
 	if (stage == 'testing') {
 		apiUrl = testingRootURL + mainPath + params;
@@ -172,7 +173,7 @@ function buildPlayPlex() {
 		seriesItemsURL = devRootURL + seriesItemsPath;
 		seriesClipsURL = devRootURL + seriesClipsPath;
 	} else if (stage == 'nuetron') {
-		apiUrl = nuetronRootURL + mainPath + params;
+		apiUrl = nuetronRootURL + mainPath + params + cors;
 		seriesItemsURL = devRootURL + seriesItemsPath;
 		seriesClipsURL = devRootURL + seriesClipsPath;
 	} else {
@@ -180,6 +181,7 @@ function buildPlayPlex() {
 		seriesItemsURL = liveRootURL + seriesItemsPath;
 		seriesClipsURL = liveRootURL + seriesClipsPath;
 	}
+ 
 	console.log(apiUrl);
 
 	//console.log(brand,region,platform,stage);
@@ -197,7 +199,7 @@ function buildPlayPlex() {
 		});
 	}).fail(function() {
 		alert("OMG FaiL WHAle!!1! \n Something went horribly wrong, let's start over.");
-		stringToParams("cc,ios,gb,live,comedy-intl-uk-authoring,1.7,4.2");
+		stringToParams("mtv,ios,us,live,mtv-authoring-site,1.9,4.5");
 	});
 	
 	// set the custom params by their new values.
@@ -214,6 +216,15 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
 			if (modules.module.hasOwnProperty('parameters')) {
 				if (modules.module.parameters.hasOwnProperty('aspectRatio')) {
 					aspectRatio = modules.module.parameters.aspectRatio;
+					console.log(aspectRatio);
+				} else {
+					aspectRatio = "1:1";
+					console.log(aspectRatio);
+				}
+      if (modules.module.parameters.hasOwnProperty('cellSize')) {
+					if (modules.module.parameters.cellSize == "M" || modules.module.parameters.cellSize == "L" ){
+          aspectRatio = "2:3";
+          }
 					console.log(aspectRatio);
 				} else {
 					aspectRatio = "1:1";
@@ -650,6 +661,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
 							imgUrl = "./img/error.jpg";
 							isImgError = true;
               console.log("its an IMG Aspect error " + propertyID);
+              cardAspectRatio = "2x3";
 						}
 					}
 				} else {
