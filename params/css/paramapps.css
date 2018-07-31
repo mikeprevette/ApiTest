@@ -1,0 +1,44 @@
+
+body {
+  font: 300 1em sans-serif;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+/*   display: flex; */
+}
+
+p {
+  text-align: center;
+  width: 50%;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+
+.chart {
+  margin-bottom: 50px;
+  margin-right: 50px;
+  display: table;
+  align-content: center;
+}
+
+.line {
+  display: table-row;
+ }
+
+.lineItem {
+  display: table-cell;
+  text-align: center;
+  margin-left: 10px;
+  border: 1px solid black;
+}
+
+.lineItem.red {
+  color: red;
+}
+
+
+
+
