@@ -2,48 +2,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
-	<title>Deeplinks</title>
-	<meta name="mobile-web-app-capable" content="yes">
-	<meta name="viewport" content="width=device-width, initial-scale=0.37, user-scalable=no" />
+  <title>Deeplinks</title>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=0.37, user-scalable=no" />
+  <style type="text/css">
+    
+  </style>
 </head>
+
 <body>
-<div id="container">
-	<h1>
-    Basic
-    <br>
-    <a href="mtvplayuk://">mtvplayuk://</a><br>
-		<a href="mtvplayuk://section/home/">mtvplayuk://section/home/</a><br>
-    <a href="http://www.mtv.co.uk/mtvplay/section/home/">http://www.mtv.co.uk/mtvplay/section/home/</a><br>
-    <hr>
-    Basic + XRS
-    <br>
-    <a href="mtvplayuk://?xrs=VDAPI_xrstest">mtvplayuk://?xrs=VDAPI_xrstest</a><br>
-		<a href="mtvplayuk://section/home/?xrs=VDAPI_xrstest">mtvplayuk://section/home/?xrs=VDAPI_xrstest</a><br>
-    <a href="http://www.mtv.co.uk/mtvplay/section/home/?xrs=VDAPI_xrstest">http://www.mtv.co.uk/mtvplay/section/home/?xrs=VDAPI_xrstest</a><br>
-    <hr>
-    Auth
-    <br>
-    <a href="mtvplayuk://auth/vimntveguest">mtvplayuk://auth/vimntveguest</a><br>
-    <a href="http://www.mtv.co.uk/mtvplay/auth/vimntveguest">http://www.mtv.co.uk/mtvplay/auth/vimntveguest</a><br>
-    <a href="mtvplayuk://auth/demo_fortumobundling_gb">mtvplayuk://auth/demo_fortumobundling_gb</a><br>
-    <a href="http://www.mtv.co.uk/mtvplay/auth/demo_fortumobundling_gb">http://www.mtv.co.uk/mtvplay/auth/demo_fortumobundling_gb</a><br>
-    <hr>
-    EE Auth
-    <br>
-    <a href="mtvplayuk://auth/ee">mtvplayuk://auth/ee</a><br>
-    <a href="http://www.mtv.co.uk/mtvplay/auth/ee">http://www.mtv.co.uk/mtvplay/auth/ee</a><br>
-    <hr>
-    Tune
-    <br>
-    <a href="https://3x2-h.tlnk.io/serve?action=click&campaign_id_android=441397&campaign_id_ios=441396&destination_id_android=529226&destination_id_ios=529661&fbp=1&invoke_url_android=mtvplayuk://auth/ee&invoke_url_ios=mtvplayuk://auth/ee&publisher_id=364688&site_id_android=142328&site_id_ios=142327">Tune EE Test</a><br>
-    <a href="http://bit.ly/mtvplus4">Bitly Test - http://bit.ly/mtvplus4</a>
-    <hr>
-    Tune No Bridge
-    <br>
-    <a href="https://3x2-h.tlnk.io/serve?action=click&campaign_id_android=441397&campaign_id_ios=441396&destination_id_android=529226&destination_id_ios=529661&invoke_url_android=mtvplayuk://auth/ee&invoke_url_ios=mtvplayuk://auth/ee&publisher_id=364688&site_id_android=142328&site_id_ios=142327">Tune NO BRIDGE EE Test</a><br>
-    <a href="http://bit.ly/mtvplusTest5">Bitly NoBridge Test - http://bit.ly/mtvplusTest5</a>
+  <div id="container">
+    <h1>
+      Basic
+      <br>
+      <ul>
+        <li><a href="mtvplayuk://">mtvplayuk://</a></li>
+        <li><a href="mtvplayuk://section/home/">mtvplayuk://section/home/</a></li>
+        <li><a href="http://www.mtv.co.uk/mtvplay/section/home/">http://www.mtv.co.uk/mtvplay/section/home/</a></li>
+      </ul>
+      <hr> Basic + XRS
+      <br>
+      <ul>
+        <li><a href="mtvplayuk://?xrs=VDAPI_xrstest">mtvplayuk://?xrs=VDAPI_xrstest</a></li>
+        <li><a href="mtvplayuk://section/home/?xrs=VDAPI_xrstest">mtvplayuk://section/home/?xrs=VDAPI_xrstest</a></li>
+        <li><a href="http://www.mtv.co.uk/mtvplay/section/home/?xrs=VDAPI_xrstest">http://www.mtv.co.uk/mtvplay/section/home/?xrs=VDAPI_xrstest</a></li>
+      </ul>
+      <hr> Auth
+      <br>
+      <ul>
+        <li><a href="mtvplayuk://auth/vimntveguest">mtvplayuk://auth/vimntveguest</a></li>
+        <li><a href="http://www.mtv.co.uk/mtvplay/auth/vimntveguest">http://www.mtv.co.uk/mtvplay/auth/vimntveguest</a></li>
+        <li><a href="mtvplayuk://auth/demo_fortumobundling_gb">mtvplayuk://auth/demo_fortumobundling_gb</a></li>
+        <li><a href="http://www.mtv.co.uk/mtvplay/auth/demo_fortumobundling_gb">http://www.mtv.co.uk/mtvplay/auth/demo_fortumobundling_gb</a></li>
+      </ul>
+      <hr> EE Auth
+      <br>
+      <ul>
+        <li><a href="mtvplayuk://auth/ee">mtvplayuk://auth/ee</a></li>
+        <li><a href="http://www.mtv.co.uk/mtvplay/auth/ee">http://www.mtv.co.uk/mtvplay/auth/ee</a></li>
+      </ul>
+      <hr> Tune
+      <br>
+      <ul>
+        <li><a href="https://3x2-h.tlnk.io/serve?action=click&campaign_id_android=441397&campaign_id_ios=441396&destination_id_android=529226&destination_id_ios=529661&fbp=1&invoke_url_android=mtvplayuk://auth/ee&invoke_url_ios=mtvplayuk://auth/ee&publisher_id=364688&site_id_android=142328&site_id_ios=142327">Tune EE Test</a></li>
+        <li><a href="http://bit.ly/mtvplus4">Bitly Test - http://bit.ly/mtvplus4</a></li>
+      </ul>
+      <hr> Tune No Bridge
+      <br>
+      <ul>
+        <li><a href="https://3x2-h.tlnk.io/serve?action=click&campaign_id_android=441397&campaign_id_ios=441396&destination_id_android=529226&destination_id_ios=529661&invoke_url_android=mtvplayuk://auth/ee&invoke_url_ios=mtvplayuk://auth/ee&publisher_id=364688&site_id_android=142328&site_id_ios=142327">Tune NO BRIDGE EE Test</a></li>
+        <li><a href="http://bit.ly/mtvplusTest5">Bitly NoBridge Test - http://bit.ly/mtvplusTest5</a></li>
+      </ul>
     </h1>
-	</div>
+  </div>
 </body>
+
 </html>
