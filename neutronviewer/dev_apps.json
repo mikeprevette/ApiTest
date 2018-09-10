@@ -6,7 +6,7 @@
         "brand": "mtvplus",
         "platform": "ios",
         "country": "GB",
-        "stage": "nuetron",
+        "stage": "neutron",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
         "appVersion": "4.5"
@@ -20,16 +20,16 @@
     "--","mtvplus"
   ],
   "stages": [
-    "--","live","testing","hotfix","dev","nuetron"
+    "--","neutron"
   ],
   "platforms": [
-    "--","ios", "android", "roku"
+    "--","ios", "android"
   ],
     "arcSpaces": [
     "--","vh1-authoring-site", "tvland-authoring-site", "arc-ent-paramount-network-site", "cmt-authoring-site", "mtv-authoring-site", "comedycentral"
   ],
     "appVersions": [
-    "--","2.0"
+    "--","4.5"
   ],
     "apiVersions": [
     "--","1.9"

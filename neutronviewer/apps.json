@@ -2,11 +2,23 @@
   "apps": [
     {
       "app": {
-        "name": "MTV PLUS - disabled",
+        "name": "---",
         "brand": "mtvplus",
         "platform": "ios",
-        "country": "GB",
-        "stage": "nuetron",
+        "country": "gb",
+        "stage": "neutron",
+        "arcSpace": "mtv-plus-intl-uk-authoring",
+        "apiVersion": "1.9",
+        "appVersion": "4.5"
+      }
+    },
+    {
+      "app": {
+        "name": "MTV PLUS - Enabled",
+        "brand": "mtvplus",
+        "platform": "ios",
+        "country": "gb",
+        "stage": "neutron",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
         "appVersion": "4.5"
@@ -20,16 +32,16 @@
     "--","mtvplus"
   ],
   "stages": [
-    "--","live","testing","hotfix","dev","nuetron"
+    "--","neutron"
   ],
   "platforms": [
-    "--","ios", "android", "roku"
+    "--","ios", "android"
   ],
     "arcSpaces": [
-    "--","vh1-authoring-site", "tvland-authoring-site", "arc-ent-paramount-network-site", "cmt-authoring-site", "mtv-authoring-site", "comedycentral"
+    "--","mtv-plus-intl-uk-authoring"
   ],
     "appVersions": [
-    "--","2.0"
+    "--","4.5"
   ],
     "apiVersions": [
     "--","1.9"
