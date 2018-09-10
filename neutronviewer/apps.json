@@ -1,0 +1,37 @@
+{
+  "apps": [
+    {
+      "app": {
+        "name": "MTV PLUS - disabled",
+        "brand": "mtvplus",
+        "platform": "ios",
+        "country": "GB",
+        "stage": "nuetron",
+        "arcSpace": "mtv-plus-intl-uk-authoring",
+        "apiVersion": "1.9",
+        "appVersion": "4.5"
+      }
+    }
+  ],
+  "countries": [
+    "--","gb"
+  ],
+  "brands": [
+    "--","mtvplus"
+  ],
+  "stages": [
+    "--","live","testing","hotfix","dev","nuetron"
+  ],
+  "platforms": [
+    "--","ios", "android", "roku"
+  ],
+    "arcSpaces": [
+    "--","vh1-authoring-site", "tvland-authoring-site", "arc-ent-paramount-network-site", "cmt-authoring-site", "mtv-authoring-site", "comedycentral"
+  ],
+    "appVersions": [
+    "--","2.0"
+  ],
+    "apiVersions": [
+    "--","1.9"
+  ]
+}

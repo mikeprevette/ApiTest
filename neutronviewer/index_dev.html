@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-47959509-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-47959509-2');
+</script>
+	<title>PlayPlex</title>
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=0.37, user-scalable=no" />
+	<link href='https://fonts.googleapis.com/css?family=Roboto:500,400,900' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="./css/dev_neutronview.css" type="text/css" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/dev_neutronview.js"></script>
+	<script type="text/javascript">
+			$(document).ready(function() {
+				if (firstRun === true) {
+					makeTheScreen("Dev");
+				}
+				$( window ).resize(function() {
+ 					adjustContainers();
+				});
+			});
+	</script>
+</head>
+<body>
+<div id="loadingOverlay"><div class="loader"></div></div>
+<div id="overlay"><div id="closeButton" onclick="$(overlay).toggle();">X</div><span id ="cardJson"></span></div>
+<div id="top">
+		<form id="form">DEV! - QuickLinks : 
+			<select id="quickSelector" onChange="stringToParams(this.value);"></select>
+				| Brands: <select id="brands"></select>
+				Countries: <select id="countries"></select>
+				Platforms: <select id="platforms"></select>
+				Stage: <select id="stages"></select>
+				App Version: <select id="appVersions"></select>
+				API Version: <select id="apiVersions"></select>
+				<div id="execute" class="button" onclick="customTarget();">GO</div>
+		</form>
+	<div id="mainApiButton" class="button" onclick="openMainApi();">Main Api</div>
+	</div>
+<!-- <div class="overlay"><h1>LOADING</h1></div> -->
+<div id="containers"></div>
+</body>
+</html>
