@@ -492,7 +492,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
       });
       if (playplexData.metadata.pagination.next != null) { // checks for a next page then re-triggers itself.
         moduleURL = playplexData.metadata.pagination.next;
-        getModule19(moduleURL, screenID, containerId, z, aspectRatio); //run it all over again
+        getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize); //run it all over again
       }
     },
     error: function() {
@@ -561,6 +561,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 function fillContentModule19(contentLink) {
   $('#loadingOverlay').show();
   console.log("fillContentModule19");
+  contentLink =  corsProxy + contentLink;
   $.getJSON(contentLink, function(playplexContent) {
     $('#numberOfItems').text(" | total items: " + playplexContent.metadata.pagination.totalItems);
     //console.log("total items: " + playplexContent.metadata.pagination.totalItems);
