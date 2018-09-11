@@ -5,7 +5,7 @@
         "name": "---",
         "brand": "mtvplus",
         "platform": "ios",
-        "country": "gb",
+        "country": "GB",
         "stage": "neutron",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
@@ -17,7 +17,7 @@
         "name": "MTV PLUS - Enabled",
         "brand": "mtvplus",
         "platform": "ios",
-        "country": "gb",
+        "country": "GB",
         "stage": "neutron",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
@@ -26,7 +26,7 @@
     }
   ],
   "countries": [
-    "--","gb"
+    "--","GB"
   ],
   "brands": [
     "--","mtvplus"

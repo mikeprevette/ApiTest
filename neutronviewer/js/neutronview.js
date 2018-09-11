@@ -1,7 +1,7 @@
 // This is total shit JS, please no judgy. 
 
 /* ####################################----PLAYPLEX----#################################### */
-const imageParams = '&width=450&quality=0.7';
+const imageParams = '&height=640&quality=0.7';
 const neutronRootURL = 'http://neutron-api.viacom.tech-q.mtvi.com/feeds/networkapp/intl';
 const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 // const corsProxy = 'https://crossorigin.me/';
@@ -182,22 +182,6 @@ function buildPlayPlex() {
     },
     beforeSend: setHeader
   });
-  // 	$.getJSON(apiUrl, function(playplexMain) {
-  // 		$.each(playplexMain.data.appConfiguration.screens, function(z, screens) {
-  // 			if (screens.screen.name == "adult") {
-  // 				toLoad = screens.screen.url;
-  // 				screenName = screens.screen.name;
-  // 				screenID = screens.screen.id;
-  // 				getScreen(toLoad, screenName, screenID, z);
-  // 				console.log(screens.screen.name + ' ' + toLoad);
-  // 			}
-  // 		});
-  // 	}).fail(function() {
-  // 		alert("OMG FaiL WHAle!!1! \n Something went horribly wrong, let's start over.");
-  // // 		stringToParams("mtvplus,ios,gb,neutron,mtv-plus-intl-uk-authoring,1.9,4.5");
-  // 	});
-
-  // set the custom params by their new values.
   putCustomValues();
 }
 
@@ -214,15 +198,28 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
       $.each(playplexHome.data.screen.modules, function(z, modules) {
         target = modules.module.dataSource;
         if (modules.module.hasOwnProperty('parameters')) {
-          if (modules.module.parameters.hasOwnProperty('aspectRatio')) {
-            aspectRatio = modules.module.parameters.aspectRatio;
-            console.log(aspectRatio);
-          } else {
-            aspectRatio = "2:3";
-            console.log(aspectRatio);
+          if (modules.module.parameters.hasOwnProperty('cellSize')) {
+            cellSize = modules.module.parameters.cellSize;
+            console.log(cellSize);
           }
-        } else {
+        }
+        if (cellSize == "L") {
+            aspectRatio = "16:9";
+            console.log(cellSize);
+            console.log(aspectRatio);
+        }
+          else if (cellSize == "M") {
           aspectRatio = "2:3";
+          console.log(cellSize);
+          console.log(aspectRatio);
+        } else if (cellSize == "S") {
+          aspectRatio = "16:9";
+          console.log(cellSize);
+          console.log(aspectRatio);
+        } else {
+          aspectRatio = "16:9";
+          cellSize = "S";
+          console.log(cellSize);
           console.log(aspectRatio);
         }
         //build the container Header
@@ -253,7 +250,7 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
           'onclick': 'window.open("' + target + '");'
         }).appendTo('#moduleHeader_' + containerId);
         if (apiVersion == "1.9") {
-          getModule19(target, screenID, containerId, z, aspectRatio);
+          getModule19(target, screenID, containerId, z, aspectRatio, cellSize);
         }
       })
     },
@@ -262,61 +259,11 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
     },
     beforeSend: setHeader
   });
-
-  // 	$.getJSON(screenURL, function(playplexHome) {
-  // 		$.each(playplexHome.data.screen.modules, function(z, modules) {
-  // 			target = modules.module.dataSource;
-  // 			if (modules.module.hasOwnProperty('parameters')) {
-  // 				if (modules.module.parameters.hasOwnProperty('aspectRatio')) {
-  // 					aspectRatio = modules.module.parameters.aspectRatio;
-  // 					console.log(aspectRatio);
-  // 				} else {
-  // 					aspectRatio = "2:3";
-  // 					console.log(aspectRatio);
-  // 				}
-  // 			} else {
-  // 				aspectRatio = "2:3";
-  // 				console.log(aspectRatio);
-  // 			}
-  // 			//build the container Header
-  // 			containerId = uuidMaker(modules.module.id) + '_s' + screenIndex + 'm' + z;
-
-  // 			$('<div />', {
-  // 				'id': 'moduleHeader_' + containerId,
-  // 				'class': 'containerHeader',
-  // 			}).appendTo('#containers');
-  // 			//build the container
-  // 			$('<div />', {
-  // 				'id': 'module_' + containerId,
-  // 				'class': 'container',
-  // 			}).appendTo('#containers');
-
-  // 			//add Text to the container Header
-  // 			$('<span />', {
-  // 				'id': 'containerHeaderText_' + containerId,
-  // 				'class': 'containerHeaderText',
-  // 				'text': 'Screen: ' + screenName + ' | Promo: ' + modules.module.title
-  // 			}).appendTo('#moduleHeader_' + containerId);
-
-  // 			//add a Link to the container Header
-  // 			$('<span />', {
-  // 				'id': 'containerApiButton_' + containerId,
-  // 				'class': 'button',
-  // 				'text': 'PromoList API Output',
-  // 				'onclick': 'window.open("' + target + '");'
-  // 			}).appendTo('#moduleHeader_' + containerId);
-  // 			if (apiVersion == "1.9") {
-  // 				getModule19(target, screenID, containerId, z, aspectRatio);
-  // 			} else {
-  // 				getModule(target, screenID, containerId, z, aspectRatio);
-  // 			}
-  // 		})
-  // 	})
 }
 
 
 //####################################----Build The Modules (1.9 api)----####################################
-function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
+function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize) {
   console.log("getModule19 - USING 1.9 LOGIC")
   var screenUUID = uuidMaker(screenID);
 
@@ -355,7 +302,6 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
             for (let c = 0, l = cardVal.images.length; c < l; c++) {
               if (cardVal.images[c].aspectRatio === aspectRatio) {
                 imgUrl = cardVal.images[c].url + imageParams;
-                cardAspectRatio = aspectRatio.replace(':', 'x');
                 isImgError = false;
                 break;
               } else {
@@ -373,7 +319,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
         // MAKE ALL THE CARDS IN HTML
         $('<div />', {
           'id': propertyCardID,
-          'class': 'showCard_' + cardAspectRatio,
+          'class': 'showCard_' + cellSize,
           'style': 'background-image: url(' + imgUrl + ')'
         }).appendTo('#module_' + containerId);
 
@@ -392,7 +338,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
           $('<p />', {
             'id': 'imgError' + containerId,
             'class': 'error',
-            'text': "Broken IMAGE ERROR - Likely no aspectRatio on configObj Art, images not published, or bad image DP"
+            'text': "Broken IMAGE ERROR - Likely no aspectRatio or incorrect aspect Ratio, images not published, or bad image DP"
           }).appendTo('#errorbox' + '_' + propertyCardID);
         }
 
@@ -554,236 +500,11 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio) {
     },
     beforeSend: setHeader
   });
-
-
-
-
-  // 	$.getJSON(moduleURL, function(playplexData) {
-  // 		$.each(playplexData.data.items, function(i, cardVal) {
-  // 			isImgError = false;
-  // 			isPromoError = false;
-  // 			hasEpisodes = false;
-  // 			hasVideos = false;
-  // 			hasPlaylists = false;
-  // 			hasMovie = false;
-  // 			hasShortform = false;
-  // 			hasLongform = false;
-  // 			linksError = false;
-  // 			card[cardVal.mgid];
-  // 			card[cardVal.mgid] = cardVal;
-  // 			propertyMgid = cardVal.mgid;
-  // 			propertyID = cardVal.id;
-  // 			propertyType = cardVal.entityType;
-  // 			seriesTitle = cardVal.title.replace(/ /g, "_");
-  // 			propertyCardID = screenUUID + '_' + propertyID + '_' + z + i;
-
-  // 			//Check to see if the promo is valid
-  // 			if (propertyType === "empty" || propertyType === "noUrl" || propertyType === "promo") {
-  // 				imgUrl = "./img/error.jpg";
-  // 				isPromoError = true;
-  //         console.log("its an promo error" + propertyID);
-  // 			} else {
-  // 				let deeplink = makeDeeplink(propertyMgid);
-  // 				isPromoError = false;
-  // 				if (cardVal.hasOwnProperty("images") && cardVal.images.length > 0) {
-  // 					for (let c = 0, l = cardVal.images.length; c < l; c++) {
-  // 						if (cardVal.images[c].aspectRatio === aspectRatio) {
-  // 							imgUrl = cardVal.images[c].url + imageParams;
-  // 							cardAspectRatio = aspectRatio.replace(':', 'x');
-  // 							isImgError = false;
-  // 							break;
-  // 						} else {
-  // 							imgUrl = "./img/error.jpg";
-  // 							isImgError = true;
-  //               console.log("its an IMG Aspect error " + propertyID);
-  // 						}
-  // 					}
-  // 				} else {
-  // 					imgUrl = "./img/error.jpg";
-  // 					isImgError = true;
-  //           console.log("its an IMG Array error " + propertyID);
-  // 				}
-  // 			}
-  // 			// MAKE ALL THE CARDS IN HTML
-  // 			$('<div />', {
-  // 				'id': propertyCardID,
-  // 				'class': 'showCard_' + cardAspectRatio,
-  // 				'style': 'background-image: url(' + imgUrl + ')'
-  // 			}).appendTo('#module_' + containerId);
-
-  // 			$('<div />', {
-  // 				'id': 'errorbox' + '_' + propertyCardID,
-  // 				'class': 'errorbox'
-  // 			}).appendTo('#' + propertyCardID);
-
-  // 			if (isPromoError === true) {
-  // 				$('<p />', {
-  // 					'class': 'error',
-  // 					'text': "Broken Promo ERROR - Likely expired series, in an active promo"
-  // 				}).appendTo('#errorbox' + '_' + propertyCardID);
-  // 			}
-  // 			if (isImgError === true) {
-  // 				$('<p />', {
-  // 					'id': 'imgError' + containerId,
-  // 					'class': 'error',
-  // 					'text': "Broken IMAGE ERROR - Likely no aspectRatio on configObj Art, images not published, or bad image DP"
-  // 				}).appendTo('#errorbox' + '_' + propertyCardID);
-  // 			}
-
-
-  // 			//build the meta
-  // 			$('<div />', {
-  // 				'id': 'showCardMeta_' + propertyCardID,
-  // 				'class': 'showCardMeta'
-  // 			}).appendTo('#' + propertyCardID);
-  // 			//build the meta objects
-  // 			$('<p />', {
-  // 				'id': 'showCardHeader_' + propertyCardID,
-  // 				'class': 'showCardHeader',
-  // 				'text': cardVal.title
-  // 			}).appendTo('#showCardMeta_' + propertyCardID);
-
-  // 			$('<p />', {
-  // 				'id': 'showCardJsonButton_' + propertyCardID,
-  // 				'class': 'button',
-  // 				'text': 'API OUTPUT',
-  // 				'onclick': 'showOverlayJson("' + propertyMgid + '");'
-  // 			}).appendTo('#showCardMeta_' + propertyCardID);
-
-  // 			$('<p />', {
-  // 				'id': 'showCardLink_' + z + i,
-  // 				'text': 'ARC',
-  // 				'class': 'button',
-  // 				'onclick': 'window.open("' + isisURL + propertyID + '");'
-  // 			}).appendTo('#showCardMeta_' + propertyCardID);
-
-  // 			$('<p />', {
-  // 				'id': 'showCardDeeplink_' + z + i,
-  // 				'text': 'Deeplink ',
-  // 				'class': 'button',
-  // 				'onclick': 'window.open("' + deeplink + '");'
-  // 			}).appendTo('#showCardMeta_' + propertyCardID);
-
-  // 			//build the Buttons
-
-  // 			if (cardVal.hasOwnProperty("links")) {
-  // 				//console.log(Object.keys(cardVal.links));
-  // 				if (cardVal.links.hasOwnProperty("episode")) {
-  // 					//console.log(cardVal.links.episode);
-  // 					episodeLink = cardVal.links.episode;
-  // 					hasEpisodes = true;
-  // 				} else {
-  // 					hasEpisodes = false;
-  // 				}
-  // 				if (cardVal.links.hasOwnProperty("video")) {
-  // 					//console.log(cardVal.links.video);
-  // 					videoLink = cardVal.links.video;
-  // 					hasVideos = true;
-  // 				} else {
-  // 					hasVideos = false;
-  // 				}
-  // 				if (cardVal.links.hasOwnProperty("playlist")) {
-  // 					//console.log(cardVal.links.playlist);
-  // 					playlistLink = cardVal.links.playlist;
-  // 					hasPlaylists = true;
-  // 				} else {
-  // 					hasPlaylists = false;
-  // 				}
-  // 				if (cardVal.links.hasOwnProperty("movie")) {
-  // 					// 					console.log(cardVal.links.movie);
-  // 					movieLink = cardVal.links.movie;
-  // 					hasMovie = true;
-  // 				} else {
-  // 					hasMovie = false;
-  // 				}
-  // 				if (cardVal.links.hasOwnProperty("shortForm")) {
-  // 					// 					console.log(cardVal.links.movie);
-  // 					shortFormLink = cardVal.links.shortForm;
-  // 					hasShortform = true;
-  // 				} else {
-  // 					hasShortform = false;
-  // 				}
-  // 				if (cardVal.links.hasOwnProperty("longForm")) {
-  // 					// 					console.log(cardVal.links.movie);
-  // 					LongFormLink = cardVal.links.longForm;
-  // 					hasLongform = true;
-  // 				} else {
-  // 					hasLongform = false;
-  // 				}
-  // 			} else {
-  // 				linksError = true;
-  //         console.log("its an series Links error " + propertyID);
-  // 			}
-
-
-  // 			if (hasEpisodes === true || hasVideos === true || hasPlaylists === true || hasMovie === true || hasShortform === true || hasLongform === true) {
-  // 				$('<div />', {
-  // 					'id': 'showCardButtonBar_' + propertyCardID,
-  // 					'class': 'showCardButtons',
-  // 				}).appendTo('#' + propertyCardID);
-
-  // 				if (hasVideos === true) {
-  // 					$('<p />', {
-  // 						'id': 'showCardButtons_Video' + z + i,
-  // 						'class': 'showCardButton',
-  // 						'text': 'Extras',
-  // 						'onclick': 'loadContentLink("' + videoLink + '","clip","' + seriesTitle + '");'
-  // 					}).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
-  // 				}
-  // 				if (hasEpisodes === true) {
-  // 					$('<p />', {
-  // 						'id': 'showCardButtons_Episode' + z + i,
-  // 						'class': 'showCardButton',
-  // 						'text': 'Full Episodes',
-  // 						'onclick': 'loadContentLink("' + episodeLink + '","episode","' + seriesTitle + '");'
-  // 					}).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
-  // 				}
-  // 				if (hasPlaylists === true) {
-  // 					$('<p />', {
-  // 						'id': 'showCardButtons_Playlist' + z + i,
-  // 						'class': 'showCardButton',
-  // 						'text': 'Playlists',
-  // 						'onclick': 'loadContentLink("' + playlistLink + '","playlists","' + seriesTitle + '");'
-  // 					}).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
-  // 				}
-  // 				if (hasMovie === true) {
-  // 					$('<p />', {
-  // 						'id': 'showCardButtons_Movie' + z + i,
-  // 						'class': 'showCardButton',
-  // 						'text': 'Movie',
-  // 						'onclick': 'loadContentLink("' + movieLink + '","movie","' + seriesTitle + '");'
-  // 					}).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
-  // 				}
-  // 				if (hasShortform === true) {
-  // 					$('<p />', {
-  // 						'id': 'showCardButtons_ShortForm' + z + i,
-  // 						'class': 'showCardButton',
-  // 						'text': 'ShortForm',
-  // 						'onclick': 'loadContentLink("' + shortFormLink + '","shortForm","' + seriesTitle + '");'
-  // 					}).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
-  // 				}
-  // 				if (hasLongform === true) {
-  // 					$('<p />', {
-  // 						'id': 'showCardButtons_ShortForm' + z + i,
-  // 						'class': 'showCardButton',
-  // 						'text': 'LongForm',
-  // 						'onclick': 'loadContentLink("' + LongFormLink + '","longForm","' + seriesTitle + '");'
-  // 					}).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
-  // 				}
-  // 			} else if (isPromoError === false || linksError === true) {
-  //         console.log("its an Series error " + propertyID);
-  // 				$('<p />', {
-  // 					'class': 'contentError',
-  // 					'text': "Broken Series - No Content"
-  // 				}).appendTo('#' + propertyCardID);
-  // 			}
-  // 		});
-  // 		if (playplexData.metadata.pagination.next != null) { // checks for a next page then re-triggers itself.
-  // 			moduleURL = playplexData.metadata.pagination.next;
-  // 			getModule19(moduleURL, screenID, containerId, z, aspectRatio); //run it all over again
-  // 		}
-  // 	});
   $('#loadingOverlay').hide();
+//   if (div != null) {
+//     while (div.hasChildNodes()) {
+//       div.removeChild(div.lastChild);
+//     }
 }
 
 //####################################----Load Content Links (1.9 api)----####################################

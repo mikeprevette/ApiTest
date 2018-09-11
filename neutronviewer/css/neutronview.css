@@ -270,7 +270,22 @@ p {
 }
 
 
-.showCard_2x3 {
+.showCard_L {
+	display: inline-block;
+	position: relative;
+	width: 460px;
+	height: 613px;
+	margin-right: 2em;
+	margin-bottom: 3em;
+/*	background-color: red;*/
+	background-repeat: no-repeat;
+	background-size: auto 100%;
+  background-position: center center;
+	background-color: #b7b7b7;
+/*	border: solid;*/
+}
+
+.showCard_M {
 	display: inline-block;
 	position: relative;
 	width: 450px;
@@ -284,11 +299,11 @@ p {
 /*	border: solid;*/
 }
 
-.showCard_1x1 {
+.showCard_S {
 	display: inline-block;
 	position: relative;
-	width: 450px;
-	height: 450px;
+	width: 640px;
+	height: 360px;
 	margin-right: 2em;
 	margin-bottom: 3em;
 /*	background-color: red;*/
@@ -297,6 +312,7 @@ p {
 	background-color: #b7b7b7;
 /*	border: solid;*/
 }
+
 
 .showCardMeta {
 	width: 100%;
