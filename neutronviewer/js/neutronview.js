@@ -1,10 +1,10 @@
 // This is total shit JS, please no judgy. 
 
 /* ####################################----PLAYPLEX----#################################### */
-const imageParams = '&height=640&quality=0.7';
+const imageParams = '&height=640';
 const neutronRootURL = 'http://neutron-api.viacom.tech-q.mtvi.com/feeds/networkapp/intl';
 //const corsProxy = 'https://cors-anywhere.herokuapp.com/';
- const corsProxy = 'https://viamprevette.herokuapp.com:8080/';
+const corsProxy = 'http://viamprevette.herokuapp.com/';
 const mtvGbDeeplinkRoot = 'mtvplayuk://';
 
 
@@ -118,8 +118,8 @@ function stringToParams(buildString) {
   stage = splits[3];
   console.log(stage);
 
-  console.log(splits[4]);
   arcSpace = splits[4];
+  console.log(arcSpace);
 
   apiVersion = splits[5];
   console.log(apiVersion);
