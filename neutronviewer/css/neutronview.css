@@ -188,7 +188,7 @@ p {
 .contentError {
 	position: absolute;
 	left: 0px;
-	top: 400px;
+	top: 4em;
 	text-align: center;
 	overflow: visible;
 	width: 100%;
@@ -288,8 +288,8 @@ p {
 .showCard_M {
 	display: inline-block;
 	position: relative;
-	width: 450px;
-	height: 675px;
+	width: 200px;
+	height: 300px;
 	margin-right: 2em;
 	margin-bottom: 3em;
 /*	background-color: red;*/
@@ -302,8 +302,8 @@ p {
 .showCard_S {
 	display: inline-block;
 	position: relative;
-	width: 640px;
-	height: 360px;
+	width: 360px;
+	height: 202px;
 	margin-right: 2em;
 	margin-bottom: 3em;
 /*	background-color: red;*/
@@ -334,7 +334,7 @@ p {
 .showCardButtons {
 	  position: absolute;
     width: 100%;
-    font-size: 2.5em;
+    font-size: 1em;
     left: 0px;
     bottom: 0;
 		display: block;

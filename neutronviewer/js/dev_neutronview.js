@@ -1,10 +1,10 @@
 // This is total shit JS, please no judgy. 
 
 /* ####################################----PLAYPLEX----#################################### */
-const imageParams = '&height=640&quality=0.7';
+const imageParams = '&height=640';
 const neutronRootURL = 'http://neutron-api.viacom.tech-q.mtvi.com/feeds/networkapp/intl';
+//const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 const corsProxy = 'http://viamprevette.herokuapp.com/';
-// const corsProxy = 'https://crossorigin.me/';
 const mtvGbDeeplinkRoot = 'mtvplayuk://';
 
 
@@ -118,8 +118,8 @@ function stringToParams(buildString) {
   stage = splits[3];
   console.log(stage);
 
-  console.log(splits[4]);
   arcSpace = splits[4];
+  console.log(arcSpace);
 
   apiVersion = splits[5];
   console.log(apiVersion);
@@ -492,7 +492,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
       });
       if (playplexData.metadata.pagination.next != null) { // checks for a next page then re-triggers itself.
         moduleURL = playplexData.metadata.pagination.next;
-        getModule19(moduleURL, screenID, containerId, z, aspectRatio); //run it all over again
+        getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize); //run it all over again
       }
     },
     error: function() {
@@ -561,6 +561,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 function fillContentModule19(contentLink) {
   $('#loadingOverlay').show();
   console.log("fillContentModule19");
+  contentLink =  corsProxy + contentLink;
   $.getJSON(contentLink, function(playplexContent) {
     $('#numberOfItems').text(" | total items: " + playplexContent.metadata.pagination.totalItems);
     //console.log("total items: " + playplexContent.metadata.pagination.totalItems);
