@@ -266,7 +266,6 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
 function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize) {
   console.log("getModule19 - USING 1.9 LOGIC")
   var screenUUID = uuidMaker(screenID);
-
   $.ajax({
     url: corsProxy + moduleURL,
     type: 'GET',
@@ -305,10 +304,6 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
                 imgUrl = cardVal.images[c].url + imageParams;
                 isImgError = false;
                 break;
-              } else {
-                imgUrl = "./img/error.jpg";
-                isImgError = true;
-                console.log("its an IMG Aspect error " + propertyID);
               }
             }
           } else {
