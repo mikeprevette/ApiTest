@@ -297,6 +297,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
           console.log("its an promo error" + propertyID);
         } else {
           let deeplink = makeDeeplink(propertyMgid);
+//           console.log("deeplink is" + deeplink);
           isPromoError = false;
           if (cardVal.hasOwnProperty("images") && cardVal.images.length > 0) {
             for (let c = 0, l = cardVal.images.length; c < l; c++) {
@@ -497,6 +498,10 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
     },
     error: function() {
       console.log("something went wrong with the http request");
+      var toRemoveHeader = 'moduleHeader_' + containerId;
+      var toRemoveModule = 'module_' + containerId;
+      removeElement(toRemoveHeader);
+      removeElement(toRemoveModule);
     },
     beforeSend: setHeader
   });
@@ -742,6 +747,14 @@ function nuclear() {
   cardLinks = [];
 }
 
+//####################################----Remove an ID----####################################
+
+function removeElement(elementId) {
+    // Removes an element from the document
+    var element = document.getElementById(elementId);
+    element.parentNode.removeChild(element);
+}
+
 //####################################----Toggle JSON Overlays----####################################
 
 function showOverlayJson(mgid) {
@@ -840,7 +853,7 @@ function makeDeeplink(propertyMgid) {
   }
 
 //   var propertyID = uuidMaker(propertyMgid);
-  if (brand == "mtvplay") {
+  if (brand == "mtvplus") {
     deeplink = mtvGbDeeplinkRoot + path + propertyMgid;
   } else {
     deeplink = "NULL";
