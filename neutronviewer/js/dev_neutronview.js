@@ -828,20 +828,20 @@ function makeDeeplink(propertyMgid) {
   var path
 
   if (propertyMgid.indexOf("episode") !== -1) {
-    path = 'episode/';
+    path = 'content/';
   } else if (propertyMgid.indexOf("series") !== -1) {
-    path = 'series/';
+    path = 'content/';
   } else if (propertyMgid.indexOf("event") !== -1) {
-    path = 'event/';
+    path = 'content/';
   } else if (propertyMgid.indexOf("playlist") !== -1) {
-    path = 'playlist/';
+    path = 'content/';
   } else if (propertyMgid.indexOf("video") !== -1) {
-    path = 'video/';
+    path = 'content/';
   }
 
-  var propertyID = uuidMaker(propertyMgid);
+//   var propertyID = uuidMaker(propertyMgid);
   if (brand == "mtvplay") {
-    deeplink = mtvGbDeeplinkRoot + path + propertyID;
+    deeplink = mtvGbDeeplinkRoot + path + propertyMgid;
   } else {
     deeplink = "NULL";
   }
