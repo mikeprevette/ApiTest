@@ -517,7 +517,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
   } else {
     $('<div />', {
       'id': 'container_Content',
-      'class': 'container',
+      'class': 'container'
     }).prependTo('#containers');
   }
 
@@ -528,7 +528,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
   }).appendTo('#container_Content');
 
   $('<span />', {
-    'id': 'numberOfItems',
+    'id': 'numberOfItems'
   }).appendTo('#contentContainerHeader');
 
   $('<div />', {
