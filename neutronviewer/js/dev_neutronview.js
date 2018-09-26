@@ -337,8 +337,6 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             'text': "Broken IMAGE ERROR - Likely no aspectRatio or incorrect aspect Ratio, images not published, or bad image DP"
           }).appendTo('#errorbox' + '_' + propertyCardID);
         }
-
-
         //build the meta
         $('<div />', {
           'id': 'showCardMeta_' + propertyCardID,
@@ -373,9 +371,17 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
         }).appendTo('#showCardMeta_' + propertyCardID);
 
         //build the Buttons
-
-        if (cardVal.hasOwnProperty("links")) {
-          //console.log(Object.keys(cardVal.links));
+if (propertyType === "episode" || propertyType === "video") {
+  hasEpisodes = false;
+  hasVideos = false;
+  linksError = false;
+  promoError = false;
+  $('<p />', {
+    'class': 'contentError',
+    'text': "Episode or Video"
+  }).appendTo('#' + propertyCardID);
+} else if ((propertyType === "series" || propertyType === "event") && cardVal.hasOwnProperty("links")) {
+           console.log("I'm checking links");
           if (cardVal.links.hasOwnProperty("episode")) {
             //console.log(cardVal.links.episode);
             episodeLink = cardVal.links.episode;
@@ -418,10 +424,10 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
           } else {
             hasLongform = false;
           }
-        } else {
+        }  else {
           linksError = true;
-          console.log("its an series Links error " + propertyID);
-        }
+          console.log("its an Links error " + propertyID);
+    }
 
 
         if (hasEpisodes === true || hasVideos === true || hasPlaylists === true || hasMovie === true || hasShortform === true || hasLongform === true) {
@@ -478,7 +484,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               'onclick': 'loadContentLink("' + LongFormLink + '","longForm","' + seriesTitle + '");'
             }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
           }
-        } else if (isPromoError === false || linksError === true) {
+        } else if (isPromoError === true || linksError === true) {
           console.log("its an Series error " + propertyID);
           $('<p />', {
             'class': 'contentError',
@@ -517,7 +523,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
   } else {
     $('<div />', {
       'id': 'container_Content',
-      'class': 'container',
+      'class': 'container'
     }).prependTo('#containers');
   }
 
@@ -528,7 +534,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
   }).appendTo('#container_Content');
 
   $('<span />', {
-    'id': 'numberOfItems',
+    'id': 'numberOfItems'
   }).appendTo('#contentContainerHeader');
 
   $('<div />', {
