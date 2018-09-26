@@ -273,6 +273,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
     success: function(playplexData) {
       $.each(playplexData.data.items, function(i, cardVal) {
         isImgError = false;
+        imgUrl = "./img/error.jpg";
         isPromoError = false;
         hasEpisodes = false;
         hasVideos = false;
