@@ -9,7 +9,7 @@
         "stage": "neutron",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
-        "appVersion": "4.5"
+        "appVersion": "15.0.0"
       }
     },
     {
@@ -21,7 +21,7 @@
         "stage": "neutron",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
-        "appVersion": "4.5"
+        "appVersion": "15.0.0"
       }
     }
   ],
@@ -41,7 +41,7 @@
     "--","mtv-plus-intl-uk-authoring"
   ],
     "appVersions": [
-    "--","4.5"
+    "--","4.5","15.0.0"
   ],
     "apiVersions": [
     "--","1.9"
