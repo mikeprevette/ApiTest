@@ -147,6 +147,7 @@ function buildPlayPlex() {
 
   getCustomParamValues();
 
+  // test params debug=true arc mappings  / useDb=true no cache
 
   isisURL = 'http://isis.mtvnservices.com/Isis.html#module=content&site=' + arcSpace + '&id=';
 
