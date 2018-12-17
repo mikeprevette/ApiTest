@@ -5,8 +5,8 @@
         "name": "MTV",
         "brand": ["mtv"],
         "platform": ["ios", "android"],
-        "country": ["at", "ar", "be", "br", "ch", "de", "dk", "es", "gb", "mx", "nl", "no", "pl", "sg", "us", "ch"],
-        "stage": ["live", "testing"],
+        "country": ["at", "ar", "be", "br", "ch", "de", "dk", "es", "mx", "nl", "no", "pl", "sg", "us", "ch"],
+        "stage": ["live"],
         "arcSpace": "mtv-intl-uk-authoring",
         "apiVersion": ["1.9"],
         "appVersion": ["4.5"]
@@ -18,7 +18,7 @@
         "brand": ["cc"],
         "platform": ["ios", "android"],
         "country": ["br","gb", "mx","us"],
-        "stage": ["live", "testing"],
+        "stage": ["live"],
         "arcSpace": "comedy-intl-uk-authoring",
         "apiVersion": ["1.9"],
         "appVersion": ["4.5"]
@@ -26,11 +26,11 @@
     },
     {
       "app": {
-        "name": "BET",
+        "name": "BET US",
         "brand": ["bet"],
         "platform": ["ios", "android"],
-        "country": ["mx","us"],
-        "stage": ["live", "testing"],
+        "country": ["us"],
+        "stage": ["live"],
         "arcSpace": "bet-intl-authoring",
         "apiVersion": ["1.9"],
         "appVersion": ["4.5"]
@@ -42,7 +42,7 @@
         "brand": ["cmt"],
         "platform": ["ios", "android"],
         "country": ["us"],
-        "stage": ["live", "testing"],
+        "stage": ["live"],
         "arcSpace": "cmt-authoring-site",
         "apiVersion": ["1.9"],
         "appVersion": ["4.5"]
@@ -54,7 +54,7 @@
         "brand": ["paramountnetwork"],
         "platform": ["ios", "android"],
         "country": ["us"],
-        "stage": ["live", "testing"],
+        "stage": ["live"],
         "arcSpace": "arc-ent-paramount-network-site",
         "apiVersion": ["1.9"],
         "appVersion": ["4.5"]
@@ -66,7 +66,7 @@
         "brand": ["tvland"],
         "platform": ["ios", "android"],
         "country": ["us"],
-        "stage": ["live", "testing"],
+        "stage": ["live"],
         "arcSpace": "tvland-authoring-site",
         "apiVersion": ["1.9"],
         "appVersion": ["4.5"]
@@ -78,7 +78,7 @@
         "brand": ["vh1"],
         "platform": ["ios", "android"],
         "country": ["us"],
-        "stage": ["live", "testing"],
+        "stage": ["live"],
         "arcSpace": "vh1-authoring-site",
         "apiVersion": ["1.9"],
         "appVersion": ["4.5"]

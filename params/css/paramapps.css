@@ -30,6 +30,7 @@ p {
 
 .lineItem {
   display: table-cell;
+  color: rgba 0,0,0,0.5;
   text-align: center;
   margin-left: 10px;
   border: 1px solid black;
