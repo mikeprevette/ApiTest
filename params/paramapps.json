@@ -5,7 +5,7 @@
         "name": "MTV",
         "brand": ["mtv"],
         "platform": ["ios", "android"],
-        "country": ["at", "ar", "be", "br", "ch", "de", "dk", "es", "mx", "nl", "no", "pl", "sg", "us", "ch"],
+        "country": ["at", "ar", "be", "br", "de", "dk", "es", "mx", "nl", "no", "pl", "sg", "us", "ch"],
         "stage": ["live"],
         "arcSpace": "mtv-intl-uk-authoring",
         "apiVersion": ["1.9"],
