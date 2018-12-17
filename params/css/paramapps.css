@@ -22,6 +22,7 @@ p {
   margin-right: 50px;
   display: table;
   align-content: center;
+  font-weight: 700;
 }
 
 .line {
@@ -30,7 +31,7 @@ p {
 
 .lineItem {
   display: table-cell;
-  color: rgba 0,0,0,0.5;
+  font-weight: 400;
   text-align: center;
   margin-left: 10px;
   border: 1px solid black;
