@@ -2,7 +2,8 @@
 
 /* ####################################----PLAYPLEX----#################################### */
 const imageParams = '&height=640';
-const neutronRootURL = 'http://neutron-api.viacom.tech-q.mtvi.com/feeds/networkapp/intl';
+const neutronTestingRootURL = 'http://neutron-api.viacom.tech-q.mtvi.com/feeds/networkapp/intl';
+const neutronLiveRootURL = 'http://neutron-api.viacom.tech-q.mtvi.com/feeds/networkapp/intl';
 //const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 const corsProxy = 'http://viamprevette.herokuapp.com/';
 const mtvGbDeeplinkRoot = 'mtvplayuk://';
@@ -154,10 +155,10 @@ function buildPlayPlex() {
   mainPath = '/main/' + apiVersion + '/';
   params = '?brand=' + brand + '&platform=' + platform + '&region=' + region;
 
-  if (stage == 'neutron') {
-    apiUrl = neutronRootURL + mainPath + params;
+  if (stage == 'neutron-testing') {
+    apiUrl = neutronTestingRootURL + mainPath + params;
   } else {
-    apiUrl = neutronRootURL + mainPath + params;
+    apiUrl = neutronLiveRootURL + mainPath + params;
   }
   console.log(apiUrl);
 

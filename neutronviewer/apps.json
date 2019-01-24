@@ -6,10 +6,10 @@
         "brand": "mtvplus",
         "platform": "ios",
         "country": "GB",
-        "stage": "neutron",
+        "stage": "neutron-testing",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
-        "appVersion": "15.0.0"
+        "appVersion": "22.0.0"
       }
     },
     {
@@ -18,10 +18,10 @@
         "brand": "mtvplus",
         "platform": "ios",
         "country": "GB",
-        "stage": "neutron",
+        "stage": "neutron-testing",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
-        "appVersion": "15.0.0"
+        "appVersion": "22.0.0"
       }
     }
   ],
@@ -32,7 +32,7 @@
     "--","mtvplus"
   ],
   "stages": [
-    "--","neutron"
+    "--","neutron-live","neutron-testing"
   ],
   "platforms": [
     "--","ios", "android"
@@ -41,7 +41,7 @@
     "--","mtv-plus-intl-uk-authoring"
   ],
     "appVersions": [
-    "--","4.5","15.0.0"
+    "--","22.0.0"
   ],
     "apiVersions": [
     "--","1.9"
