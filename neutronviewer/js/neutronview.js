@@ -3,7 +3,7 @@
 /* ####################################----PLAYPLEX----#################################### */
 const imageParams = '&height=640';
 const neutronTestingRootURL = 'http://neutron-api.viacom.tech-q.mtvi.com/feeds/networkapp/intl';
-const neutronLiveRootURL = 'http://neutron-api.viacom.tech-q.mtvi.com/feeds/networkapp/intl';
+const neutronLiveRootURL = 'http://neutron-api.viacom.tech/feeds/networkapp/intl';
 //const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 const corsProxy = 'http://viamprevette.herokuapp.com/';
 const mtvGbDeeplinkRoot = 'mtvplayuk://';
