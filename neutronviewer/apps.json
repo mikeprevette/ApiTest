@@ -9,19 +9,31 @@
         "stage": "neutron-testing",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
-        "appVersion": "22.0.0"
+        "appVersion": "24.0.0"
       }
     },
     {
       "app": {
-        "name": "MTV PLUS - Enabled",
+        "name": "MTV PLUS Testing - Enabled",
         "brand": "mtvplus",
         "platform": "ios",
         "country": "GB",
         "stage": "neutron-testing",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
-        "appVersion": "22.0.0"
+        "appVersion": "24.0.0"
+      }
+    },
+     {
+      "app": {
+        "name": "Paramount PLUS Testing - Enabled",
+        "brand": "plus",
+        "platform": "ios",
+        "country": "GB",
+        "stage": "neutron-testing",
+        "arcSpace": "arc-ent-paramount-network-site",
+        "apiVersion": "1.9",
+        "appVersion": "24.0.0"
       }
     }
   ],
@@ -29,7 +41,7 @@
     "--","GB"
   ],
   "brands": [
-    "--","mtvplus"
+    "--","mtvplus","plus"
   ],
   "stages": [
     "--","neutron-live","neutron-testing"
@@ -38,10 +50,10 @@
     "--","ios", "android"
   ],
     "arcSpaces": [
-    "--","mtv-plus-intl-uk-authoring"
+    "--","mtv-plus-intl-uk-authoring","arc-ent-paramount-network-site"
   ],
     "appVersions": [
-    "--","22.0.0"
+    "--","24.0.0"
   ],
     "apiVersions": [
     "--","1.9"
