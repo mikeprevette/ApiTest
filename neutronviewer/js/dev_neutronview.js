@@ -2,11 +2,14 @@
 
 /* ####################################----PLAYPLEX----#################################### */
 const imageParams = '&height=640';
-const neutronRootURL = 'http://neutron-api.viacom.tech-q.mtvi.com/feeds/networkapp/intl';
+const neutronSRootURL = 'http://neutron-api.viacom.tech-s.mtvi/feeds/networkapp/intl';
+const neutronQARootURL = 'http://qa-neutron-api.viacom.tech/feeds/networkapp/intl';
+const neutronLiveRootURL = 'http://neutron-api.viacom.tech/feeds/networkapp/intl';
 //const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 const corsProxy = 'http://viamprevette.herokuapp.com/';
 const mtvGbDeeplinkRoot = 'mtvplayuk://';
-
+const betUSDeeplinkRoot = 'betplus://';
+const paramountBRDeeplinkRoot = 'paramountplus://';
 
 var isPromoError = false;
 var isImgError = false;
@@ -147,16 +150,19 @@ function buildPlayPlex() {
 
   getCustomParamValues();
 
+  // test params debug=true arc mappings  / useDb=true no cache
 
   isisURL = 'http://isis.mtvnservices.com/Isis.html#module=content&site=' + arcSpace + '&id=';
 
   mainPath = '/main/' + apiVersion + '/';
   params = '?brand=' + brand + '&platform=' + platform + '&region=' + region;
 
-  if (stage == 'neutron') {
-    apiUrl = neutronRootURL + mainPath + params;
-  } else {
-    apiUrl = neutronRootURL + mainPath + params;
+  if (stage == 'neutron-qa') {
+    apiUrl = neutronQARootURL + mainPath + params;
+  } else if (stage == 'neutron-s') {
+        apiUrl = neutronSRootURL + mainPath + params;
+  } else { 
+    apiUrl = neutronLiveRootURL + mainPath + params;
   }
   console.log(apiUrl);
 
@@ -167,8 +173,8 @@ function buildPlayPlex() {
     type: 'GET',
     dataType: 'json',
     success: function(playplexMain) {
-      $.each(playplexMain.data.appConfiguration.screens, function(z, screens) {
-        if (screens.screen.name == "adult") {
+      $.each(playplexMain.data.appConfiguration.screens, function(z, screens) { 
+        if (screens.screen.name == "adult" || screens.screen.name == "home") { //REWORK THIS TO USE ENABLED BRANDS
           toLoad = screens.screen.url;
           screenName = screens.screen.name;
           screenID = screens.screen.id;
@@ -273,6 +279,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
     success: function(playplexData) {
       $.each(playplexData.data.items, function(i, cardVal) {
         isImgError = false;
+        imgUrl = "./img/error.jpg";
         isPromoError = false;
         hasEpisodes = false;
         hasVideos = false;

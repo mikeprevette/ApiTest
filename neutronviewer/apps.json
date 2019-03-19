@@ -68,7 +68,7 @@
     "--","mtvplus","betplus","paramount","plus"
   ],
   "stages": [
-    "--","neutron-live","neutron-testing"
+    "--","neutron-live","neutron-qa","neutron-s"
   ],
   "platforms": [
     "--","ios", "android"
