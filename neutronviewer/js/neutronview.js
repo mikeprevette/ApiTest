@@ -2,7 +2,7 @@
 
 /* ####################################----PLAYPLEX----#################################### */
 const imageParams = '&height=640';
-const neutronSRootURL = 'http://neutron-api.viacom.tech-s.mtvi/feeds/networkapp/intl';
+const neutronSRootURL = 'http://neutron-api.viacom.tech-s.mtvi.com/feeds/networkapp/intl';
 const neutronQARootURL = 'http://qa-neutron-api.viacom.tech/feeds/networkapp/intl';
 const neutronLiveRootURL = 'http://neutron-api.viacom.tech/feeds/networkapp/intl';
 //const corsProxy = 'https://cors-anywhere.herokuapp.com/';

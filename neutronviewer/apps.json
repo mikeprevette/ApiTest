@@ -6,7 +6,7 @@
         "brand": "mtvplus",
         "platform": "ios",
         "country": "GB",
-        "stage": "neutron-testing",
+        "stage": "neutron-qa",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
         "appVersion": "25.0.0"
@@ -18,7 +18,7 @@
         "brand": "mtvplus",
         "platform": "ios",
         "country": "GB",
-        "stage": "neutron-testing",
+        "stage": "neutron-qa",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
         "appVersion": "25.0.0"
@@ -30,7 +30,7 @@
         "brand": "paramountplus",
         "platform": "ios",
         "country": "BR",
-        "stage": "neutron-testing",
+        "stage": "neutron-qa",
         "arcSpace": "arc-ent-paramount-network-site",
         "apiVersion": "1.9",
         "appVersion": "25.0.0"
@@ -42,7 +42,7 @@
         "brand": "betplus",
         "platform": "ios",
         "country": "US",
-        "stage": "neutron-testing",
+        "stage": "neutron-qa",
         "arcSpace": "bet",
         "apiVersion": "1.9",
         "appVersion": "25.0.0"
@@ -54,7 +54,7 @@
         "brand": "plus",
         "platform": "ios",
         "country": "GB",
-        "stage": "neutron-testing",
+        "stage": "neutron-qa",
         "arcSpace": "arc-ent-paramount-network-site",
         "apiVersion": "1.9",
         "appVersion": "25.0.0"
