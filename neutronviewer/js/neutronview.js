@@ -7,7 +7,8 @@ const neutronLiveRootURL = 'http://neutron-api.viacom.tech/feeds/networkapp/intl
 //const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 const corsProxy = 'http://viamprevette.herokuapp.com/';
 const mtvGbDeeplinkRoot = 'mtvplayuk://';
-
+const betUSDeeplinkRoot = 'betplus://';
+const paramountBRDeeplinkRoot = 'paramountplus://';
 
 var isPromoError = false;
 var isImgError = false;
@@ -169,8 +170,8 @@ function buildPlayPlex() {
     type: 'GET',
     dataType: 'json',
     success: function(playplexMain) {
-      $.each(playplexMain.data.appConfiguration.screens, function(z, screens) {
-        if (screens.screen.name == "adult") {
+      $.each(playplexMain.data.appConfiguration.screens, function(z, screens) { 
+        if (screens.screen.name == "adult" || screens.screen.name == "home") { //REWORK THIS TO USE ENABLED BRANDS
           toLoad = screens.screen.url;
           screenName = screens.screen.name;
           screenID = screens.screen.id;

@@ -9,7 +9,7 @@
         "stage": "neutron-testing",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
-        "appVersion": "24.0.0"
+        "appVersion": "25.0.0"
       }
     },
     {
@@ -21,7 +21,31 @@
         "stage": "neutron-testing",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
-        "appVersion": "24.0.0"
+        "appVersion": "25.0.0"
+      }
+    },    
+    {
+      "app": {
+        "name": "Paramount PLUS BR",
+        "brand": "paramountplus",
+        "platform": "ios",
+        "country": "BR",
+        "stage": "neutron-testing",
+        "arcSpace": "arc-ent-paramount-network-site",
+        "apiVersion": "1.9",
+        "appVersion": "25.0.0"
+      }
+    },
+    {
+      "app": {
+        "name": "BET PLUS US",
+        "brand": "betplus",
+        "platform": "ios",
+        "country": "US",
+        "stage": "neutron-testing",
+        "arcSpace": "bet",
+        "apiVersion": "1.9",
+        "appVersion": "25.0.0"
       }
     },
      {
@@ -33,15 +57,15 @@
         "stage": "neutron-testing",
         "arcSpace": "arc-ent-paramount-network-site",
         "apiVersion": "1.9",
-        "appVersion": "24.0.0"
+        "appVersion": "25.0.0"
       }
     }
   ],
   "countries": [
-    "--","GB","BR"
+    "--","GB","BR","US"
   ],
   "brands": [
-    "--","mtvplus","plus"
+    "--","mtvplus","betplus","paramount","plus"
   ],
   "stages": [
     "--","neutron-live","neutron-testing"
@@ -50,10 +74,10 @@
     "--","ios", "android"
   ],
     "arcSpaces": [
-    "--","mtv-plus-intl-uk-authoring","arc-ent-paramount-network-site"
+    "--","mtv-plus-intl-uk-authoring","arc-ent-paramount-network-site","bet"
   ],
     "appVersions": [
-    "--","24.0.0"
+    "--","25.0.0"
   ],
     "apiVersions": [
     "--","1.9"
