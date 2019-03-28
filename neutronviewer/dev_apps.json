@@ -31,7 +31,7 @@
         "platform": "ios",
         "country": "BR",
         "stage": "neutron-qa",
-        "arcSpace": "arc-ent-paramount-network-site",
+        "arcSpace": "plus-shared-site",
         "apiVersion": "1.9",
         "appVersion": "25.0.0"
       }
@@ -55,7 +55,7 @@
         "platform": "ios",
         "country": "GB",
         "stage": "neutron-qa",
-        "arcSpace": "arc-ent-paramount-network-site",
+        "arcSpace": "plus-shared-site",
         "apiVersion": "1.9",
         "appVersion": "25.0.0"
       }
@@ -65,7 +65,7 @@
     "--","GB","BR","US"
   ],
   "brands": [
-    "--","mtvplus","betplus","paramount","plus"
+    "--","mtvplus","betplus","paramountplus","plus"
   ],
   "stages": [
     "--","neutron-live","neutron-qa","neutron-s"
