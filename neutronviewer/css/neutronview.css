@@ -68,6 +68,8 @@ p {
 	overflow-x: scroll;
 	height: 100%;
 	white-space: nowrap;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 .containerHeader {
@@ -174,7 +176,7 @@ p {
 	overflow: visible;
 	width: 100%;
 	white-space: normal;
-	font-size: 2em;
+	font-size: 1.5em;
 	color: red;
 	background-color: rgba(0,0,0,0.5);
 }
@@ -188,13 +190,13 @@ p {
 .contentError {
 	position: absolute;
 	left: 0px;
-	top: 4em;
+	bottom: 0em;
 	text-align: center;
 	overflow: visible;
 	width: 100%;
 	white-space: normal;
 	font-size: 2em;
-	color: red;
+	color: white;
 	background-color: rgba(0,0,0,0.5);
 }
 
@@ -244,7 +246,7 @@ p {
 	max-width: 600px;
 }
 
-.contentCardTitle {
+.contentCarditle {
 	color: white;
 	font-size: 1em;
 	position: relative;
@@ -285,7 +287,7 @@ p {
 	width: 460px;
 	height: 613px;
 	margin-right: 2em;
-	margin-bottom: 3em;
+/* 	margin-bottom: 3em; */
 /*	background-color: red;*/
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -300,7 +302,7 @@ p {
 	width: 200px;
 	height: 300px;
 	margin-right: 2em;
-	margin-bottom: 3em;
+/* 	margin-bottom: 3em; */
 /*	background-color: red;*/
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
@@ -314,7 +316,7 @@ p {
 	width: 360px;
 	height: 202px;
 	margin-right: 2em;
-	margin-bottom: 3em;
+/* 	margin-bottom: 3em; */
 /*	background-color: red;*/
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
