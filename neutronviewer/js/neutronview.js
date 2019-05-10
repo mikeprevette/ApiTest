@@ -248,7 +248,7 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
         $('<span />', {
           'id': 'containerHeaderText_' + containerId,
           'class': 'containerHeaderText',
-          'text': 'Screen: ' + screenName + ' | Promo: ' + modules.module.title
+          'text': 'Screen: ' + screenName + ' | Module: ' + modules.module.title
         }).appendTo('#moduleHeader_' + containerId);
 
         //add a Link to the container Header
@@ -346,7 +346,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
           $('<p />', {
             'id': 'imgError' + containerId,
             'class': 'error',
-            'text': "Broken IMAGE ERROR - Check for expected " + aspectRatio + " aspectRatio, image publishing, or image DP"
+            'text': "IMAGE ERROR - Check for expected " + aspectRatio + " aspectRatio, image publishing, or image DP"
           }).appendTo('#errorbox' + '_' + propertyCardID);
         }
         //build the meta
@@ -665,13 +665,13 @@ function fillContentModule19(contentLink) {
       if (aspectError === "true") {
         $('<p />', {
           'class': 'error',
-          'text': "IMG Error - No 16:9 aspectRatio match, using fallback"
+          'text': "IMAGE ERROR - No " + aspectRatio + " image, using fallback"
         }).appendTo('#contentErrorbox' + '_' + link);
       }
       if (imgError === "true") {
         $('<p />', {
           'class': 'error',
-          'text': "IMG Error -Empty or missing images"
+          'text': "IMAGE ERROR - Missing images"
         }).appendTo('#contentErrorbox' + '_' + link);
       }
 
@@ -687,13 +687,19 @@ function fillContentModule19(contentLink) {
       $('<p />', {
         'id': 'CardSubHeader_' + link,
         'class': 'CardSubHeader',
-        'text': contentCardVal.subTitle
+        'text': 'SubTitle: ' + contentCardVal.subTitle
       }).appendTo('#CardMeta_' + link);
 
       $('<p />', {
         'id': 'CardHeader_' + link,
-        'class': 'CardHeader',
-        'text': contentCardVal.title
+        'class': 'contentCardTitle',
+        'text': 'Title: ' + contentCardVal.title
+      }).appendTo('#CardMeta_' + link);
+      
+      $('<p />', {
+        'id': 'CardDescription_' + link,
+        'class': 'CardDescription',
+        'text': 'Description: ' + contentCardVal.description
       }).appendTo('#CardMeta_' + link);
 
       $('<div />', {
