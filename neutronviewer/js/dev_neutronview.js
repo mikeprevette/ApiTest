@@ -691,7 +691,7 @@ function fillContentModule19(contentLink) {
       }).appendTo('#CardMeta_' + link);
 
       $('<p />', {
-        'id': 'CardHeader_' + link,
+        'id': 'contentCardTitle_' + link,
         'class': 'contentCardTitle',
         'text': 'Title: ' + contentCardVal.title
       }).appendTo('#CardMeta_' + link);
