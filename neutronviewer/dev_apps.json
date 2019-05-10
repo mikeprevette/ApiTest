@@ -47,25 +47,13 @@
         "apiVersion": "1.9",
         "appVersion": "25.0.0"
       }
-    },
-     {
-      "app": {
-        "name": "Paramount PLUS Testing - Enabled",
-        "brand": "plus",
-        "platform": "ios",
-        "country": "GB",
-        "stage": "neutron-qa",
-        "arcSpace": "plus-shared-site",
-        "apiVersion": "1.9",
-        "appVersion": "25.0.0"
-      }
     }
   ],
   "countries": [
     "--","GB","BR","US"
   ],
   "brands": [
-    "--","mtvplus","betplus","paramountplus","plus"
+    "--","mtvplus","betplus","paramountplus"
   ],
   "stages": [
     "--","neutron-live","neutron-qa","neutron-s"
