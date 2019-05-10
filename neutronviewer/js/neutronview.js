@@ -292,12 +292,12 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
         card[cardVal.mgid] = cardVal;
         propertyMgid = cardVal.mgid;
         propertyID = cardVal.id;
-        propertyType = cardVal.entityType;
+        entityType = cardVal.entityType;
         seriesTitle = cardVal.title.replace(/ /g, "_");
         propertyCardID = screenUUID + '_' + propertyID + '_' + z + i;
 
         //Check to see if the promo is valid
-        if (propertyType === "empty" || propertyType === "noUrl" || propertyType === "promo") {
+        if (entityType === "empty" || entityType === "noUrl" || entityType === "promo") {
           imgUrl = "./img/error.jpg";
           isPromoError = true;
           console.log("its an promo error" + propertyID);
@@ -378,7 +378,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
         }).appendTo('#showCardMeta_' + propertyCardID);
 
         //build the Buttons
-if (propertyType === "episode" || propertyType === "video") {
+if (entityType === "episode" || entityType === "video") {
   hasEpisodes = false;
   hasVideos = false;
   linksError = false;
@@ -387,7 +387,7 @@ if (propertyType === "episode" || propertyType === "video") {
     'class': 'contentError',
     'text': "Episode or Video"
   }).appendTo('#' + propertyCardID);
-} else if ((propertyType === "series" || propertyType === "event") && cardVal.hasOwnProperty("links")) {
+} else if ((entityType === "series" || entityType === "event" || entityType === "movie") && cardVal.hasOwnProperty("links")) {
            console.log("I'm checking links");
           if (cardVal.links.hasOwnProperty("episode")) {
             //console.log(cardVal.links.episode);
