@@ -202,6 +202,9 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
     dataType: 'json',
     success: function(playplexHome) {
       $.each(playplexHome.data.screen.modules, function(z, modules) {
+        if (modules.module.templateType == 'pp_continueWatchingCarousel'){
+          return;
+        }
         target = modules.module.dataSource;
         if (modules.module.hasOwnProperty('parameters')) {
           if (modules.module.parameters.hasOwnProperty('cellSize')) {
@@ -343,7 +346,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
           $('<p />', {
             'id': 'imgError' + containerId,
             'class': 'error',
-            'text': "Broken IMAGE ERROR - Likely no aspectRatio or incorrect aspect Ratio, images not published, or bad image DP"
+            'text': "Broken IMAGE ERROR - Check for expected " + aspectRatio + " aspectRatio, image publishing, or image DP"
           }).appendTo('#errorbox' + '_' + propertyCardID);
         }
         //build the meta
