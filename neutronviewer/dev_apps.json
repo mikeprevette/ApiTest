@@ -31,7 +31,7 @@
         "platform": "ios",
         "country": "BR",
         "stage": "neutron-qa",
-        "arcSpace": "plus-shared-site",
+        "arcSpace": "paramountplus-brazil",
         "apiVersion": "1.9",
         "appVersion": "25.0.0"
       }
@@ -74,7 +74,7 @@
     "--","ios", "android"
   ],
     "arcSpaces": [
-    "--","mtv-plus-intl-uk-authoring","arc-ent-paramount-network-site","bet"
+    "--","mtv-plus-intl-uk-authoring","arc-ent-paramount-network-site","bet","paramountplus-brazil"
   ],
     "appVersions": [
     "--","25.0.0"
