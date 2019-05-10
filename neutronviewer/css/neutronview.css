@@ -55,6 +55,10 @@ p {
   overflow: hidden;
 }
 
+.advancedOptions {
+  display: none;
+}
+
 #containers {
 /* 	margin-top: 60pt; */
   width: 10000px;

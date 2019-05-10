@@ -173,6 +173,11 @@ function buildPlayPlex() {
     type: 'GET',
     dataType: 'json',
     success: function(playplexMain) {
+      // get enabled brands
+      // display brands in list
+      // make links to screens with brand type
+      // load home
+      // on brand : clear screen
       $.each(playplexMain.data.appConfiguration.screens, function(z, screens) { 
         if (screens.screen.name == "adult" || screens.screen.name == "home") { //REWORK THIS TO USE ENABLED BRANDS
           toLoad = screens.screen.url;
