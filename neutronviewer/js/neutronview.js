@@ -311,6 +311,8 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
                 imgUrl = cardVal.images[c].url + imageParams;
                 isImgError = false;
                 break;
+              } else {
+                isImgError = true;
               }
             }
           } else {
