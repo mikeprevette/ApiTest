@@ -395,7 +395,7 @@ if (entityType === "episode" || entityType === "video") {
   promoError = false;
   $('<p />', {
     'class': 'contentError',
-    'text': "Episode or Video"
+    'text': "Playable Item"
   }).appendTo('#' + propertyCardID);
 } else if ((entityType === "series" || entityType === "event" || entityType === "movie") && cardVal.hasOwnProperty("links")) {
            console.log("I'm checking links");
@@ -688,18 +688,20 @@ function fillContentModule19(contentLink) {
 
       //build the meta objects
 
-
-      $('<p />', {
-        'id': 'CardSubHeader_' + link,
-        'class': 'CardSubHeader',
-        'text': 'SubTitle: ' + contentCardVal.subTitle
-      }).appendTo('#CardMeta_' + link);
-
       $('<p />', {
         'id': 'contentCardTitle_' + link,
         'class': 'contentCardTitle',
         'text': 'Title: ' + contentCardVal.title
       }).appendTo('#CardMeta_' + link);
+      
+      if (contentCardVal.seasonNumber == 1){
+      $('<p />', {
+        'id': 'CardSubHeader_' + link,
+        'class': 'CardSubHeader',
+        'text': 'SeasonNumber: ' + contentCardVal.seasonNumber + ', EpAiringOrder: ' + contentCardVal.episodeAiringOrder
+      }).appendTo('#CardMeta_' + link);
+    }
+
       
       $('<p />', {
         'id': 'CardDescription_' + link,

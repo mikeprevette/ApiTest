@@ -173,6 +173,11 @@ function buildPlayPlex() {
     type: 'GET',
     dataType: 'json',
     success: function(playplexMain) {
+      // get enabled brands
+      // display brands in list
+      // make links to screens with brand type
+      // load home
+      // on brand : clear screen
       $.each(playplexMain.data.appConfiguration.screens, function(z, screens) { 
         if (screens.screen.name == "adult" || screens.screen.name == "home") { //REWORK THIS TO USE ENABLED BRANDS
           toLoad = screens.screen.url;
@@ -390,7 +395,7 @@ if (entityType === "episode" || entityType === "video") {
   promoError = false;
   $('<p />', {
     'class': 'contentError',
-    'text': "Episode or Video"
+    'text': "Playable Item"
   }).appendTo('#' + propertyCardID);
 } else if ((entityType === "series" || entityType === "event" || entityType === "movie") && cardVal.hasOwnProperty("links")) {
            console.log("I'm checking links");
@@ -683,18 +688,20 @@ function fillContentModule19(contentLink) {
 
       //build the meta objects
 
-
-      $('<p />', {
-        'id': 'CardSubHeader_' + link,
-        'class': 'CardSubHeader',
-        'text': 'SubTitle: ' + contentCardVal.subTitle
-      }).appendTo('#CardMeta_' + link);
-
       $('<p />', {
         'id': 'contentCardTitle_' + link,
         'class': 'contentCardTitle',
         'text': 'Title: ' + contentCardVal.title
       }).appendTo('#CardMeta_' + link);
+      
+      if (contentCardVal.seasonNumber == 1){
+      $('<p />', {
+        'id': 'CardSubHeader_' + link,
+        'class': 'CardSubHeader',
+        'text': 'SeasonNumber: ' + contentCardVal.seasonNumber + ', EpAiringOrder: ' + contentCardVal.episodeAiringOrder
+      }).appendTo('#CardMeta_' + link);
+    }
+
       
       $('<p />', {
         'id': 'CardDescription_' + link,
