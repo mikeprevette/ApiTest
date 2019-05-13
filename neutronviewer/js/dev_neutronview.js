@@ -694,7 +694,7 @@ function fillContentModule19(contentLink) {
         'text': 'Title: ' + contentCardVal.title
       }).appendTo('#CardMeta_' + link);
       
-      if (contentCardVal.seasonNumber == 1){
+      if (contentCardVal.hasOwnProperty("seasonNumber")){
       $('<p />', {
         'id': 'CardSubHeader_' + link,
         'class': 'CardSubHeader',
