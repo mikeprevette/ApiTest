@@ -445,6 +445,14 @@ if (entityType === "episode" || entityType === "video") {
           linksError = true;
           console.log("its an Links error " + propertyID);
     }
+        
+        if (cardVal.hasOwnProperty("brandImageUrl")) {
+          $('<div />', {
+            'id': 'showCardBrandLogo_' + propertyCardID,
+            'class': 'brandLogo',
+            'style': 'background-image: url(' + cardVal.brandImageUrl + ')'
+          }).appendTo('#' + propertyCardID);
+        }
 
 
         if (hasEpisodes === true || hasVideos === true || hasPlaylists === true || hasMovie === true || hasShortform === true || hasLongform === true) {

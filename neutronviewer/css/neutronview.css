@@ -317,6 +317,18 @@ p {
 /*	border: solid;*/
 }
 
+.brandLogo {
+  display:block;
+	background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+	position: absolute;
+	bottom: 2.5em;
+  right: 0.25em;
+  width: 15%;
+  height: 15%;
+}
+
 .showCard_S {
 	display: inline-block;
 	position: relative;
