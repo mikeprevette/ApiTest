@@ -922,6 +922,8 @@ function makeDeeplink(propertyMgid) {
 //   var propertyID = uuidMaker(propertyMgid);
   if (brand == "mtvplus") {
     deeplink = mtvGbDeeplinkRoot + path + propertyMgid;
+  } else if (brand == "paramountplus"){
+    deeplink = paramountBRDeeplinkRoot + path + propertyMgid;
   } else {
     deeplink = "NULL";
   }
