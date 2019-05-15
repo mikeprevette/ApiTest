@@ -33,7 +33,7 @@
 <div id="loadingOverlay"><div class="loader"></div></div>
 <div id="overlay"><div id="closeButton" onclick="$(overlay).toggle();">X</div><span id ="cardJson"></span></div>
 <div id="top">
-		<form id="form">- QuickLinks : 
+		<form id="form" class="formClass">- QuickLinks : 
 			<select id="quickSelector" onChange="stringToParams(this.value);"></select>
 				| <span class="advancedOptions"> Brands: <select id="brands" ></select>
 				Countries: <select id="countries"></select>
@@ -43,6 +43,9 @@
       API Version: <select id="apiVersions"></select>
 				<div id="execute" class="button" onclick="customTarget();">GO</div></span>
 		</form>
+    <form id="brandScreensForm" class="formClass">Multibrand Selector:  
+      <select id="brandScreenSelector" onChange="brandScreenSelectorFunction(this.value);"></select>
+    </form>
 	<div id="mainApiButton" class="button" onclick="openMainApi();">Main Api</div>
 	</div>
 <!-- <div class="overlay"><h1>LOADING</h1></div> -->

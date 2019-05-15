@@ -10,7 +10,7 @@ body {
 	font-size: 75%;
 	color: white;
 	font-family: 'Roboto', helvetica, sans-serif;
-	margin: 20px;
+	margin: 0px 0px 0px 0px;
 	}
 
 .noscroll { 
@@ -22,9 +22,13 @@ body {
 	margin-left: 1em;
 }
 
-#form {
-	float:left;
-	margin:1em;
+.formClass {
+	float: left;
+	margin: 1em;
+}
+
+#brandScreensForm {
+/*   display: none; */
 }
 
 #top {
@@ -32,12 +36,23 @@ body {
 	left: 0px;
 	top: 0px;
 	text-align: center;
-  
-/* 	position: fixed; */
 	display: block;
+  box-sizing: border-box;
 	width: 100%;
+  height: 4em;
   min-width: 600px;
   z-index: 998;
+}
+
+.headerBrandLogo {
+  vertical-align: middle;
+  display: inline-block;
+	background-size: 95% auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 1.5em;
+  height: 2em;
+  margin-right: 1em;
 }
 
 #mainApiButton {

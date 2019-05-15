@@ -18,7 +18,7 @@ var activeSeries, brand, platform, region, stage, isisURL, params, appVersion, a
 var page = 0;
 var cardLinks = [];
 var card = Object.create(null);
-
+var playPlexMainConfig = Object.create(null);
 
 //####################################----on load parse the apps.json file and prefil the form----####################################
 
@@ -94,7 +94,7 @@ function makeTheScreen(mode) {
   //awefull logic to check to see if a querry param is already added, if there is a ? then it assumas all are there. BAD
   if (urlString.indexOf('?') !== -1) {
     stringToParams(getParameterByName("brand") + "," + getParameterByName("platform") + "," + getParameterByName("region") + "," + getParameterByName("stage") + "," + getParameterByName("arcSpace") + "," + getParameterByName("apiVersion") + "," + getParameterByName("appVersion"));
-    //buildPlayPlex();
+    //getPlayPlexConfig();
   } else {
     $('#loadingOverlay').hide();
     //stringToParams("cc,ios,gb,live,comedy-intl-uk-authoring,1.7,4.2");
@@ -131,7 +131,7 @@ function stringToParams(buildString) {
   console.log(appVersion);
 
   putCustomValues();
-  buildPlayPlex();
+  getPlayPlexConfig();
 }
 
 //####################################----Header Utility----####################################
@@ -140,20 +140,14 @@ function setHeader(xhr) {
   xhr.setRequestHeader('x-requested-with', 'mpTestApp');
 }
 
-//####################################----Build The Screens----####################################
+//####################################----Get the Main Config----####################################
 
-function buildPlayPlex() {
-  console.log("buildPlayPlex");
+function getPlayPlexConfig() {
+  console.log("getPlayPlexConfig");
   $('#loadingOverlay').show();
   firstRun = false;
-  nuclear();
-
   getCustomParamValues();
-
-  // test params debug=true arc mappings  / useDb=true no cache
-
   isisURL = 'http://isis.mtvnservices.com/Isis.html#module=content&site=' + arcSpace + '&id=';
-
   mainPath = '/main/' + apiVersion + '/';
   params = '?brand=' + brand + '&platform=' + platform + '&region=' + region;
 
@@ -174,19 +168,8 @@ function buildPlayPlex() {
     dataType: 'json',
     success: function(playplexMain) {
       // get enabled brands
-      // display brands in list
-      // make links to screens with brand type
-      // load home
-      // on brand : clear screen
-      $.each(playplexMain.data.appConfiguration.screens, function(z, screens) { 
-        if (screens.screen.name == "adult" || screens.screen.name == "home") { //REWORK THIS TO USE ENABLED BRANDS
-          toLoad = screens.screen.url;
-          screenName = screens.screen.name;
-          screenID = screens.screen.id;
-          getScreen(toLoad, screenName, screenID, z);
-          console.log(screens.screen.name + ' ' + toLoad);
-        }
-      });
+      playPlexMainConfig = playplexMain;
+      loadPlayPlexConfig();
     },
     error: function() {
       console.log("something went wrong with the http request");
@@ -196,11 +179,61 @@ function buildPlayPlex() {
   putCustomValues();
 }
 
+
+//####################################----Load the config----####################################
+
+
+function loadPlayPlexConfig(){
+      $('#brandScreenSelector').empty();
+  // if enabled brands is longer than 1
+      if (playPlexMainConfig.data.appConfiguration.enabledBrands.length >= 1) {
+          $('#brandScreenSelector').show();
+        } else {
+          $('#brandScreenSelector').hide();
+      }
+      $.each(playPlexMainConfig.data.appConfiguration.enabledBrands, function(z, enabledBrand) { 
+        console.log('found a brand named - ' + enabledBrand.brandName + ' whose type is ' + enabledBrand.brandType);
+        $('#brandScreenSelector')
+          .append($("<option></option>")
+            .attr("value", enabledBrand.brandType + "," + enabledBrand.brandName)
+            .text(enabledBrand.brandName));
+        });
+        $.each(playPlexMainConfig.data.appConfiguration.screens, function(z, screens) { 
+         if (screens.screen.name == "adult" || screens.screen.name == "home") { //REWORK THIS TO USE ENABLED BRANDS
+            toLoad = screens.screen.url;
+            screenName = screens.screen.name;
+            screenID = screens.screen.id;
+            getScreen(toLoad, screenName, screenID, z);
+            console.log(screens.screen.name + ' ' + toLoad);
+          }
+        })
+}
+
+//####################################----Take action on the brandScreemSelector----####################################
+
+function brandScreenSelectorFunction(brandScreenValue) {
+  console.log("brandScreenSelector: " + brandScreenValue);
+  splitValue = brandScreenValue.split(',');
+  brandScreenType = splitValue[0];
+  brandScreenName = splitValue[1];
+  $.each(playPlexMainConfig.data.appConfiguration.screens, function(z, screens) {
+    if (screens.screen.type == brandScreenType) {
+        toLoad = screens.screen.url + "&selectedBrand=" + brandScreenName;
+        screenName = screens.screen.name;
+        screenID = screens.screen.id;
+        getScreen(toLoad, screenName, screenID, z);
+        }
+  });
+}
+
+
+
 //####################################----Build The Screens & Modules----####################################
 
 function getScreen(screenURL, screenName, screenID, screenIndex) {
   console.log("getScreen");
-
+  console.log(screenURL);
+  nuclear();
   $.ajax({
     url: corsProxy + screenURL,
     type: 'GET',
@@ -827,7 +860,7 @@ function customTarget() {
   apiVersion = $('#apiVersions').val();
   addURLParam("apiVersion", apiVersion);
   $('#quickSelector').val('---');
-  buildPlayPlex();
+  getPlayPlexConfig();
 }
 
 //####################################----put custom selectors / params ----####################################
