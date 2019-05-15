@@ -318,6 +318,12 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
     type: 'GET',
     dataType: 'json',
     success: function(playplexData) {
+      if (playplexData.data.items.length == 0){
+           $('<div />', {
+          'class': 'moduleError',
+          'text': 'Empty Zone'
+        }).appendTo('#module_' + containerId); 
+      } else {
       $.each(playplexData.data.items, function(i, cardVal) {
         isImgError = false;
         imgUrl = "./img/error.jpg";
@@ -554,6 +560,7 @@ if (entityType === "episode" || entityType === "video") {
         moduleURL = playplexData.metadata.pagination.next;
         getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize); //run it all over again
       }
+     }
     },
     error: function() {
       console.log("something went wrong with the http request");
@@ -906,7 +913,7 @@ function adjustContainers() {
 function makeDeeplink(propertyMgid) {
   //console.log("makeDeeplink");
   var path
-
+// breaking these out incase we need to handle special cases in the future.
   if (propertyMgid.indexOf("episode") !== -1) {
     path = 'content/';
   } else if (propertyMgid.indexOf("series") !== -1) {
