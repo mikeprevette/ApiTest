@@ -917,6 +917,8 @@ function makeDeeplink(propertyMgid) {
     path = 'content/';
   } else if (propertyMgid.indexOf("video") !== -1) {
     path = 'content/';
+  } else if (propertyMgid.indexOf("movie") !== -1) {
+    path = 'content/';
   }
 
 //   var propertyID = uuidMaker(propertyMgid);
@@ -924,6 +926,8 @@ function makeDeeplink(propertyMgid) {
     deeplink = mtvGbDeeplinkRoot + path + propertyMgid;
   } else if (brand == "paramountplus"){
     deeplink = paramountBRDeeplinkRoot + path + propertyMgid;
+  } else if (brand == "betplus") {
+    deeplink = betUSDeeplinkRoot + path + propertyMgid;       
   } else {
     deeplink = "NULL";
   }
