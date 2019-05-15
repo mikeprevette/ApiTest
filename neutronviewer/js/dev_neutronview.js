@@ -919,6 +919,10 @@ function makeDeeplink(propertyMgid) {
     path = 'content/';
   } else if (propertyMgid.indexOf("movie") !== -1) {
     path = 'content/';
+  } else if (propertyMgid.indexOf("live") !== -1) {
+    path = 'content/';
+  } else if (propertyMgid.indexOf("editorial") !== -1) {
+    path = 'content/';
   }
 
 //   var propertyID = uuidMaker(propertyMgid);
