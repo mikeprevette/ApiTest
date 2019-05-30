@@ -186,10 +186,10 @@ function getPlayPlexConfig() {
 function loadPlayPlexConfig(){
       $('#brandScreenSelector').empty();
   // if enabled brands is longer than 1
-      if (playPlexMainConfig.data.appConfiguration.enabledBrands.length >= 1) {
-          $('#brandScreenSelector').show();
+      if (playPlexMainConfig.data.appConfiguration.enabledBrands.length > 1) {
+          $('#multiBrandSelector').show();
         } else {
-          $('#brandScreenSelector').hide();
+          $('#multiBrandSelector').hide();
       }
       $.each(playPlexMainConfig.data.appConfiguration.enabledBrands, function(z, enabledBrand) { 
         console.log('found a brand named - ' + enabledBrand.brandName + ' whose type is ' + enabledBrand.brandType);
@@ -489,7 +489,7 @@ if (entityType === "episode" || entityType === "video") {
           $('<div />', {
             'id': 'showCardBrandLogo_' + propertyCardID,
             'class': 'brandLogo',
-            'style': 'background-image: url(' + cardVal.brandImageUrl + ')'
+            'style': 'background-image: url(' + cardVal.selectedImageUrl + ')'
           }).appendTo('#' + propertyCardID);
         }
 
