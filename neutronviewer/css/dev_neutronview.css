@@ -383,9 +383,6 @@ p {
 .showCardMeta  .button {
 	margin-left: 2px;
 	float: right;
-	margin-top: 5px;
-	margin-bottom 5px;
-
 }
 
 .showCardButtons {
@@ -411,12 +408,13 @@ p {
 
 .showCardButton p {
 	margin-top: 1em;
+  border-right: 2px solid black;
 }
 
 .showCardButton:hover {
 	cursor: pointer;
   color: #ffffff;
-	background-color: rgba(255,255,255,0.125);
+	background-color: rgba(255,255,255,0.25);
 }
 
 
@@ -453,26 +451,19 @@ p {
 
 .button {
 	display: inline-block;
+  float: right;
 	margin-right: 5px;
-	padding: 5px;
-	border-radius: 5px;
 	color: #84ccff;
-	float: right;
-	font-weight: 400;
-	background-color: #7f7f7f;
-	transition: .2s;
-	text-transform: uppercase;
-	text-decoration: none;
-	box-shadow: 1px 1px rgba(255,255,255,0.40);
+  text-transform: uppercase;
 }
 
 
 .button:hover {
 	color: #ffffff;
-	cursor: pointer;
+/* 	cursor: pointer;
 	-webkit-animation: bounceup .3s alternate ease infinite;
 	animation: bounceup .3s alternate ease infinite;
-	box-shadow: 1px 1px #84ccff;
+	box-shadow: 1px 1px #84ccff; */
 }
 
 @keyframes bounceright {

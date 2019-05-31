@@ -399,7 +399,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
           'class': 'showCardMeta'
         }).appendTo('#' + propertyCardID);
         //build the meta objects
-        $('<p />', {
+        $('<span />', {
           'id': 'showCardHeader_' + propertyCardID,
           'class': 'showCardHeader',
           'text': cardVal.title
