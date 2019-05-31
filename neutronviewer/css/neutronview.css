@@ -350,10 +350,10 @@ p {
   background-repeat: no-repeat;
   background-position: center center;
 	position: absolute;
-	bottom: 2.5em;
-  right: 0.25em;
-  width: 15%;
-  height: 15%;
+	bottom: 1em;
+  right: 0.5em;
+  width: 10%;
+  height: 10%;
 }
 
 .showCard_S {
