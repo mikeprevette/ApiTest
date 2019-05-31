@@ -286,7 +286,7 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
         $('<span />', {
           'id': 'containerHeaderText_' + containerId,
           'class': 'containerHeaderText',
-          'text': 'Screen: ' + screenName + ' | Module: ' + modules.module.title
+          'text': 'Screen: ' + screenName + ' | ' + modules.module.title
         }).appendTo('#moduleHeader_' + containerId);
 
         //add a Link to the container Header
