@@ -489,7 +489,7 @@ if (entityType === "episode" || entityType === "video") {
           $('<div />', {
             'id': 'showCardBrandLogo_' + propertyCardID,
             'class': 'brandLogo',
-            'style': 'background-image: url(' + cardVal.selectedImageUrl + ')'
+            'style': 'background-image: url(' + cardVal.brandImageUrl + ')'
           }).appendTo('#' + propertyCardID);
         }
 
