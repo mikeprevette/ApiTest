@@ -460,8 +460,8 @@ p {
 
 .button:hover {
 	color: #ffffff;
-/* 	cursor: pointer;
-	-webkit-animation: bounceup .3s alternate ease infinite;
+  cursor: pointer;
+	/*-webkit-animation: bounceup .3s alternate ease infinite;
 	animation: bounceup .3s alternate ease infinite;
 	box-shadow: 1px 1px #84ccff; */
 }

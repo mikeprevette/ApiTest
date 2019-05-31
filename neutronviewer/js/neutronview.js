@@ -408,7 +408,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
         $('<p />', {
           'id': 'showCardJsonButton_' + propertyCardID,
           'class': 'button',
-          'text': 'API OUTPUT',
+          'text': 'API',
           'onclick': 'showOverlayJson("' + propertyMgid + '");'
         }).appendTo('#showCardMeta_' + propertyCardID);
 
