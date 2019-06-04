@@ -6,7 +6,7 @@ const neutronSRootURL = 'http://neutron-api.viacom.tech-s.mtvi.com/feeds/network
 const neutronQARootURL = 'http://qa-neutron-api.viacom.tech/feeds/networkapp/intl';
 const neutronLiveRootURL = 'http://neutron-api.viacom.tech/feeds/networkapp/intl';
 //const corsProxy = 'https://cors-anywhere.herokuapp.com/';
-const corsProxy = 'http://viamprevette.herokuapp.com/';
+const corsProxy = 'https://viamprevette.herokuapp.com/';
 const mtvGbDeeplinkRoot = 'mtvplayuk://';
 const betUSDeeplinkRoot = 'betplus://';
 const paramountBRDeeplinkRoot = 'paramountplus://';
@@ -293,7 +293,7 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
         $('<span />', {
           'id': 'containerApiButton_' + containerId,
           'class': 'button',
-          'text': 'PromoList API Output',
+          'text': 'PromoList API',
           'onclick': 'window.open("' + target + '");'
         }).appendTo('#moduleHeader_' + containerId);
         if (apiVersion == "1.9") {
@@ -760,7 +760,7 @@ function fillContentModule19(contentLink) {
       $('<div />', {
         'id': 'showCardJsonButton_' + propertyCardID,
         'class': 'button',
-        'text': 'API OUTPUT',
+        'text': 'API',
         'onclick': 'showOverlayJson("' + contentCardVal.mgid + '");'
       }).appendTo('#' + link);
 
