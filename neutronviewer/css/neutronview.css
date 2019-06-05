@@ -120,6 +120,8 @@ p {
 
 .containerHeader .button {
 	margin-right: 3em;
+  line-height: 2.5em;
+  vertical-align: middle;
 }
 
 
