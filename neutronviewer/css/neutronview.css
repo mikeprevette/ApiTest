@@ -1,12 +1,10 @@
-
-
 html {
     margin: 0;
     overflow-y: scroll; overflow-x:hidden;
 }
 
 body {
-	background-color: #333333;
+	background-color: #c4c4c4;
 	font-size: 75%;
 	color: white;
 	font-family: 'Roboto', helvetica, sans-serif;
@@ -92,6 +90,7 @@ p {
 	height: 100%;
   width: 100%;
 	margin-top: 2.5em;
+  margin-left: 1em;
   overflow: hidden;
 }
 
@@ -107,13 +106,14 @@ p {
 
 .containerHeader {
 	left: 0;
+  color: #4c4c4c;
 	width: 100%;
   min-width: 400px;
 	height: 2em;
 	margin-top:1em;
   margin-bottom:0.5em;
 	padding: 5px;
-	background-color: rgba(0,0,0,0.25);
+  border-top: 1px solid #4c4c4c;
 }
 
 .containerHeader .button {
@@ -122,11 +122,10 @@ p {
 
 
 .containerHeaderText {
-	margin: 1em;
 	vertical-align: middle;
+  line-height: 2em;
+  font-size: 1.5em;
 }
-
-
 
 
 #container_Content {
@@ -321,12 +320,17 @@ p {
 	width: 460px;
 	height: 613px;
 	margin-right: 2em;
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+  overflow: hidden;
 /* 	margin-bottom: 3em; */
 /*	background-color: red;*/
 	background-repeat: no-repeat;
 	background-size: cover;
   background-position: center center;
 	background-color: #b7b7b7;
+  
 /*	border: solid;*/
 }
 
@@ -336,6 +340,10 @@ p {
 	width: 200px;
 	height: 300px;
 	margin-right: 2em;
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+  overflow: hidden;
 /* 	margin-bottom: 3em; */
 /*	background-color: red;*/
 	background-repeat: no-repeat;
@@ -344,24 +352,16 @@ p {
 /*	border: solid;*/
 }
 
-.brandLogo {
-  display:block;
-	background-size: 100% auto;
-  background-repeat: no-repeat;
-  background-position: center center;
-	position: absolute;
-	bottom: 1em;
-  right: 0.5em;
-  width: 10%;
-  height: 10%;
-}
-
 .showCard_S {
 	display: inline-block;
 	position: relative;
 	width: 360px;
 	height: 202px;
 	margin-right: 2em;
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+  overflow: hidden;
 /* 	margin-bottom: 3em; */
 /*	background-color: red;*/
 	background-repeat: no-repeat;
@@ -408,18 +408,12 @@ p {
 	background-color: rgba(0,0,0,0.25)
 }
 
-.showCardButton p {
-	margin-top: 1em;
-  border-right: 2px solid black;
-}
-
 .showCardButton:hover {
 	cursor: pointer;
   color: #ffffff;
   text-decoration: underline;
 	background-color: rgba(255,255,255,0.25);
 }
-
 
 .showCardHeader {
 	margin-left: 10px;
@@ -439,6 +433,18 @@ p {
 	color: #ffffff;
 	cursor: pointer;
   text-decoration: underline;
+}
+
+.brandLogo {
+  display:block;
+	background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+	position: absolute;
+	bottom: 1em;
+  right: 0.5em;
+  width: 10%;
+  height: 10%;
 }
 
 .lock {
