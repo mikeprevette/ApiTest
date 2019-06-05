@@ -140,7 +140,14 @@ p {
     display: none; 
 } */
 
+#contentClose {
+  color: red;
+}
 
+#contentClose:hover {
+  cursor: pointer; /* Add a pointer on hover */
+  text-decoration: underline;
+}
 
 #overlay {
 	  height: 100%; /* Full height (cover the whole page) */
