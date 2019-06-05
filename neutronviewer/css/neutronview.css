@@ -114,6 +114,9 @@ p {
 	padding: 5px;
   border-top: 1px solid #4c4c4c;
 }
+.containerHeader:first-child {
+  border: none;
+}
 
 .containerHeader .button {
 	margin-right: 1em;
@@ -440,7 +443,7 @@ p {
   background-repeat: no-repeat;
   background-position: center center;
 	position: absolute;
-	bottom: 1em;
+	bottom: 2em;
   right: 0.5em;
   width: 10%;
   height: 10%;
@@ -464,7 +467,7 @@ p {
 	margin-right: 5px;
 	color: #84ccff;
   text-transform: uppercase;
-  text-shadow: 1px 1px 3px black;
+  text-shadow: 1px 1px 1px #3f3f3f;
 }
 
 
