@@ -552,7 +552,8 @@ if (entityType === "episode" || entityType === "video") {
           console.log("its an Series error " + propertyID);
           $('<p />', {
             'class': 'contentError',
-            'text': "Broken Series - No Content"
+            'text': "Broken - No Content",
+            'style': "color:red"
           }).appendTo('#' + propertyCardID);
         }
       });
