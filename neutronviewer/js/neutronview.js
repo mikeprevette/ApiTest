@@ -596,11 +596,18 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
     'id': 'contentContainerHeader',
     'class': 'containerHeader'
   }).appendTo('#container_Content');
+  
+    $('<span />', {
+    'id': 'contentClose',
+    'text': 'X',
+    'style': 'color:red;',
+    'onclick': '$("#container_Content").remove();'
+  }).appendTo('#contentContainerHeader');
 
   $('<span />', {
     'id': 'contentContainerHeaderTitle',
     'class':'containerHeaderText',
-    'text': contentType
+    'text': ' | ' + contentType
   }).appendTo('#contentContainerHeader');
   
    $('<span />', {
