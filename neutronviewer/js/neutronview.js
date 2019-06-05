@@ -594,12 +594,18 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 
   $('<div />', {
     'id': 'contentContainerHeader',
-    'class': 'containerHeader',
-    'text': contentType
+    'class': 'containerHeader'
   }).appendTo('#container_Content');
 
   $('<span />', {
-    'id': 'numberOfItems'
+    'id': 'contentContainerHeaderTitle',
+    'class':'containerHeaderText',
+    'text': contentType
+  }).appendTo('#contentContainerHeader');
+  
+   $('<span />', {
+    'id': 'contentContainerHeaderItems',
+    'class':'containerHeaderText',
   }).appendTo('#contentContainerHeader');
 
   $('<div />', {
@@ -613,7 +619,6 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
     'text': 'DOWNLOAD CONTENT CSV',
     'onclick': 'downloadCSV({ filename: "' + seriesTitle + '_data.csv" });'
   }).appendTo('#contentContainerHeader');
-
 
   $('<div />', {
     'id': 'episodeAPI',
@@ -634,7 +639,7 @@ function fillContentModule19(contentLink) {
   console.log("fillContentModule19");
   contentLink =  corsProxy + contentLink;
   $.getJSON(contentLink, function(playplexContent) {
-    $('#numberOfItems').text(" | total items: " + playplexContent.metadata.pagination.totalItems);
+    $('#contentContainerHeaderItems').text(" | total items: " + playplexContent.metadata.pagination.totalItems);
     //console.log("total items: " + playplexContent.metadata.pagination.totalItems);
     $.each(playplexContent.data.items, function(i, contentCardVal) {
       card[contentCardVal.mgid];

@@ -254,13 +254,16 @@ p {
 	position: relative;
 	width: 480px;
 	height: 330px;
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+  overflow: hidden;
 	margin-right: 2em;
   margin-bottom: 0.5em;
-/*	background-color: red;*/
 	background-repeat: no-repeat;
 	background-size: 100%;
 	background-image: url("http://via.placeholder.com/480x270")
-/*	border: solid;*/
+
 }
 
 .CardMeta {
