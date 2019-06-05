@@ -39,7 +39,7 @@ body {
 }
 
 #top {
-	background-color: rgba(0,0,0,0.85);
+	background-color: rgba(0,0,0,0.45);
 	left: 0px;
 	top: 0px;
 	text-align: center;
@@ -89,7 +89,6 @@ p {
   width: 10000px;
 	height: 100%;
   width: 100%;
-	margin-top: 2.5em;
   margin-left: 1em;
   overflow: hidden;
 }
