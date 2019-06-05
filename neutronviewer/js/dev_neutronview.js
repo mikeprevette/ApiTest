@@ -501,7 +501,7 @@ if (entityType === "episode" || entityType === "video") {
           }).appendTo('#' + propertyCardID);
 
           if (hasVideos === true) {
-            $('<p />', {
+            $('<span />', {
               'id': 'showCardButtons_Video' + z + i,
               'class': 'showCardButton',
               'text': 'Extras',
@@ -509,7 +509,7 @@ if (entityType === "episode" || entityType === "video") {
             }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
           }
           if (hasEpisodes === true) {
-            $('<p />', {
+            $('<span />', {
               'id': 'showCardButtons_Episode' + z + i,
               'class': 'showCardButton',
               'text': 'Full Episodes',
@@ -517,7 +517,7 @@ if (entityType === "episode" || entityType === "video") {
             }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
           }
           if (hasPlaylists === true) {
-            $('<p />', {
+            $('<span />', {
               'id': 'showCardButtons_Playlist' + z + i,
               'class': 'showCardButton',
               'text': 'Playlists',
@@ -525,7 +525,7 @@ if (entityType === "episode" || entityType === "video") {
             }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
           }
           if (hasMovie === true) {
-            $('<p />', {
+            $('<span />', {
               'id': 'showCardButtons_Movie' + z + i,
               'class': 'showCardButton',
               'text': 'Movie',
@@ -533,7 +533,7 @@ if (entityType === "episode" || entityType === "video") {
             }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
           }
           if (hasShortform === true) {
-            $('<p />', {
+            $('<span />', {
               'id': 'showCardButtons_ShortForm' + z + i,
               'class': 'showCardButton',
               'text': 'ShortForm',
@@ -541,7 +541,7 @@ if (entityType === "episode" || entityType === "video") {
             }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
           }
           if (hasLongform === true) {
-            $('<p />', {
+            $('<span />', {
               'id': 'showCardButtons_ShortForm' + z + i,
               'class': 'showCardButton',
               'text': 'LongForm',

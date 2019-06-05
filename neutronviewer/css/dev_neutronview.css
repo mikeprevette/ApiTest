@@ -392,6 +392,7 @@ p {
     font-size: 1em;
     left: 0px;
   	height: 2.5em;
+    line-height: 2.5;
     bottom: 0em;
 	  display: block;
     background-color: rgba(0,0,0,0.25);
@@ -415,6 +416,7 @@ p {
 .showCardButton:hover {
 	cursor: pointer;
   color: #ffffff;
+  text-decoration: underline;
 	background-color: rgba(255,255,255,0.25);
 }
 
@@ -436,6 +438,7 @@ p {
 .showCardLink:hover {
 	color: #ffffff;
 	cursor: pointer;
+  text-decoration: underline;
 }
 
 .lock {
@@ -463,6 +466,7 @@ p {
 .button:hover {
 	color: #ffffff;
   cursor: pointer;
+  text-decoration: underline;
 	/*-webkit-animation: bounceup .3s alternate ease infinite;
 	animation: bounceup .3s alternate ease infinite;
 	box-shadow: 1px 1px #84ccff; */
