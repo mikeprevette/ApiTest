@@ -295,7 +295,7 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
           'text': 'PromoList API',
           'onclick': 'window.open("' + target + '");'
         }).appendTo('#moduleHeader_' + containerId);
-        if (apiVersion == "1.9") {
+        if (apiVersion != undefined ) {
           getModule19(target, screenID, containerId, z, aspectRatio, cellSize);
         }
       })

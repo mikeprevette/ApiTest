@@ -14,7 +14,7 @@
     },
     {
       "app": {
-        "name": "MTV PLUS Testing - Enabled",
+        "name": "MTVPlus GB",
         "brand": "mtvplus",
         "platform": "ios",
         "country": "GB",
@@ -26,7 +26,7 @@
     },    
     {
       "app": {
-        "name": "Paramount PLUS BR",
+        "name": "ParamountPlus BR",
         "brand": "paramountplus",
         "platform": "ios",
         "country": "BR",
@@ -38,7 +38,7 @@
     },
     {
       "app": {
-        "name": "BET PLUS US",
+        "name": "BETPlus US",
         "brand": "betplus",
         "platform": "ios",
         "country": "US",
@@ -68,6 +68,6 @@
     "--","25.0.0"
   ],
     "apiVersions": [
-    "--","1.9"
+    "--","1.9","2.0","2.1"
   ]
 }

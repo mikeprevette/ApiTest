@@ -161,6 +161,7 @@ p {
 
 #container_Content {
 /* 	height: 350px; */
+  overflow-x: hidden;
 }
 
 /* .container::-webkit-scrollbar { 
