@@ -376,7 +376,7 @@ p {
 	background-repeat: no-repeat;
   background-position: center center;
 	background-color: #b7b7b7;
-  
+  box-shadow:1px 1px 5px grey;  
 /*	border: solid;*/
 }
 
@@ -395,6 +395,7 @@ p {
 	background-repeat: no-repeat;
 	background-size: 100% 300px;
 	background-color: #b7b7b7;
+  box-shadow:1px 1px 5px grey; 
 /*	border: solid;*/
 }
 
@@ -424,6 +425,7 @@ p {
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	background-color: #b7b7b7;
+  box-shadow:1px 1px 5px grey; 
 /*	border: solid;*/
 }
 

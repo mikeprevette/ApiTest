@@ -251,11 +251,10 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
           }
         }
         if (cellSize == "L") {
-            aspectRatio = "16:9";
-            console.log(cellSize);
-            console.log(aspectRatio);
-        }
-          else if (cellSize == "M") {
+          aspectRatio = "16:9";
+          console.log(cellSize);
+          console.log(aspectRatio);
+        } else if (cellSize == "M") {
           aspectRatio = "2:3";
           console.log(cellSize);
           console.log(aspectRatio);
@@ -467,13 +466,13 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
 
             if (cardVal.hasOwnProperty("episodeAiringOrder")) {
               $('<span />', {
-                'id': 'showCardMetaTitle_' + propertyCardID,
+                'id': 'showCardMetaAiringOrder_' + propertyCardID,
                 'class': 'showCardMetaTitle',
                 'text': ', Ep ' + cardVal.episodeAiringOrder.toString()
               }).appendTo('#showCardMeta_' + propertyCardID);
             } else {
               $('<span />', {
-                'id': 'showCardMetaTitle_' + propertyCardID,
+                'id': 'showCardMetaAiringOrder_' + propertyCardID,
                 'class': 'showCardMetaTitle',
                 'text': ', NO EP#'
               }).appendTo('#showCardMeta_' + propertyCardID);
