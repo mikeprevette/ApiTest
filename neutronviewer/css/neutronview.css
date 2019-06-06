@@ -365,6 +365,15 @@ p {
 /*	border: solid;*/
 }
 
+.showCard_M .showCardMeta {
+  bottom: 3em;
+  left: 0.5em;
+  position: absolute;
+  font-size: 1em;
+  color: white;
+  text-shadow: 1px 1px 4px black;
+}
+
 .showCard_S {
 	display: inline-block;
 	position: relative;
@@ -384,7 +393,7 @@ p {
 }
 
 
-.showCardMeta {
+.showCardControls {
 	width: 100%;
 	font-size: 1em;
 	position: absolute;
@@ -394,10 +403,12 @@ p {
 	padding-bottom: 5px;
 }
 
-.showCardMeta  .button {
+.showCardControls  .button {
 	margin-left: 2px;
 	float: right;
 }
+
+
 
 .showCardButtons {
 	  position: absolute;
@@ -446,6 +457,15 @@ p {
 	color: #ffffff;
 	cursor: pointer;
   text-decoration: underline;
+}
+
+.showCardMeta {
+  bottom: 2em;
+  left: 0.5em;
+  position: absolute;
+  font-size: 3em;
+  color: white;
+  text-shadow: 1px 1px 4px black;
 }
 
 .brandLogo {

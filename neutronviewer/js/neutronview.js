@@ -395,8 +395,8 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
           }
           //build the meta
           $('<div />', {
-            'id': 'showCardMeta_' + propertyCardID,
-            'class': 'showCardMeta'
+            'id': 'showCardControls_' + propertyCardID,
+            'class': 'showCardControls'
           }).appendTo('#' + propertyCardID);
           //build the meta objects
 
@@ -405,21 +405,21 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             'class': 'button',
             'text': 'API',
             'onclick': 'showOverlayJson("' + propertyMgid + '");'
-          }).appendTo('#showCardMeta_' + propertyCardID);
+          }).appendTo('#showCardControls_' + propertyCardID);
 
           $('<p />', {
             'id': 'showCardLink_' + z + i,
             'text': 'ARC',
             'class': 'button',
             'onclick': 'window.open("' + isisURL + propertyID + '");'
-          }).appendTo('#showCardMeta_' + propertyCardID);
+          }).appendTo('#showCardControls_' + propertyCardID);
 
           $('<p />', {
             'id': 'showCardDeeplink_' + z + i,
             'text': 'Deeplink ',
             'class': 'button',
             'onclick': 'window.open("' + deeplink + '");'
-          }).appendTo('#showCardMeta_' + propertyCardID);
+          }).appendTo('#showCardControls_' + propertyCardID);
           
           if (cardVal.hasOwnProperty("brandImageUrl")) {
             $('<div />', {
@@ -431,16 +431,17 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
 
           //Content Type Specific Logic
           if (entityType === "episode" || entityType === "video") {
-            hasEpisodes = false;
-            hasVideos = false;
-            linksError = false;
-            promoError = false;
+              hasEpisodes = false;
+              hasVideos = false;
+              linksError = false;
+              promoError = false;
             
+            // Playable ITEM Title
             $('<span />', {
-              'id': 'showCardHeader_' + propertyCardID,
-              'class': 'showCardHeader',
-              'text': cardVal.parentEntity.title + ' | Season ' + cardVal.seasonNumber.toString() + ', Ep ' + cardVal.episodeAiringOrder.toString()
-            }).appendTo('#showCardMeta_' + propertyCardID);
+              'id': 'showCardMeta_' + propertyCardID,
+              'class': 'showCardMeta',
+              'html': cardVal.parentEntity.title + '<br/>Season ' + cardVal.seasonNumber.toString() + ', Ep ' + cardVal.episodeAiringOrder.toString()
+            }).appendTo('#' + propertyCardID);
 
             $('<p />', {
               'class': 'contentError',
@@ -448,12 +449,12 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             }).appendTo('#' + propertyCardID);
           } else if ((entityType === "series" || entityType === "event" || entityType === "movie") && cardVal.hasOwnProperty("links")) {
 
-
+            // Series Title
             $('<span />', {
-              'id': 'showCardHeader_' + propertyCardID,
-              'class': 'showCardHeader',
+              'id': 'showCardMeta_' + propertyCardID,
+              'class': 'showCardMeta',
               'text': cardVal.title
-            }).appendTo('#showCardMeta_' + propertyCardID);
+            }).appendTo('#' + propertyCardID);
 
             console.log("I'm checking links");
             if (cardVal.links.hasOwnProperty("episode")) {
