@@ -318,259 +318,260 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
     type: 'GET',
     dataType: 'json',
     success: function(playplexData) {
-      if (playplexData.data.items.length == 0){
-           $('<div />', {
+      if (playplexData.data.items.length == 0) {
+        $('<div />', {
           'class': 'moduleError',
           'text': 'Empty Zone'
-        }).appendTo('#module_' + containerId); 
+        }).appendTo('#module_' + containerId);
       } else {
-      $.each(playplexData.data.items, function(i, cardVal) {
-        isImgError = false;
-        imgUrl = "./img/error.jpg";
-        isPromoError = false;
-        hasEpisodes = false;
-        hasVideos = false;
-        hasPlaylists = false;
-        hasMovie = false;
-        hasShortform = false;
-        hasLongform = false;
-        linksError = false;
-        card[cardVal.mgid];
-        card[cardVal.mgid] = cardVal;
-        propertyMgid = cardVal.mgid;
-        propertyID = cardVal.id;
-        entityType = cardVal.entityType;
-        seriesTitle = cardVal.title.replace(/ /g, "_");
-        propertyCardID = screenUUID + '_' + propertyID + '_' + z + i;
-
-        //Check to see if the promo is valid
-        if (entityType === "empty" || entityType === "noUrl" || entityType === "promo") {
+        $.each(playplexData.data.items, function(i, cardVal) {
+          isImgError = false;
           imgUrl = "./img/error.jpg";
-          isPromoError = true;
-          console.log("its an promo error" + propertyID);
-        } else {
-          let deeplink = makeDeeplink(propertyMgid);
-//           console.log("deeplink is" + deeplink);
           isPromoError = false;
-          if (cardVal.hasOwnProperty("images") && cardVal.images.length > 0) {
-            for (let c = 0, l = cardVal.images.length; c < l; c++) {
-              if (cardVal.images[c].aspectRatio === aspectRatio) {
-                imgUrl = cardVal.images[c].url + imageParams;
-                isImgError = false;
-                break;
-              } else {
-                isImgError = true;
+          hasEpisodes = false;
+          hasVideos = false;
+          hasPlaylists = false;
+          hasMovie = false;
+          hasShortform = false;
+          hasLongform = false;
+          linksError = false;
+          card[cardVal.mgid];
+          card[cardVal.mgid] = cardVal;
+          propertyMgid = cardVal.mgid;
+          propertyID = cardVal.id;
+          entityType = cardVal.entityType;
+          seriesTitle = cardVal.title.replace(/ /g, "_");
+          propertyCardID = screenUUID + '_' + propertyID + '_' + z + i;
+
+          //Check to see if the promo is valid
+          if (entityType === "empty" || entityType === "noUrl" || entityType === "promo") {
+            imgUrl = "./img/error.jpg";
+            isPromoError = true;
+            console.log("its an promo error" + propertyID);
+          } else {
+            let deeplink = makeDeeplink(propertyMgid);
+            //           console.log("deeplink is" + deeplink);
+            isPromoError = false;
+            if (cardVal.hasOwnProperty("images") && cardVal.images.length > 0) {
+              for (let c = 0, l = cardVal.images.length; c < l; c++) {
+                if (cardVal.images[c].aspectRatio === aspectRatio) {
+                  imgUrl = cardVal.images[c].url + imageParams;
+                  isImgError = false;
+                  break;
+                } else {
+                  isImgError = true;
+                }
               }
+            } else {
+              imgUrl = "./img/error.jpg";
+              isImgError = true;
+              console.log("its an IMG Array error " + propertyID);
+            }
+          }
+          // MAKE ALL THE BASE CARDS IN HTML
+          $('<div />', {
+            'id': propertyCardID,
+            'class': 'showCard_' + cellSize,
+            'style': 'background-image: url(' + imgUrl + ')'
+          }).appendTo('#module_' + containerId);
+
+          $('<div />', {
+            'id': 'errorbox' + '_' + propertyCardID,
+            'class': 'errorbox'
+          }).appendTo('#' + propertyCardID);
+
+          if (isPromoError === true) {
+            $('<p />', {
+              'class': 'error',
+              'text': "Broken Promo ERROR - Likely expired series, in an active promo"
+            }).appendTo('#errorbox' + '_' + propertyCardID);
+          }
+          if (isImgError === true) {
+            $('<p />', {
+              'id': 'imgError' + containerId,
+              'class': 'error',
+              'text': "IMAGE ERROR - Check for expected " + aspectRatio + " aspectRatio, image publishing, or image DP"
+            }).appendTo('#errorbox' + '_' + propertyCardID);
+          }
+          //build the meta
+          $('<div />', {
+            'id': 'showCardMeta_' + propertyCardID,
+            'class': 'showCardMeta'
+          }).appendTo('#' + propertyCardID);
+          //build the meta objects
+
+          $('<p />', {
+            'id': 'showCardJsonButton_' + propertyCardID,
+            'class': 'button',
+            'text': 'API',
+            'onclick': 'showOverlayJson("' + propertyMgid + '");'
+          }).appendTo('#showCardMeta_' + propertyCardID);
+
+          $('<p />', {
+            'id': 'showCardLink_' + z + i,
+            'text': 'ARC',
+            'class': 'button',
+            'onclick': 'window.open("' + isisURL + propertyID + '");'
+          }).appendTo('#showCardMeta_' + propertyCardID);
+
+          $('<p />', {
+            'id': 'showCardDeeplink_' + z + i,
+            'text': 'Deeplink ',
+            'class': 'button',
+            'onclick': 'window.open("' + deeplink + '");'
+          }).appendTo('#showCardMeta_' + propertyCardID);
+          
+          if (cardVal.hasOwnProperty("brandImageUrl")) {
+            $('<div />', {
+              'id': 'showCardBrandLogo_' + propertyCardID,
+              'class': 'brandLogo',
+              'style': 'background-image: url(' + cardVal.brandImageUrl + ')'
+            }).appendTo('#' + propertyCardID);
+          }
+
+          //Content Type Specific Logic
+          if (entityType === "episode" || entityType === "video") {
+            hasEpisodes = false;
+            hasVideos = false;
+            linksError = false;
+            promoError = false;
+            
+            $('<span />', {
+              'id': 'showCardHeader_' + propertyCardID,
+              'class': 'showCardHeader',
+              'text': cardVal.parentEntity.title + ' | Season ' + cardVal.seasonNumber.toString() + ', Ep ' + cardVal.episodeAiringOrder.toString()
+            }).appendTo('#showCardMeta_' + propertyCardID);
+
+            $('<p />', {
+              'class': 'contentError',
+              'text': "Playable Item"
+            }).appendTo('#' + propertyCardID);
+          } else if ((entityType === "series" || entityType === "event" || entityType === "movie") && cardVal.hasOwnProperty("links")) {
+
+
+            $('<span />', {
+              'id': 'showCardHeader_' + propertyCardID,
+              'class': 'showCardHeader',
+              'text': cardVal.title
+            }).appendTo('#showCardMeta_' + propertyCardID);
+
+            console.log("I'm checking links");
+            if (cardVal.links.hasOwnProperty("episode")) {
+              //console.log(cardVal.links.episode);
+              episodeLink = cardVal.links.episode;
+              hasEpisodes = true;
+            } else {
+              hasEpisodes = false;
+            }
+            if (cardVal.links.hasOwnProperty("video")) {
+              //console.log(cardVal.links.video);
+              videoLink = cardVal.links.video;
+              hasVideos = true;
+            } else {
+              hasVideos = false;
+            }
+            if (cardVal.links.hasOwnProperty("playlist")) {
+              //console.log(cardVal.links.playlist);
+              playlistLink = cardVal.links.playlist;
+              hasPlaylists = true;
+            } else {
+              hasPlaylists = false;
+            }
+            if (cardVal.links.hasOwnProperty("movie")) {
+              // 					console.log(cardVal.links.movie);
+              movieLink = cardVal.links.movie;
+              hasMovie = true;
+            } else {
+              hasMovie = false;
+            }
+            if (cardVal.links.hasOwnProperty("shortForm")) {
+              // 					console.log(cardVal.links.movie);
+              shortFormLink = cardVal.links.shortForm;
+              hasShortform = true;
+            } else {
+              hasShortform = false;
+            }
+            if (cardVal.links.hasOwnProperty("longForm")) {
+              // 					console.log(cardVal.links.movie);
+              LongFormLink = cardVal.links.longForm;
+              hasLongform = true;
+            } else {
+              hasLongform = false;
             }
           } else {
-            imgUrl = "./img/error.jpg";
-            isImgError = true;
-            console.log("its an IMG Array error " + propertyID);
+            linksError = true;
+            console.log("its an Links error " + propertyID);
           }
+
+
+          if (hasEpisodes === true || hasVideos === true || hasPlaylists === true || hasMovie === true || hasShortform === true || hasLongform === true) {
+            $('<div />', {
+              'id': 'showCardButtonBar_' + propertyCardID,
+              'class': 'showCardButtons',
+            }).appendTo('#' + propertyCardID);
+
+            if (hasVideos === true) {
+              $('<p />', {
+                'id': 'showCardButtons_Video' + z + i,
+                'class': 'showCardButton',
+                'text': 'Extras',
+                'onclick': 'loadContentLink("' + videoLink + '","clip","' + seriesTitle + '");'
+              }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
+            }
+            if (hasEpisodes === true) {
+              $('<p />', {
+                'id': 'showCardButtons_Episode' + z + i,
+                'class': 'showCardButton',
+                'text': 'Full Episodes',
+                'onclick': 'loadContentLink("' + episodeLink + '","episode","' + seriesTitle + '");'
+              }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
+            }
+            if (hasPlaylists === true) {
+              $('<p />', {
+                'id': 'showCardButtons_Playlist' + z + i,
+                'class': 'showCardButton',
+                'text': 'Playlists',
+                'onclick': 'loadContentLink("' + playlistLink + '","playlists","' + seriesTitle + '");'
+              }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
+            }
+            if (hasMovie === true) {
+              $('<p />', {
+                'id': 'showCardButtons_Movie' + z + i,
+                'class': 'showCardButton',
+                'text': 'Movie',
+                'onclick': 'loadContentLink("' + movieLink + '","movie","' + seriesTitle + '");'
+              }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
+            }
+            if (hasShortform === true) {
+              $('<p />', {
+                'id': 'showCardButtons_ShortForm' + z + i,
+                'class': 'showCardButton',
+                'text': 'ShortForm',
+                'onclick': 'loadContentLink("' + shortFormLink + '","shortForm","' + seriesTitle + '");'
+              }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
+            }
+            if (hasLongform === true) {
+              $('<p />', {
+                'id': 'showCardButtons_ShortForm' + z + i,
+                'class': 'showCardButton',
+                'text': 'LongForm',
+                'onclick': 'loadContentLink("' + LongFormLink + '","longForm","' + seriesTitle + '");'
+              }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
+            }
+          } else if (isPromoError === true || linksError === true) {
+            console.log("its an Series error " + propertyID);
+            $('<p />', {
+              'class': 'contentError',
+              'text': "Broken - No Content",
+              'style': "color:red"
+            }).appendTo('#' + propertyCardID);
+          }
+        });
+        if (playplexData.metadata.pagination.next != null) { // checks for a next page then re-triggers itself.
+          moduleURL = playplexData.metadata.pagination.next;
+          getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize); //run it all over again
         }
-        // MAKE ALL THE CARDS IN HTML
-        $('<div />', {
-          'id': propertyCardID,
-          'class': 'showCard_' + cellSize,
-          'style': 'background-image: url(' + imgUrl + ')'
-        }).appendTo('#module_' + containerId);
-
-        $('<div />', {
-          'id': 'errorbox' + '_' + propertyCardID,
-          'class': 'errorbox'
-        }).appendTo('#' + propertyCardID);
-
-        if (isPromoError === true) {
-          $('<p />', {
-            'class': 'error',
-            'text': "Broken Promo ERROR - Likely expired series, in an active promo"
-          }).appendTo('#errorbox' + '_' + propertyCardID);
-        }
-        if (isImgError === true) {
-          $('<p />', {
-            'id': 'imgError' + containerId,
-            'class': 'error',
-            'text': "IMAGE ERROR - Check for expected " + aspectRatio + " aspectRatio, image publishing, or image DP"
-          }).appendTo('#errorbox' + '_' + propertyCardID);
-        }
-        //build the meta
-        $('<div />', {
-          'id': 'showCardMeta_' + propertyCardID,
-          'class': 'showCardMeta'
-        }).appendTo('#' + propertyCardID);
-        //build the meta objects
-
-        $('<p />', {
-          'id': 'showCardJsonButton_' + propertyCardID,
-          'class': 'button',
-          'text': 'API',
-          'onclick': 'showOverlayJson("' + propertyMgid + '");'
-        }).appendTo('#showCardMeta_' + propertyCardID);
-
-        $('<p />', {
-          'id': 'showCardLink_' + z + i,
-          'text': 'ARC',
-          'class': 'button',
-          'onclick': 'window.open("' + isisURL + propertyID + '");'
-        }).appendTo('#showCardMeta_' + propertyCardID);
-
-        $('<p />', {
-          'id': 'showCardDeeplink_' + z + i,
-          'text': 'Deeplink ',
-          'class': 'button',
-          'onclick': 'window.open("' + deeplink + '");'
-        }).appendTo('#showCardMeta_' + propertyCardID);
-
-        //build the Buttons
-if (entityType === "episode" || entityType === "video") {
-  hasEpisodes = false;
-  hasVideos = false;
-  linksError = false;
-  promoError = false;
-  $('<span />', {
-          'id': 'showCardHeader_' + propertyCardID,
-          'class': 'showCardHeader',
-          'text': 'Season ' + cardVal.seasonNumber.toString() + ', Ep ' + cardVal.episodeAiringOrder.toString()
-  }).appendTo('#showCardMeta_' + propertyCardID);
-  
-  $('<p />', {
-    'class': 'contentError',
-    'text': "Playable Item"
-  }).appendTo('#' + propertyCardID);
-} else if ((entityType === "series" || entityType === "event" || entityType === "movie") && cardVal.hasOwnProperty("links")) {
-           
-  
-        $('<span />', {
-          'id': 'showCardHeader_' + propertyCardID,
-          'class': 'showCardHeader',
-          'text': cardVal.title
-         }).appendTo('#showCardMeta_' + propertyCardID);
-          
-          console.log("I'm checking links");
-          if (cardVal.links.hasOwnProperty("episode")) {
-            //console.log(cardVal.links.episode);
-            episodeLink = cardVal.links.episode;
-            hasEpisodes = true;
-          } else {
-            hasEpisodes = false;
-          }
-          if (cardVal.links.hasOwnProperty("video")) {
-            //console.log(cardVal.links.video);
-            videoLink = cardVal.links.video;
-            hasVideos = true;
-          } else {
-            hasVideos = false;
-          }
-          if (cardVal.links.hasOwnProperty("playlist")) {
-            //console.log(cardVal.links.playlist);
-            playlistLink = cardVal.links.playlist;
-            hasPlaylists = true;
-          } else {
-            hasPlaylists = false;
-          }
-          if (cardVal.links.hasOwnProperty("movie")) {
-            // 					console.log(cardVal.links.movie);
-            movieLink = cardVal.links.movie;
-            hasMovie = true;
-          } else {
-            hasMovie = false;
-          }
-          if (cardVal.links.hasOwnProperty("shortForm")) {
-            // 					console.log(cardVal.links.movie);
-            shortFormLink = cardVal.links.shortForm;
-            hasShortform = true;
-          } else {
-            hasShortform = false;
-          }
-          if (cardVal.links.hasOwnProperty("longForm")) {
-            // 					console.log(cardVal.links.movie);
-            LongFormLink = cardVal.links.longForm;
-            hasLongform = true;
-          } else {
-            hasLongform = false;
-          }
-        }  else {
-          linksError = true;
-          console.log("its an Links error " + propertyID);
-    }
-        
-        if (cardVal.hasOwnProperty("brandImageUrl")) {
-          $('<div />', {
-            'id': 'showCardBrandLogo_' + propertyCardID,
-            'class': 'brandLogo',
-            'style': 'background-image: url(' + cardVal.brandImageUrl + ')'
-          }).appendTo('#' + propertyCardID);
-        }
-
-
-        if (hasEpisodes === true || hasVideos === true || hasPlaylists === true || hasMovie === true || hasShortform === true || hasLongform === true) {
-          $('<div />', {
-            'id': 'showCardButtonBar_' + propertyCardID,
-            'class': 'showCardButtons',
-          }).appendTo('#' + propertyCardID);
-
-          if (hasVideos === true) {
-            $('<p />', {
-              'id': 'showCardButtons_Video' + z + i,
-              'class': 'showCardButton',
-              'text': 'Extras',
-              'onclick': 'loadContentLink("' + videoLink + '","clip","' + seriesTitle + '");'
-            }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
-          }
-          if (hasEpisodes === true) {
-            $('<p />', {
-              'id': 'showCardButtons_Episode' + z + i,
-              'class': 'showCardButton',
-              'text': 'Full Episodes',
-              'onclick': 'loadContentLink("' + episodeLink + '","episode","' + seriesTitle + '");'
-            }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
-          }
-          if (hasPlaylists === true) {
-            $('<p />', {
-              'id': 'showCardButtons_Playlist' + z + i,
-              'class': 'showCardButton',
-              'text': 'Playlists',
-              'onclick': 'loadContentLink("' + playlistLink + '","playlists","' + seriesTitle + '");'
-            }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
-          }
-          if (hasMovie === true) {
-            $('<p />', {
-              'id': 'showCardButtons_Movie' + z + i,
-              'class': 'showCardButton',
-              'text': 'Movie',
-              'onclick': 'loadContentLink("' + movieLink + '","movie","' + seriesTitle + '");'
-            }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
-          }
-          if (hasShortform === true) {
-            $('<p />', {
-              'id': 'showCardButtons_ShortForm' + z + i,
-              'class': 'showCardButton',
-              'text': 'ShortForm',
-              'onclick': 'loadContentLink("' + shortFormLink + '","shortForm","' + seriesTitle + '");'
-            }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
-          }
-          if (hasLongform === true) {
-            $('<p />', {
-              'id': 'showCardButtons_ShortForm' + z + i,
-              'class': 'showCardButton',
-              'text': 'LongForm',
-              'onclick': 'loadContentLink("' + LongFormLink + '","longForm","' + seriesTitle + '");'
-            }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
-          }
-        } else if (isPromoError === true || linksError === true) {
-          console.log("its an Series error " + propertyID);
-          $('<p />', {
-            'class': 'contentError',
-            'text': "Broken - No Content",
-            'style': "color:red"
-          }).appendTo('#' + propertyCardID);
-        }
-      });
-      if (playplexData.metadata.pagination.next != null) { // checks for a next page then re-triggers itself.
-        moduleURL = playplexData.metadata.pagination.next;
-        getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize); //run it all over again
       }
-     }
     },
     error: function() {
       console.log("something went wrong with the http request");
@@ -582,10 +583,10 @@ if (entityType === "episode" || entityType === "video") {
     beforeSend: setHeader
   });
   $('#loadingOverlay').hide();
-//   if (div != null) {
-//     while (div.hasChildNodes()) {
-//       div.removeChild(div.lastChild);
-//     }
+  //   if (div != null) {
+  //     while (div.hasChildNodes()) {
+  //       div.removeChild(div.lastChild);
+  //     }
 }
 
 //####################################----Load Content Links (1.9 api)----####################################
