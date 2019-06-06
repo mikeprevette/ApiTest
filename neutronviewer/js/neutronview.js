@@ -459,6 +459,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               'class': 'contentError',
               'text': "Playable Item"
             }).appendTo('#' + propertyCardID);
+            
           } else if ((entityType === "series" || entityType === "event" || entityType === "movie") && cardVal.hasOwnProperty("links")) {
 
             // Series Title

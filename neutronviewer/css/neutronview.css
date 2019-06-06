@@ -26,8 +26,9 @@ body {
 }
 
 #execute {
-	margin-left: 1em;
+  float: left;
 }
+
 
 .formClass {
 	float: left;
@@ -82,7 +83,17 @@ p {
 }
 
 #advancedOptions {
-  display: none;
+  display: block;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25%;
+  min-width: 200px;
+  padding: 3em;
+  background-color: #333333;
+}
+
+#advancedForm {
 }
 
 #multiBrandSelector {
@@ -173,6 +184,19 @@ p {
 
 #overlay h1 {
 	margin-left: 5em;
+}
+
+#advancedOverlay {
+	  height: 100%; /* Full height (cover the whole page) */
+	  width: 100%; /* Full width (cover the whole page) */
+    position: fixed; /* Sit on top of the page content */
+	  bottom: 0;
+		top: 0;
+		left: 0;
+    display: none; /* Hidden by default */
+    background-color: rgba(0,0,0,0.75); /* Black background with opacity */
+    z-index: 998; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
 }
 
 #loadingOverlay {
