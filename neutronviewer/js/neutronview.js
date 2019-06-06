@@ -644,6 +644,8 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
     'id': 'contentContainerHeader',
     'class': 'containerHeader'
   }).appendTo('#container_Content');
+
+
   
     $('<span />', {
     'id': 'contentClose',
@@ -805,7 +807,7 @@ function fillContentModule19(contentLink) {
       $('<p />', {
         'id': 'CardSubHeader_' + link,
         'class': 'CardSubHeader',
-        'text': 'SeasonNumber: ' + contentCardVal.seasonNumber + ', EpAiringOrder: ' + contentCardVal.episodeAiringOrder
+        'text': 'Season ' + contentCardVal.seasonNumber + ', Ep ' + contentCardVal.episodeAiringOrder
       }).appendTo('#CardMeta_' + link);
     }
 
@@ -816,26 +818,33 @@ function fillContentModule19(contentLink) {
         'text': 'Description: ' + contentCardVal.description
       }).appendTo('#CardMeta_' + link);
 
+      //build the meta
       $('<div />', {
-        'id': 'showCardJsonButton_' + propertyCardID,
+        'id': 'contentCardControls_' + link,
+        'class': 'showCardControls'
+      }).appendTo('#' + link);
+      
+      //build the meta objects
+      $('<div />', {
+        'id': 'showCardJsonButton_' + link,
         'class': 'button',
         'text': 'API',
         'onclick': 'showOverlayJson("' + contentCardVal.mgid + '");'
-      }).appendTo('#' + link);
+      }).appendTo('#contentCardControls_' + link);
 
       $('<div />', {
         'id': 'contentCardHeaderLink_' + link,
         'text': 'ARC',
         'class': 'button',
         'onclick': 'window.open("' + isisURL + link + '");'
-      }).appendTo('#' + link);
+      }).appendTo('#contentCardControls_' + link);
 
       $('<div />', {
         'id': 'contentCardDeeplink_' + link,
         'text': 'Deeplink ',
         'class': 'button',
         'onclick': 'window.open("' + deeplink + '");'
-      }).appendTo('#' + link);
+      }).appendTo('#contentCardControls_' + link);
 
 
 
