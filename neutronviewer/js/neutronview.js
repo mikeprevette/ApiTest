@@ -344,7 +344,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
           propertyCardID = screenUUID + '_' + propertyID + '_' + z + i;
 
           //Check to see if the promo is valid
-          if (entityType === "empty" || entityType === "noUrl" || entityType === "promo") {
+          if (entityType === "empty" || entityType === "noUrl" || entityType === "promo" || entityType === "editorial") {
             imgUrl = "./img/error.jpg";
             isPromoError = true;
             console.log("its an promo error" + propertyID);
@@ -443,24 +443,48 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             
             // Playable ITEM Title
             
+            if (cardVal.hasOwnProperty("parentEntity.title")) {
             $('<span />', {
               'id': 'showCardMetaParent_' + propertyCardID,
               'class': 'showCardMetaParent',
               'text': cardVal.parentEntity.title
             }).appendTo('#showCardMeta_' + propertyCardID);
+            }
             
+            if (cardVal.hasOwnProperty("seasonNumber")) {
             $('<span />', {
               'id': 'showCardMetaTitle_' + propertyCardID,
               'class': 'showCardMetaTitle',
-              'html': '<br/>Season ' + cardVal.seasonNumber.toString() + ', Ep ' + cardVal.episodeAiringOrder.toString()
+              'html': '<br/>Season ' + cardVal.seasonNumber.toString()
             }).appendTo('#showCardMeta_' + propertyCardID);
+            } else {
+              $('<span />', {
+              'id': 'showCardMetaTitle_' + propertyCardID,
+              'class': 'showCardMetaTitle',
+              'html': '<br/>NO SEASON '
+            }).appendTo('#showCardMeta_' + propertyCardID);
+            }
+            
+            if (cardVal.hasOwnProperty("episodeAiringOrder")) {
+            $('<span />', {
+              'id': 'showCardMetaTitle_' + propertyCardID,
+              'class': 'showCardMetaTitle',
+              'text': ', Ep ' + cardVal.episodeAiringOrder.toString()
+            }).appendTo('#showCardMeta_' + propertyCardID);
+            } else {
+              $('<span />', {
+              'id': 'showCardMetaTitle_' + propertyCardID,
+              'class': 'showCardMetaTitle',
+              'text': ', NO EP Airing Order '
+            }).appendTo('#showCardMeta_' + propertyCardID);
+            }
 
             $('<p />', {
               'class': 'contentError',
               'text': "Playable Item"
             }).appendTo('#' + propertyCardID);
             
-          } else if ((entityType === "series" || entityType === "event" || entityType === "movie") && cardVal.hasOwnProperty("links")) {
+          } else if ((entityType === "series" || entityType === "event" || entityType === "movie" || entityType === "editorial") && cardVal.hasOwnProperty("links")) {
 
             // Series Title
             $('<span />', {
