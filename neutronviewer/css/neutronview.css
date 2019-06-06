@@ -231,6 +231,10 @@ p {
 	z-index: 99999;
 }
 
+#cardJson a {
+	color: #00ff00;
+}
+
 #closeButton {
 	display: block;
 	padding: 5px;
