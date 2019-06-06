@@ -442,39 +442,41 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             
             // Playable ITEM Title
             
-            if (cardVal.hasOwnProperty("parentEntity")) {
-              $('<span />', {
-                'id': 'showCardMetaParent_' + propertyCardID,
-                'class': 'showCardMetaParent',
-                'text': cardVal.parentEntity.title
-              }).appendTo('#showCardMeta_' + propertyCardID);
-            }
+
 
             if (cardVal.hasOwnProperty("seasonNumber")) {
               $('<span />', {
                 'id': 'showCardMetaTitle_' + propertyCardID,
                 'class': 'showCardMetaTitle',
-                'html': '<br/>Season ' + cardVal.seasonNumber.toString()
+                'text': 'Season ' + cardVal.seasonNumber.toString()
               }).appendTo('#showCardMeta_' + propertyCardID);
             } else {
               $('<span />', {
                 'id': 'showCardMetaTitle_' + propertyCardID,
                 'class': 'showCardMetaTitle',
-                'html': '<br/>NO SEASON# '
+                'text': 'NO SEASON# '
               }).appendTo('#showCardMeta_' + propertyCardID);
             }
 
             if (cardVal.hasOwnProperty("episodeAiringOrder")) {
               $('<span />', {
-                'id': 'showCardMetaAiringOrder_' + propertyCardID,
+                'id': 'showCardMetaMetaTitle_' + propertyCardID,
                 'class': 'showCardMetaTitle',
-                'text': ', Ep ' + cardVal.episodeAiringOrder.toString()
+                'html': ', Ep ' + cardVal.episodeAiringOrder.toString() + '<br/>'
               }).appendTo('#showCardMeta_' + propertyCardID);
             } else {
               $('<span />', {
-                'id': 'showCardMetaAiringOrder_' + propertyCardID,
+                'id': 'showCardMetaTitle_' + propertyCardID,
                 'class': 'showCardMetaTitle',
-                'text': ', NO EP#'
+                'html': ', NO EP#<br/>'
+              }).appendTo('#showCardMeta_' + propertyCardID);
+            }
+            
+           if (cardVal.hasOwnProperty("parentEntity")) {
+              $('<span />', {
+                'id': 'showCardMetaParent_' + propertyCardID,
+                'class': 'showCardMetaParent',
+                'text': cardVal.parentEntity.title
               }).appendTo('#showCardMeta_' + propertyCardID);
             }
 

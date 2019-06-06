@@ -28,7 +28,9 @@ body {
 }
 
 #execute {
-  float: left;
+  width: 100%;
+  text-align: center;
+  line-height: 2em;
 }
 
 
@@ -184,7 +186,6 @@ p {
     display: none; /* Hidden by default */
     background-color: rgba(0,0,0,0.75); /* Black background with opacity */
     z-index: 999; /* Specify a stack order in case you're using a different order for other elements */
-    cursor: pointer; /* Add a pointer on hover */
 }
 
 #overlay h1 {
@@ -201,7 +202,6 @@ p {
     display: none; /* Hidden by default */
     background-color: rgba(0,0,0,0.75); /* Black background with opacity */
     z-index: 998; /* Specify a stack order in case you're using a different order for other elements */
-    cursor: pointer; /* Add a pointer on hover */
 }
 
 #loadingOverlay {
@@ -237,6 +237,10 @@ p {
 	background-color : black;
 	color : red;
  	font-size : 6em;
+}
+
+#closeButton:hover {
+  cursor: pointer; /* Add a pointer on hover */
 }
 
 .CardGrad {
