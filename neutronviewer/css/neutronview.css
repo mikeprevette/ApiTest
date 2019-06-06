@@ -380,6 +380,11 @@ p {
   text-shadow: 1px 1px 4px black;
 }
 
+.showCard_M .brandLogo {
+  width: 2em;
+  height: 2em;
+}
+
 .showCard_S {
 	display: inline-block;
 	position: relative;
@@ -403,8 +408,6 @@ p {
   color: white;
   text-shadow: 1px 1px 4px black;
 }
-
-
 
 .showCardControls {
 	width: 100%;
@@ -474,8 +477,8 @@ p {
 
 .showCardMeta {
   position: absolute;
-  bottom: 3em;
-  left: 0.5em;
+  bottom: 3.5em;
+  left: 1em;
 }
 
 .showCardMetaTitle {
@@ -549,6 +552,7 @@ p {
 	from { -webkit-transform: translateY(0); }
 	to   { -webkit-transform: translateY(-3px); }
 }
+
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
