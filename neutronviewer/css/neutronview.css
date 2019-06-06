@@ -455,7 +455,7 @@ p {
   background-position: center center;
 	position: absolute;
 	bottom: 2em;
-  right: 0.5em;
+  left: 0.5em;
   width: 10%;
   height: 10%;
 }

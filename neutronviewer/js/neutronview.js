@@ -399,11 +399,6 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
           'class': 'showCardMeta'
         }).appendTo('#' + propertyCardID);
         //build the meta objects
-        $('<span />', {
-          'id': 'showCardHeader_' + propertyCardID,
-          'class': 'showCardHeader',
-          'text': cardVal.title
-        }).appendTo('#showCardMeta_' + propertyCardID);
 
         $('<p />', {
           'id': 'showCardJsonButton_' + propertyCardID,
@@ -432,12 +427,26 @@ if (entityType === "episode" || entityType === "video") {
   hasVideos = false;
   linksError = false;
   promoError = false;
+  $('<span />', {
+          'id': 'showCardHeader_' + propertyCardID,
+          'class': 'showCardHeader',
+          'text': 'Season ' + cardVal.seasonNumber.toString() + ', Ep ' + cardVal.episodeAiringOrder.toString()
+  }).appendTo('#showCardMeta_' + propertyCardID);
+  
   $('<p />', {
     'class': 'contentError',
     'text': "Playable Item"
   }).appendTo('#' + propertyCardID);
 } else if ((entityType === "series" || entityType === "event" || entityType === "movie") && cardVal.hasOwnProperty("links")) {
-           console.log("I'm checking links");
+           
+  
+        $('<span />', {
+          'id': 'showCardHeader_' + propertyCardID,
+          'class': 'showCardHeader',
+          'text': cardVal.title
+         }).appendTo('#showCardMeta_' + propertyCardID);
+          
+          console.log("I'm checking links");
           if (cardVal.links.hasOwnProperty("episode")) {
             //console.log(cardVal.links.episode);
             episodeLink = cardVal.links.episode;
