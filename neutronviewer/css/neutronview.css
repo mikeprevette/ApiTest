@@ -439,6 +439,11 @@ p {
   text-shadow: 1px 1px 4px black;
 }
 
+.showCard_S .brandLogo {
+  width: 2em;
+  height: 2em;
+}
+
 .showCardControls {
 	width: 100%;
 	font-size: 1em;
