@@ -443,40 +443,40 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             
             // Playable ITEM Title
             
-            if (cardVal.hasOwnProperty("parentEntity.title")) {
-            $('<span />', {
-              'id': 'showCardMetaParent_' + propertyCardID,
-              'class': 'showCardMetaParent',
-              'text': cardVal.parentEntity.title
-            }).appendTo('#showCardMeta_' + propertyCardID);
+            if (cardVal.hasOwnProperty("parentEntity")) {
+              $('<span />', {
+                'id': 'showCardMetaParent_' + propertyCardID,
+                'class': 'showCardMetaParent',
+                'text': cardVal.parentEntity.title
+              }).appendTo('#showCardMeta_' + propertyCardID);
             }
-            
+
             if (cardVal.hasOwnProperty("seasonNumber")) {
-            $('<span />', {
-              'id': 'showCardMetaTitle_' + propertyCardID,
-              'class': 'showCardMetaTitle',
-              'html': '<br/>Season ' + cardVal.seasonNumber.toString()
-            }).appendTo('#showCardMeta_' + propertyCardID);
+              $('<span />', {
+                'id': 'showCardMetaTitle_' + propertyCardID,
+                'class': 'showCardMetaTitle',
+                'html': '<br/>Season ' + cardVal.seasonNumber.toString()
+              }).appendTo('#showCardMeta_' + propertyCardID);
             } else {
               $('<span />', {
-              'id': 'showCardMetaTitle_' + propertyCardID,
-              'class': 'showCardMetaTitle',
-              'html': '<br/>NO SEASON '
-            }).appendTo('#showCardMeta_' + propertyCardID);
+                'id': 'showCardMetaTitle_' + propertyCardID,
+                'class': 'showCardMetaTitle',
+                'html': '<br/>NO SEASON# '
+              }).appendTo('#showCardMeta_' + propertyCardID);
             }
-            
+
             if (cardVal.hasOwnProperty("episodeAiringOrder")) {
-            $('<span />', {
-              'id': 'showCardMetaTitle_' + propertyCardID,
-              'class': 'showCardMetaTitle',
-              'text': ', Ep ' + cardVal.episodeAiringOrder.toString()
-            }).appendTo('#showCardMeta_' + propertyCardID);
+              $('<span />', {
+                'id': 'showCardMetaTitle_' + propertyCardID,
+                'class': 'showCardMetaTitle',
+                'text': ', Ep ' + cardVal.episodeAiringOrder.toString()
+              }).appendTo('#showCardMeta_' + propertyCardID);
             } else {
               $('<span />', {
-              'id': 'showCardMetaTitle_' + propertyCardID,
-              'class': 'showCardMetaTitle',
-              'text': ', NO EP Airing Order '
-            }).appendTo('#showCardMeta_' + propertyCardID);
+                'id': 'showCardMetaTitle_' + propertyCardID,
+                'class': 'showCardMetaTitle',
+                'text': ', NO EP#'
+              }).appendTo('#showCardMeta_' + propertyCardID);
             }
 
             $('<p />', {
