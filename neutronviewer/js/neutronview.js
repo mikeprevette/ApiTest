@@ -421,12 +421,17 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             'onclick': 'window.open("' + deeplink + '");'
           }).appendTo('#showCardControls_' + propertyCardID);
           
+          $('<div />', {
+            'id': 'showCardMeta_' + propertyCardID,
+            'class': 'showCardMeta'
+          }).appendTo('#' + propertyCardID);
+          
           if (cardVal.hasOwnProperty("brandImageUrl")) {
             $('<div />', {
               'id': 'showCardBrandLogo_' + propertyCardID,
               'class': 'brandLogo',
               'style': 'background-image: url(' + cardVal.brandImageUrl + ')'
-            }).appendTo('#' + propertyCardID);
+            }).appendTo('#showCardMeta_' + propertyCardID);
           }
 
           //Content Type Specific Logic
@@ -437,11 +442,18 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               promoError = false;
             
             // Playable ITEM Title
+            
             $('<span />', {
-              'id': 'showCardMeta_' + propertyCardID,
-              'class': 'showCardMeta',
-              'html': cardVal.parentEntity.title + '<br/>Season ' + cardVal.seasonNumber.toString() + ', Ep ' + cardVal.episodeAiringOrder.toString()
-            }).appendTo('#' + propertyCardID);
+              'id': 'showCardMetaParent_' + propertyCardID,
+              'class': 'showCardMetaParent',
+              'text': cardVal.parentEntity.title
+            }).appendTo('#showCardMeta_' + propertyCardID);
+            
+            $('<span />', {
+              'id': 'showCardMetaTitle_' + propertyCardID,
+              'class': 'showCardMetaTitle',
+              'html': '<br/>Season ' + cardVal.seasonNumber.toString() + ', Ep ' + cardVal.episodeAiringOrder.toString()
+            }).appendTo('#showCardMeta_' + propertyCardID);
 
             $('<p />', {
               'class': 'contentError',
@@ -452,9 +464,9 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             // Series Title
             $('<span />', {
               'id': 'showCardMeta_' + propertyCardID,
-              'class': 'showCardMeta',
+              'class': 'showCardMetaTitle',
               'text': cardVal.title
-            }).appendTo('#' + propertyCardID);
+            }).appendTo('#showCardMeta_' + propertyCardID);
 
             console.log("I'm checking links");
             if (cardVal.links.hasOwnProperty("episode")) {

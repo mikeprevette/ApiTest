@@ -3,11 +3,20 @@ html {
     overflow-y: scroll; overflow-x:hidden;
 }
 
+@font-face {
+  font-family: 'brandonText';
+  src: 
+    local('Brandon Text'),
+    local('Brandon-Text'),
+    url('../fonts/brandon.otf')
+    format('opentype');
+}
+
 body {
 	background-color: #c4c4c4;
 	font-size: 75%;
 	color: white;
-	font-family: 'Roboto', helvetica, sans-serif;
+	font-family: 'brandonText','Roboto', helvetica, sans-serif;
 	margin: 0px 0px 0px 0px;
 	}
 
@@ -365,10 +374,7 @@ p {
 /*	border: solid;*/
 }
 
-.showCard_M .showCardMeta {
-  bottom: 3em;
-  left: 0.5em;
-  position: absolute;
+.showCard_M .showCardMetaTitle {
   font-size: 1em;
   color: white;
   text-shadow: 1px 1px 4px black;
@@ -391,6 +397,13 @@ p {
 	background-color: #b7b7b7;
 /*	border: solid;*/
 }
+
+.showCard_S .showCardMetaTitle {
+  font-size: 1em;
+  color: white;
+  text-shadow: 1px 1px 4px black;
+}
+
 
 
 .showCardControls {
@@ -460,10 +473,19 @@ p {
 }
 
 .showCardMeta {
-  bottom: 2em;
-  left: 0.5em;
   position: absolute;
+  bottom: 3em;
+  left: 0.5em;
+}
+
+.showCardMetaTitle {
   font-size: 3em;
+  color: white;
+  text-shadow: 1px 1px 4px black;
+}
+
+.showCardMetaParent {
+  font-size: 1.5em;
   color: white;
   text-shadow: 1px 1px 4px black;
 }
@@ -473,11 +495,8 @@ p {
 	background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: center center;
-	position: absolute;
-	bottom: 2em;
-  left: 0.5em;
-  width: 10%;
-  height: 10%;
+  width: 5em;
+  height: 5em;
 }
 
 .lock {
