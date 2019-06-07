@@ -151,16 +151,14 @@ p {
 }
 
 .containerHeader .button {
-	margin-right: 3em;
-  line-height: 2.5em;
+	margin-right: 2em;
+  line-height: 2em;
   vertical-align: middle;
 }
 
 
 .containerHeaderText {
-	vertical-align: middle;
-  line-height: 2em;
-  font-size: 1.5em;
+  font-size: 2em;
 }
 
 
@@ -245,14 +243,14 @@ p {
 	display: block;
 	padding: 5px;
 	float: left;
-	background-color : black;
-	color : red;
+	background-color: black;
+	color: red;
  	font-size : 4em;
 }
 
 #closeButton:hover {
   cursor: pointer; /* Add a pointer on hover */
-  color: #fffff;
+  color: #ffffff;
 }
 
 .CardGrad {
@@ -570,6 +568,8 @@ p {
   background-position: center center;
   width: 3em;
   height: 3em;
+  -webkit-filter: drop-shadow(2px 2px 2px #222);
+  filter: drop-shadow(2px 2px 2px #222);
 }
 
 .lock {

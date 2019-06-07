@@ -676,7 +676,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
   $('<div />', {
     'id': 'CSV',
     'class': 'button',
-    'text': 'DOWNLOAD CONTENT CSV',
+    'text': 'CSV',
     'onclick': 'downloadCSV({ filename: "' + seriesTitle + '_data.csv" });'
   }).appendTo('#contentContainerHeader');
 
