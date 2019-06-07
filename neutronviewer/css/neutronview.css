@@ -121,7 +121,6 @@ p {
   width: 10000px;
 	height: 100%;
   width: 100%;
-  margin-left: 1em;
   overflow: hidden;
 }
 
@@ -141,8 +140,8 @@ p {
 	width: 100%;
   min-width: 400px;
 	height: 2em;
-	margin-top:1em;
-  margin-bottom:0.5em;
+/* 	margin-top: 1em; */
+  margin-bottom: 1em;
 	padding: 5px;
   border-top: 1px solid #b5b5b5;
 }
@@ -159,6 +158,10 @@ p {
 
 .containerHeaderText {
   font-size: 2em;
+}
+
+.containerHeaderText:first-of-type {
+  margin-left: 1em;
 }
 
 
@@ -297,6 +300,7 @@ p {
 	background-color: rgba(0,0,0,0.5);
 }
 
+
 .Card {
 	display: inline-block;
 	position: relative;
@@ -329,15 +333,12 @@ p {
 .CardMeta {
 	display: block;
 	width: 100%;
+  padding-left: 0.5em;
 	background: rgba(0,0,0,0.5);
 	font-size: 0.75em;
 	position: absolute;
 	bottom: 0;
 	left: 0;
-}
-
-.CardMeta p {
-  margin-left: 1em;
 }
 
 .CardSubHeader {
@@ -401,6 +402,10 @@ p {
 /*	border: solid;*/
 }
 
+.showCard_L:first-of-type {
+  margin-left: 1em;
+}
+
 .showCard_M {
 	display: inline-block;
 	position: relative;
@@ -420,7 +425,11 @@ p {
 /*	border: solid;*/
 }
 
-.showCard_S .showCardMeta {
+.showCard_M:first-of-type {
+  margin-left: 1em;
+}
+
+.showCard_M .showCardMeta {
   bottom: 2em;
 }
 
@@ -452,6 +461,10 @@ p {
 	background-color: #b7b7b7;
   box-shadow:1px 1px 5px grey; 
 /*	border: solid;*/
+}
+
+.showCard_S:first-of-type {
+  margin-left: 1em;
 }
 
 .showCard_S .showCardMeta {
