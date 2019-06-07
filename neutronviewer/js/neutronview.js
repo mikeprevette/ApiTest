@@ -909,6 +909,7 @@ function showOverlayJson(mgid) {
   body.classList.toggle('noscroll');
   $(overlay).toggle();
   txtObject = JSON.stringify(card[mgid], null, 4);
+  console.log(txtObject);
   txtObject = txtObject.replace(/&reg/g, "&"+"reg");
   var newStr = txtObject.replace(/(<a href=")?((https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)))(">(.*)<\/a>)?/gi, function () {
     return '<a href="'+ arguments[2] + '" target="_blank">' + (arguments[7] || arguments[2]) + '</a>'
