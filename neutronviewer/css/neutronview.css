@@ -16,7 +16,7 @@ html {
 body {
 /*   background-image: linear-gradient(to bottom right, #d8d8d8, #a3a3a3); */
 	background-color: #c4c4c4;
-	font-size: 75%;
+/* 	font-size: 100%; */
 	color: white;
 	font-family: 'brandonText','Roboto', helvetica, sans-serif;
 	margin: 0px 0px 0px 0px;
@@ -225,8 +225,9 @@ p {
 
 #cardJson {
 	position: fixed;
-	margin-left:10%;
+	margin-left: 5%;
 	height: 100%;
+  width: 80%;
 	background-color: rgba(0,0,0,0.85);
 	color: #00ff00;
 	font-size: 1em;
@@ -246,11 +247,12 @@ p {
 	float: left;
 	background-color : black;
 	color : red;
- 	font-size : 6em;
+ 	font-size : 4em;
 }
 
 #closeButton:hover {
   cursor: pointer; /* Add a pointer on hover */
+  color: #ff3f3f;
 }
 
 .CardGrad {
@@ -272,14 +274,14 @@ p {
 	overflow: visible;
 	width: 100%;
 	white-space: normal;
-	font-size: 1.5em;
+	font-size: 1em;
 	color: red;
 	background-color: rgba(0,0,0,0.5);
 }
 
 .errorbox {
 	position: absolute;
-	top: 4em;
+	top: 3em;
 	width: 100%;
 }
 
@@ -291,7 +293,8 @@ p {
 	overflow: visible;
 	width: 100%;
 	white-space: normal;
-	font-size: 2em;
+	font-size: 1em;
+  line-height: 2em;
 	color: #84ccff;
 	background-color: rgba(0,0,0,0.5);
 }
@@ -422,6 +425,10 @@ p {
 /*	border: solid;*/
 }
 
+.showCard_S .showCardMeta {
+  bottom: 2em;
+}
+
 .showCard_M .showCardMetaTitle {
   font-size: 1em;
   color: white;
@@ -452,6 +459,10 @@ p {
 /*	border: solid;*/
 }
 
+.showCard_S .showCardMeta {
+  bottom: 2em;
+}
+
 .showCard_S .showCardMetaTitle {
   font-size: 1.5em;
   color: white;
@@ -471,7 +482,7 @@ p {
 
 .showCardControls {
 	width: 100%;
-	font-size: 1em;
+	font-size: .75em;
 	position: absolute;
 	left: 0px;
   top: 0px;
@@ -492,8 +503,8 @@ p {
     width: 100%;
     font-size: 1em;
     left: 0px;
-  	height: 2.5em;
-    line-height: 2.5;
+  	height: 2em;
+    line-height: 2em;
     bottom: 0em;
 	  display: block;
     background-color: rgba(0,0,0,0.25);
@@ -543,7 +554,7 @@ p {
 }
 
 .showCardMetaTitle {
-  font-size: 3em;
+  font-size: 2em;
   line-height: 1.2em;
   color: white;
   text-shadow: 1px 1px 4px black;
@@ -560,8 +571,8 @@ p {
 	background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: center center;
-  width: 5em;
-  height: 5em;
+  width: 3em;
+  height: 3em;
 }
 
 .lock {

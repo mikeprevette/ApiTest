@@ -443,7 +443,13 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               promoError = false;
             
             // Playable ITEM Title
-            
+           if (cardVal.hasOwnProperty("parentEntity")) {
+              $('<span />', {
+                'id': 'showCardMetaParent_' + propertyCardID,
+                'class': 'showCardMetaParent',
+                'text': cardVal.parentEntity.title
+              }).appendTo('#showCardMeta_' + propertyCardID);
+            }
 
 
             if (cardVal.hasOwnProperty("seasonNumber")) {
@@ -474,13 +480,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               }).appendTo('#showCardMeta_' + propertyCardID);
             }
             
-           if (cardVal.hasOwnProperty("parentEntity")) {
-              $('<span />', {
-                'id': 'showCardMetaParent_' + propertyCardID,
-                'class': 'showCardMetaParent',
-                'text': cardVal.parentEntity.title
-              }).appendTo('#showCardMeta_' + propertyCardID);
-            }
+
 
             $('<p />', {
               'class': 'contentError',
@@ -909,8 +909,8 @@ function showOverlayJson(mgid) {
   body.classList.toggle('noscroll');
   $(overlay).toggle();
   txtObject = JSON.stringify(card[mgid], null, 4);
-  txtObject = txtObject.replace(/&reg/g, "&amp;reg");
-  var newStr = txtObject.replace(/(<a href=")?((https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)))(">(.*)<\/a>)?/gi, function () {
+  txtObject = txtObject.replace(/&reg/g, "&"+"reg");
+  var newStr = txtObject.replace(/(<a href=")?((https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)))(">(.*)<\/a>)?/gi, function () {
     return '<a href="'+ arguments[2] + '" target="_blank">' + (arguments[7] || arguments[2]) + '</a>'
 });
   document.getElementById('cardJson').innerHTML = newStr;
