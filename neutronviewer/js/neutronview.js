@@ -553,7 +553,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               $('<p />', {
                 'id': 'showCardButtons_Video' + z + i,
                 'class': 'showCardButton',
-                'text': 'Extras',
+                'text': 'Videos',
                 'onclick': 'loadContentLink("' + videoLink + '","video","' + seriesTitle + '");'
               }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
             }

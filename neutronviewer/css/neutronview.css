@@ -328,6 +328,10 @@ p {
 	background-size: 100%;
 }
 
+.contentCard:first-of-type {
+  margin-left: 1em;
+}
+
 .CardMeta {
 	display: block;
 	width: 100%;
