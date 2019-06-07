@@ -479,8 +479,6 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
                 'html': ', NO EP#<br/>'
               }).appendTo('#showCardMeta_' + propertyCardID);
             }
-            
-
 
             $('<p />', {
               'class': 'contentError',
@@ -563,7 +561,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               $('<p />', {
                 'id': 'showCardButtons_Episode' + z + i,
                 'class': 'showCardButton',
-                'text': 'Full Episodes',
+                'text': 'Episodes',
                 'onclick': 'loadContentLink("' + episodeLink + '","episode","' + seriesTitle + '");'
               }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
             }
@@ -599,8 +597,8 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
                 'onclick': 'loadContentLink("' + LongFormLink + '","longForm","' + seriesTitle + '");'
               }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
             }
-          } else if (isPromoError === true || linksError === true) {
-            console.log("its an Series error " + propertyID);
+          } else {
+            console.log("its an Links error " + propertyID);
             $('<p />', {
               'class': 'contentError',
               'text': "Broken - No Content",
@@ -910,7 +908,6 @@ function showOverlayJson(mgid) {
   body.classList.toggle('noscroll');
   $(overlay).toggle();
   txtObject = JSON.stringify(card[mgid], null, 4);
-  console.log(txtObject);
   txtObject = txtObject.replace(/&reg/g, "&"+"reg");
   var newStr = txtObject.replace(/(<a href=")?((https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)))(">(.*)<\/a>)?/gi, function () {
     return '<a href="'+ arguments[2] + '" target="_blank">' + (arguments[7] || arguments[2]) + '</a>'
