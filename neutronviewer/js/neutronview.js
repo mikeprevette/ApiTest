@@ -371,8 +371,10 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
           $('<div />', {
             'id': propertyCardID,
             'class': 'showCard_' + cellSize,
-            'style': 'background-image: url(' + imgUrl + ')'
+            'style': 'background-image: url(' + imgUrl + ')',
+            'html' : '<img src="./img/gradient.png" width=100% height=100%>'
           }).appendTo('#module_' + containerId);
+         
 
           $('<div />', {
             'id': 'errorbox' + '_' + propertyCardID,
