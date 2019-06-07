@@ -447,7 +447,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               $('<span />', {
                 'id': 'showCardMetaParent_' + propertyCardID,
                 'class': 'showCardMetaParent',
-                'text': cardVal.parentEntity.title
+                'html': cardVal.parentEntity.title + '<br/>'
               }).appendTo('#showCardMeta_' + propertyCardID);
             }
 
