@@ -568,8 +568,8 @@ p {
   background-position: center center;
   width: 3em;
   height: 3em;
-  -webkit-filter: drop-shadow(2px 2px 2px #222);
-  filter: drop-shadow(2px 2px 2px #222);
+  -webkit-filter: drop-shadow(2px 2px 5px #222);
+  filter: drop-shadow(2px 2px 5px #222);
 }
 
 .lock {

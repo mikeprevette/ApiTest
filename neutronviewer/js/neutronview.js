@@ -292,7 +292,7 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
         $('<span />', {
           'id': 'containerApiButton_' + containerId,
           'class': 'button',
-          'text': 'PromoList API',
+          'text': 'API',
           'onclick': 'window.open("' + target + '");'
         }).appendTo('#moduleHeader_' + containerId);
         if (apiVersion != undefined ) {
