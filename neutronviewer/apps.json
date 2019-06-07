@@ -9,43 +9,43 @@
         "stage": "neutron-qa",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
-        "appVersion": "25.0.0"
+        "appVersion": "31.0.0"
       }
     },
     {
       "app": {
-        "name": "MTVPlus GB",
+        "name": "MTVPlus GB Staging",
         "brand": "mtvplus",
         "platform": "ios",
         "country": "GB",
         "stage": "neutron-qa",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
-        "appVersion": "25.0.0"
+        "appVersion": "31.0.0"
       }
     },    
     {
       "app": {
-        "name": "ParamountPlus BR",
+        "name": "ParamountPlus BR Staging",
         "brand": "paramountplus",
         "platform": "ios",
         "country": "BR",
         "stage": "neutron-qa",
         "arcSpace": "paramountplus-brazil",
         "apiVersion": "1.9",
-        "appVersion": "25.0.0"
+        "appVersion": "31.0.0"
       }
     },
     {
       "app": {
-        "name": "BETPlus US",
+        "name": "BETPlus US Staging",
         "brand": "betplus",
         "platform": "ios",
         "country": "US",
         "stage": "neutron-qa",
         "arcSpace": "bet",
         "apiVersion": "1.9",
-        "appVersion": "25.0.0"
+        "appVersion": "31.0.0"
       }
     }
   ],
@@ -65,7 +65,7 @@
     "--","mtv-plus-intl-uk-authoring","arc-ent-paramount-network-site","bet","paramountplus-brazil"
   ],
     "appVersions": [
-    "--","25.0.0"
+    "--","31.0.0"
   ],
     "apiVersions": [
     "--","1.9","2.0","2.1"
