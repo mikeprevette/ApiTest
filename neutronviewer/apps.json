@@ -14,7 +14,7 @@
     },
     {
       "app": {
-        "name": "MTVPlus GB Staging",
+        "name": "MTVPlus GB QA",
         "brand": "mtvplus",
         "platform": "ios",
         "country": "GB",
@@ -26,7 +26,7 @@
     },    
     {
       "app": {
-        "name": "ParamountPlus BR Staging",
+        "name": "ParamountPlus BR QA",
         "brand": "paramountplus",
         "platform": "ios",
         "country": "BR",
@@ -38,7 +38,7 @@
     },
     {
       "app": {
-        "name": "BETPlus US Staging",
+        "name": "BETPlus US QA",
         "brand": "betplus",
         "platform": "ios",
         "country": "US",
