@@ -441,6 +441,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               hasVideos = false;
               linksError = false;
               promoError = false;
+              playable = true;
             
             // Playable ITEM Title
            if (cardVal.hasOwnProperty("parentEntity")) {
@@ -486,7 +487,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             }).appendTo('#' + propertyCardID);
             
           } else if ((entityType === "series" || entityType === "event" || entityType === "movie" || entityType === "editorial") && cardVal.hasOwnProperty("links")) {
-
+            playable = false;
             // Series Title
             $('<span />', {
               'id': 'showCardMeta_' + propertyCardID,
@@ -597,7 +598,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
                 'onclick': 'loadContentLink("' + LongFormLink + '","longForm","' + seriesTitle + '");'
               }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
             }
-          } else {
+          } else if (playable !== true){
             console.log("its an Links error " + propertyID);
             $('<p />', {
               'class': 'contentError',
