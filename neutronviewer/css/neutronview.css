@@ -326,8 +326,6 @@ p {
   margin-bottom: 0.5em;
 	background-repeat: no-repeat;
 	background-size: 100%;
-	background-image: url("http://via.placeholder.com/480x270")
-
 }
 
 .CardMeta {
@@ -392,6 +390,7 @@ p {
   -webkit-border-radius: 0.5em;
   -moz-border-radius: 0.5em;
   border-radius: 0.5em;
+  -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
   overflow: hidden;
 /* 	margin-bottom: 3em; */
 /*	background-color: red;*/
