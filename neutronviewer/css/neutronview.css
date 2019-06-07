@@ -224,9 +224,8 @@ p {
 
 #cardJson {
 	position: fixed;
-	margin-left: 5%;
 	height: 100%;
-  width: 80%;
+  width: 90%;
 	background-color: rgba(0,0,0,0.85);
 	color: #00ff00;
 	font-size: 1em;
