@@ -332,7 +332,7 @@ p {
 	display: block;
 	width: 100%;
 	background: rgba(0,0,0,0.5);
-	font-size: 1em;
+	font-size: 0.75em;
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -344,7 +344,6 @@ p {
 
 .CardSubHeader {
 	color: white;
-	font-size: 1em;
 	position: relative;
 	margin-bottom: 0.5em;
 	font-weight: 500;
@@ -354,7 +353,6 @@ p {
 
 .contentCardTitle {
 	color: white;
-	font-size: 1em;
 	position: relative;
 	margin-bottom: 0.5em;
 	font-weight: 500;
@@ -364,7 +362,6 @@ p {
 
 .CardDescription {
 	color: white;
-	font-size: 1em;
 	position: relative;
 	margin-bottom: 0.5em;
 	font-weight: 500;

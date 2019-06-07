@@ -804,7 +804,7 @@ function fillContentModule19(contentLink) {
       $('<p />', {
         'id': 'contentCardTitle_' + link,
         'class': 'contentCardTitle',
-        'text': 'Title: ' + contentCardVal.title
+        'text': contentCardVal.title
       }).appendTo('#CardMeta_' + link);
       
       if (contentCardVal.hasOwnProperty("seasonNumber")){
@@ -819,7 +819,7 @@ function fillContentModule19(contentLink) {
       $('<p />', {
         'id': 'CardDescription_' + link,
         'class': 'CardDescription',
-        'text': 'Description: ' + contentCardVal.description
+        'text': contentCardVal.description
       }).appendTo('#CardMeta_' + link);
 
       //build the meta
