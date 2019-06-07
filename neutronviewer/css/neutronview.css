@@ -469,6 +469,7 @@ p {
 	font-size: 1em;
 	position: absolute;
 	left: 0px;
+  top: 1px;
   padding-top: 0.5em;
 	background-color: rgba(0,0,0,0.5);
 	padding-bottom: 5px;
