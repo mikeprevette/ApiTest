@@ -384,13 +384,13 @@ p {
 .showCard_L {
 	display: inline-block;
 	position: relative;
+  overflow: hidden;
 	width: 460px;
 	height: 613px;
 	margin-right: 2em;
   -webkit-border-radius: 0.5em;
   -moz-border-radius: 0.5em;
   border-radius: 0.5em;
-  overflow: hidden;
 /* 	margin-bottom: 3em; */
 /*	background-color: red;*/
 	background-repeat: no-repeat;
@@ -406,6 +406,7 @@ p {
 
 .showCard_M {
 	display: inline-block;
+  overflow: hidden;
 	position: relative;
 	width: 200px;
 	height: 330px;
@@ -413,7 +414,6 @@ p {
   -webkit-border-radius: 0.5em;
   -moz-border-radius: 0.5em;
   border-radius: 0.5em;
-  overflow: hidden;
 /* 	margin-bottom: 3em; */
 /*	background-color: red;*/
 	background-repeat: no-repeat;
@@ -445,13 +445,13 @@ p {
 .showCard_S {
 	display: inline-block;
 	position: relative;
+  overflow: hidden;
 	width: 360px;
 	height: 202px;
 	margin-right: 2em;
   -webkit-border-radius: 0.5em;
   -moz-border-radius: 0.5em;
   border-radius: 0.5em;
-  overflow: hidden;
 /* 	margin-bottom: 3em; */
 /*	background-color: red;*/
 	background-repeat: no-repeat;
