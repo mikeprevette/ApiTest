@@ -556,7 +556,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
                 'id': 'showCardButtons_Video' + z + i,
                 'class': 'showCardButton',
                 'text': 'Extras',
-                'onclick': 'loadContentLink("' + videoLink + '","clip","' + seriesTitle + '");'
+                'onclick': 'loadContentLink("' + videoLink + '","video","' + seriesTitle + '");'
               }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
             }
             if (hasEpisodes === true) {
@@ -656,17 +656,18 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
     'text': 'X',
     'onclick': '$("#container_Content").remove();'
   }).appendTo('#contentContainerHeader');
+  
+     $('<span />', {
+    'id': 'contentContainerHeaderItems',
+    'class':'containerHeaderText',
+  }).appendTo('#contentContainerHeader');
 
   $('<span />', {
     'id': 'contentContainerHeaderTitle',
     'class':'containerHeaderText',
-    'text': ' | ' + contentType +'s'
+    'text': ' ' + contentType +'s'
   }).appendTo('#contentContainerHeader');
   
-   $('<span />', {
-    'id': 'contentContainerHeaderItems',
-    'class':'containerHeaderText',
-  }).appendTo('#contentContainerHeader');
 
   $('<div />', {
     'id': 'contentContainerItems',
@@ -683,7 +684,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
   $('<div />', {
     'id': 'episodeAPI',
     'class': 'button',
-    'text': 'OPEN API',
+    'text': 'API',
     'onclick': 'window.open("' + contentLink + '");'
   }).appendTo('#contentContainerHeader');
 
@@ -699,7 +700,7 @@ function fillContentModule19(contentLink) {
   console.log("fillContentModule19");
   contentLink =  corsProxy + contentLink;
   $.getJSON(contentLink, function(playplexContent) {
-    $('#contentContainerHeaderItems').text(" | total items: " + playplexContent.metadata.pagination.totalItems);
+    $('#contentContainerHeaderItems').text('| ' + playplexContent.metadata.pagination.totalItems);
     //console.log("total items: " + playplexContent.metadata.pagination.totalItems);
     $.each(playplexContent.data.items, function(i, contentCardVal) {
       card[contentCardVal.mgid];

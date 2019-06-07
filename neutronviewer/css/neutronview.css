@@ -172,6 +172,7 @@ p {
 } */
 
 #contentClose {
+  font-size: 2em;
   color: red;
 }
 
@@ -406,7 +407,7 @@ p {
 	position: relative;
 	width: 200px;
 	height: 330px;
-	margin-right: 2em;
+	margin-right: 1em;
   -webkit-border-radius: 0.5em;
   -moz-border-radius: 0.5em;
   border-radius: 0.5em;
