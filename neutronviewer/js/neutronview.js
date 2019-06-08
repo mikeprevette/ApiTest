@@ -705,7 +705,7 @@ function fillContentModule19(contentLink) {
   console.log("fillContentModule19");
   contentLink =  corsProxy + contentLink;
   $.getJSON(contentLink, function(playplexContent) {
-    $('#contentContainerHeaderItems').text('| ' + playplexContent.metadata.pagination.totalItems);
+    $('#contentContainerHeaderItems').text(' ' + playplexContent.metadata.pagination.totalItems);
     //console.log("total items: " + playplexContent.metadata.pagination.totalItems);
     $.each(playplexContent.data.items, function(i, contentCardVal) {
       card[contentCardVal.mgid];
