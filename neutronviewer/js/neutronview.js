@@ -672,6 +672,12 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
     'id': 'contentContainerItems',
     'class': 'container'
   }).appendTo('#container_Content');
+  
+  $('<div />', {
+    'id': 'contentLoadingCard',
+    'class': 'loadingCard',
+    'style':'display:none;'
+  }).appendTo('#contentContainerItems');
 
   $('<div />', {
     'id': 'CSV',
@@ -695,7 +701,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
 //####################################----Fill the Content Module with items (1.9 api)----####################################
 
 function fillContentModule19(contentLink) {
-  $('#loadingOverlay').show();
+  $(contentLoadingCard).show();
   console.log("fillContentModule19");
   contentLink =  corsProxy + contentLink;
   $.getJSON(contentLink, function(playplexContent) {
@@ -761,7 +767,7 @@ function fillContentModule19(contentLink) {
         aspectError: aspectErrorMessage,
         imageError: imgErrorMessage
       });
-
+      
       $('<div />', {
         'id': link,
         'class': 'contentCard',
@@ -860,8 +866,8 @@ function fillContentModule19(contentLink) {
       console.log("Page:" + page);
       fillContentModule19(contentLink); //run it all over again
     }
+    $(contentLoadingCard).hide();
   });
-  $('#loadingOverlay').hide();
 }
 
 //####################################----Make a UUID----####################################

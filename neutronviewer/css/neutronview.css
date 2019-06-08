@@ -313,6 +313,20 @@ p {
 /*	border: solid;*/
 }
 
+.loadingCard {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+		margin: -25px 0 0 -25px;
+		position: relative;
+ 		top: 50%;
+  	left: 50%;
+    animation: spin 2s linear infinite;
+}
+
+
 .contentCard {
 	display: inline-block;
 	position: relative;
@@ -497,7 +511,7 @@ p {
 	left: 0px;
   top: 0px;
   padding-top: 0.5em;
-	background-color: rgba(0,0,0,0.5);
+	background-color: rgba(0,0,0,0.25);
 	padding-bottom: 5px;
 }
 
