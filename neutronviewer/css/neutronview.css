@@ -321,24 +321,22 @@ p {
 }
 
 .loadingCard {
-/*     border: 16px solid #f3f3f3; 
-    border-top: 16px solid #3498db;
-    border-radius: 50%; */
     -webkit-border-radius: 0.5em;
     -moz-border-radius: 0.5em;
     border-radius: 0.5em;
      overflow: hidden;
 	  width: 480px;
 	  height: 339px;
-    text-align: middle;
-  vertical-align: center;
-/* 		margin: -25px 0 0 -25px; */
+    text-align: center;
 		position: relative;
-/*  		top: 50%;
-  	left: 50%;
-    z-index:-999; */
-    background-color:#333;
-/*     animation: spin 2s linear infinite; */
+    background-color: #b2b2b2;
+    margin-left: 1em;
+}
+
+.loadingCard span{
+  margin-top: 2em;
+  font-size: 3em;
+  display: block;
 }
 
 
@@ -356,6 +354,7 @@ p {
   margin-bottom: 0.5em;
 	background-repeat: no-repeat;
 	background-size: 100%;
+  background-color: #b2b2b2;
 }
 
 .CardMeta {
@@ -672,7 +671,7 @@ p {
     width: 80px;
     height: 80px;
 		margin: -60px 0 0 -60px;
-		position: absolute;
+		position: relative;
  		top: 50%;
   	left: 50%;
     animation: spin 2s linear infinite;

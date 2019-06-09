@@ -285,7 +285,7 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
         $('<span />', {
           'id': 'containerHeaderText_' + containerId,
           'class': 'containerHeaderText',
-          'text': modules.module.title,
+          'html': '<span title="API">'+ modules.module.title + '</span>',
           'onclick': 'window.open("' + target + '");'
         }).appendTo('#moduleHeader_' + containerId);
 
@@ -671,7 +671,7 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
     'id': 'contentLoadingCard',
     'class': 'loadingCard',
     'style':'display:none;',
-    'text': 'loading'
+    'html': '<span>loading</span><br/><div class="loader"></div>'
   }).appendTo('#contentContainerItems');
 
   $('<div />', {
