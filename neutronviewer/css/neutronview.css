@@ -161,6 +161,12 @@ p {
   font-size: 2em;
 }
 
+.containerHeaderText:hover {
+  text-decoration: none;
+  cursor: pointer;
+  color: #fff;
+}
+
 .containerHeaderText:first-of-type {
   margin-left: 0.5em;
 }

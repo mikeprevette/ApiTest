@@ -285,16 +285,10 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
         $('<span />', {
           'id': 'containerHeaderText_' + containerId,
           'class': 'containerHeaderText',
-          'text': modules.module.title
-        }).appendTo('#moduleHeader_' + containerId);
-
-        //add a Link to the container Header
-        $('<span />', {
-          'id': 'containerApiButton_' + containerId,
-          'class': 'button',
-          'text': 'API',
+          'text': modules.module.title,
           'onclick': 'window.open("' + target + '");'
         }).appendTo('#moduleHeader_' + containerId);
+
         if (apiVersion != undefined ) {
           getModule19(target, screenID, containerId, z, aspectRatio, cellSize);
         }
