@@ -358,6 +358,7 @@ p {
 	background-repeat: no-repeat;
 	background-size: 100%;
   background-color: #b2b2b2;
+  box-shadow:1px 1px 5px grey; 
 }
 
 .CardMeta {
