@@ -802,26 +802,49 @@ function fillContentModule19(contentLink) {
 
       //build the meta objects
 
-      $('<p />', {
+      $('<span />', {
         'id': 'contentCardTitle_' + link,
         'class': 'contentCardTitle',
-        'text': contentCardVal.title
+        'html': contentCardVal.title + '<br/>'
       }).appendTo('#CardMeta_' + link);
       
       if (contentCardVal.hasOwnProperty("seasonNumber")){
-      $('<p />', {
+      $('<span />', {
         'id': 'CardSubHeader_' + link,
         'class': 'CardSubHeader',
-        'text': 'Season ' + contentCardVal.seasonNumber + ', Ep ' + contentCardVal.episodeAiringOrder
+        'html': 'Season ' + contentCardVal.seasonNumber + ','
+      }).appendTo('#CardMeta_' + link);
+    } else {
+      $('<span />', {
+        'id': 'CardSubHeader_' + link,
+        'class': 'CardSubHeader',
+        'html': 'Season undefined, ',
+        'style': 'color:red;'
+      }).appendTo('#CardMeta_' + link);
+    }
+      
+    if (contentCardVal.hasOwnProperty("episodeAiringOrder")){
+      $('<span />', {
+        'id': 'CardSubHeader_' + link,
+        'class': 'CardSubHeader',
+        'html': ' Ep ' + contentCardVal.episodeAiringOrder + '<br/>'
+      }).appendTo('#CardMeta_' + link);
+    } else {
+      $('<span />', {
+        'id': 'CardSubHeader_' + link,
+        'class': 'CardSubHeader',
+        'html': ' Ep undefined <br/>',
+        'style': 'color:red;'
       }).appendTo('#CardMeta_' + link);
     }
 
-      
-      $('<p />', {
+    $('<span />', {
         'id': 'CardDescription_' + link,
         'class': 'CardDescription',
         'text': contentCardVal.description
       }).appendTo('#CardMeta_' + link);
+      
+      
 
       //build the meta
       $('<div />', {

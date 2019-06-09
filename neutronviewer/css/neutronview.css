@@ -284,12 +284,12 @@ p {
 	white-space: normal;
 	font-size: 1em;
 	color: red;
-	background-color: rgba(0,0,0,0.5);
+	background-color: rgba(0,0,0,0.75);
 }
 
 .errorbox {
 	position: absolute;
-	top: 3em;
+	top: 8em;
 	width: 100%;
 }
 
@@ -360,9 +360,8 @@ p {
 .CardMeta {
 	display: block;
 	width: 100%;
-  padding-left: 0.5em;
+  height: 4.3em;
 	background: rgba(0,0,0,0.5);
-	font-size: 0.75em;
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -370,8 +369,8 @@ p {
 
 .CardSubHeader {
 	color: white;
+  margin-left: 0.5em;
 	position: relative;
-	margin-bottom: 0.5em;
 	font-weight: 500;
 	text-overflow: ellipsis;
 	max-width: 600px;
@@ -379,8 +378,8 @@ p {
 
 .contentCardTitle {
 	color: white;
+  margin-left: 0.5em;
 	position: relative;
-	margin-bottom: 0.5em;
 	font-weight: 500;
 	text-overflow: ellipsis;
 	max-width: 600px;
@@ -388,8 +387,8 @@ p {
 
 .CardDescription {
 	color: white;
+  margin-left: 0.5em;
 	position: relative;
-	margin-bottom: 0.5em;
 	font-weight: 500;
 	text-overflow: wrap;
 	max-width: 600px;
