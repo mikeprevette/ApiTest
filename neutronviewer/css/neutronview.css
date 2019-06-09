@@ -333,12 +333,15 @@ p {
     margin-left: 1em;
 }
 
-.loadingCard span{
+.loadingCard span {
   margin-top: 2em;
   font-size: 3em;
   display: block;
 }
 
+.loadingCard .loader {
+  top: 20%;
+}
 
 .contentCard {
 	display: inline-block;
