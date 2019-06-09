@@ -140,6 +140,7 @@ p {
 	width: 100%;
   min-width: 400px;
 	height: 2em;
+  overflow: hidden;
 /* 	margin-top: 1em; */
   margin-bottom: 1em;
 	padding: 5px;
@@ -323,6 +324,8 @@ p {
      overflow: hidden;
 	  width: 480px;
 	  height: 339px;
+    text-align: middle;
+  vertical-align: center;
 /* 		margin: -25px 0 0 -25px; */
 		position: relative;
 /*  		top: 50%;
@@ -342,14 +345,11 @@ p {
   -moz-border-radius: 0.5em;
   border-radius: 0.5em;
   overflow: hidden;
-	margin-right: 2em;
+  margin-left: 1em;
+	margin-right: 1em;
   margin-bottom: 0.5em;
 	background-repeat: no-repeat;
 	background-size: 100%;
-}
-
-.contentCard:first {
-  margin-left: 1em;
 }
 
 .CardMeta {

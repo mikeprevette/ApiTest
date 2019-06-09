@@ -676,7 +676,8 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
   $('<div />', {
     'id': 'contentLoadingCard',
     'class': 'loadingCard',
-    'style':'display:none;'
+    'style':'display:none;',
+    'text': 'loading'
   }).appendTo('#contentContainerItems');
 
   $('<div />', {
