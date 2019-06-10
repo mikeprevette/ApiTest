@@ -7,9 +7,9 @@ const neutronQARootURL = 'http://qa-neutron-api.viacom.tech/feeds/networkapp/int
 const neutronLiveRootURL = 'http://neutron-api.viacom.tech/feeds/networkapp/intl';
 //const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 const corsProxy = 'https://viamprevette.herokuapp.com/';
-const mtvGbDeeplinkRoot = 'mtvplayuk://';
-const betUSDeeplinkRoot = 'betplus://';
-const paramountBRDeeplinkRoot = 'paramountplus://';
+const mtvPlusDeeplinkRoot = 'mtvplayuk://';
+const betPlusDeeplinkRoot = 'betplus://';
+const paramountPlusDeeplinkRoot = 'paramountplus://';
 
 var isPromoError = false;
 var isImgError = false;
@@ -1030,11 +1030,11 @@ function makeDeeplink(propertyMgid) {
 
 //   var propertyID = uuidMaker(propertyMgid);
   if (brand == "mtvplus") {
-    deeplink = mtvGbDeeplinkRoot + path + propertyMgid;
+    deeplink = mtvPlusDeeplinkRoot + path + propertyMgid;
   } else if (brand == "paramountplus"){
-    deeplink = paramountBRDeeplinkRoot + path + propertyMgid;
+    deeplink = paramountPlusDeeplinkRoot + path + propertyMgid;
   } else if (brand == "betplus") {
-    deeplink = betUSDeeplinkRoot + path + propertyMgid;       
+    deeplink = betPlusDeeplinkRoot + path + propertyMgid;       
   } else {
     deeplink = "NULL";
   }
