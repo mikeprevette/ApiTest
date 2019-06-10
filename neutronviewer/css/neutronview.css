@@ -70,6 +70,7 @@ body {
   display: block;
   width: 35%;
   margin-left: 2em;
+  display: none;
 }
 
 #welcome p {
@@ -90,6 +91,7 @@ body {
 
 #mainApiButton {
 	margin: 0.5em;
+  display: none;
 }
 
 p {
@@ -616,7 +618,8 @@ p {
 }
 
 .brandLogo {
-  display:block;
+  display: block;
+  margin-bottom: 0.5em;
 	background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: center center;

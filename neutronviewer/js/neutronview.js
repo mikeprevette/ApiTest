@@ -25,6 +25,7 @@ var playPlexMainConfig = Object.create(null);
 
 function makeTheScreen(mode) {
   console.log("makeTheScreen");
+  $('#welcome').show();
   // 	$("#containers").load(function() {
   //      $('#loadingOverlay').hide();
   // 	});
@@ -93,6 +94,7 @@ function makeTheScreen(mode) {
 
   //awefull logic to check to see if a querry param is already added, if there is a ? then it assumas all are there. BAD
   if (urlString.indexOf('?') !== -1) {
+    $('#welcome').hide();
     stringToParams(getParameterByName("brand") + "," + getParameterByName("platform") + "," + getParameterByName("region") + "," + getParameterByName("stage") + "," + getParameterByName("arcSpace") + "," + getParameterByName("apiVersion") + "," + getParameterByName("appVersion"));
     //getPlayPlexConfig();
   } else {
@@ -184,6 +186,7 @@ function getPlayPlexConfig() {
 
 
 function loadPlayPlexConfig(){
+      $('#mainApiButton').show();
       $('#brandScreenSelector').empty();
   // if enabled brands is longer than 1
       if (playPlexMainConfig.data.appConfiguration.enabledBrands.length > 1) {
