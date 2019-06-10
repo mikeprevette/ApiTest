@@ -653,11 +653,11 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
     'onclick': '$("#container_Content").remove();'
   }).appendTo('#contentContainerHeader');
   
-     $('<span />', {
+  $('<span />', {
     'id': 'contentContainerHeaderItems',
     'class':'containerHeaderText',
   }).appendTo('#contentContainerHeader');
-
+  
   $('<span />', {
     'id': 'contentContainerHeaderTitle',
     'class':'containerHeaderText',
