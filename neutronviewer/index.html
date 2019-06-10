@@ -23,8 +23,8 @@
 				if (firstRun === true) {
 					makeTheScreen("live");
 				}
-				$( window ).resize(function() {
-				});
+// 				$( window ).resize(function() {
+// 				});
 			});
 	</script>
 </head>
@@ -45,10 +45,9 @@
       </span>
   </form>
 </div>
-  
 <div id="top">
 		<form id="form" class="formClass"> 
-			<select id="quickSelector" onChange="stringToParams(this.value);"></select>
+			<select id="quickSelector" onChange="stringToParams(this.value);$('#welcome').hide();"></select>
       <span id="multiBrandSelector">
       Brand: <select id="brandScreenSelector" onChange="brandScreenSelectorFunction(this.value);"></select>
       </span>
@@ -56,7 +55,15 @@
   </form>
 	<div id="mainApiButton" class="button" onclick="openMainApi();">Main Api</div>
 </div>
-<!-- <div class="overlay"><h1>LOADING</h1></div> -->
+<div id="welcome">
+  <h1>Hello</h1>
+  <p>
+    This tool will help you preview the content schedluled inside your application. It will help you with things like Zone programing, finding issues with content meta,<br/> and quickly identifying issues with creative.
+  </p>
+  <p>
+    Please select an App from the drop down above to get started.
+  </p>
+</div>
 <div id="containers"></div>
 </body>
 </html>

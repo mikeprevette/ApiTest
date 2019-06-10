@@ -66,6 +66,17 @@ body {
   z-index: 998;
 }
 
+#welcome {
+  display: block;
+  width: 35%;
+  margin-left: 2em;
+}
+
+#welcome p {
+  white-space: normal;
+  margin-top: 1em;
+}
+
 .headerBrandLogo {
   vertical-align: middle;
   display: inline-block;
