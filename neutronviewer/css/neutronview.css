@@ -637,8 +637,8 @@ p {
 	background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center center;
-  width: 2em;
-  height: 2em;
+  width: 1.8em;
+  height: 1.8em;
   -webkit-filter: drop-shadow(2px 2px 5px #222);
   filter: drop-shadow(2px 2px 5px #222);
 }

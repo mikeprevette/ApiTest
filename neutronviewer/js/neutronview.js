@@ -451,7 +451,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
                       $('<div />', {
                       'id': 'showCardRating_' + propertyCardID,
                       'class': 'rating',
-                      'style': 'margin-left:2em;margin-top:2em;',
+                      'style': 'margin-left:0.5em;',
                       'text': cardVal.contentRating.ratings[c].typeName
                     }).appendTo('#' + propertyCardID);
                     break;
