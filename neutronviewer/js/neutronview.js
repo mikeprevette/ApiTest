@@ -435,7 +435,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             }).appendTo('#showCardMeta_' + propertyCardID);
           }
           
-          if (cardVal.hasOwnProperty("contentRating") && cardVal.contentRating.ratings.length > 0) {
+          if (cardVal.hasOwnProperty("contentRating") && cardVal.contentRating != null) {
               //console.log('defined rating' + appRating);
               for (let c = 0, l = cardVal.contentRating.ratings.length; c < l; c++) {
                 if (cardVal.contentRating.ratings[c].contentType === appRating) {
@@ -445,6 +445,14 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
                       'id': 'showCardRating_' + propertyCardID,
                       'class': 'rating',
                       'style': 'background-image: url(' + cardVal.contentRating.ratings[c].images[0].url + ')'
+                    }).appendTo('#' + propertyCardID);
+                    break;
+                 } else {
+                      $('<div />', {
+                      'id': 'showCardRating_' + propertyCardID,
+                      'class': 'rating',
+                      'style': 'margin-left:2em;margin-top:2em;',
+                      'text': cardVal.contentRating.ratings[c].typeName
                     }).appendTo('#' + propertyCardID);
                     break;
                  }
