@@ -8,7 +8,7 @@
         "country": "GB",
         "stage": "neutron-qa",
         "arcSpace": "mtv-plus-intl-uk-authoring",
-        "apiVersion": "1.9",
+        "apiVersion": "2.1",
         "appVersion": "31.0.0",
         "appRating": "Standard:RatingANCINE"
       }
@@ -21,7 +21,7 @@
         "country": "GB",
         "stage": "neutron-qa",
         "arcSpace": "mtv-plus-intl-uk-authoring",
-        "apiVersion": "1.9",
+        "apiVersion": "2.1",
         "appVersion": "31.0.0",
         "appRating": "Standard:RatingANCINE"
       }
@@ -47,7 +47,7 @@
         "country": "US",
         "stage": "neutron-qa",
         "arcSpace": "bet",
-        "apiVersion": "1.9",
+        "apiVersion": "2.1",
         "appVersion": "31.0.0",
         "appRating": "Standard:RatingTVPG"
       }

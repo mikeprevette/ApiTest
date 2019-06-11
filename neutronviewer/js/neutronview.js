@@ -435,7 +435,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             }).appendTo('#showCardMeta_' + propertyCardID);
           }
           
-          if (cardVal.hasOwnProperty("contentRating") && cardVal.contentRating.hasOwnProperty('ratings[]')) {
+          if (cardVal.hasOwnProperty("contentRating") && cardVal.contentRating.ratings.length > 0) {
               //console.log('defined rating' + appRating);
               for (let c = 0, l = cardVal.contentRating.ratings.length; c < l; c++) {
                 if (cardVal.contentRating.ratings[c].contentType === appRating) {
