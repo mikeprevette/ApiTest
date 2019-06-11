@@ -14,7 +14,7 @@ const paramountPlusDeeplinkRoot = 'paramountplus://';
 var isPromoError = false;
 var isImgError = false;
 var firstRun = true;
-var activeSeries, brand, platform, region, stage, isisURL, params, appVersion, apiVersion;
+var activeSeries, brand, platform, region, stage, isisURL, params, appVersion, apiVersion, appRating;
 var page = 0;
 var cardLinks = [];
 var card = Object.create(null);
@@ -48,7 +48,7 @@ function makeTheScreen(mode) {
     $.each(appsList.apps, function(z, apps) {
       $('#quickSelector')
         .append($("<option></option>")
-          .attr("value", apps.app.brand + ',' + apps.app.platform + ',' + apps.app.country + ',' + apps.app.stage + ',' + apps.app.arcSpace + ',' + apps.app.apiVersion + ',' + apps.app.appVersion)
+          .attr("value", apps.app.brand + ',' + apps.app.platform + ',' + apps.app.country + ',' + apps.app.stage + ',' + apps.app.arcSpace + ',' + apps.app.apiVersion + ',' + apps.app.appVersion + ',' + apps.app.appRating)
           .text(apps.app.name));
     })
     $.each(appsList.brands.sort(), function(z, brands) {
@@ -95,7 +95,7 @@ function makeTheScreen(mode) {
   //awefull logic to check to see if a querry param is already added, if there is a ? then it assumas all are there. BAD
   if (urlString.indexOf('?') !== -1) {
     $('#welcome').hide();
-    stringToParams(getParameterByName("brand") + "," + getParameterByName("platform") + "," + getParameterByName("region") + "," + getParameterByName("stage") + "," + getParameterByName("arcSpace") + "," + getParameterByName("apiVersion") + "," + getParameterByName("appVersion"));
+    stringToParams(getParameterByName("brand") + "," + getParameterByName("platform") + "," + getParameterByName("region") + "," + getParameterByName("stage") + "," + getParameterByName("arcSpace") + "," + getParameterByName("apiVersion") + "," + getParameterByName("appVersion") + "," + getParameterByName("appRating"));
     //getPlayPlexConfig();
   } else {
     $('#loadingOverlay').hide();
@@ -131,6 +131,9 @@ function stringToParams(buildString) {
 
   appVersion = splits[6];
   console.log(appVersion);
+  
+  appRating = splits[7];
+  console.log("app Rating is" + appRating);
 
   putCustomValues();
   getPlayPlexConfig();
@@ -307,7 +310,7 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
 
 //####################################----Build The Modules (1.9 api)----####################################
 function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize) {
-  console.log("getModule19 - USING 1.9 LOGIC")
+  //console.log("getModule19 - USING 1.9 LOGIC")
   var screenUUID = uuidMaker(screenID);
   $.ajax({
     url: corsProxy + moduleURL,
@@ -431,6 +434,30 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               'style': 'background-image: url(' + cardVal.brandImageUrl + ')'
             }).appendTo('#showCardMeta_' + propertyCardID);
           }
+          
+          if (cardVal.hasOwnProperty("contentRating") && cardVal.contentRating.ratings.length > 0) {
+              //console.log('defined rating' + appRating);
+              for (let c = 0, l = cardVal.contentRating.ratings.length; c < l; c++) {
+                if (cardVal.contentRating.ratings[c].contentType === appRating) {
+                  //console.log('found rating ' + cardVal.contentRating.ratings[c].contentType);
+                  if (cardVal.contentRating.ratings[c].images.length > 0) {
+                    $('<div />', {
+                      'id': 'showCardRating_' + propertyCardID,
+                      'class': 'rating',
+                      'style': 'background-image: url(' + cardVal.contentRating.ratings[c].images[0].url + ')'
+                    }).appendTo('#' + propertyCardID);
+                    break;
+                 }
+                } else {
+                  // Fail at finding an Matched rating
+                  console.log('No Matching rating');
+                }
+              }
+            } else {
+            // Fail finding Ratings
+             console.log('No ratings on the item');
+            }
+            
 
           //Content Type Specific Logic
           if (entityType === "episode" || entityType === "video") {
@@ -460,7 +487,8 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               $('<span />', {
                 'id': 'showCardMetaTitle_' + propertyCardID,
                 'class': 'showCardMetaTitle',
-                'text': 'NO SEASON# '
+                'text': 'NO SEASON# ',
+                'style': 'color:red'
               }).appendTo('#showCardMeta_' + propertyCardID);
             }
 
@@ -474,9 +502,12 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               $('<span />', {
                 'id': 'showCardMetaTitle_' + propertyCardID,
                 'class': 'showCardMetaTitle',
-                'html': ', NO EP#<br/>'
+                'html': ' NO EP#<br/>',
+                'style': 'color:red'
               }).appendTo('#showCardMeta_' + propertyCardID);
             }
+            
+           
 
             $('<p />', {
               'class': 'contentError',
@@ -492,7 +523,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               'text': cardVal.title
             }).appendTo('#showCardMeta_' + propertyCardID);
 
-            console.log("I'm checking links");
+            //console.log("I'm checking links");
             if (cardVal.links.hasOwnProperty("episode")) {
               //console.log(cardVal.links.episode);
               episodeLink = cardVal.links.episode;
@@ -983,6 +1014,7 @@ function putCustomValues() {
   addURLParam("arcSpace", arcSpace);
   addURLParam("apiVersion", apiVersion);
   addURLParam("appVersion", appVersion);
+  addURLParam("appRating", appRating);
   document.getElementById('brands').value = brand;
   document.getElementById('countries').value = region;
   document.getElementById('stages').value = stage;
@@ -1000,6 +1032,7 @@ function getCustomParamValues() {
   platform = getParameterByName("platform");
   arcSpace = getParameterByName("arcSpace");
   apiVersion = getParameterByName("apiVersion");
+  appRating = getParameterByName("appRating");
   // 	appVersion = getParameterByName("appVersion");
 }
 

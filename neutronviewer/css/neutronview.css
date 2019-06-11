@@ -628,6 +628,21 @@ p {
   filter: drop-shadow(2px 2px 5px #222);
 }
 
+.rating {
+  display: block;
+  position: absolute;
+  top: 0em;
+  left: 0em;
+  margin-bottom: 0.5em;
+	background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 2em;
+  height: 2em;
+  -webkit-filter: drop-shadow(2px 2px 5px #222);
+  filter: drop-shadow(2px 2px 5px #222);
+}
+
 .lock {
 	display:block;
 	background-image: url(../img/black_lock.png);

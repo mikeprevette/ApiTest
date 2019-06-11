@@ -9,7 +9,8 @@
         "stage": "neutron-qa",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
-        "appVersion": "31.0.0"
+        "appVersion": "31.0.0",
+        "appRating": "Standard:RatingANCINE"
       }
     },
     {
@@ -21,7 +22,8 @@
         "stage": "neutron-qa",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
-        "appVersion": "31.0.0"
+        "appVersion": "31.0.0",
+        "appRating": "Standard:RatingANCINE"
       }
     },    
     {
@@ -32,8 +34,9 @@
         "country": "BR",
         "stage": "neutron-qa",
         "arcSpace": "paramountplus-brazil",
-        "apiVersion": "1.9",
-        "appVersion": "31.0.0"
+        "apiVersion": "2.1",
+        "appVersion": "31.0.0",
+        "appRating": "Standard:RatingANCINE"
       }
     },
     {
@@ -45,7 +48,8 @@
         "stage": "neutron-qa",
         "arcSpace": "bet",
         "apiVersion": "1.9",
-        "appVersion": "31.0.0"
+        "appVersion": "31.0.0",
+        "appRating": "Standard:RatingANCINE"
       }
     }
   ],
@@ -69,5 +73,8 @@
   ],
     "apiVersions": [
     "--","1.9","2.0","2.1"
+  ],
+  "appRatings": [
+   "--","Standard:RatingANCINE"
   ]
 }
