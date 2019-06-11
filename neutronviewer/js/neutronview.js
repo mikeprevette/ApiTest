@@ -445,7 +445,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
                       'id': 'showCardRating_' + propertyCardID,
                       'class': 'rating',
                       'style': 'background-image: url(' + cardVal.contentRating.ratings[c].images[0].url + ')'
-                    }).appendTo('#' + propertyCardID);
+                    }).appendTo('#showCardControls_' + propertyCardID);
                     break;
                  } else {
                       $('<div />', {
@@ -453,7 +453,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
                       'class': 'rating',
                       'style': 'margin-left:0.5em;',
                       'text': cardVal.contentRating.ratings[c].typeName
-                    }).appendTo('#' + propertyCardID);
+                    }).appendTo('#showCardControls_' + propertyCardID);
                     break;
                  }
                 } else {
