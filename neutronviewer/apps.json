@@ -10,7 +10,7 @@
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "2.1",
         "appVersion": "31.0.0",
-        "appRating": "Standard:RatingANCINE"
+        "appRating": "OFCOM"
       }
     },
     {
@@ -23,9 +23,9 @@
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "2.1",
         "appVersion": "31.0.0",
-        "appRating": "Standard:RatingOFCOM"
+        "appRating": "OFCOM"
       }
-    },    
+    },
     {
       "app": {
         "name": "Paramount+ BR QA",
@@ -36,7 +36,7 @@
         "arcSpace": "paramountplus-brazil",
         "apiVersion": "2.1",
         "appVersion": "31.0.0",
-        "appRating": "Standard:RatingANCINE"
+        "appRating": "ANCINE"
       }
     },
     {
@@ -49,7 +49,7 @@
         "arcSpace": "bet",
         "apiVersion": "2.1",
         "appVersion": "31.0.0",
-        "appRating": "Standard:RatingTVPG"
+        "appRating": "TVPG"
       }
     }
   ],
@@ -75,6 +75,6 @@
     "--","1.9","2.0","2.1"
   ],
   "appRatings": [
-   "--","Standard:RatingANCINE"
+   "--","ANCINE","OFCOM","TVPG"
   ]
 }

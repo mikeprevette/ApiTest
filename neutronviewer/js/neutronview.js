@@ -437,8 +437,9 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
           
           if (cardVal.hasOwnProperty("contentRating") && cardVal.contentRating != null) {
               //console.log('defined rating' + appRating);
+//               appRating.concat("Standard:Rating",appRating);
               for (let c = 0, l = cardVal.contentRating.ratings.length; c < l; c++) {
-                if (cardVal.contentRating.ratings[c].contentType === appRating) {
+                if (cardVal.contentRating.ratings[c].contentType.indexOf(appRating) !== -1) {
                   //console.log('found rating ' + cardVal.contentRating.ratings[c].contentType);
                   if (cardVal.contentRating.ratings[c].images.length > 0) {
                     $('<div />', {
