@@ -434,6 +434,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               'style': 'background-image: url(' + cardVal.brandImageUrl + ')'
             }).appendTo('#showCardMeta_' + propertyCardID);
           }
+// ----------------------------------  Check for a Rating -----------------------------------
           
           if (cardVal.hasOwnProperty("contentRating") && cardVal.contentRating != null) {
               //console.log('defined rating' + appRating);
@@ -455,7 +456,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
                       'style': 'margin-left:0.5em;',
                       'text': cardVal.contentRating.ratings[c].typeName
                     }).appendTo('#showCardControls_' + propertyCardID);
-                    break;
+                   break;
                  }
                 } else {
                   // Fail at finding an Matched rating
@@ -818,12 +819,6 @@ function fillContentModule19(contentLink) {
       }).appendTo('#' + link);
 
       // put the lock on the card	
-      if (tve === "true") {
-        $('<div />', {
-          'id': 'lock_' + link,
-          'class': 'lock',
-        }).appendTo('#' + link);
-      }
       if (aspectError === "true") {
         $('<p />', {
           'class': 'error',
@@ -916,8 +911,45 @@ function fillContentModule19(contentLink) {
         'class': 'button',
         'onclick': 'window.open("' + deeplink + '");'
       }).appendTo('#contentCardControls_' + link);
-
-
+      
+      
+      if (contentCardVal.hasOwnProperty("contentRating") && contentCardVal.contentRating != null) {
+              //console.log('defined rating' + appRating);
+//               appRating.concat("Standard:Rating",appRating);
+              for (let c = 0, l = contentCardVal.contentRating.ratings.length; c < l; c++) {
+                if (contentCardVal.contentRating.ratings[c].contentType.indexOf(appRating) !== -1) {
+                  //console.log('found rating ' + cardVal.contentRating.ratings[c].contentType);
+                  if (contentCardVal.contentRating.ratings[c].images.length > 0) {
+                    $('<div />', {
+                      'id': 'contentCardRating_' + link,
+                      'class': 'rating',
+                      'style': 'background-image: url(' + contentCardVal.contentRating.ratings[c].images[0].url + ')'
+                    }).appendTo('#contentCardControls_' + link);
+                    break;
+                 } else {
+                      $('<div />', {
+                      'id': 'contentCardRating_' + link,
+                      'class': 'rating',
+                      'style': 'margin-left:0.5em;',
+                      'text': contentCardVal.contentRating.ratings[c].typeName
+                    }).appendTo('#contentCardControls_' + link);
+                   break;
+                 }
+                } else {
+                  // Fail at finding an Matched rating
+                  console.log('No Matching rating');
+                }
+              }
+            } else {
+            // Fail finding Ratings
+             console.log('No ratings on the item');
+      }
+     if (tve === "true") {
+        $('<div />', {
+          'id': 'lock_' + link,
+          'class': 'lock',
+        }).appendTo('#contentCardControls_' + link);
+      }
 
     });
 
