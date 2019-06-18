@@ -710,8 +710,8 @@ function loadContentLink(contentLink, contentType, seriesTitle, seasonLink) {
     'class':'containerHeaderText',
     'text': ' ' + contentType +'s'
   }).appendTo('#contentContainerHeader');
-  
-  if (seasonLink !== "") {
+
+  if (seasonLink !== undefined) {
     //console.log(seasonLink);
     // Add season UI
     $('<form />', {
