@@ -718,7 +718,7 @@ function loadContentLink(contentLink, contentType, seriesTitle, seasonLink) {
       'id': 'seasonForm',
       'class': 'TBD',
       'text': 'Seasons:',
-      'html': '<select id="seasonsSelector" onChange="cleanHouse(contentContainerItems);fillContentModule19(this.value);"></select>'
+      'html': '<select id="seasonsSelector" onChange="cleanHouse(contentContainerItems);fillContentModule19(this.value);"><option value="' + contentLink + '">All</option></select>'
     }).appendTo('#contentContainerHeader');
     // ajax the list of seasons
     // inject seasons to UI
@@ -756,10 +756,6 @@ function getSeasons(seasonLink, contentType, contentLink) {
   console.log("Getting Seasons");
   seasonLink = corsProxy + seasonLink;
   $.getJSON(seasonLink, function(seasons) {
-    $('#seasonsSelector')
-      .append($("<option></option>")
-        .attr("value", contentLink)
-        .text("ALL"));
     $.each(seasons.data.items, function(i, seasonVal) {
       //console.log ("SEASON " + i);
       if (contentType == "episode") {
