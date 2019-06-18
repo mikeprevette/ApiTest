@@ -6,7 +6,7 @@
         "brand": "mtvplus",
         "platform": "ios",
         "country": "GB",
-        "stage": "neutron-qa",
+        "stage": "qa",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "2.1",
         "appVersion": "31.0.0",
@@ -19,7 +19,7 @@
         "brand": "mtvplus",
         "platform": "ios",
         "country": "GB",
-        "stage": "neutron-qa",
+        "stage": "qa",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "2.1",
         "appVersion": "31.0.0",
@@ -32,9 +32,22 @@
         "brand": "paramountplus",
         "platform": "ios",
         "country": "BR",
-        "stage": "neutron-qa",
+        "stage": "qa",
         "arcSpace": "paramountplus-brazil",
         "apiVersion": "2.1",
+        "appVersion": "31.0.0",
+        "appRating": "ANCINE"
+      }
+    },
+    {
+      "app": {
+        "name": "Paramount+ BR LIVE",
+        "brand": "paramountplus",
+        "platform": "ios",
+        "country": "BR",
+        "stage": "live",
+        "arcSpace": "paramountplus-brazil",
+        "apiVersion": "1.9",
         "appVersion": "31.0.0",
         "appRating": "ANCINE"
       }
@@ -45,7 +58,7 @@
         "brand": "betplus",
         "platform": "ios",
         "country": "US",
-        "stage": "neutron-qa",
+        "stage": "qa",
         "arcSpace": "bet",
         "apiVersion": "2.1",
         "appVersion": "31.0.0",
@@ -60,7 +73,7 @@
     "--","mtvplus","betplus","paramountplus"
   ],
   "stages": [
-    "--","neutron-live","neutron-qa","neutron-s"
+    "--","live","qa","s"
   ],
   "platforms": [
     "--","ios", "android"

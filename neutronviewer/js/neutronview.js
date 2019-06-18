@@ -157,9 +157,9 @@ function getPlayPlexConfig() {
   mainPath = '/main/' + apiVersion + '/';
   params = '?brand=' + brand + '&platform=' + platform + '&region=' + region;
 
-  if (stage == 'neutron-qa') {
+  if (stage == 'qa' || stage == "neutron-qa") {
     apiUrl = neutronQARootURL + mainPath + params;
-  } else if (stage == 'neutron-s') {
+  } else if (stage == 's' || stage == "neutron-s") {
         apiUrl = neutronSRootURL + mainPath + params;
   } else { 
     apiUrl = neutronLiveRootURL + mainPath + params;
