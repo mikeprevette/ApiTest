@@ -329,6 +329,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
           isImgError = false;
           imgUrl = "./img/error.jpg";
           isPromoError = false;
+          hasSeasons = false;
           hasEpisodes = false;
           hasVideos = false;
           hasPlaylists = false;
@@ -478,6 +479,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               linksError = false;
               promoError = false;
               playable = true;
+              seasonLink = "";
             
             // Playable ITEM Title
            if (cardVal.hasOwnProperty("parentEntity")) {
@@ -518,10 +520,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
                 'style': 'color:red'
               }).appendTo('#showCardMeta_' + propertyCardID);
             }
-            
-           
-
-            $('<p />', {
+          $('<p />', {
               'class': 'contentError',
               'text': "Playable Item"
             }).appendTo('#' + propertyCardID);
@@ -578,11 +577,18 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             } else {
               hasLongform = false;
             }
+            if (cardVal.links.hasOwnProperty("season")) {
+              // 					console.log(cardVal.links.movie);
+              seasonLink = cardVal.links.season;
+              hasSeasons = true;
+            } else {
+              hasSeasons = false;
+              seasonLink = "";
+            }
           } else {
             linksError = true;
             console.log("its an Links error " + propertyID);
           }
-
 
           if (hasEpisodes === true || hasVideos === true || hasPlaylists === true || hasMovie === true || hasShortform === true || hasLongform === true) {
             $('<div />', {
@@ -595,7 +601,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
                 'id': 'showCardButtons_Video' + z + i,
                 'class': 'showCardButton',
                 'text': 'Videos',
-                'onclick': 'loadContentLink("' + videoLink + '","video","' + seriesTitle + '");'
+                'onclick': 'loadContentLink("' + videoLink + '","video","' + seriesTitle + '","' + seasonLink + '");'
               }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
             }
             if (hasEpisodes === true) {
@@ -603,7 +609,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
                 'id': 'showCardButtons_Episode' + z + i,
                 'class': 'showCardButton',
                 'text': 'Episodes',
-                'onclick': 'loadContentLink("' + episodeLink + '","episode","' + seriesTitle + '");'
+                'onclick': 'loadContentLink("' + episodeLink + '","episode","' + seriesTitle + '","' + seasonLink + '");'
               }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
             }
             if (hasPlaylists === true) {
@@ -671,7 +677,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
 
 //####################################----Load Content Links (1.9 api)----####################################
 
-function loadContentLink(contentLink, contentType, seriesTitle) {
+function loadContentLink(contentLink, contentType, seriesTitle, seasonLink) {
   console.log("loadContentLink");
   window.scrollTo(0, 0);
   if (document.getElementById('container_Content') !== null) {
@@ -687,8 +693,6 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
     'id': 'contentContainerHeader',
     'class': 'containerHeader'
   }).appendTo('#container_Content');
-
-
   
     $('<span />', {
     'id': 'contentClose',
@@ -707,18 +711,25 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
     'text': ' ' + contentType +'s'
   }).appendTo('#contentContainerHeader');
   
+  if (seasonLink !== "") {
+    //console.log(seasonLink);
+    // Add season UI
+    $('<form />', {
+      'id': 'seasonForm',
+      'class': 'TBD',
+      'text': 'Seasons:',
+      'html': '<select id="seasonsSelector" onChange="cleanHouse(contentContainerItems);fillContentModule19(this.value);"></select>'
+    }).appendTo('#contentContainerHeader');
+    // ajax the list of seasons
+    // inject seasons to UI
+    getSeasons(seasonLink, contentType, contentLink);
+  }
 
   $('<div />', {
     'id': 'contentContainerItems',
     'class': 'container'
   }).appendTo('#container_Content');
   
-  $('<div />', {
-    'id': 'contentLoadingCard',
-    'class': 'loadingCard',
-    'style':'display:none;',
-    'html': '<span>loading</span><br/><div class="loader"></div>'
-  }).appendTo('#contentContainerItems');
 
   $('<div />', {
     'id': 'CSV',
@@ -739,9 +750,47 @@ function loadContentLink(contentLink, contentType, seriesTitle) {
   fillContentModule19(contentLink);
 }
 
+//####################################----Get seasons)----####################################
+
+function getSeasons(seasonLink, contentType, contentLink) {
+  console.log("Getting Seasons");
+  seasonLink = corsProxy + seasonLink;
+  $.getJSON(seasonLink, function(seasons) {
+    $('#seasonsSelector')
+      .append($("<option></option>")
+        .attr("value", contentLink)
+        .text("ALL"));
+    $.each(seasons.data.items, function(i, seasonVal) {
+      //console.log ("SEASON " + i);
+      if (contentType == "episode") {
+        targetLink = seasonVal.links.episode;
+      } else if (contentType == "video") {
+        targetLink = seasonVal.links.video;
+      }
+      $('#seasonsSelector')
+        .append($("<option></option>")
+          .attr("value", targetLink)
+          .text(seasonVal.subTitle));
+    });
+    if (seasons.metadata.pagination.next != null) { // checks for a next page then re-triggers itself.
+      seasonLink = seasons.metadata.pagination.next;
+      page = seasons.metadata.pagination.page;
+      console.log("Page:" + page);
+      getSeasons(seasonLink); //run it all over again
+    }
+  });
+}
+
 //####################################----Fill the Content Module with items (1.9 api)----####################################
 
+
 function fillContentModule19(contentLink) {
+    $('<div />', {
+    'id': 'contentLoadingCard',
+    'class': 'loadingCard',
+    'style':'display:none;',
+    'html': '<span>loading</span><br/><div class="loader"></div>'
+  }).appendTo('#contentContainerItems');
   $(contentLoadingCard).show();
   console.log("fillContentModule19");
   contentLink =  corsProxy + contentLink;

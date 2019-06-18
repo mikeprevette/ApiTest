@@ -209,6 +209,13 @@ p {
   text-decoration: underline;
 }
 
+#seasonForm {
+    float: right;
+    vertical-align: middle;
+    height: 1em;
+    line-height: 2em;
+}
+
 #overlay {
 	  height: 100%; /* Full height (cover the whole page) */
 	  width: 100%; /* Full width (cover the whole page) */
