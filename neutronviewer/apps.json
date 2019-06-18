@@ -28,6 +28,19 @@
     },
     {
       "app": {
+        "name": "MTV+ GB LIVE",
+        "brand": "mtvplus",
+        "platform": "ios",
+        "country": "GB",
+        "stage": "live",
+        "arcSpace": "mtv-plus-intl-uk-authoring",
+        "apiVersion": "1.9",
+        "appVersion": "31.0.0",
+        "appRating": "OFCOM"
+      }
+    },
+    {
+      "app": {
         "name": "Paramount+ BR QA",
         "brand": "paramountplus",
         "platform": "ios",
