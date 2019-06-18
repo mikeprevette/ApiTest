@@ -437,8 +437,8 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             }).appendTo('#showCardMeta_' + propertyCardID);
           }
 // ----------------------------------  Check for a Rating -----------------------------------
-        if (apiVersion == "2.1") {
-          if (cardVal.hasOwnProperty("contentRating") && cardVal.contentRating != null) {
+//         if (apiVersion == "2.1") {
+          if (cardVal.hasOwnProperty("contentRating") && cardVal.contentRating != null && cardVal.contentRating.ratings != null) {
               //console.log('defined rating' + appRating);
 //               appRating.concat("Standard:Rating",appRating);
               for (let c = 0, l = cardVal.contentRating.ratings.length; c < l; c++) {
@@ -469,7 +469,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             // Fail finding Ratings
              console.log('No ratings on the item');
             }
-        }
+//         }
 
           //Content Type Specific Logic
           if (entityType === "episode" || entityType === "video") {
