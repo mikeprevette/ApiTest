@@ -214,6 +214,7 @@ p {
     vertical-align: middle;
     height: 1em;
     line-height: 2em;
+    margin-right: 1em;
 }
 
 #overlay {
@@ -298,6 +299,8 @@ p {
 	font-size: 1em;
 	color: red;
 	background-color: rgba(0,0,0,0.75);
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
 }
 
 .errorbox {
@@ -382,6 +385,8 @@ p {
 	position: absolute;
 	bottom: 0;
 	left: 0;
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
 }
 
 .CardSubHeader {
