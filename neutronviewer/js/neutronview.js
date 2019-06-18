@@ -135,7 +135,8 @@ function stringToParams(buildString) {
   appRating = splits[7];
   console.log("app Rating is" + appRating);
 
-  putCustomValues();
+  updateUrlParams();
+  updateFormValues();
   getPlayPlexConfig();
 }
 
@@ -181,7 +182,8 @@ function getPlayPlexConfig() {
     },
     beforeSend: setHeader
   });
-  putCustomValues();
+  updateUrlParams();
+  updateFormValues();
 }
 
 
@@ -435,7 +437,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             }).appendTo('#showCardMeta_' + propertyCardID);
           }
 // ----------------------------------  Check for a Rating -----------------------------------
-          
+        if (apiVersion == "2.1") {
           if (cardVal.hasOwnProperty("contentRating") && cardVal.contentRating != null) {
               //console.log('defined rating' + appRating);
 //               appRating.concat("Standard:Rating",appRating);
@@ -467,7 +469,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             // Fail finding Ratings
              console.log('No ratings on the item');
             }
-            
+        }
 
           //Content Type Specific Logic
           if (entityType === "episode" || entityType === "video") {
@@ -1029,24 +1031,24 @@ function openMainApi() {
 
 function customTarget() {
   brand = $('#brands').val();
-  addURLParam("brand", brand);
+  addURLParam('brand', brand);
   region = $('#countries').val();
-  addURLParam("region", region);
+  addURLParam('region', region);
   platform = $('#platforms').val();
-  addURLParam("platform", platform);
+  addURLParam('platform', platform);
   stage = $('#stages').val();
-  addURLParam("stage", stage);
+  addURLParam('stage', stage);
   appVersion = $('#appVersions').val();
-  addURLParam("appVersion", appVersion);
+  addURLParam('appVersion', appVersion);
   apiVersion = $('#apiVersions').val();
-  addURLParam("apiVersion", apiVersion);
+  addURLParam('apiVersion', apiVersion);
   $('#quickSelector').val('---');
   getPlayPlexConfig();
 }
 
 //####################################----put custom selectors / params ----####################################
 
-function putCustomValues() {
+function updateUrlParams() {
   // set the custom params by their new values.
   addURLParam("brand", brand);
   addURLParam("platform", platform);
@@ -1056,6 +1058,11 @@ function putCustomValues() {
   addURLParam("apiVersion", apiVersion);
   addURLParam("appVersion", appVersion);
   addURLParam("appRating", appRating);
+}
+
+//####################################----update advanced form----####################################
+
+function updateFormValues() {
   document.getElementById('brands').value = brand;
   document.getElementById('countries').value = region;
   document.getElementById('stages').value = stage;
