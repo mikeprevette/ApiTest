@@ -915,7 +915,7 @@ function fillContentModule19(contentLink) {
       }).appendTo('#contentCardControls_' + link);
       
       
-      if (contentCardVal.hasOwnProperty("contentRating") && contentCardVal.contentRating != null) {
+      if (contentCardVal.hasOwnProperty("contentRating") && contentCardVal.contentRating != null && contentCardVal.contentRating.ratings !== null ) {
               //console.log('defined rating' + appRating);
 //               appRating.concat("Standard:Rating",appRating);
               for (let c = 0, l = contentCardVal.contentRating.ratings.length; c < l; c++) {
