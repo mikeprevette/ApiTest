@@ -520,13 +520,13 @@ p {
 }
 
 .showCard_S .showCardMetaTitle {
-  font-size: 1.5em;
+  font-size: 1em;
   color: white;
   text-shadow: 1px 1px 4px black;
 }
 
 .showCard_S .showCardMetaParent {
-  font-size: 1em;
+  font-size: 0.75em;
   color: white;
   text-shadow: 1px 1px 4px black;
 }

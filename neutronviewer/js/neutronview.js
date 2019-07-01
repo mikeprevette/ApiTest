@@ -489,7 +489,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               }).appendTo('#showCardMeta_' + propertyCardID);
             }
 
-
+          if (cardVal.entityType === "episode") {
             if (cardVal.hasOwnProperty("seasonNumber")) {
               $('<span />', {
                 'id': 'showCardMetaTitle_' + propertyCardID,
@@ -500,7 +500,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               $('<span />', {
                 'id': 'showCardMetaTitle_' + propertyCardID,
                 'class': 'showCardMetaTitle',
-                'text': 'NO SEASON#, ',
+                'text': 'NO SEASON# ',
                 'style': 'color:red'
               }).appendTo('#showCardMeta_' + propertyCardID);
             }
@@ -515,10 +515,18 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               $('<span />', {
                 'id': 'showCardMetaTitle_' + propertyCardID,
                 'class': 'showCardMetaTitle',
-                'html': ' NO EP#<br/>',
+                'html': ', NO EP#<br/>',
                 'style': 'color:red'
               }).appendTo('#showCardMeta_' + propertyCardID);
             }
+          } else {
+              $('<span />', {
+                'id': 'showCardMetaTitle_' + propertyCardID,
+                'class': 'showCardMetaTitle',
+                'text': cardVal.title
+              }).appendTo('#showCardMeta_' + propertyCardID);
+          }
+            
           $('<p />', {
               'class': 'contentError',
               'text': "Playable Item"
