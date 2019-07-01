@@ -80,7 +80,7 @@
     }
   ],
   "countries": [
-    "--","GB","BR","US"
+    "--","GB","BR","US","CA"
   ],
   "brands": [
     "--","mtvplus","betplus","paramountplus"
@@ -89,13 +89,13 @@
     "--","live","qa","s"
   ],
   "platforms": [
-    "--","ios", "android"
+    "--","ios", "android", "roku", "appletv"
   ],
     "arcSpaces": [
     "--","mtv-plus-intl-uk-authoring","arc-ent-paramount-network-site","bet","paramountplus-brazil"
   ],
     "appVersions": [
-    "--","31.0.0"
+    "--","31.0.0", "32.0.0", "33.0.0"
   ],
     "apiVersions": [
     "--","1.9","2.0","2.1"

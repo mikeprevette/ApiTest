@@ -536,6 +536,10 @@ p {
   height: 2em;
 }
 
+.showCard_S .errorbox {
+  top: 3em;
+}
+
 .showCardControls {
 	width: 100%;
 	font-size: .75em;

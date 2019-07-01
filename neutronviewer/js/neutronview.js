@@ -500,7 +500,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               $('<span />', {
                 'id': 'showCardMetaTitle_' + propertyCardID,
                 'class': 'showCardMetaTitle',
-                'text': 'NO SEASON# ',
+                'text': 'NO SEASON#, ',
                 'style': 'color:red'
               }).appendTo('#showCardMeta_' + propertyCardID);
             }
