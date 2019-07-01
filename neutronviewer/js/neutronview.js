@@ -110,25 +110,25 @@ function stringToParams(buildString) {
   var splits = buildString.split(',');
 
   brand = splits[0];
-  console.log(brand);
+  console.log('Brand: ' + brand);
 
   platform = splits[1];
-  console.log(platform);
+  console.log('Platform: ' + platform);
 
   region = splits[2];
-  console.log(region);
+  console.log('Region: ' + region);
 
   stage = splits[3];
-  console.log(stage);
+  console.log('Stage: ' + stage);
 
   arcSpace = splits[4];
-  console.log(arcSpace);
+  console.log('ArcSpace: ' + arcSpace);
 
   apiVersion = splits[5];
-  console.log(apiVersion);
+  console.log('API Version: ' + apiVersion);
 
   appVersion = splits[6];
-  console.log(appVersion);
+  console.log('App Version: ' + appVersion);
   
   appRating = splits[7];
   console.log("app Rating is" + appRating);
@@ -237,7 +237,7 @@ function brandScreenSelectorFunction(brandScreenValue) {
 //####################################----Build The Screens & Modules----####################################
 
 function getScreen(screenURL, screenName, screenID, screenIndex) {
-  console.log("getScreen");
+  console.log("getting the main screen");
   console.log(screenURL);
   nuclear();
   $.ajax({
@@ -253,27 +253,24 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
         if (modules.module.hasOwnProperty('parameters')) {
           if (modules.module.parameters.hasOwnProperty('cellSize')) {
             cellSize = modules.module.parameters.cellSize;
-            console.log(cellSize);
+            //console.log(cellSize);
           }
         }
         if (cellSize == "L") {
           aspectRatio = "16:9";
-          console.log(cellSize);
-          console.log(aspectRatio);
         } else if (cellSize == "M") {
           aspectRatio = "2:3";
-          console.log(cellSize);
-          console.log(aspectRatio);
         } else if (cellSize == "S") {
           aspectRatio = "16:9";
-          console.log(cellSize);
-          console.log(aspectRatio);
         } else {
           aspectRatio = "16:9";
           cellSize = "S";
-          console.log(cellSize);
-          console.log(aspectRatio);
         }
+        
+        //console.log(cellSize);
+        //console.log(aspectRatio);
+        
+        
         //build the container Header
         containerId = uuidMaker(modules.module.id) + '_s' + screenIndex + 'm' + z;
 
@@ -361,12 +358,13 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
                   break;
                 } else {
                   isImgError = "Wrong Aspect ratio.";
+                  console.log("Wrong Aspect ratio images: " + propertyID);
                 }
               }
             } else {
               imgUrl = "./img/error.jpg";
               isImgError = "No images.";
-              console.log("its an IMG Array error " + propertyID);
+              console.log("Missing images: " + propertyID);
             }
           }
           // MAKE ALL THE BASE CARDS IN HTML
@@ -467,7 +465,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               }
             } else {
             // Fail finding Ratings
-             console.log('No ratings on the item');
+             //console.log('No ratings on the item');
             }
 //         }
 
@@ -725,7 +723,7 @@ function loadContentLink(contentLink, contentType, seriesTitle, seasonLink) {
       'id': 'seasonForm',
       'class': 'TBD',
       'text': 'Seasons:',
-      'html': '<select id="seasonsSelector" onChange="cleanHouse(contentContainerItems);fillContentModule19(this.value);"><option value="' + contentLink + '">All</option></select>'
+      'html': '<select id="seasonsSelector" onChange="cleanHouse(contentContainerItems);fillContentModule(this.value);"><option value="' + contentLink + '">All</option></select>'
     }).appendTo('#contentContainerHeader');
     // ajax the list of seasons
     // inject seasons to UI
@@ -754,7 +752,7 @@ function loadContentLink(contentLink, contentType, seriesTitle, seasonLink) {
 
   //activeSeries = seriesMgid;
   //build the container
-  fillContentModule19(contentLink);
+  fillContentModule(contentLink);
 }
 
 //####################################----Get seasons)----####################################
@@ -765,16 +763,21 @@ function getSeasons(seasonLink, contentType, contentLink) {
   $.getJSON(seasonLink, function(seasons) {
     $.each(seasons.data.items, function(i, seasonVal) {
       //console.log ("SEASON " + i);
-      if (contentType == "episode") {
-        targetLink = seasonVal.links.episode;
-      } else if (contentType == "video") {
-        targetLink = seasonVal.links.video;
+      if (!$.isEmptyObject(seasonVal.links)) {
+        if (contentType == "episode") {
+          targetLink = seasonVal.links.episode;
+        } else if (contentType == "video") {
+          targetLink = seasonVal.links.video;
+        }
+        $('#seasonsSelector')
+          .append($("<option></option>")
+            .attr("value", targetLink)
+            .text(seasonVal.subTitle));
+      } else {
+        console.log('Suspected empty season: ' + seasonVal.subTitle + ' ' + seasonVal.id );
       }
-      $('#seasonsSelector')
-        .append($("<option></option>")
-          .attr("value", targetLink)
-          .text(seasonVal.subTitle));
     });
+
     if (seasons.metadata.pagination.next != null) { // checks for a next page then re-triggers itself.
       seasonLink = seasons.metadata.pagination.next;
       page = seasons.metadata.pagination.page;
@@ -787,7 +790,7 @@ function getSeasons(seasonLink, contentType, contentLink) {
 //####################################----Fill the Content Module with items (1.9 api)----####################################
 
 
-function fillContentModule19(contentLink) {
+function fillContentModule(contentLink) {
     $('<div />', {
     'id': 'contentLoadingCard',
     'class': 'loadingCard',
@@ -795,7 +798,7 @@ function fillContentModule19(contentLink) {
     'html': '<span>loading</span><br/><div class="loader"></div>'
   }).appendTo('#contentContainerItems');
   $(contentLoadingCard).show();
-  console.log("fillContentModule19");
+  console.log("fillContentModule");
   contentLink =  corsProxy + contentLink;
   $.getJSON(contentLink, function(playplexContent) {
     $('#contentContainerHeaderItems').text(' ' + playplexContent.metadata.pagination.totalItems);
@@ -803,6 +806,7 @@ function fillContentModule19(contentLink) {
     $.each(playplexContent.data.items, function(i, contentCardVal) {
       card[contentCardVal.mgid];
       card[contentCardVal.mgid] = contentCardVal;
+      link = uuidMaker(contentCardVal.id);
       imgUrl = "";
       tve = "false";
       imgError = "";
@@ -828,14 +832,16 @@ function fillContentModule19(contentLink) {
           } else {
             imgUrl = contentCardVal.images[0].url + imageParams;
             imgError = "Wrong Aspect ratio.";
+            console.log("Wrong Aspect ratio images on: " + link)
+
           }
         }
       } else {
         imgUrl = "./img/error.jpg";
         imgError = "No Images.";
+        console.log("Missing Images on: " + link)
       }
 
-      link = uuidMaker(contentCardVal.id);
 
       //Make a CSV index
 
@@ -970,12 +976,12 @@ function fillContentModule19(contentLink) {
                  }
                 } else {
                   // Fail at finding an Matched rating
-                  console.log('No Matching rating');
+                  //console.log('No Matching rating');
                 }
               }
             } else {
             // Fail finding Ratings
-             console.log('No ratings on the item');
+             //console.log('No ratings on the item');
       }
      if (tve === "true") {
         $('<div />', {
@@ -990,7 +996,7 @@ function fillContentModule19(contentLink) {
       contentLink = playplexContent.metadata.pagination.next;
       page = playplexContent.metadata.pagination.page;
       console.log("Page:" + page);
-      fillContentModule19(contentLink); //run it all over again
+      fillContentModule(contentLink); //run it all over again
     }
     $(contentLoadingCard).hide();
   });
@@ -1020,7 +1026,7 @@ function cleanHouse(div) {
 //####################################----Clean Screen----####################################
 
 function nuclear() {
-  console.log("Nuclear");
+  console.log("Clearing Screen");
   $("#containers").empty();
   cardLinks = [];
 }
