@@ -798,8 +798,11 @@ function fillContentModule(contentLink) {
     'html': '<span>loading</span><br/><div class="loader"></div>'
   }).appendTo('#contentContainerItems');
   $(contentLoadingCard).show();
+  $("#episodeAPI").attr('onclick','window.open("' + contentLink + '");');
   console.log("fillContentModule");
   contentLink =  corsProxy + contentLink;
+
+  
   $.getJSON(contentLink, function(playplexContent) {
     $('#contentContainerHeaderItems').text(' ' + playplexContent.metadata.pagination.totalItems);
     //console.log("total items: " + playplexContent.metadata.pagination.totalItems);
