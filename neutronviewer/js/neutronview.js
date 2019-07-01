@@ -888,35 +888,37 @@ function fillContentModule(contentLink) {
         'html': contentCardVal.title + '<br/>'
       }).appendTo('#CardMeta_' + link);
       
-      if (contentCardVal.hasOwnProperty("seasonNumber")){
-      $('<span />', {
-        'id': 'CardSubHeader_' + link,
-        'class': 'CardSubHeader',
-        'html': 'Season ' + contentCardVal.seasonNumber + ','
-      }).appendTo('#CardMeta_' + link);
-    } else {
-      $('<span />', {
-        'id': 'CardSubHeader_' + link,
-        'class': 'CardSubHeader',
-        'html': 'Season undefined, ',
-        'style': 'color:red;'
-      }).appendTo('#CardMeta_' + link);
-    }
-      
-    if (contentCardVal.hasOwnProperty("episodeAiringOrder")){
-      $('<span />', {
-        'id': 'CardSubHeader_' + link,
-        'class': 'CardSubHeader',
-        'html': ' Ep ' + contentCardVal.episodeAiringOrder + '<br/>'
-      }).appendTo('#CardMeta_' + link);
-    } else {
-      $('<span />', {
-        'id': 'CardSubHeader_' + link,
-        'class': 'CardSubHeader',
-        'html': ' Ep undefined <br/>',
-        'style': 'color:red;'
-      }).appendTo('#CardMeta_' + link);
-    }
+      if (contentCardVal.entityType !== "movie") {
+        if (contentCardVal.hasOwnProperty("seasonNumber")) {
+          $('<span />', {
+            'id': 'CardSubHeader_' + link,
+            'class': 'CardSubHeader',
+            'html': 'Season ' + contentCardVal.seasonNumber + ','
+          }).appendTo('#CardMeta_' + link);
+        } else {
+          $('<span />', {
+            'id': 'CardSubHeader_' + link,
+            'class': 'CardSubHeader',
+            'html': 'Season undefined, ',
+            'style': 'color:red;'
+          }).appendTo('#CardMeta_' + link);
+        }
+
+        if (contentCardVal.hasOwnProperty("episodeAiringOrder")) {
+          $('<span />', {
+            'id': 'CardSubHeader_' + link,
+            'class': 'CardSubHeader',
+            'html': ' Ep ' + contentCardVal.episodeAiringOrder + '<br/>'
+          }).appendTo('#CardMeta_' + link);
+        } else {
+          $('<span />', {
+            'id': 'CardSubHeader_' + link,
+            'class': 'CardSubHeader',
+            'html': ' Ep undefined <br/>',
+            'style': 'color:red;'
+          }).appendTo('#CardMeta_' + link);
+        }
+      }
 
     $('<span />', {
         'id': 'CardDescription_' + link,
