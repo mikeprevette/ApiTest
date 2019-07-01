@@ -11,8 +11,6 @@ const mtvPlusDeeplinkRoot = 'mtvplayuk://';
 const betPlusDeeplinkRoot = 'betplus://';
 const paramountPlusDeeplinkRoot = 'paramountplus://';
 
-var isPromoError = false;
-var isImgError = false;
 var firstRun = true;
 var activeSeries, brand, platform, region, stage, isisURL, params, appVersion, apiVersion, appRating;
 var page = 0;
@@ -314,6 +312,7 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
 function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize) {
   //console.log("getModule19 - USING 1.9 LOGIC")
   var screenUUID = uuidMaker(screenID);
+  var isPromoError = false;
   $.ajax({
     url: corsProxy + moduleURL,
     type: 'GET',
@@ -326,7 +325,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
         }).appendTo('#module_' + containerId);
       } else {
         $.each(playplexData.data.items, function(i, cardVal) {
-          isImgError = false;
+          var isImgError = "";
           imgUrl = "./img/error.jpg";
           isPromoError = false;
           hasSeasons = false;
@@ -358,15 +357,15 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               for (let c = 0, l = cardVal.images.length; c < l; c++) {
                 if (cardVal.images[c].aspectRatio === aspectRatio) {
                   imgUrl = cardVal.images[c].url + imageParams;
-                  isImgError = false;
+                  isImgError = "";
                   break;
                 } else {
-                  isImgError = true;
+                  isImgError = "Wrong Aspect ratio.";
                 }
               }
             } else {
               imgUrl = "./img/error.jpg";
-              isImgError = true;
+              isImgError = "No images.";
               console.log("its an IMG Array error " + propertyID);
             }
           }
@@ -390,11 +389,11 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               'text': "Broken Promo ERROR - Likely expired series, in an active promo"
             }).appendTo('#errorbox' + '_' + propertyCardID);
           }
-          if (isImgError === true) {
+          if (isImgError !== "") {
             $('<p />', {
               'id': 'imgError' + containerId,
               'class': 'error',
-              'text': "IMAGE ERROR - Check for expected " + aspectRatio + " aspectRatio, image publishing, or image DP"
+              'html': "IMAGE ERROR - <u>" + isImgError + "</u><br/> Check for expected " + aspectRatio + " aspectRatio, image publishing, or image DP"
             }).appendTo('#errorbox' + '_' + propertyCardID);
           }
           //build the meta
@@ -648,7 +647,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             console.log("its an Links error " + propertyID);
             $('<p />', {
               'class': 'contentError',
-              'text': "Broken - No Content",
+              'html': "<u>No Content</u>",
               'style': "color:red"
             }).appendTo('#' + propertyCardID);
           }
@@ -798,8 +797,7 @@ function fillContentModule19(contentLink) {
       card[contentCardVal.mgid] = contentCardVal;
       imgUrl = "";
       tve = "false";
-      aspectError = "false";
-      imgError = "false";
+      imgError = "";
       title = '"' + contentCardVal.title + '"';
       let deeplink = makeDeeplink(contentCardVal.mgid);
       txtObject = JSON.stringify(contentCardVal, null, 4);
@@ -816,42 +814,29 @@ function fillContentModule19(contentLink) {
         for (let v = 0, l = contentCardVal.images.length; v < l; v++) {
           if (contentCardVal.images[v].aspectRatio === aspectRatio) {
             imgUrl = contentCardVal.images[v].url + imageParams;
-            aspectError = "false";
-            imgError = "false";
+            imgError = "";
             //console.log("Good Image");
             break;
           } else {
             imgUrl = contentCardVal.images[0].url + imageParams;
-            aspectError = "true";
-            imgError = "false";
+            imgError = "Wrong Aspect ratio.";
           }
         }
       } else {
         imgUrl = "./img/error.jpg";
-        aspectError = "false";
-        imgError = "true";
+        imgError = "No Images.";
       }
 
       link = uuidMaker(contentCardVal.id);
 
       //Make a CSV index
 
-      if (aspectError == "true") {
-        aspectErrorMessage = "Aspect Ratio Error";
-      } else {
-        aspectErrorMessage = "";
-      }
-      if (imgError == "true") {
-        imgErrorMessage = "Image Error";
-      } else {
-        imgErrorMessage = "";
-      }
+
 
       cardLinks.push({
         title: title,
         uuid: link,
-        aspectError: aspectErrorMessage,
-        imageError: imgErrorMessage
+        imageError: imgError
       });
       
       $('<div />', {
@@ -865,17 +850,10 @@ function fillContentModule19(contentLink) {
         'class': 'errorbox'
       }).appendTo('#' + link);
 
-      // put the lock on the card	
-      if (aspectError === "true") {
+      if (imgError !== "") {
         $('<p />', {
           'class': 'error',
-          'text': "IMAGE ERROR - No " + aspectRatio + " image, using fallback"
-        }).appendTo('#contentErrorbox' + '_' + link);
-      }
-      if (imgError === "true") {
-        $('<p />', {
-          'class': 'error',
-          'text': "IMAGE ERROR - Missing images"
+          'html': "IMAGE ERROR - <u>" + imgError + "</u>"
         }).appendTo('#contentErrorbox' + '_' + link);
       }
 
