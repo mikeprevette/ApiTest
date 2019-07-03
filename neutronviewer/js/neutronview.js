@@ -5,15 +5,12 @@ const imageParams = '&height=640';
 const neutronSRootURL = 'http://neutron-api.viacom.tech-s.mtvi.com/feeds/networkapp/intl';
 const neutronQARootURL = 'http://qa-neutron-api.viacom.tech/feeds/networkapp/intl';
 const neutronLiveRootURL = 'http://neutron-api.viacom.tech/feeds/networkapp/intl';
-//const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 const corsProxy = 'https://viamprevette.herokuapp.com/';
 const mtvPlusDeeplinkRoot = 'mtvplayuk://';
 const betPlusDeeplinkRoot = 'betplus://';
 const paramountPlusDeeplinkRoot = 'paramountplus://';
-
 var firstRun = true;
-var activeSeries, brand, platform, region, stage, isisURL, params, appVersion, apiVersion, appRating;
-var page = 0;
+var brand, platform, region, stage, isisURL, params, appVersion, apiVersion, appRating, apiUrl;
 var cardLinks = [];
 var card = Object.create(null);
 var playPlexMainConfig = Object.create(null);
@@ -87,7 +84,7 @@ function makeTheScreen(mode) {
     })
   });
 
-  urlString = window.location.href;
+  var urlString = window.location.href;
   console.log(urlString);
 
   //awefull logic to check to see if a querry param is already added, if there is a ? then it assumas all are there. BAD
@@ -152,13 +149,13 @@ function getPlayPlexConfig() {
   firstRun = false;
   getCustomParamValues();
   isisURL = 'http://isis.mtvnservices.com/Isis.html#module=content&site=' + arcSpace + '&id=';
-  mainPath = '/main/' + apiVersion + '/';
-  params = '?brand=' + brand + '&platform=' + platform + '&region=' + region;
+  var mainPath = '/main/' + apiVersion + '/';
+  var params = '?brand=' + brand + '&platform=' + platform + '&region=' + region;
 
   if (stage == 'qa' || stage == "neutron-qa") {
     apiUrl = neutronQARootURL + mainPath + params;
   } else if (stage == 's' || stage == "neutron-s") {
-        apiUrl = neutronSRootURL + mainPath + params;
+    apiUrl = neutronSRootURL + mainPath + params;
   } else { 
     apiUrl = neutronLiveRootURL + mainPath + params;
   }
@@ -206,9 +203,9 @@ function loadPlayPlexConfig(){
         });
         $.each(playPlexMainConfig.data.appConfiguration.screens, function(z, screens) { 
          if (screens.screen.name == "adult" || screens.screen.name == "home") { //REWORK THIS TO USE ENABLED BRANDS
-            toLoad = screens.screen.url;
-            screenName = screens.screen.name;
-            screenID = screens.screen.id;
+            var toLoad = screens.screen.url;
+            var screenName = screens.screen.name;
+            var screenID = screens.screen.id;
             getScreen(toLoad, screenName, screenID, z);
             console.log(screens.screen.name + ' ' + toLoad);
           }
@@ -219,14 +216,14 @@ function loadPlayPlexConfig(){
 
 function brandScreenSelectorFunction(brandScreenValue) {
   console.log("brandScreenSelector: " + brandScreenValue);
-  splitValue = brandScreenValue.split(',');
-  brandScreenType = splitValue[0];
-  brandScreenName = splitValue[1];
+  var splitValue = brandScreenValue.split(',');
+  var brandScreenType = splitValue[0];
+  var brandScreenName = splitValue[1];
   $.each(playPlexMainConfig.data.appConfiguration.screens, function(z, screens) {
     if (screens.screen.type == brandScreenType) {
-        toLoad = screens.screen.url + "&selectedBrand=" + brandScreenName;
-        screenName = screens.screen.name;
-        screenID = screens.screen.id;
+        var toLoad = screens.screen.url + "&selectedBrand=" + brandScreenName;
+        var screenName = screens.screen.name;
+        var screenID = screens.screen.id;
         getScreen(toLoad, screenName, screenID, z);
         }
   });
@@ -240,6 +237,7 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
   console.log("getting the main screen");
   console.log(screenURL);
   nuclear();
+  var cellSize, aspectRatio;
   $.ajax({
     url: corsProxy + screenURL,
     type: 'GET',
@@ -249,7 +247,7 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
         if (modules.module.templateType == 'pp_continueWatchingCarousel'){
           return;
         }
-        target = modules.module.dataSource;
+        var target = modules.module.dataSource;
         if (modules.module.hasOwnProperty('parameters')) {
           if (modules.module.parameters.hasOwnProperty('cellSize')) {
             cellSize = modules.module.parameters.cellSize;
@@ -272,7 +270,7 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
         
         
         //build the container Header
-        containerId = uuidMaker(modules.module.id) + '_s' + screenIndex + 'm' + z;
+        var containerId = uuidMaker(modules.module.id) + '_s' + screenIndex + 'm' + z;
 
         $('<div />', {
           'id': 'moduleHeader_' + containerId,
@@ -322,24 +320,34 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
         }).appendTo('#module_' + containerId);
       } else {
         $.each(playplexData.data.items, function(i, cardVal) {
-          var isImgError = "";
-          imgUrl = "./img/error.jpg";
-          isPromoError = false;
-          hasSeasons = false;
-          hasEpisodes = false;
-          hasVideos = false;
-          hasPlaylists = false;
-          hasMovie = false;
-          hasShortform = false;
-          hasLongform = false;
-          linksError = false;
           card[cardVal.mgid];
           card[cardVal.mgid] = cardVal;
-          propertyMgid = cardVal.mgid;
-          propertyID = cardVal.id;
-          entityType = cardVal.entityType;
-          seriesTitle = cardVal.title.replace(/ /g, "_");
-          propertyCardID = screenUUID + '_' + propertyID + '_' + z + i;
+          var isImgError = "";
+          var imgUrl = "./img/error.jpg";
+          var isPromoError = false;
+          var hasSeasons = false;
+          var hasEpisodes = false;
+          var hasVideos = false;
+          var hasPlaylists = false;
+          var hasMovie = false;
+          var hasShortform = false;
+          var hasLongform = false;
+          var linksError = false;
+          var promoError = false;
+          var playable = true;
+          var seasonLink = "";
+          var deeplink;
+          var episodeLink;
+          var shortFormLink;
+          var LongFormLink;
+          var videoLink;
+          var movieLink;
+          var playlistLink;
+          var propertyMgid = cardVal.mgid;
+          var propertyID = cardVal.id;
+          var entityType = cardVal.entityType;
+          var seriesTitle = cardVal.title.replace(/ /g, "_");
+          var propertyCardID = screenUUID + '_' + propertyID + '_' + z + i;
 
           //Check to see if the promo is valid
           if (entityType === "empty" || entityType === "noUrl" || entityType === "promo" || entityType === "editorial") {
@@ -750,7 +758,6 @@ function loadContentLink(contentLink, contentType, seriesTitle, seasonLink) {
     'onclick': 'window.open("' + contentLink + '");'
   }).appendTo('#contentContainerHeader');
 
-  //activeSeries = seriesMgid;
   //build the container
   fillContentModule(contentLink);
 }
@@ -759,6 +766,7 @@ function loadContentLink(contentLink, contentType, seriesTitle, seasonLink) {
 
 function getSeasons(seasonLink, contentType, contentLink) {
   console.log("Getting Seasons");
+  var targetLink;
   seasonLink = corsProxy + seasonLink;
   $.getJSON(seasonLink, function(seasons) {
     $.each(seasons.data.items, function(i, seasonVal) {
@@ -780,7 +788,7 @@ function getSeasons(seasonLink, contentType, contentLink) {
 
     if (seasons.metadata.pagination.next != null) { // checks for a next page then re-triggers itself.
       seasonLink = seasons.metadata.pagination.next;
-      page = seasons.metadata.pagination.page;
+      var page = seasons.metadata.pagination.page;
       console.log("Page:" + page);
       getSeasons(seasonLink); //run it all over again
     }
@@ -809,20 +817,20 @@ function fillContentModule(contentLink) {
     $.each(playplexContent.data.items, function(i, contentCardVal) {
       card[contentCardVal.mgid];
       card[contentCardVal.mgid] = contentCardVal;
-      link = uuidMaker(contentCardVal.id);
-      imgUrl = "";
-      tve = "false";
-      imgError = "";
-      title = '"' + contentCardVal.title + '"';
+      var link = uuidMaker(contentCardVal.id);
+      var imgUrl = "";
+      var tve = "false";
+      var imgError = "";
+      var title = '"' + contentCardVal.title + '"';
       let deeplink = makeDeeplink(contentCardVal.mgid);
-      txtObject = JSON.stringify(contentCardVal, null, 4);
+      var txtObject = JSON.stringify(contentCardVal, null, 4);
       if (contentCardVal.authRequired === true) {
         tve = "true";
       }
 
 
       //Since this is only for Content, Lets assume we're always 16:9
-      aspectRatio = "16:9";
+      var aspectRatio = "16:9";
       //Set the imag URL based on the aspecRatio
 
       if (contentCardVal.hasOwnProperty("images") && contentCardVal.images.length > 0) {
@@ -1002,7 +1010,7 @@ function fillContentModule(contentLink) {
 
     if (playplexContent.metadata.pagination.next != null) { // checks for a next page then re-triggers itself.
       contentLink = playplexContent.metadata.pagination.next;
-      page = playplexContent.metadata.pagination.page;
+      var page = playplexContent.metadata.pagination.page;
       console.log("Page:" + page);
       fillContentModule(contentLink); //run it all over again
     }
@@ -1014,7 +1022,7 @@ function fillContentModule(contentLink) {
 
 function uuidMaker(mgid) {
   //console.log("uuidMaker " + mgid);
-  UUID = mgid.substr(mgid.length - 36); // takes the UUID off the MGID
+  var UUID = mgid.substr(mgid.length - 36); // takes the UUID off the MGID
   return (UUID);
 }
 
@@ -1055,7 +1063,7 @@ function showOverlayJson(mgid) {
   var body = document.body;
   body.classList.toggle('noscroll');
   $(overlay).toggle();
-  txtObject = JSON.stringify(card[mgid], null, 4);
+  var txtObject = JSON.stringify(card[mgid], null, 4);
   txtObject = txtObject.replace(/&reg/g, "&"+"reg");
   var newStr = txtObject.replace(/(<a href=")?((https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)))(">(.*)<\/a>)?/gi, function () {
     return '<a href="'+ arguments[2] + '" target="_blank">' + (arguments[7] || arguments[2]) + '</a>'
@@ -1135,7 +1143,8 @@ function getCustomParamValues() {
 
 function makeDeeplink(propertyMgid) {
   //console.log("makeDeeplink");
-  var path
+  var path;
+  var deeplink;
 // breaking these out incase we need to handle special cases in the future.
   if (propertyMgid.indexOf("episode") !== -1) {
     path = 'content/';
