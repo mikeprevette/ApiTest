@@ -1034,6 +1034,7 @@ function nuclear() {
   console.log("Clearing Screen");
   $("#containers").empty();
   cardLinks = [];
+  card = [];
 }
 
 //####################################----Remove an ID----####################################
