@@ -852,6 +852,9 @@ function fillContentModule(contentLink) {
 
       cardLinks.push({
         title: title,
+        type: contentCardVal.entityType,
+        season: contentCardVal.seasonNumber,
+        epAirOrder: contentCardVal.episodeAiringOrder,
         uuid: link,
         imageError: imgError
       });
