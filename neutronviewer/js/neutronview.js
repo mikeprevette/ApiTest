@@ -355,7 +355,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             isPromoError = true;
             console.log("its an promo error" + propertyID);
           } else {
-            let deeplink = makeDeeplink(propertyMgid);
+            deeplink = makeDeeplink(cardVal.mgid);
             //           console.log("deeplink is" + deeplink);
             isPromoError = false;
             if (cardVal.hasOwnProperty("images") && cardVal.images.length > 0) {
@@ -1141,36 +1141,36 @@ function getCustomParamValues() {
 
 //####################################----Make a deeplink----####################################
 
-function makeDeeplink(propertyMgid) {
+function makeDeeplink(mgid) {
   //console.log("makeDeeplink");
   var path;
   var deeplink;
 // breaking these out incase we need to handle special cases in the future.
-  if (propertyMgid.indexOf("episode") !== -1) {
+  if (mgid.indexOf("episode") !== -1) {
     path = 'content/';
-  } else if (propertyMgid.indexOf("series") !== -1) {
+  } else if (mgid.indexOf("series") !== -1) {
     path = 'content/';
-  } else if (propertyMgid.indexOf("event") !== -1) {
+  } else if (mgid.indexOf("event") !== -1) {
     path = 'content/';
-  } else if (propertyMgid.indexOf("playlist") !== -1) {
+  } else if (mgid.indexOf("playlist") !== -1) {
     path = 'content/';
-  } else if (propertyMgid.indexOf("video") !== -1) {
+  } else if (mgid.indexOf("video") !== -1) {
     path = 'content/';
-  } else if (propertyMgid.indexOf("movie") !== -1) {
+  } else if (mgid.indexOf("movie") !== -1) {
     path = 'content/';
-  } else if (propertyMgid.indexOf("live") !== -1) {
+  } else if (mgid.indexOf("live") !== -1) {
     path = 'content/';
-  } else if (propertyMgid.indexOf("editorial") !== -1) {
+  } else if (mgid.indexOf("editorial") !== -1) {
     path = 'content/';
   }
 
 //   var propertyID = uuidMaker(propertyMgid);
   if (brand == "mtvplus") {
-    deeplink = mtvPlusDeeplinkRoot + path + propertyMgid;
+    deeplink = mtvPlusDeeplinkRoot + path + mgid;
   } else if (brand == "paramountplus"){
-    deeplink = paramountPlusDeeplinkRoot + path + propertyMgid;
+    deeplink = paramountPlusDeeplinkRoot + path + mgid;
   } else if (brand == "betplus") {
-    deeplink = betPlusDeeplinkRoot + path + propertyMgid;       
+    deeplink = betPlusDeeplinkRoot + path + mgid;       
   } else {
     deeplink = "NULL";
   }
