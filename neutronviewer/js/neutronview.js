@@ -329,6 +329,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
           var hasEpisodes = false;
           var hasVideos = false;
           var hasPlaylists = false;
+          var hasMixedContent = false;
           var hasMovie = false;
           var hasShortform = false;
           var hasLongform = false;
@@ -340,20 +341,19 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
           var episodeLink;
           var shortFormLink;
           var LongFormLink;
+          var mixedContentLink;
           var videoLink;
           var movieLink;
           var playlistLink;
-          var propertyMgid = cardVal.mgid;
-          var propertyID = cardVal.id;
           var entityType = cardVal.entityType;
           var seriesTitle = cardVal.title.replace(/ /g, "_");
-          var propertyCardID = screenUUID + '_' + propertyID + '_' + z + i;
+          var propertyCardID = screenUUID + '_' + cardVal.id + '_' + z + i;
 
           //Check to see if the promo is valid
-          if (entityType === "empty" || entityType === "noUrl" || entityType === "promo" || entityType === "editorial") {
+          if (entityType === "empty" || entityType === "noUrl" || entityType === "promo") {
             imgUrl = "./img/error.jpg";
             isPromoError = true;
-            console.log("its an promo error" + propertyID);
+            console.log("its an promo error" + cardVal.mgid);
           } else {
             deeplink = makeDeeplink(cardVal.mgid);
             //           console.log("deeplink is" + deeplink);
@@ -366,13 +366,13 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
                   break;
                 } else {
                   isImgError = "Wrong Aspect ratio.";
-                  console.log("Wrong Aspect ratio images: " + propertyID);
+                  console.log("Wrong Aspect ratio images: " + cardVal.mgid);
                 }
               }
             } else {
               imgUrl = "./img/error.jpg";
               isImgError = "No images.";
-              console.log("Missing images: " + propertyID);
+              console.log("Missing images: " + cardVal.mgid);
             }
           }
           // MAKE ALL THE BASE CARDS IN HTML
@@ -413,15 +413,15 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             'id': 'showCardJsonButton_' + propertyCardID,
             'class': 'button',
             'text': 'API',
-            'onclick': 'showOverlayJson("' + propertyMgid + '");'
+            'onclick': 'showOverlayJson("' + cardVal.mgid + '");'
           }).appendTo('#showCardControls_' + propertyCardID);
 
-          $('<p />', {
-            'id': 'showCardLink_' + z + i,
-            'text': 'ARC',
-            'class': 'button',
-            'onclick': 'window.open("' + isisURL + propertyID + '");'
-          }).appendTo('#showCardControls_' + propertyCardID);
+//           $('<p />', {
+//             'id': 'showCardLink_' + z + i,
+//             'text': 'ARC',
+//             'class': 'button',
+//             'onclick': 'window.open("' + isisURL + cardVal.id + '");'
+//           }).appendTo('#showCardControls_' + propertyCardID);
 
           $('<p />', {
             'id': 'showCardDeeplink_' + z + i,
@@ -590,6 +590,13 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             } else {
               hasLongform = false;
             }
+            if (cardVal.links.hasOwnProperty("collection")) {
+              // 					console.log(cardVal.links.movie);
+              mixedContentLink = cardVal.links.collection;
+              hasMixedContent = true;
+            } else {
+              hasMixedContent = false;
+            }
             if (cardVal.links.hasOwnProperty("season")) {
               // 					console.log(cardVal.links.movie);
               seasonLink = cardVal.links.season;
@@ -600,10 +607,10 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             }
           } else {
             linksError = true;
-            console.log("its an Links error " + propertyID);
+            console.log("its an Links error " + propertyCardID);
           }
 
-          if (hasEpisodes === true || hasVideos === true || hasPlaylists === true || hasMovie === true || hasShortform === true || hasLongform === true) {
+          if (hasEpisodes === true || hasVideos === true || hasPlaylists === true || hasMovie === true || hasShortform === true || hasLongform === true || hasMixedContent === true) {
             $('<div />', {
               'id': 'showCardButtonBar_' + propertyCardID,
               'class': 'showCardButtons',
@@ -657,8 +664,16 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
                 'onclick': 'loadContentLink("' + LongFormLink + '","longForm","' + seriesTitle + '");'
               }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
             }
+            if (hasMixedContent === true) {
+              $('<p />', {
+                'id': 'showCardButtons_ShortForm' + z + i,
+                'class': 'showCardButton',
+                'text': 'Mixed Collection',
+                'onclick': 'loadContentLink("' + mixedContentLink + '","Mixed Item","' + seriesTitle + '");'
+              }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
+            }
           } else if (playable !== true){
-            console.log("its an Links error " + propertyID);
+            console.log("its an Links error " + propertyCardID);
             $('<p />', {
               'class': 'contentError',
               'html': "<u>No Content</u>",
@@ -1164,7 +1179,6 @@ function makeDeeplink(mgid) {
     path = 'content/';
   }
 
-//   var propertyID = uuidMaker(propertyMgid);
   if (brand == "mtvplus") {
     deeplink = mtvPlusDeeplinkRoot + path + mgid;
   } else if (brand == "paramountplus"){
