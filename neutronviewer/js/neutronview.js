@@ -416,12 +416,12 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             'onclick': 'showOverlayJson("' + cardVal.mgid + '");'
           }).appendTo('#showCardControls_' + propertyCardID);
 
-//           $('<p />', {
-//             'id': 'showCardLink_' + z + i,
-//             'text': 'ARC',
-//             'class': 'button',
-//             'onclick': 'window.open("' + isisURL + cardVal.id + '");'
-//           }).appendTo('#showCardControls_' + propertyCardID);
+          $('<p />', {
+            'id': 'showCardLink_' + z + i,
+            'text': 'ARC',
+            'class': 'button',
+            'onclick': 'window.open("' + isisURL + cardVal.id + '");'
+          }).appendTo('#showCardControls_' + propertyCardID);
 
           $('<p />', {
             'id': 'showCardDeeplink_' + z + i,
