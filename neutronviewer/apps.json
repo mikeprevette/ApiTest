@@ -90,13 +90,26 @@
         "appVersion": "35.0.0",
         "appRating": "TVPG"
       }
+    },
+    {
+      "app": {
+        "name": "MTV US TVOS QA",
+        "brand": "mtv",
+        "platform": "appletv",
+        "country": "US",
+        "stage": "qa",
+        "arcSpace": "mtv-authoring-site",
+        "apiVersion": "1.9",
+        "appVersion": "35.0.0",
+        "appRating": "TVPG"
+      }
     }
   ],
   "countries": [
     "--","GB","BR","US","CA"
   ],
   "brands": [
-    "--","mtvplus","betplus","paramountplus"
+    "--","mtvplus","betplus","paramountplus","mtv"
   ],
   "stages": [
     "--","live","qa","s"
@@ -105,7 +118,7 @@
     "--","ios", "android", "roku", "appletv"
   ],
     "arcSpaces": [
-    "--","mtv-plus-intl-uk-authoring","arc-ent-paramount-network-site","bet","paramountplus-brazil"
+    "--","mtv-plus-intl-uk-authoring","arc-ent-paramount-network-site","bet","paramountplus-brazil", "mtv-authoring-site"
   ],
     "appVersions": [
     "--","31.0.0", "32.0.0", "33.0.0"
