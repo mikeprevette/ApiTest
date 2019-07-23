@@ -67,7 +67,7 @@
     },
     {
       "app": {
-        "name": "BET+ US QA",
+        "name": "BET+ US iOS QA",
         "brand": "betplus",
         "platform": "ios",
         "country": "US",
@@ -158,7 +158,7 @@
     },
     {
       "app": {
-        "name": "BET US ANDROIDTV QA",
+        "name": "BET+ US ANDROIDTV QA",
         "brand": "betplus",
         "platform": "androidtv",
         "country": "US",
