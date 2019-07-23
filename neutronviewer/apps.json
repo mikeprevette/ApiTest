@@ -158,6 +158,19 @@
     },
     {
       "app": {
+        "name": "BET US ANDROIDTV QA",
+        "brand": "bet",
+        "platform": "androidtv",
+        "country": "US",
+        "stage": "qa",
+        "arcSpace": "mtv-authoring-site",
+        "apiVersion": "2.1",
+        "appVersion": "35.0.0",
+        "appRating": "TVPG"
+      }
+    },
+    {
+      "app": {
         "name": "PARAMOUNT US TVOS QA",
         "brand": "mtv",
         "platform": "appletv",
@@ -193,7 +206,7 @@
     "--","live","qa","s"
   ],
   "platforms": [
-    "--","ios", "android", "roku", "appletv"
+    "--","ios", "android", "roku", "appletv", "androidtv"
   ],
     "arcSpaces": [
     "--","mtv-plus-intl-uk-authoring","arc-ent-paramount-network-site","bet","paramountplus-brazil", "mtv-authoring-site"
