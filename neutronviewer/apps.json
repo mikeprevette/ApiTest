@@ -15,7 +15,7 @@
     },
     {
       "app": {
-        "name": "MTV+ GB QA",
+        "name": "MTV+ GB IOS QA",
         "brand": "mtvplus",
         "platform": "ios",
         "country": "GB",
@@ -28,7 +28,7 @@
     },
     {
       "app": {
-        "name": "MTV+ GB LIVE",
+        "name": "MTV+ GB IOS LIVE",
         "brand": "mtvplus",
         "platform": "ios",
         "country": "GB",
@@ -41,7 +41,7 @@
     },
     {
       "app": {
-        "name": "PARAMOUNT+ BR QA",
+        "name": "PARAMOUNT+ BR IOS QA",
         "brand": "paramountplus",
         "platform": "ios",
         "country": "BR",
@@ -54,7 +54,7 @@
     },
     {
       "app": {
-        "name": "PARAMOUNT+ BR LIVE",
+        "name": "PARAMOUNT+ BR IOS LIVE",
         "brand": "paramountplus",
         "platform": "ios",
         "country": "BR",
@@ -80,7 +80,7 @@
     },
     {
       "app": {
-        "name": "BET+ US LIVE",
+        "name": "BET+ US IOS LIVE",
         "brand": "betplus",
         "platform": "ios",
         "country": "US",
