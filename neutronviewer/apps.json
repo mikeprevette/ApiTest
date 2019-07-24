@@ -111,7 +111,7 @@
         "platform": "appletv",
         "country": "US",
         "stage": "qa",
-        "arcSpace": "mtv-authoring-site",
+        "arcSpace": "arc-nick-site",
         "apiVersion": "1.9",
         "appVersion": "35.0.0",
         "appRating": "TVPG"
@@ -124,7 +124,7 @@
         "platform": "appletv",
         "country": "US",
         "stage": "qa",
-        "arcSpace": "mtv-authoring-site",
+        "arcSpace": "arcmig-nickjr-site",
         "apiVersion": "1.9",
         "appVersion": "35.0.0",
         "appRating": "TVPG"
@@ -137,7 +137,7 @@
         "platform": "appletv",
         "country": "US",
         "stage": "qa",
-        "arcSpace": "mtv-authoring-site",
+        "arcSpace": "vh1-authoring",
         "apiVersion": "1.9",
         "appVersion": "35.0.0",
         "appRating": "TVPG"
@@ -150,7 +150,7 @@
         "platform": "appletv",
         "country": "US",
         "stage": "qa",
-        "arcSpace": "mtv-authoring-site",
+        "arcSpace": "bet",
         "apiVersion": "1.9",
         "appVersion": "35.0.0",
         "appRating": "TVPG"
@@ -163,7 +163,7 @@
         "platform": "androidtv",
         "country": "US",
         "stage": "qa",
-        "arcSpace": "mtv-authoring-site",
+        "arcSpace": "bet",
         "apiVersion": "2.1",
         "appVersion": "35.0.0",
         "appRating": "TVPG"
@@ -176,7 +176,7 @@
         "platform": "appletv",
         "country": "US",
         "stage": "qa",
-        "arcSpace": "mtv-authoring-site",
+        "arcSpace": "arc-ent-paramount-network",
         "apiVersion": "1.9",
         "appVersion": "35.0.0",
         "appRating": "TVPG"
@@ -189,7 +189,7 @@
         "platform": "appletv",
         "country": "US",
         "stage": "qa",
-        "arcSpace": "mtv-authoring-site",
+        "arcSpace": "comedycentral",
         "apiVersion": "1.9",
         "appVersion": "35.0.0",
         "appRating": "TVPG"
@@ -209,7 +209,7 @@
     "--","ios", "android", "roku", "appletv", "androidtv"
   ],
     "arcSpaces": [
-    "--","mtv-plus-intl-uk-authoring","arc-ent-paramount-network-site","bet","paramountplus-brazil", "mtv-authoring-site"
+    "--","mtv-plus-intl-uk-authoring","arc-ent-paramount-network-site","bet","paramountplus-brazil", "mtv-authoring-site","arcmig-nickjr-site", "arc-nick-site", "comedycentral","arc-ent-paramount-network","vh1-authoring"
   ],
     "appVersions": [
     "--","31.0.0", "32.0.0", "33.0.0", "35.0.0"
