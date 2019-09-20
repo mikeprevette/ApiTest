@@ -60,7 +60,7 @@
         "country": "BR",
         "stage": "live",
         "arcSpace": "paramountplus-brazil",
-        "apiVersion": "1.9",
+        "apiVersion": "2.1",
         "appVersion": "31.0.0",
         "appRating": "ANCINE"
       }
@@ -99,7 +99,7 @@
         "country": "US",
         "stage": "qa",
         "arcSpace": "mtv-authoring-site",
-        "apiVersion": "1.9",
+        "apiVersion": "2.1",
         "appVersion": "35.0.0",
         "appRating": "TVPG"
       }
@@ -112,7 +112,7 @@
         "country": "US",
         "stage": "qa",
         "arcSpace": "arc-nick-site",
-        "apiVersion": "1.9",
+        "apiVersion": "2.1",
         "appVersion": "35.0.0",
         "appRating": "TVPG"
       }
@@ -125,7 +125,7 @@
         "country": "US",
         "stage": "qa",
         "arcSpace": "arcmig-nickjr-site",
-        "apiVersion": "1.9",
+        "apiVersion": "2.1",
         "appVersion": "35.0.0",
         "appRating": "TVPG"
       }
@@ -138,7 +138,7 @@
         "country": "US",
         "stage": "qa",
         "arcSpace": "vh1-authoring",
-        "apiVersion": "1.9",
+        "apiVersion": "2.1",
         "appVersion": "35.0.0",
         "appRating": "TVPG"
       }
@@ -151,7 +151,7 @@
         "country": "US",
         "stage": "qa",
         "arcSpace": "bet",
-        "apiVersion": "1.9",
+        "apiVersion": "2.1",
         "appVersion": "35.0.0",
         "appRating": "TVPG"
       }
@@ -177,7 +177,7 @@
         "country": "US",
         "stage": "qa",
         "arcSpace": "arc-ent-paramount-network",
-        "apiVersion": "1.9",
+        "apiVersion": "2.1",
         "appVersion": "35.0.0",
         "appRating": "TVPG"
       }
@@ -190,17 +190,29 @@
         "country": "US",
         "stage": "qa",
         "arcSpace": "comedycentral",
-        "apiVersion": "1.9",
+        "apiVersion": "2.1",
+        "appVersion": "35.0.0",
+        "appRating": "TVPG"
+      },
+      {
+      "app": {
+        "name": "MTV PLAY MX iOS QA",
+        "brand": "mtv",
+        "platform": "ios",
+        "country": "MX",
+        "stage": "qa",
+        "arcSpace": "comedycentral",
+        "apiVersion": "2.1",
         "appVersion": "35.0.0",
         "appRating": "TVPG"
       }
     }
   ],
   "countries": [
-    "--","GB","BR","US","CA"
+    "--","GB","BR","US","CA","at", "ar", "be", "ch", "de", "dk", "es", "mx", "nl", "no", "pl", "sg", "ch"
   ],
   "brands": [
-    "--","mtvplus","betplus","paramountplus","mtv","cc","vh1","bet","paramountnetwork","nick","nickjr"
+    "--","mtvplus","betplus","paramountplus","mtv","cc","vh1","bet","paramountnetwork","nick"
   ],
   "stages": [
     "--","live","qa","s"
@@ -209,10 +221,10 @@
     "--","ios", "android", "roku", "appletv", "androidtv"
   ],
     "arcSpaces": [
-    "--","mtv-plus-intl-uk-authoring","arc-ent-paramount-network-site","bet","paramountplus-brazil", "mtv-authoring-site","arcmig-nickjr-site", "arc-nick-site", "comedycentral","arc-ent-paramount-network","vh1-authoring"
+    "--","mtv-plus-intl-uk-authoring","arc-ent-paramount-network-site","bet","paramountplus-brazil", "mtv-authoring-site","arcmig-nickjr-site", "arc-nick-site", "comedycentral","arc-ent-paramount-network","vh1-authoring","vh1-authoring-site", "tvland-authoring-site", "arc-ent-paramount-network-site", "cmt-authoring-site", "comedycentral"
   ],
     "appVersions": [
-    "--","31.0.0", "32.0.0", "33.0.0", "35.0.0"
+    "--","35.0.0", "36.0.0", "37.0.0", "39.0.0"
   ],
     "apiVersions": [
     "--","1.9","2.0","2.1"
