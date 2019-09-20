@@ -746,7 +746,7 @@ function loadContentLink(contentLink, contentType, seriesTitle, seasonLink) {
       'id': 'seasonForm',
       'class': 'TBD',
       'text': 'Seasons:',
-      'html': '<select id="seasonsSelector" onChange="cleanHouse(contentContainerItems);fillContentModule(this.value);"><option value="' + contentLink + '">All</option></select>'
+      'html': 'Seasons:<select id="seasonsSelector" onChange="cleanHouse(contentContainerItems);fillContentModule(this.value);"><option value="' + contentLink + '">All</option></select>'
     }).appendTo('#contentContainerHeader');
     // ajax the list of seasons
     // inject seasons to UI
