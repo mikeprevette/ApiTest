@@ -193,8 +193,8 @@
         "apiVersion": "2.1",
         "appVersion": "35.0.0",
         "appRating": "TVPG"
-      },
-    }
+      }
+    },
     {
       "app": {
         "name": "MTV PLAY MX iOS QA",
