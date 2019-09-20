@@ -104,7 +104,7 @@
         "appRating": "TVPG"
       }
      },
-     {
+    {
       "app": {
         "name": "NICK US TVOS QA",
         "brand": "nick",
@@ -194,7 +194,8 @@
         "appVersion": "35.0.0",
         "appRating": "TVPG"
       },
-      {
+    }
+    {
       "app": {
         "name": "MTV PLAY MX iOS QA",
         "brand": "mtv",
