@@ -9,6 +9,7 @@ const corsProxy = 'https://viamprevette.herokuapp.com/';
 const mtvPlusDeeplinkRoot = 'mtvplayuk://';
 const betPlusDeeplinkRoot = 'betplus://';
 const paramountPlusDeeplinkRoot = 'paramountplus://';
+const deepLinkXrs = 'mikesTestSite';
 var firstRun = true;
 var brand, platform, region, stage, isisURL, params, appVersion, apiVersion, appRating, apiUrl;
 var cardLinks = [];
@@ -1177,13 +1178,15 @@ function makeDeeplink(mgid) {
   } else if (mgid.indexOf("editorial") !== -1) {
     path = 'content/';
   }
+  
+  var postString = path + mgid + "?xrs=" + deepLinkXrs; 
 
   if (brand == "mtvplus") {
-    deeplink = mtvPlusDeeplinkRoot + path + mgid;
+    deeplink = mtvPlusDeeplinkRoot + postString;
   } else if (brand == "paramountplus"){
-    deeplink = paramountPlusDeeplinkRoot + path + mgid;
+    deeplink = paramountPlusDeeplinkRoot + postString;
   } else if (brand == "betplus") {
-    deeplink = betPlusDeeplinkRoot + path + mgid;       
+    deeplink = betPlusDeeplinkRoot + postString;       
   } else {
     deeplink = "NULL";
   }
