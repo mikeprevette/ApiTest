@@ -9,7 +9,7 @@
         "stage": "qa",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "2.1",
-        "appVersion": "31.0.0",
+        "appVersion": "39.0.0",
         "appRating": "OFCOM"
       }
     },
@@ -22,7 +22,7 @@
         "stage": "qa",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "2.1",
-        "appVersion": "31.0.0",
+        "appVersion": "39.0.0",
         "appRating": "OFCOM"
       }
     },
@@ -35,7 +35,7 @@
         "stage": "live",
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "1.9",
-        "appVersion": "31.0.0",
+        "appVersion": "39.0.0",
         "appRating": "OFCOM"
       }
     },
@@ -48,7 +48,7 @@
         "stage": "qa",
         "arcSpace": "paramountplus-brazil",
         "apiVersion": "2.1",
-        "appVersion": "31.0.0",
+        "appVersion": "39.0.0",
         "appRating": "ANCINE"
       }
     },
@@ -61,7 +61,7 @@
         "stage": "live",
         "arcSpace": "paramountplus-brazil",
         "apiVersion": "2.1",
-        "appVersion": "31.0.0",
+        "appVersion": "39.0.0",
         "appRating": "ANCINE"
       }
     },
@@ -74,7 +74,7 @@
         "stage": "qa",
         "arcSpace": "bet",
         "apiVersion": "2.1",
-        "appVersion": "31.0.0",
+        "appVersion": "39.0.0",
         "appRating": "TVPG"
       }
     },
@@ -112,6 +112,32 @@
         "country": "US",
         "stage": "qa",
         "arcSpace": "arc-nick-site",
+        "apiVersion": "2.1",
+        "appVersion": "35.0.0",
+        "appRating": "TVPG"
+      }
+    },
+    {
+      "app": {
+        "name": "Noggin US iOS QA",
+        "brand": "noggin",
+        "platform": "ios",
+        "country": "US",
+        "stage": "qa",
+        "arcSpace": "noggin",
+        "apiVersion": "2.1",
+        "appVersion": "35.0.0",
+        "appRating": "TVPG"
+      }
+    },
+    {
+      "app": {
+        "name": "Noggin MX iOS QA",
+        "brand": "noggin",
+        "platform": "ios",
+        "country": "MX",
+        "stage": "qa",
+        "arcSpace": "noggin.intl",
         "apiVersion": "2.1",
         "appVersion": "35.0.0",
         "appRating": "TVPG"
