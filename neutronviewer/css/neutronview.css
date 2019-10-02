@@ -157,7 +157,7 @@ p {
   color: #4c4c4c;
 	width: 100%;
   min-width: 400px;
-	height: 2em;
+	height: 2.4em;
   overflow: hidden;
 /* 	margin-top: 1em; */
   margin-bottom: 1em;
@@ -539,6 +539,120 @@ p {
 .showCard_S .errorbox {
   top: 3em;
 }
+
+.showCard_nogginNavSquare {
+	display: inline-block;
+	position: relative;
+/*   overflow: hidden; */
+	width: 150px;
+	height: 187px;
+	margin-right: 2em;
+  margin-bottom: 2em;
+/* 	margin-bottom: 3em; */
+/*	background-color: red;*/
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+/*	border: solid;*/
+}
+
+.showCard_nogginNavSquare:first-of-type {
+  margin-left: 1em;
+}
+
+.showCard_nogginNavSquare .gradient {
+  display: none;
+}
+
+.showCard_nogginNavSquare .showCardMeta {
+  bottom: -1em;
+}
+
+.showCard_nogginNavSquare .rating {
+  display: none;
+}
+
+.showCard_nogginNavSquare .contentError {
+  display: none;
+}
+
+.showCard_nogginNavSquare .showCardMetaTitle {
+  font-size: 1em;
+  color: white;
+  text-shadow: 1px 1px 4px black;
+}
+
+.showCard_nogginNavSquare .showCardMetaParent {
+  font-size: 0.75em;
+  color: white;
+  text-shadow: 1px 1px 4px black;
+  display: none;
+}
+
+.showCard_nogginNavSquare .brandLogo {
+  width: 2em;
+  height: 2em;
+  display: none;
+}
+
+.showCard_nogginNavSquare .errorbox {
+  top: 3em;
+}
+
+
+.showCard_nogginContentSquare {
+	display: inline-block;
+	position: relative;
+/*   overflow: hidden; */
+	width: 300px;
+	height: 300px;
+	margin-right: 2em;
+  margin-bottom: 2em;
+/* 	margin-bottom: 3em; */
+/*	background-color: red;*/
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+/*	border: solid;*/
+}
+
+.showCard_nogginContentSquare:first-of-type {
+  margin-left: 1em;
+}
+
+.showCard_nogginContentSquare .gradient {
+  display: none;
+}
+
+.showCard_nogginContentSquare .showCardMeta {
+  bottom: 2em;
+}
+
+
+.showCard_nogginContentSquare .contentError {
+
+}
+
+.showCard_nogginContentSquare .showCardMetaTitle {
+  font-size: 1em;
+  color: white;
+  text-shadow: 1px 1px 4px black;
+}
+
+.showCard_nogginContentSquare .showCardMetaParent {
+  font-size: 0.75em;
+  color: white;
+  text-shadow: 1px 1px 4px black;
+}
+
+.showCard_nogginContentSquare .brandLogo {
+  width: 2em;
+  height: 2em;
+  display: none;
+}
+
+.showCard_nogginContentSquare .errorbox {
+  top: 3em;
+}
+
 
 .showCardControls {
 	width: 100%;

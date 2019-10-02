@@ -244,6 +244,38 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
     type: 'GET',
     dataType: 'json',
     success: function(playplexHome) {
+      // ----- --  Check for Kids nav
+//    console.log(playplexHome);
+      if (playplexHome.data.screen.hasOwnProperty("navigation") && playplexHome.data.screen.navigation.dataSource != null) {
+        console.log("IM A KIDS APP");
+        var target = playplexHome.data.screen.navigation.dataSource;
+        var containerId = "navigation";
+        // add a kids module here
+        cellSize = "nogginNavSquare";
+        aspectRatio = "1:1";
+        $('<div />', {
+          'id': 'moduleHeader_' + containerId,
+          'class': 'containerHeader',
+        }).appendTo('#containers');
+        //build the container
+        $('<div />', {
+          'id': 'module_' + containerId,
+          'class': 'container',
+        }).appendTo('#containers');
+
+        //add Text to the container Header
+        $('<span />', {
+          'id': 'containerHeaderText_' + containerId,
+          'class': 'containerHeaderText',
+          'html': '<span title="API">Navigation</span>',
+          'onclick': 'window.open("' + target + '");'
+        }).appendTo('#moduleHeader_' + containerId);
+        
+        getModule19(target, screenID, containerId, 0, aspectRatio, cellSize);
+      }
+      
+     // ----- --  Do normal carosels
+
       $.each(playplexHome.data.screen.modules, function(z, modules) {
         if (modules.module.templateType == 'pp_continueWatchingCarousel'){
           return;
@@ -253,14 +285,19 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
           if (modules.module.parameters.hasOwnProperty('cellSize')) {
             cellSize = modules.module.parameters.cellSize;
             //console.log(cellSize);
-          }
+          } else {
+          cellSize = "nogginContentSquare";
+        } 
         }
+               
         if (cellSize == "L") {
           aspectRatio = "16:9";
         } else if (cellSize == "M") {
           aspectRatio = "2:3";
         } else if (cellSize == "S") {
           aspectRatio = "16:9";
+        } else if (cellSize == "nogginContentSquare") {
+          aspectRatio = "1:1";
         } else {
           aspectRatio = "16:9";
           cellSize = "S";
@@ -302,6 +339,8 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
     beforeSend: setHeader
   });
 }
+
+     
 
 
 //####################################----Build The Modules (1.9 api)----####################################
@@ -359,7 +398,18 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             deeplink = makeDeeplink(cardVal.mgid);
             //           console.log("deeplink is" + deeplink);
             isPromoError = false;
+            // look for a noggin Nav card image
             if (cardVal.hasOwnProperty("images") && cardVal.images.length > 0) {
+              if (cellSize === "nogginNavSquare") {
+                for (let c = 0, l = cardVal.images.length; c < l; c++) {
+                  if (cardVal.images[c].imageUsageType === "nav-button") {
+                    imgUrl = cardVal.images[c].url + imageParams;
+                    isImgError = "";
+                    break;
+                  }
+               }
+              } else {
+              // Look for a correct image size for a standard card
               for (let c = 0, l = cardVal.images.length; c < l; c++) {
                 if (cardVal.images[c].aspectRatio === aspectRatio) {
                   imgUrl = cardVal.images[c].url + imageParams;
@@ -370,6 +420,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
                   console.log("Wrong Aspect ratio images: " + cardVal.mgid);
                 }
               }
+             }
             } else {
               imgUrl = "./img/error.jpg";
               isImgError = "No images.";
@@ -381,7 +432,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             'id': propertyCardID,
             'class': 'showCard_' + cellSize,
             'style': 'background-image: url(' + imgUrl + ')',
-            'html' : '<img src="./img/gradient.png" width=100% height=100%>'
+            'html' : '<img src="./img/gradient.png" width=100% height=100% class="gradient">'
           }).appendTo('#module_' + containerId);
          
 
@@ -488,7 +539,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               seasonLink = "";
             
             // Playable ITEM Title
-           if (cardVal.hasOwnProperty("parentEntity")) {
+          if (cardVal.hasOwnProperty("parentEntity")) {
               $('<span />', {
                 'id': 'showCardMetaParent_' + propertyCardID,
                 'class': 'showCardMetaParent',
@@ -533,11 +584,12 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
                 'text': cardVal.title
               }).appendTo('#showCardMeta_' + propertyCardID);
           }
-            
-          $('<p />', {
+          
+            $('<p />', {
               'class': 'contentError',
               'text': "Playable Item"
             }).appendTo('#' + propertyCardID);
+
             
           } else if ((entityType === "series" || entityType === "event" || entityType === "movie" || entityType === "editorial") && cardVal.hasOwnProperty("links")) {
             playable = false;
@@ -606,9 +658,19 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               hasSeasons = false;
               seasonLink = "";
             }
-          } else {
+          } else if (entityType === "game") {
+            $('<p />', {
+              'class': 'contentError',
+              'text': "Game"
+            }).appendTo('#' + propertyCardID);
+         } else {
             linksError = true;
             console.log("its an Links error " + propertyCardID);
+             $('<p />', {
+              'class': 'contentError',
+              'text': "Link Or Type Error",
+              'style': "color:red"
+            }).appendTo('#' + propertyCardID);
           }
 
           if (hasEpisodes === true || hasVideos === true || hasPlaylists === true || hasMovie === true || hasShortform === true || hasLongform === true || hasMixedContent === true) {
