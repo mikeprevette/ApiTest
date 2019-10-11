@@ -203,7 +203,8 @@ function loadPlayPlexConfig(){
             .text(enabledBrand.brandName));
         });
         $.each(playPlexMainConfig.data.appConfiguration.screens, function(z, screens) { 
-         if (screens.screen.name == "adult" || screens.screen.name == "home") { //REWORK THIS TO USE ENABLED BRANDS
+         nuclear();
+         if (screens.screen.name == "adult" || screens.screen.name == "home" || screens.screen.name == "pav" || screens.screen.name == "ebook" || screens.screen.name == "offline") { //REWORK THIS TO USE ENABLED BRANDS
             var toLoad = screens.screen.url;
             var screenName = screens.screen.name;
             var screenID = screens.screen.id;
@@ -225,6 +226,7 @@ function brandScreenSelectorFunction(brandScreenValue) {
         var toLoad = screens.screen.url + "&selectedBrand=" + brandScreenName;
         var screenName = screens.screen.name;
         var screenID = screens.screen.id;
+        nuclear();
         getScreen(toLoad, screenName, screenID, z);
         }
   });
@@ -237,7 +239,6 @@ function brandScreenSelectorFunction(brandScreenValue) {
 function getScreen(screenURL, screenName, screenID, screenIndex) {
   console.log("getting the main screen");
   console.log(screenURL);
-  nuclear();
   var cellSize, aspectRatio;
   $.ajax({
     url: corsProxy + screenURL,
@@ -321,10 +322,18 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
         }).appendTo('#containers');
 
         //add Text to the container Header
+        if (modules.module.title != "") {
+          containerHeaderText = modules.module.title;
+        } else if (modules.module.layout.name != "") {
+          containerHeaderText = playplexHome.data.screen.title + " | " + modules.module.layout.name;
+        } else {
+          containerHeaderText = playplexHome.data.screen.title;
+        }
+        
         $('<span />', {
           'id': 'containerHeaderText_' + containerId,
           'class': 'containerHeaderText',
-          'html': '<span title="API">'+ modules.module.title + '</span>',
+          'html': '<span title="API">'+ containerHeaderText + '</span>',
           'onclick': 'window.open("' + target + '");'
         }).appendTo('#moduleHeader_' + containerId);
 
@@ -658,14 +667,19 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               hasSeasons = false;
               seasonLink = "";
             }
-          } else if (entityType === "game") {
+          } else if (entityType === "game" || entityType === "videogame") {
             $('<p />', {
               'class': 'contentError',
               'text': "Game"
             }).appendTo('#' + propertyCardID);
+         } else if (entityType === "ebook"){
+            $('<p />', {
+              'class': 'contentError',
+              'text': "Ebook"
+            }).appendTo('#' + propertyCardID);       
          } else {
             linksError = true;
-            console.log("its an Links error " + propertyCardID);
+            //console.log("its an Links error " + propertyCardID);
              $('<p />', {
               'class': 'contentError',
               'text': "Link Or Type Error",
@@ -736,7 +750,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
             }
           } else if (playable !== true){
-            console.log("its an Links error " + propertyCardID);
+            //console.log("its an Links error " + propertyCardID);
             $('<p />', {
               'class': 'contentError',
               'html': "<u>No Content</u>",
