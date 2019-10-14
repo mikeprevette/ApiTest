@@ -1,0 +1,236 @@
+{
+  "apps": [
+    {
+      "app": {
+        "name": "-- Start Here! --",
+        "brand": "mtvplus",
+        "platform": "ios",
+        "country": "GB",
+        "stage": "qa",
+        "arcSpace": "mtv-plus-intl-uk-authoring",
+        "apiVersion": "2.1",
+        "appVersion": "31.0.0",
+        "appRating": "OFCOM"
+      }
+    },
+    {
+      "app": {
+        "name": "MTV+ GB IOS QA",
+        "brand": "mtvplus",
+        "platform": "ios",
+        "country": "GB",
+        "stage": "qa",
+        "arcSpace": "mtv-plus-intl-uk-authoring",
+        "apiVersion": "2.1",
+        "appVersion": "31.0.0",
+        "appRating": "OFCOM"
+      }
+    },
+    {
+      "app": {
+        "name": "MTV+ GB IOS LIVE",
+        "brand": "mtvplus",
+        "platform": "ios",
+        "country": "GB",
+        "stage": "live",
+        "arcSpace": "mtv-plus-intl-uk-authoring",
+        "apiVersion": "1.9",
+        "appVersion": "31.0.0",
+        "appRating": "OFCOM"
+      }
+    },
+    {
+      "app": {
+        "name": "PARAMOUNT+ BR IOS QA",
+        "brand": "paramountplus",
+        "platform": "ios",
+        "country": "BR",
+        "stage": "qa",
+        "arcSpace": "paramountplus-brazil",
+        "apiVersion": "2.1",
+        "appVersion": "31.0.0",
+        "appRating": "ANCINE"
+      }
+    },
+    {
+      "app": {
+        "name": "PARAMOUNT+ BR IOS LIVE",
+        "brand": "paramountplus",
+        "platform": "ios",
+        "country": "BR",
+        "stage": "live",
+        "arcSpace": "paramountplus-brazil",
+        "apiVersion": "2.1",
+        "appVersion": "31.0.0",
+        "appRating": "ANCINE"
+      }
+    },
+    {
+      "app": {
+        "name": "BET+ US iOS QA",
+        "brand": "betplus",
+        "platform": "ios",
+        "country": "US",
+        "stage": "qa",
+        "arcSpace": "bet",
+        "apiVersion": "2.1",
+        "appVersion": "31.0.0",
+        "appRating": "TVPG"
+      }
+    },
+    {
+      "app": {
+        "name": "BET+ US IOS LIVE",
+        "brand": "betplus",
+        "platform": "ios",
+        "country": "US",
+        "stage": "live",
+        "arcSpace": "bet",
+        "apiVersion": "2.1",
+        "appVersion": "35.0.0",
+        "appRating": "TVPG"
+      }
+    },
+    {
+      "app": {
+        "name": "MTV US TVOS QA",
+        "brand": "mtv",
+        "platform": "appletv",
+        "country": "US",
+        "stage": "qa",
+        "arcSpace": "mtv-authoring-site",
+        "apiVersion": "2.1",
+        "appVersion": "35.0.0",
+        "appRating": "TVPG"
+      }
+     },
+    {
+      "app": {
+        "name": "NICK US TVOS QA",
+        "brand": "nick",
+        "platform": "appletv",
+        "country": "US",
+        "stage": "qa",
+        "arcSpace": "arc-nick-site",
+        "apiVersion": "2.1",
+        "appVersion": "35.0.0",
+        "appRating": "TVPG"
+      }
+    },
+    {
+      "app": {
+        "name": "NICKJR US TVOS QA",
+        "brand": "nickjr",
+        "platform": "appletv",
+        "country": "US",
+        "stage": "qa",
+        "arcSpace": "arcmig-nickjr-site",
+        "apiVersion": "2.1",
+        "appVersion": "35.0.0",
+        "appRating": "TVPG"
+      }
+    },
+    {
+      "app": {
+        "name": "VH1 US TVOS QA",
+        "brand": "vh1",
+        "platform": "appletv",
+        "country": "US",
+        "stage": "qa",
+        "arcSpace": "vh1-authoring",
+        "apiVersion": "2.1",
+        "appVersion": "35.0.0",
+        "appRating": "TVPG"
+      }
+    },
+    {
+      "app": {
+        "name": "BET US TVOS QA",
+        "brand": "bet",
+        "platform": "appletv",
+        "country": "US",
+        "stage": "qa",
+        "arcSpace": "bet",
+        "apiVersion": "2.1",
+        "appVersion": "35.0.0",
+        "appRating": "TVPG"
+      }
+    },
+    {
+      "app": {
+        "name": "BET+ US ANDROIDTV QA",
+        "brand": "betplus",
+        "platform": "androidtv",
+        "country": "US",
+        "stage": "qa",
+        "arcSpace": "bet",
+        "apiVersion": "2.1",
+        "appVersion": "35.0.0",
+        "appRating": "TVPG"
+      }
+    },
+    {
+      "app": {
+        "name": "PARAMOUNT US TVOS QA",
+        "brand": "mtv",
+        "platform": "appletv",
+        "country": "US",
+        "stage": "qa",
+        "arcSpace": "arc-ent-paramount-network",
+        "apiVersion": "2.1",
+        "appVersion": "35.0.0",
+        "appRating": "TVPG"
+      }
+    },
+    {
+      "app": {
+        "name": "CC US TVOS QA",
+        "brand": "cc",
+        "platform": "appletv",
+        "country": "US",
+        "stage": "qa",
+        "arcSpace": "comedycentral",
+        "apiVersion": "2.1",
+        "appVersion": "35.0.0",
+        "appRating": "TVPG"
+      }
+    },
+    {
+      "app": {
+        "name": "MTV PLAY MX iOS QA",
+        "brand": "mtv",
+        "platform": "ios",
+        "country": "MX",
+        "stage": "qa",
+        "arcSpace": "comedycentral",
+        "apiVersion": "2.1",
+        "appVersion": "35.0.0",
+        "appRating": "ANCINE"
+      }
+    }
+  ],
+  "countries": [
+    "--","GB","BR","US","CA","at", "ar", "be", "ch", "de", "dk", "es", "mx", "nl", "no", "pl", "sg", "ch"
+  ],
+  "brands": [
+    "--","mtvplus","betplus","paramountplus","mtv","cc","vh1","bet","paramountnetwork","nick"
+  ],
+  "stages": [
+    "--","live","qa","s"
+  ],
+  "platforms": [
+    "--","ios", "android", "roku", "appletv", "androidtv"
+  ],
+    "arcSpaces": [
+    "--","mtv-plus-intl-uk-authoring","arc-ent-paramount-network-site","bet","paramountplus-brazil", "mtv-authoring-site","arcmig-nickjr-site", "arc-nick-site", "comedycentral","arc-ent-paramount-network","vh1-authoring","vh1-authoring-site", "tvland-authoring-site", "arc-ent-paramount-network-site", "cmt-authoring-site", "comedycentral"
+  ],
+    "appVersions": [
+    "--","35.0.0", "36.0.0", "37.0.0", "39.0.0"
+  ],
+    "apiVersions": [
+    "--","1.9","2.0","2.1"
+  ],
+  "appRatings": [
+   "--","ANCINE","OFCOM","TVPG"
+  ]
+}
