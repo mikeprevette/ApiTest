@@ -2,7 +2,7 @@
 
 /* ####################################----PLAYPLEX----#################################### */
 const imageParams = '&width=450&quality=0.7';
-const liveRootURL = 'http://api.playplex.viacom.com/feeds/networkapp/intl';
+const liveRootURL = 'https://api.playplex.viacom.com/feeds/networkapp/intl';
 const testingRootURL = 'http://testing.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
 const hotfixRootURL = 'http://hotfix.api.playplex.viacom.vmn.io/feeds/networkapp/intl';
 const devRootURL = 'http://dev.api.playplex.viacom.vmn.io/feeds/networkapp/intl';

@@ -286,9 +286,11 @@ function getScreen(screenURL, screenName, screenID, screenIndex) {
           if (modules.module.parameters.hasOwnProperty('cellSize')) {
             cellSize = modules.module.parameters.cellSize;
             //console.log(cellSize);
+          } else if(modules.module.parameters.hasOwnProperty('aspectRatio')) {
+            cellSize = "M";
           } else {
           cellSize = "nogginContentSquare";
-        } 
+          } 
         }
                
         if (cellSize == "L") {
