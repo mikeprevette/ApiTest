@@ -9,6 +9,7 @@ const corsProxy = 'https://viamprevette.herokuapp.com/';
 const mtvPlusDeeplinkRoot = 'mtvplayuk://';
 const betPlusDeeplinkRoot = 'betplus://';
 const paramountPlusDeeplinkRoot = 'paramountplus://';
+const nogginPlusIntlDeeplinkRoot = 'nogginplusintl://';
 const deepLinkXrs = 'mikesTestSite';
 var firstRun = true;
 var brand, platform, region, stage, isisURL, params, appVersion, apiVersion, appRating, apiUrl;
@@ -1265,6 +1266,8 @@ function makeDeeplink(mgid) {
     deeplink = paramountPlusDeeplinkRoot + postString;
   } else if (brand == "betplus") {
     deeplink = betPlusDeeplinkRoot + postString;       
+  } else if (brand == "noggin" && region != 'us') {
+    deeplink = nogginPlusIntlDeeplinkRoot + postString;
   } else {
     deeplink = "NULL";
   }
