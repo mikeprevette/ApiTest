@@ -14,9 +14,29 @@ const deepLinkXrs = 'mikesTestSite';
 var firstRun = true;
 var brand, platform, region, stage, isisURL, params, appVersion, apiVersion, appRating, apiUrl;
 var cardLinks = [];
+var appsInstances = [];
 var card = Object.create(null);
 var playPlexMainConfig = Object.create(null);
 
+
+function createAppOptions(apps,z) {
+			var combi = combinations(apps.app.platform, apps.app.country, apps.app.stage);
+			for (let c of combi ) {
+				console.log(combi.done);
+//         console.log(c);
+        $('#quickSelector')
+        .append($("<option></option>")
+          .attr("value", apps.app.brand + ',' + c[0] + ',' + c[1] + ',' + c[2] + ',' + apps.app.arcSpace + ',' + apps.app.apiVersion + ',' + apps.app.appVersion + ',' + apps.app.appRating)
+          .text(apps.app.name + " | " + c[0] + "-" + c[1] + "-" + c[2]));
+			}
+}
+
+// function createAppOptions(apps,z) {
+//         $('#quickSelector')
+//         .append($("<option></option>")
+//           .attr("value", z)
+//           .text(apps.app.name));
+// }
 //####################################----on load parse the apps.json file and prefil the form----####################################
 
 
@@ -28,7 +48,7 @@ function makeTheScreen(mode) {
   // 	});
   if (firstRun === true && mode == "live") {
     //alert("Hello! This is an unsupported tool, and will likely break often. \n\n Things to note: \n -- error if you change brands while its still loading");
-    appsJsonFile = "apps.json";
+    appsJsonFile = "apps_alt.json";
   } else {
     console.log("Dev Mode");
     appsJsonFile = "dev_apps.json";
@@ -43,10 +63,9 @@ function makeTheScreen(mode) {
       return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
     });
     $.each(appsList.apps, function(z, apps) {
-      $('#quickSelector')
-        .append($("<option></option>")
-          .attr("value", apps.app.brand + ',' + apps.app.platform + ',' + apps.app.country + ',' + apps.app.stage + ',' + apps.app.arcSpace + ',' + apps.app.apiVersion + ',' + apps.app.appVersion + ',' + apps.app.appRating)
-          .text(apps.app.name));
+      console.log("Making the QuickSelect list");
+      createAppOptions(apps,z);
+      appsInstances.push(apps);
     })
     $.each(appsList.brands.sort(), function(z, brands) {
       $('#brands')
@@ -215,7 +234,7 @@ function loadPlayPlexConfig(){
         })
 }
 
-//####################################----Take action on the brandScreemSelector----####################################
+//####################################----Take action on the brandScreenSelector----####################################
 
 function brandScreenSelectorFunction(brandScreenValue) {
   console.log("brandScreenSelector: " + brandScreenValue);
@@ -1233,6 +1252,34 @@ function getCustomParamValues() {
 }
 
 
+//####################################----Take action on the countrySelector----####################################
+
+function countrySelectorFunction(countryValue) {
+  console.log("countryValueSelector: " + countryValue);
+  region = countryValue;
+  addURLParam('region', region);
+  getPlayPlexConfig();
+}
+
+//####################################----Take action on the countrySelector----####################################
+
+function platformSelectorFunction(platformValue) {
+  console.log("platformValueSelector: " + platformValue);
+  platform = platformValue;
+  addURLParam('platform', platform);
+  getPlayPlexConfig();
+}
+
+//####################################----Take action on the countrySelector----####################################
+
+function stageSelectorFunction(stageValue) {
+  console.log("stageValueSelector: " + stageValue);
+  stage = stageValue;
+  addURLParam('stage', stage);
+  getPlayPlexConfig();
+}
+
+
 //####################################----Make a deeplink----####################################
 
 function makeDeeplink(mgid) {
@@ -1266,7 +1313,7 @@ function makeDeeplink(mgid) {
     deeplink = paramountPlusDeeplinkRoot + postString;
   } else if (brand == "betplus") {
     deeplink = betPlusDeeplinkRoot + postString;       
-  } else if (brand == "noggin" && region != 'us') {
+  } else if (brand == "noggin" && region != 'US') {
     deeplink = nogginPlusIntlDeeplinkRoot + postString;
   } else {
     deeplink = "NULL";
@@ -1409,3 +1456,22 @@ function downloadCSV(args) {
   link.target = "_blank";
   link.click();
 }
+
+//####################################----Make all App combinations----####################################
+
+
+// get the list of all the possible params X
+// build each url save it to an object
+// request each config and add its param to the objects properties
+// render a matrix of the params
+
+// Generate all combinations of array elements:
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function%2A
+// https://stackoverflow.com/questions/4331092/finding-all-combinations-of-javascript-array-values
+			function* combinations(head, ...tail) {
+				let remainder = tail.length ? combinations(...tail) : [
+					[]
+				];
+				for (let r of remainder)
+					for (let h of head) yield [h, ...r];
+			}

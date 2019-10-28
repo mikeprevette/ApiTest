@@ -46,10 +46,21 @@
 </div>
 <div id="top">
 		<form id="form" class="formClass"> 
-			<select id="quickSelector" onChange="stringToParams(this.value);$('#welcome').hide();"></select>
-      <span id="multiBrandSelector">
-      Brand: <select id="brandScreenSelector" onChange="brandScreenSelectorFunction(this.value);"></select>
+      <select id="quickSelector" onChange="stringToParams(this.value);$('#welcome').hide();"></select>
+<!-- 			<select id="quickSelector" onChange="stringToParams(this.value);$('#welcome').hide();"></select> -->
+      <span id="multiStageSelector">
+      Stage: <select id="stageSelector" onChange="stageSelectorFunction(this.value);"></select>
       </span>
+      <span id="multiCountrySelector">
+      Country: <select id="countrySelector" onChange="countrySelectorFunction(this.value);"></select>
+      </span>
+      <span id="multiPlatformSelector">
+      Platform: <select id="platformSelector" onChange="platformSelectorFunction(this.value);"></select>
+      </span>
+      <span id="multiBrandSelector">
+      Brand Screen: <select id="brandScreenSelector" onChange="brandScreenSelectorFunction(this.value);"></select>
+      </span>
+		<div id="deeplinkOverlayButton" class="button" onClick="$(advancedOverlay).toggle();">Other Deeplinks</div>
 		<div id="advancedButton" class="button" onClick="$(advancedOverlay).toggle();">Advanced</div>
   </form>
 	<div id="mainApiButton" class="button" onclick="openMainApi();">Main Api</div>

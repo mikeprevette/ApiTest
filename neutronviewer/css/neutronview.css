@@ -126,7 +126,7 @@ p {
 #advancedForm {
 }
 
-#multiBrandSelector {
+#multiBrandSelector, #multiStageSelector, #multiCountrySelector, #multiPlatformSelector, #deeplinkOverlayButton {
   display: none;
 }
 
