@@ -31,10 +31,11 @@ body {
   overflow: hidden;
 }
 
-#execute {
+#advancedGo {
   width: 100%;
   text-align: center;
   line-height: 2em;
+  clear: left;
 }
 
 
@@ -67,6 +68,11 @@ body {
   height: 2.5em;
   min-width: 680px;
   z-index: 998;
+}
+
+#top select {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
 
 #welcome {
@@ -106,6 +112,12 @@ p {
 }
 
 #advancedOptions {
+}
+
+#advancedForm select {
+}
+
+#advancedForm {
   display: block;
   width: 25%;
   margin-left: auto;
@@ -118,12 +130,6 @@ p {
   -webkit-border-radius: 1em;
   -moz-border-radius: 1em;
   border-radius: 1em;
-}
-
-#advancedOptions select {
-}
-
-#advancedForm {
 }
 
 #multiBrandSelector, #multiStageSelector, #multiCountrySelector, #multiPlatformSelector, #deeplinkOverlayButton {

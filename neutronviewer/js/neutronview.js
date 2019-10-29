@@ -19,24 +19,65 @@ var card = Object.create(null);
 var playPlexMainConfig = Object.create(null);
 
 
-function createAppOptions(apps,z) {
-			var combi = combinations(apps.app.platform, apps.app.country, apps.app.stage);
-			for (let c of combi ) {
-				console.log(combi.done);
-//         console.log(c);
-        $('#quickSelector')
-        .append($("<option></option>")
-          .attr("value", apps.app.brand + ',' + c[0] + ',' + c[1] + ',' + c[2] + ',' + apps.app.arcSpace + ',' + apps.app.apiVersion + ',' + apps.app.appVersion + ',' + apps.app.appRating)
-          .text(apps.app.name + " | " + c[0] + "-" + c[1] + "-" + c[2]));
-			}
-}
-
 // function createAppOptions(apps,z) {
+// 			var combi = combinations(apps.app.platform, apps.app.country, apps.app.stage);
+// 			for (let c of combi ) {
+// 				console.log(combi.done);
+// //         console.log(c);
 //         $('#quickSelector')
 //         .append($("<option></option>")
-//           .attr("value", z)
-//           .text(apps.app.name));
+//           .attr("value", apps.app.brand + ',' + c[0] + ',' + c[1] + ',' + c[2] + ',' + apps.app.arcSpace + ',' + apps.app.apiVersion + ',' + apps.app.appVersion + ',' + apps.app.appRating)
+//           .text(apps.app.name + " | " + c[0] + "-" + c[1] + "-" + c[2]));
+// 			}
 // }
+
+
+function appSelector(appsIndex) {
+  let app = appsInstances[appsIndex];
+  if (app.platform.length > 1) {
+    $(multiPlatformSelector).show();
+  } else {
+    $(multiPlatformSelector).hide();
+  }
+  if (app.country.length > 1) {
+    $(multiCountrySelector).show();
+  } else {
+    $(multiCountrySelector).hide();
+  }
+  if (app.stage.length > 1) {
+    $(multiStageSelector).show();
+  } else {
+    $(multiStageSelector).hide();
+  }
+  // update the forms
+  // clear them first
+  $('#countrySelector').empty();
+  $('#platformSelector').empty();
+  $('#stageSelector').empty();
+
+  $.each(app.country.sort(), function(z, countries) {
+    $('#countrySelector')
+      .append($("<option></option>")
+        .attr("value", countries)
+        .text(countries));
+  })
+  $.each(app.platform, function(z, platforms) {
+    $('#platformSelector')
+      .append($("<option></option>")
+        .attr("value", platforms)
+        .text(platforms));
+  })
+  $.each(app.stage, function(z, stages) {
+    $('#stageSelector')
+      .append($("<option></option>")
+        .attr("value", stages)
+        .text(stages));
+  })
+  // make it so
+  stringToParams(app.brand + ',' + app.platform[0] + ',' + app.country[0] + ',' + app.stage[0] + ',' + app.arcSpace + ',' + app.apiVersion + ',' + app.appVersion + ',' + app.appRating)
+}
+
+
 //####################################----on load parse the apps.json file and prefil the form----####################################
 
 
@@ -64,45 +105,14 @@ function makeTheScreen(mode) {
     });
     $.each(appsList.apps, function(z, apps) {
       console.log("Making the QuickSelect list");
-      createAppOptions(apps,z);
-      appsInstances.push(apps);
-    })
-    $.each(appsList.brands.sort(), function(z, brands) {
-      $('#brands')
+      appsInstances.push(apps.app);
+      //console.log(apps.app);
+      $('#quickSelector')
         .append($("<option></option>")
-          .attr("value", brands)
-          .text(brands.toUpperCase()));
+          .attr("value", z)
+          .text(apps.app.name));
     })
-    $.each(appsList.countries.sort(), function(z, countries) {
-      $('#countries')
-        .append($("<option></option>")
-          .attr("value", countries)
-          .text(countries.toUpperCase()));
-    })
-    $.each(appsList.platforms, function(z, platforms) {
-      $('#platforms')
-        .append($("<option></option>")
-          .attr("value", platforms)
-          .text(platforms));
-    })
-    $.each(appsList.stages, function(z, stages) {
-      $('#stages')
-        .append($("<option></option>")
-          .attr("value", stages)
-          .text(stages));
-    })
-    $.each(appsList.appVersions, function(z, appVersions) {
-      $('#appVersions')
-        .append($("<option></option>")
-          .attr("value", appVersions)
-          .text(appVersions));
-    })
-    $.each(appsList.apiVersions, function(z, apiVersions) {
-      $('#apiVersions')
-        .append($("<option></option>")
-          .attr("value", apiVersions)
-          .text(apiVersions));
-    })
+    buildAdvancedmenu(appsList);
   });
 
   var urlString = window.location.href;
@@ -224,7 +234,7 @@ function loadPlayPlexConfig(){
         });
         $.each(playPlexMainConfig.data.appConfiguration.screens, function(z, screens) { 
          nuclear();
-         if (screens.screen.name == "adult" || screens.screen.name == "home" || screens.screen.name == "pav" || screens.screen.name == "ebook" || screens.screen.name == "offline") { //REWORK THIS TO USE ENABLED BRANDS
+         if (screens.screen.name == "adult" || screens.screen.name == "home" || screens.screen.name == "pav" || screens.screen.name == "ebook" ) { //REWORK THIS TO USE ENABLED BRANDS || screens.screen.name == "offline"
             var toLoad = screens.screen.url;
             var screenName = screens.screen.name;
             var screenID = screens.screen.id;
@@ -379,6 +389,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
   //console.log("getModule19 - USING 1.9 LOGIC")
   var screenUUID = uuidMaker(screenID);
   var isPromoError = false;
+  var itemsLoaded = 0;
   $.ajax({
     url: corsProxy + moduleURL,
     type: 'GET',
@@ -391,6 +402,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
         }).appendTo('#module_' + containerId);
       } else {
         $.each(playplexData.data.items, function(i, cardVal) {
+          itemsLoaded++;
           card[cardVal.mgid];
           card[cardVal.mgid] = cardVal;
           var isImgError = "";
@@ -780,10 +792,25 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             }).appendTo('#' + propertyCardID);
           }
         });
-        if (playplexData.metadata.pagination.next != null) { // checks for a next page then re-triggers itself.
+        if (playplexData.metadata.pagination.next != null && itemsLoaded < 150) { // checks for a next page then re-triggers itself.
           moduleURL = playplexData.metadata.pagination.next;
           getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize); //run it all over again
-        }
+        } else if (itemsLoaded >= 150) {
+          $('<div />', {
+            'id': 'endCard',
+            'class': 'showCard_' + cellSize,
+            'html' : '<img src="./img/gradient.png" width=100% height=100% class="gradient">'
+          }).appendTo('#module_' + containerId);
+          $('<div />', {
+            'id': 'errorbox_endCard',
+            'class': 'errorbox'
+          }).appendTo('#endCard');
+          $('<p />', {
+              'class': 'error',
+              'text': "150 items exceeded"
+            }).appendTo('errorbox_endCard');
+           $.end();
+          }
       }
     },
     error: function() {
@@ -1236,7 +1263,52 @@ function updateFormValues() {
   document.getElementById('platforms').value = platform;
   document.getElementById('appVersions').value = appVersion;
   document.getElementById('apiVersions').value = apiVersion;
+  document.getElementById('countrySelector').value = region;
+  document.getElementById('stageSelector').value = stage;
+  document.getElementById('platformSelector').value = platform;
 }
+
+//####################################----Build the Advance menu----####################################
+
+
+function  buildAdvancedmenu(appsList) {
+    $.each(appsList.brands.sort(), function(z, brands) {
+      $('#brands')
+        .append($("<option></option>")
+          .attr("value", brands)
+          .text(brands.toUpperCase()));
+    })
+    $.each(appsList.countries.sort(), function(z, countries) {
+      $('#countries')
+        .append($("<option></option>")
+          .attr("value", countries)
+          .text(countries));
+    })
+    $.each(appsList.platforms, function(z, platforms) {
+      $('#platforms')
+        .append($("<option></option>")
+          .attr("value", platforms)
+          .text(platforms));
+    })
+    $.each(appsList.stages, function(z, stages) {
+      $('#stages')
+        .append($("<option></option>")
+          .attr("value", stages)
+          .text(stages));
+    })
+    $.each(appsList.appVersions, function(z, appVersions) {
+      $('#appVersions')
+        .append($("<option></option>")
+          .attr("value", appVersions)
+          .text(appVersions));
+    })
+    $.each(appsList.apiVersions, function(z, apiVersions) {
+      $('#apiVersions')
+        .append($("<option></option>")
+          .attr("value", apiVersions)
+          .text(apiVersions));
+    })
+   }
 
 //####################################----update custom selectors----####################################
 
@@ -1346,9 +1418,6 @@ function addURLParam(sVariable, sNewValue) {
   }
 
   if (aURLParams[sVariable] != sNewValue) {
-    if (sNewValue.toUpperCase() == "ALL")
-      aURLParams[sVariable] = null;
-    else
       aURLParams[sVariable] = sNewValue;
 
     var sNewURL = window.location.origin + window.location.pathname;

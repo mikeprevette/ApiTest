@@ -33,23 +33,29 @@
 <div id="advancedOverlay">
   <div id="closeButton" onclick="$(advancedOverlay).toggle();">X</div>
 		<form id="advancedForm">
-        <span id="advancedOptions"> 
-        Brands: <select id="brands" ></select><br/>
-				Countries: <select id="countries"></select><br/>
-				Platforms: <select id="platforms"></select><br/>
-				Stage: <select id="stages"></select><br/>
-				App Version: <select id="appVersions"></select><br/>
-        API Version: <select id="apiVersions"></select><br/>
-				<div id="execute" class="button" onclick="customTarget();$(advancedOverlay).toggle();">GO</div>
-      </span>
+        <table id="advancedOptions"> 
+        <tr>
+          <td>Brands:</td><td><select id="brands" ></select></td></tr>
+				<tr>
+          <td>Countries:</td><td><select id="countries"></select></td></tr>
+				<tr>
+          <td>Platforms:</td><td><select id="platforms"></select></td></tr>
+				<tr>
+          <td>Stage:</td><td><select id="stages"></select></td></tr>
+				<tr>
+          <td>App Version:</td><td><select id="appVersions"></select></td></tr>
+        <tr>
+          <td>API Version:</td><td><select id="apiVersions"></select></td></tr>
+      </table>
+      <div id="advancedGo" class="button" onclick="customTarget();$(advancedOverlay).toggle();">GO</div>
   </form>
 </div>
 <div id="top">
 		<form id="form" class="formClass"> 
-      <select id="quickSelector" onChange="stringToParams(this.value);$('#welcome').hide();"></select>
+      <select id="quickSelector" onChange="appSelector(this.value);$('#welcome').hide();"></select>
 <!-- 			<select id="quickSelector" onChange="stringToParams(this.value);$('#welcome').hide();"></select> -->
       <span id="multiStageSelector">
-      Stage: <select id="stageSelector" onChange="stageSelectorFunction(this.value);"></select>
+       &nbsp; Stage: <select id="stageSelector" onChange="stageSelectorFunction(this.value);"></select>
       </span>
       <span id="multiCountrySelector">
       Country: <select id="countrySelector" onChange="countrySelectorFunction(this.value);"></select>
@@ -61,7 +67,7 @@
       Brand Screen: <select id="brandScreenSelector" onChange="brandScreenSelectorFunction(this.value);"></select>
       </span>
 		<div id="deeplinkOverlayButton" class="button" onClick="$(advancedOverlay).toggle();">Other Deeplinks</div>
-		<div id="advancedButton" class="button" onClick="$(advancedOverlay).toggle();">Advanced</div>
+		<div id="advancedButton" class="button" onClick="$(advancedOverlay).toggle();">&nbsp;Advanced</div>
   </form>
 	<div id="mainApiButton" class="button" onclick="openMainApi();">Main Api</div>
 </div>

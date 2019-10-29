@@ -2,11 +2,24 @@
   "apps": [
     {
       "app": {
+        "name": "-- Start Here! --",
+        "brand": "mtvplus",
+        "platform": ["ios"],
+        "country": ["GB"],
+        "stage": ["qa"],
+        "arcSpace": "mtv-plus-intl-uk-authoring",
+        "apiVersion": "2.1",
+        "appVersion": "39.0.0",
+        "appRating": "OFCOM"
+      }
+    },
+    {
+      "app": {
         "name": "MTV+",
         "brand": "mtvplus",
         "platform": ["ios","android"],
         "country": ["GB"],
-        "stage": ["live","qa"],
+        "stage": ["qa","live"],
         "arcSpace": "mtv-plus-intl-uk-authoring",
         "apiVersion": "2.1",
         "appVersion": "39.0.0",
@@ -18,8 +31,8 @@
         "name": "PARAMOUNT+",
         "brand": "paramountplus",
         "platform": ["ios","android"],
-        "country": ["br","mx"],
-        "stage": ["live","qa"],
+        "country": ["br","mx","ar","co"],
+        "stage": ["qa","live"],
         "arcSpace": "paramountplus-brazil",
         "apiVersion": "2.1",
         "appVersion": "39.0.0",
@@ -32,7 +45,7 @@
         "brand": "betplus",
         "platform": ["ios","android","appletv","roku","androidtv"],
         "country": ["US"],
-        "stage": ["live","qa"],
+        "stage": ["qa","live"],
         "arcSpace": "bet",
         "apiVersion": "2.1",
         "appVersion": "39.0.0",
@@ -45,7 +58,7 @@
         "brand": "mtv",
         "platform": ["ios","android","appletv","roku","androidtv"],
         "country": ["us"],
-        "stage": ["live","qa"],
+        "stage": ["qa","live"],
         "arcSpace": "mtv-authoring-site",
         "apiVersion": "2.1",
         "appVersion": "35.0.0",
@@ -57,8 +70,8 @@
         "name": "MTV INTL",
         "brand": "mtv",
         "platform": ["ios","android"],
-        "country": ["at","br","mx","de","dk","no","be","ch","es","nl", "pl", "sg"],
-        "stage": ["live","qa"],
+        "country": ["ar","br","mx","de","dk","no","be","ch","es","nl", "pl", "sg"],
+        "stage": ["qa","live"],
         "arcSpace": "mtv-authoring-site",
         "apiVersion": "2.1",
         "appVersion": "35.0.0",
@@ -67,11 +80,11 @@
      },
     {
       "app": {
-        "name": "NICK",
+        "name": "NICK US",
         "brand": "nick",
-        "platform": ["ios","android","appletv","roku","androidtv"],
+        "platform": ["appletv","roku","androidtv"],
         "country": ["US"],
-        "stage": ["live","qa"],
+        "stage": ["qa","live"],
         "arcSpace": "arc-nick-site",
         "apiVersion": "2.1",
         "appVersion": "35.0.0",
@@ -80,11 +93,11 @@
     },
     {
       "app": {
-        "name": "Noggin+ US",
+        "name": "NOGGIN+ US",
         "brand": "noggin",
         "platform": ["ios","android","appletv","roku","androidtv"],
         "country": ["US"],
-        "stage": ["live","qa"],
+        "stage": ["qa","live"],
         "arcSpace": "noggin",
         "apiVersion": "2.1",
         "appVersion": "35.0.0",
@@ -93,25 +106,12 @@
     },
     {
       "app": {
-        "name": "Noggin+ INTL",
+        "name": "NOGGIN+ INTL",
         "brand": "noggin",
         "platform": ["ios","android"],
         "country": ["br","de","mx"],
-        "stage": ["live","qa"],
+        "stage": ["qa","live"],
         "arcSpace": "noggin",
-        "apiVersion": "2.1",
-        "appVersion": "35.0.0",
-        "appRating": "TVPG"
-      }
-    },
-    {
-      "app": {
-        "name": "NICKJR",
-        "brand": "nickjr",
-        "platform": ["ios","android","appletv","roku","androidtv"],
-        "country": ["US"],
-        "stage": ["live","qa"],
-        "arcSpace": "arcmig-nickjr-site",
         "apiVersion": "2.1",
         "appVersion": "35.0.0",
         "appRating": "TVPG"
@@ -121,23 +121,10 @@
       "app": {
         "name": "VH1",
         "brand": "vh1",
-        "platform": ["ios","android","appletv","roku","androidtv"],
+        "platform": ["appletv","roku","androidtv"],
         "country": ["US"],
-        "stage": ["live","qa"],
+        "stage": ["qa","live"],
         "arcSpace": "vh1-authoring",
-        "apiVersion": "2.1",
-        "appVersion": "35.0.0",
-        "appRating": "TVPG"
-      }
-    },
-    {
-      "app": {
-        "name": "BET Now",
-        "brand": "bet",
-        "platform": ["ios","android","appletv","roku","androidtv"],
-        "country": ["US"],
-        "stage": ["live","qa"],
-        "arcSpace": "bet",
         "apiVersion": "2.1",
         "appVersion": "35.0.0",
         "appRating": "TVPG"
@@ -149,7 +136,7 @@
         "brand": "paramountnetwork",
         "platform": ["ios","android","appletv","roku","androidtv"],
         "country": ["US"],
-        "stage": ["live","qa"],
+        "stage": ["qa","live"],
         "arcSpace": "arc-ent-paramount-network",
         "apiVersion": "2.1",
         "appVersion": "35.0.0",
@@ -158,11 +145,11 @@
     },
     {
       "app": {
-        "name": "ComedyCentral",
+        "name": "COMEDY CENTRAL",
         "brand": "cc",
-        "platform": ["ios","android","appletv","roku","androidtv"],
+        "platform": ["appletv","roku"],
         "country": ["US"],
-        "stage": ["live","qa"],
+        "stage": ["qa","live"],
         "arcSpace": "comedycentral",
         "apiVersion": "2.1",
         "appVersion": "35.0.0",
