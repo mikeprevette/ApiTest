@@ -15,6 +15,7 @@ var firstRun = true;
 var brand, platform, region, stage, isisURL, params, appVersion, apiVersion, appRating, apiUrl;
 var cardLinks = [];
 var appsInstances = [];
+var countryObject = [];
 var card = Object.create(null);
 var playPlexMainConfig = Object.create(null);
 
@@ -34,6 +35,13 @@ var playPlexMainConfig = Object.create(null);
 
 function appSelector(appsIndex) {
   let app = appsInstances[appsIndex];
+  
+  // clear them first
+  $('#countrySelector').empty();
+  $('#platformSelector').empty();
+  $('#stageSelector').empty();
+  
+  // 
   if (app.platform.length > 1) {
     $(multiPlatformSelector).show();
   } else {
@@ -50,16 +58,14 @@ function appSelector(appsIndex) {
     $(multiStageSelector).hide();
   }
   // update the forms
-  // clear them first
-  $('#countrySelector').empty();
-  $('#platformSelector').empty();
-  $('#stageSelector').empty();
 
-  $.each(app.country.sort(), function(z, countries) {
+  $.each(app.country, function(z, countries) {
+    //console.log(countries.countryCode);
+    countryObject.push(countries);
     $('#countrySelector')
       .append($("<option></option>")
-        .attr("value", countries)
-        .text(countries));
+        .attr("value", z)
+        .text(countries.countryCode));
   })
   $.each(app.platform, function(z, platforms) {
     $('#platformSelector')
@@ -74,7 +80,7 @@ function appSelector(appsIndex) {
         .text(stages));
   })
   // make it so
-  stringToParams(app.brand + ',' + app.platform[0] + ',' + app.country[0] + ',' + app.stage[0] + ',' + app.arcSpace + ',' + app.apiVersion + ',' + app.appVersion + ',' + app.appRating)
+  stringToParams(app.brand + ',' + app.platform[0] + ',' + app.country[0].countryCode + ',' + app.stage[0] + ',' + app.country[0].arcSpace + ',' + app.apiVersion + ',' + app.appVersion + ',' + app.country[0].appRating)
 }
 
 
@@ -161,7 +167,6 @@ function stringToParams(buildString) {
   console.log("app Rating is" + appRating);
 
   updateUrlParams();
-  updateFormValues();
   getPlayPlexConfig();
 }
 
@@ -1263,7 +1268,7 @@ function updateFormValues() {
   document.getElementById('platforms').value = platform;
   document.getElementById('appVersions').value = appVersion;
   document.getElementById('apiVersions').value = apiVersion;
-  document.getElementById('countrySelector').value = region;
+  document.getElementById('countrySelector').value = countryObject.findIndex(countryCode === region);
   document.getElementById('stageSelector').value = stage;
   document.getElementById('platformSelector').value = platform;
 }
@@ -1328,8 +1333,12 @@ function getCustomParamValues() {
 
 function countrySelectorFunction(countryValue) {
   console.log("countryValueSelector: " + countryValue);
-  region = countryValue;
+  region = countryObject[countryValue].countryCode;
+  arcSpace = countryObject[countryValue].arcSpace;
+  appRating = countryObject[countryValue].appRating;
   addURLParam('region', region);
+  addURLParam('arcSpace', arcSpace);
+  addURLParam('appRating', appRating);
   getPlayPlexConfig();
 }
 
