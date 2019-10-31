@@ -420,6 +420,9 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
       } else {
         $.each(playplexData.data.items, function(i, cardVal) {
           itemsLoaded++;
+          if (cardVal.entityType == "animationbutton" ) {
+            return;
+          }
           card[cardVal.mgid];
           card[cardVal.mgid] = cardVal;
           var isImgError = "";
@@ -450,7 +453,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
           var propertyCardID = screenUUID + '_' + cardVal.id + '_' + z + i;
 
           //Check to see if the promo is valid
-          if (entityType === "empty" || entityType === "noUrl" || entityType === "promo") {
+          if (entityType === "empty" || entityType === "noUrl" || entityType === "promo" || entityType === "animationbutton") {
             imgUrl = "./img/error.jpg";
             isPromoError = true;
             console.log("its an promo error" + cardVal.mgid);
