@@ -42,12 +42,12 @@
           {
             "countryCode": "mx",
             "arcSpace": "paramountplus-latam",
-            "appRating": ""
+            "appRating": "w"
           },
           {
             "countryCode": "ar",
             "arcSpace": "paramountplus-latam",
-            "appRating": ""
+            "appRating": "w"
           }
         ],
         "stage": ["qa", "live"],

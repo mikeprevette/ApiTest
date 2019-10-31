@@ -32,6 +32,37 @@ var playPlexMainConfig = Object.create(null);
 // 			}
 // }
 
+function setHeaderForm(app) {
+  
+  // Countries 
+  $('#countrySelector').empty();
+  $.each(app.country, function(z, countries) {
+    //console.log(countries.countryCode);
+    countryObject.push(countries);
+    $('#countrySelector')
+      .append($("<option></option>")
+        .attr("value", z)
+        .text(countries.countryCode));
+  })
+  
+  // Platforms
+  $('#platformSelector').empty();
+  $.each(app.platform, function(z, platforms) {
+    $('#platformSelector')
+      .append($("<option></option>")
+        .attr("value", platforms)
+        .text(platforms));
+  })
+  
+  // Stages
+  $('#stageSelector').empty();
+  $.each(app.stage, function(z, stages) {
+    $('#stageSelector')
+      .append($("<option></option>")
+        .attr("value", stages)
+        .text(stages));
+  })
+}
 
 function appSelector(appsIndex) {
   let app = appsInstances[appsIndex];
@@ -59,26 +90,7 @@ function appSelector(appsIndex) {
   }
   // update the forms
 
-  $.each(app.country, function(z, countries) {
-    //console.log(countries.countryCode);
-    countryObject.push(countries);
-    $('#countrySelector')
-      .append($("<option></option>")
-        .attr("value", z)
-        .text(countries.countryCode));
-  })
-  $.each(app.platform, function(z, platforms) {
-    $('#platformSelector')
-      .append($("<option></option>")
-        .attr("value", platforms)
-        .text(platforms));
-  })
-  $.each(app.stage, function(z, stages) {
-    $('#stageSelector')
-      .append($("<option></option>")
-        .attr("value", stages)
-        .text(stages));
-  })
+  setHeaderForm(app);
   // make it so
   stringToParams(app.brand + ',' + app.platform[0] + ',' + app.country[0].countryCode + ',' + app.stage[0] + ',' + app.country[0].arcSpace + ',' + app.apiVersion + ',' + app.appVersion + ',' + app.country[0].appRating)
 }
@@ -1268,7 +1280,7 @@ function updateFormValues() {
   document.getElementById('platforms').value = platform;
   document.getElementById('appVersions').value = appVersion;
   document.getElementById('apiVersions').value = apiVersion;
-  document.getElementById('countrySelector').value = countryObject.findIndex(countryCode === region);
+  document.getElementById('countrySelector').value = countryObject.findIndex(c >= c.countryCode === region);
   document.getElementById('stageSelector').value = stage;
   document.getElementById('platformSelector').value = platform;
 }
@@ -1332,7 +1344,6 @@ function getCustomParamValues() {
 //####################################----Take action on the countrySelector----####################################
 
 function countrySelectorFunction(countryValue) {
-  console.log("countryValueSelector: " + countryValue);
   region = countryObject[countryValue].countryCode;
   arcSpace = countryObject[countryValue].arcSpace;
   appRating = countryObject[countryValue].appRating;
