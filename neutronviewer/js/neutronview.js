@@ -422,6 +422,8 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
           itemsLoaded++;
           if (cardVal.entityType == "animationbutton" ) {
             return;
+//             cardVal.mgid == z + i;
+//             cardVal.id == "null" + z + i;
           }
           card[cardVal.mgid];
           card[cardVal.mgid] = cardVal;
