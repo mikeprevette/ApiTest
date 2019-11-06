@@ -585,6 +585,7 @@ p {
   font-size: 1em;
   color: white;
   text-shadow: 1px 1px 4px black;
+  white-space: normal;
 }
 
 .showCard_nogginNavSquare .showCardMetaParent {
