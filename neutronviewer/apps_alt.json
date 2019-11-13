@@ -10,7 +10,7 @@
           "appRating": "OFCOM"
         }],
         "stage": ["qa"],
-        "apiVersion": "2.1",
+        "apiVersion": "2.2",
         "appVersion": "39.0.0"
       }
     },
@@ -25,7 +25,7 @@
           "appRating": "OFCOM"
         }],
         "stage": ["qa", "live"],
-        "apiVersion": "2.1",
+        "apiVersion": "2.2",
         "appVersion": "39.0.0"
       }
     },
@@ -51,7 +51,7 @@
           }
         ],
         "stage": ["qa", "live"],
-        "apiVersion": "2.1",
+        "apiVersion": "2.2",
         "appVersion": "39.0.0"
       }
     },
@@ -66,7 +66,7 @@
           "appRating": "TVPG"
         }],
         "stage": ["qa", "live"],
-        "apiVersion": "2.1",
+        "apiVersion": "2.2",
         "appVersion": "39.0.0"
       }
     },
@@ -81,8 +81,8 @@
           "appRating": "TVPG"
         }],
         "stage": ["qa", "live"],
-        "apiVersion": "2.1",
-        "appVersion": "35.0.0"
+        "apiVersion": "2.2",
+        "appVersion": "42.0.0"
       }
     },
     {
@@ -125,8 +125,8 @@
         }
         ],
         "stage": ["qa", "live"],
-        "apiVersion": "2.1",
-        "appVersion": "35.0.0"
+        "apiVersion": "2.2",
+        "appVersion": "42.0.0"
       }
     },
     {
@@ -140,8 +140,8 @@
           "appRating": "TVPG"
         }],
         "stage": ["qa", "live"],
-        "apiVersion": "2.1",
-        "appVersion": "35.0.0"
+        "apiVersion": "2.2",
+        "appVersion": "42.0.0"
       }
     },
     {
@@ -155,8 +155,8 @@
           "appRating": "TVPG"
         }],
         "stage": ["qa", "live"],
-        "apiVersion": "2.1",
-        "appVersion": "35.0.0"
+        "apiVersion": "2.2",
+        "appVersion": "42.0.0"
       }
     },
     {
@@ -181,8 +181,8 @@
           }
         ],
         "stage": ["qa", "live"],
-        "apiVersion": "2.1",
-        "appVersion": "35.0.0"
+        "apiVersion": "2.2",
+        "appVersion": "42.0.0"
       }
     },
     {
@@ -196,8 +196,8 @@
           "appRating": "TVPG"
         }],
         "stage": ["qa", "live"],
-        "apiVersion": "2.1",
-        "appVersion": "35.0.0"
+        "apiVersion": "2.2",
+        "appVersion": "42.0.0"
       }
     },
     {
@@ -211,8 +211,8 @@
           "appRating": "TVPG"
         }],
         "stage": ["qa", "live"],
-        "apiVersion": "2.1",
-        "appVersion": "35.0.0"
+        "apiVersion": "2.2",
+        "appVersion": "42.0.0"
       }
     },
     {
@@ -226,8 +226,36 @@
           "appRating": "TVPG"
         }],
         "stage": ["qa", "live"],
-        "apiVersion": "2.1",
-        "appVersion": "35.0.0"
+        "apiVersion": "2.2",
+        "appVersion": "42.0.0"
+      }
+    },
+    {
+      "app": {
+        "name": "COMEDY INTL",
+        "brand": "cc",
+        "platform": ["ios", "android"],
+        "country": [{
+          "countryCode": "ar",
+          "arcSpace": "comedy-intl-latam-authoring",
+          "appRating": ""
+        },{
+          "countryCode": "mx",
+          "arcSpace": "comedy-intl-latam-authoring",
+          "appRating": ""
+        },{
+          "countryCode": "sg",
+          "arcSpace": "comedy-intl-asia-authoring",
+          "appRating": ""
+        },{
+          "countryCode": "br",
+          "arcSpace": "comedy-intl-brazil-authoring",
+          "appRating": "ANCINE"
+        }
+        ],
+        "stage": ["qa", "live"],
+        "apiVersion": "2.2",
+        "appVersion": "42.0.0"
       }
     }
   ],
@@ -247,10 +275,10 @@
     "--", "mtv-plus-intl-uk-authoring", "arc-ent-paramount-network-site", "bet", "paramountplus-brazil", "mtv-authoring-site", "arcmig-nickjr-site", "arc-nick-site", "comedycentral", "arc-ent-paramount-network", "vh1-authoring", "vh1-authoring-site", "tvland-authoring-site", "arc-ent-paramount-network-site", "cmt-authoring-site", "comedycentral"
   ],
   "appVersions": [
-    "--", "35.0.0", "36.0.0", "37.0.0", "39.0.0"
+    "--", "42.0.0", "36.0.0", "37.0.0", "39.0.0"
   ],
   "apiVersions": [
-    "--", "1.9", "2.0", "2.1"
+    "--", "1.9", "2.0", "2.2"
   ],
   "appRatings": [
     "--", "ANCINE", "OFCOM", "TVPG"

@@ -11,6 +11,7 @@ const betPlusDeeplinkRoot = 'betplus://';
 const paramountPlusDeeplinkRoot = 'paramountplus://';
 const nogginPlusIntlDeeplinkRoot = 'nogginplusintl://';
 const mtvintlDeeplinkRoot = 'mtvplay://';
+const mtvusDeeplinkRoot = 'mtvnetworkapp://';
 const deepLinkXrs = 'mikesTestSite';
 var firstRun = true;
 var brand, platform, region, stage, isisURL, params, appVersion, apiVersion, appRating, apiUrl;
@@ -1413,10 +1414,12 @@ function makeDeeplink(mgid) {
     deeplink = betPlusDeeplinkRoot + postString;       
   } else if (brand == "noggin" && region != 'US') {
     deeplink = nogginPlusIntlDeeplinkRoot + postString;
-  } else if (brand == 'mtv' && region !='US'){
+  } else if (brand == 'mtv' && region !='US') {
     deeplink = mtvintlDeeplinkRoot + postString;
+  } else if (brand == 'mtv' && region =='US') {
+    deeplink = mtvusDeeplinkRoot + postString;
   } else {
-    deeplink = "NULL";
+    deeplink = "DEEPLINK FOR THIS APP NOT AVAILABLE IN THE TOOL YET";
   }
   return deeplink;
 }

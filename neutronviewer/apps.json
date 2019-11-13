@@ -8,7 +8,7 @@
         "country": ["GB"],
         "stage": ["qa"],
         "arcSpace": "mtv-plus-intl-uk-authoring",
-        "apiVersion": "2.1",
+        "apiVersion": "2.2",
         "appVersion": "39.0.0",
         "appRating": "OFCOM"
       }
@@ -21,7 +21,7 @@
         "country": ["GB"],
         "stage": ["qa","live"],
         "arcSpace": "mtv-plus-intl-uk-authoring",
-        "apiVersion": "2.1",
+        "apiVersion": "2.2",
         "appVersion": "39.0.0",
         "appRating": "OFCOM"
       }
@@ -34,7 +34,7 @@
         "country": ["br","mx","ar","co"],
         "stage": ["qa","live"],
         "arcSpace": "paramountplus-brazil",
-        "apiVersion": "2.1",
+        "apiVersion": "2.2",
         "appVersion": "39.0.0",
         "appRating": "ANCINE"
       }
@@ -47,7 +47,7 @@
         "country": ["US"],
         "stage": ["qa","live"],
         "arcSpace": "bet",
-        "apiVersion": "2.1",
+        "apiVersion": "2.2",
         "appVersion": "39.0.0",
         "appRating": "TVPG"
       }
@@ -60,8 +60,8 @@
         "country": ["US"],
         "stage": ["qa","live"],
         "arcSpace": "mtv-authoring-site",
-        "apiVersion": "2.1",
-        "appVersion": "35.0.0",
+        "apiVersion": "2.2",
+        "appVersion": "42.0.0",
         "appRating": "TVPG"
       }
      },
@@ -73,8 +73,8 @@
         "country": ["ar","br","mx","de","dk","no","be","ch","es","nl", "pl", "sg"],
         "stage": ["qa","live"],
         "arcSpace": "mtv-authoring-site",
-        "apiVersion": "2.1",
-        "appVersion": "35.0.0",
+        "apiVersion": "2.2",
+        "appVersion": "42.0.0",
         "appRating": "TVPG"
       }
      },
@@ -86,8 +86,8 @@
         "country": ["US"],
         "stage": ["qa","live"],
         "arcSpace": "arc-nick-site",
-        "apiVersion": "2.1",
-        "appVersion": "35.0.0",
+        "apiVersion": "2.2",
+        "appVersion": "42.0.0",
         "appRating": "TVPG"
       }
     },
@@ -99,8 +99,8 @@
         "country": ["US"],
         "stage": ["qa","live"],
         "arcSpace": "noggin",
-        "apiVersion": "2.1",
-        "appVersion": "35.0.0",
+        "apiVersion": "2.2",
+        "appVersion": "42.0.0",
         "appRating": "TVPG"
       }
     },
@@ -112,8 +112,8 @@
         "country": ["br","de","mx"],
         "stage": ["qa","live"],
         "arcSpace": "noggin",
-        "apiVersion": "2.1",
-        "appVersion": "35.0.0",
+        "apiVersion": "2.2",
+        "appVersion": "42.0.0",
         "appRating": "TVPG"
       }
     },
@@ -125,8 +125,8 @@
         "country": ["US"],
         "stage": ["qa","live"],
         "arcSpace": "vh1-authoring",
-        "apiVersion": "2.1",
-        "appVersion": "35.0.0",
+        "apiVersion": "2.2",
+        "appVersion": "42.0.0",
         "appRating": "TVPG"
       }
     },
@@ -138,8 +138,8 @@
         "country": ["US"],
         "stage": ["qa","live"],
         "arcSpace": "arc-ent-paramount-network",
-        "apiVersion": "2.1",
-        "appVersion": "35.0.0",
+        "apiVersion": "2.2",
+        "appVersion": "42.0.0",
         "appRating": "TVPG"
       }
     },
@@ -151,8 +151,21 @@
         "country": ["US"],
         "stage": ["qa","live"],
         "arcSpace": "comedycentral",
-        "apiVersion": "2.1",
-        "appVersion": "35.0.0",
+        "apiVersion": "2.2",
+        "appVersion": "42.0.0",
+        "appRating": "TVPG"
+      }
+    },
+    {
+      "app": {
+        "name": "COMEDY INTL",
+        "brand": "cc",
+        "platform": ["ios","android"],
+        "country": ["ar","br","mx","de","dk","no","be","ch","es","nl", "pl", "sg"],
+        "stage": ["qa","live"],
+        "arcSpace": "mtv-authoring-site",
+        "apiVersion": "2.2",
+        "appVersion": "42.0.0",
         "appRating": "TVPG"
       }
     }
@@ -173,10 +186,10 @@
     "--","mtv-plus-intl-uk-authoring","arc-ent-paramount-network-site","bet","paramountplus-brazil", "mtv-authoring-site","arcmig-nickjr-site", "arc-nick-site", "comedycentral","arc-ent-paramount-network","vh1-authoring","vh1-authoring-site", "tvland-authoring-site", "arc-ent-paramount-network-site", "cmt-authoring-site", "comedycentral"
   ],
     "appVersions": [
-    "--","35.0.0", "36.0.0", "37.0.0", "39.0.0"
+    "--","42.0.0"
   ],
     "apiVersions": [
-    "--","1.9","2.0","2.1"
+    "--","1.9","2.0","2.1","2.2"
   ],
   "appRatings": [
    "--","ANCINE","OFCOM","TVPG"
