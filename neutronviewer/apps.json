@@ -57,7 +57,7 @@
         "name": "MTV US",
         "brand": "mtv",
         "platform": ["ios","android","appletv","roku","androidtv"],
-        "country": ["us"],
+        "country": ["US"],
         "stage": ["qa","live"],
         "arcSpace": "mtv-authoring-site",
         "apiVersion": "2.1",
