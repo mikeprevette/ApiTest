@@ -38,6 +38,11 @@ var playPlexMainConfig = Object.create(null);
 function setHeaderForm(app) {
   
   // Countries 
+  app.country.sort(function(a, b) {
+    var textA = a.countryCode.toUpperCase();
+    var textB = b.countryCode.toUpperCase();
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  });
   $('#countrySelector').empty();
   $.each(app.country, function(z, countries) {
     //console.log(countries.countryCode);
@@ -1361,7 +1366,7 @@ function countrySelectorFunction(countryValue) {
   getPlayPlexConfig();
 }
 
-//####################################----Take action on the countrySelector----####################################
+//####################################----Take action on the platformSelector----####################################
 
 function platformSelectorFunction(platformValue) {
   console.log("platformValueSelector: " + platformValue);
@@ -1370,7 +1375,7 @@ function platformSelectorFunction(platformValue) {
   getPlayPlexConfig();
 }
 
-//####################################----Take action on the countrySelector----####################################
+//####################################----Take action on the stageSelector----####################################
 
 function stageSelectorFunction(stageValue) {
   console.log("stageValueSelector: " + stageValue);
