@@ -18,7 +18,7 @@
       "app": {
         "name": "MTV+",
         "brand": "mtvplus",
-        "platform": ["ios", "android"],
+        "platform": ["ios", "android", "virginstb"],
         "country": [{
           "countryCode": "GB",
           "arcSpace": "mtv-plus-intl-uk-authoring",
@@ -278,7 +278,7 @@
     "--", "live", "qa", "s"
   ],
   "platforms": [
-    "--", "ios", "android", "roku", "appletv", "androidtv"
+    "--", "ios", "android", "roku", "appletv", "androidtv", "virginstb"
   ],
   "arcSpaces": [
     "--", "mtv-plus-intl-uk-authoring", "arc-ent-paramount-network-site", "bet", "paramountplus-brazil", "mtv-authoring-site", "arcmig-nickjr-site", "arc-nick-site", "comedycentral", "arc-ent-paramount-network", "vh1-authoring", "vh1-authoring-site", "tvland-authoring-site", "arc-ent-paramount-network-site", "cmt-authoring-site", "comedycentral"
