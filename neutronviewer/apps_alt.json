@@ -48,6 +48,11 @@
             "countryCode": "ar",
             "arcSpace": "paramountplus-latam",
             "appRating": ""
+          },
+          {
+            "countryCode": "se",
+            "arcSpace": "paramountplus-latam",
+            "appRating": ""
           }
         ],
         "stage": ["qa", "live"],
@@ -264,7 +269,7 @@
     }
   ],
   "countries": [
-    "--", "GB", "BR", "US", "CA", "at", "ar", "be", "ch", "de", "dk", "es", "mx", "nl", "no", "pl", "sg", "ch"
+    "--", "GB", "BR", "US", "CA", "at", "ar", "be", "ch", "de", "dk", "es", "mx", "nl", "no", "pl", "sg", "ch", "se"
   ],
   "brands": [
     "--", "mtvplus", "betplus", "paramountplus", "mtv", "cc", "vh1", "bet", "paramountnetwork", "nick", "noggin"
