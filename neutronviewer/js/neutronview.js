@@ -261,9 +261,8 @@ function loadPlayPlexConfig(){
          nuclear();
          if (screens.screen.name == "adult" || screens.screen.name == "home" || screens.screen.name == "pav" || screens.screen.name == "ebook" ) { //REWORK THIS TO USE ENABLED BRANDS || screens.screen.name == "offline"
             var toLoad = screens.screen.url;
-            var screenName = screens.screen.name;
             var screenID = screens.screen.id;
-            getScreen(toLoad, screenName, screenID, z);
+            getScreen(toLoad, screenID, z);
             console.log(screens.screen.name + ' ' + toLoad);
           }
         })
@@ -279,10 +278,9 @@ function brandScreenSelectorFunction(brandScreenValue) {
   $.each(playPlexMainConfig.data.appConfiguration.screens, function(z, screens) {
     if (screens.screen.type == brandScreenType) {
         var toLoad = screens.screen.url + "&selectedBrand=" + brandScreenName;
-        var screenName = screens.screen.name;
         var screenID = screens.screen.id;
         nuclear();
-        getScreen(toLoad, screenName, screenID, z);
+        getScreen(toLoad, screenID, z);
         }
   });
 }
@@ -291,7 +289,7 @@ function brandScreenSelectorFunction(brandScreenValue) {
 
 //####################################----Build The Screens & Modules----####################################
 
-function getScreen(screenURL, screenName, screenID, screenIndex) {
+function getScreen(screenURL, screenID, screenIndex) {
   console.log("getting the main screen");
   console.log(screenURL);
   var cellSize, aspectRatio;
@@ -1269,6 +1267,20 @@ function customTarget() {
   $('#quickSelector').val('---');
   getPlayPlexConfig();
 }
+
+
+
+
+
+//####################################----Get custom Screen----####################################
+
+function customScreen(toLoad) {
+        nuclear();
+        screenID = "custom";
+        z = 1;
+        getScreen(toLoad, screenID, z);
+}
+
 
 //####################################----put custom selectors / params ----####################################
 

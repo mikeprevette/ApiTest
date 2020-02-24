@@ -48,6 +48,11 @@
           <td>API Version:</td><td><select id="apiVersions"></select></td></tr>
       </table>
       <div id="advancedGo" class="button" onclick="customTarget();$(advancedOverlay).toggle();">GO</div>
+      <hr/>
+      <table>
+         <tr>
+          <td>Custom Screen URL:</td><td><input type=url id="customScreen"></input>&nbsp;<div id="customScreenGo" class="button" onclick="customScreen(document.getElementById('customScreen').value);$(advancedOverlay).toggle();">MAKE IT SO</div></td></tr>
+      </table>
   </form>
 </div>
 <div id="top">
