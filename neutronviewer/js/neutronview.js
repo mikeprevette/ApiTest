@@ -1127,15 +1127,12 @@ function fillContentModule(contentLink) {
             'style': 'color:red;'
           }).appendTo('#CardMeta_' + link);
         }
-      }
-
-    $('<span />', {
+        $('<span />', {
         'id': 'CardDescription_' + link,
         'class': 'CardDescription',
         'text': contentCardVal.description
       }).appendTo('#CardMeta_' + link);
-      
-      
+      }
 
       //build the meta
       $('<div />', {
