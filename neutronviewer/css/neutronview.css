@@ -365,10 +365,28 @@ p {
   top: 20%;
 }
 
-.contentCard {
+.contentCard16x9 {
 	display: inline-block;
 	position: relative;
 	width: 480px;
+	height: 339px;
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+  overflow: hidden;
+  margin-left: 1em;
+	margin-right: 1em;
+  margin-bottom: 0.5em;
+	background-repeat: no-repeat;
+	background-size: 100%;
+  background-color: #b2b2b2;
+  box-shadow:1px 1px 5px grey; 
+}
+
+.contentCard2x3 {
+	display: inline-block;
+	position: relative;
+	width: 226px;
 	height: 339px;
   -webkit-border-radius: 0.5em;
   -moz-border-radius: 0.5em;
@@ -696,15 +714,13 @@ p {
 }
 
 .showCardButton {
-	width: 50%;
+	width: 33%;
   color: #84ccff;
 	display: table-cell;
 	float: left;
-  height: 100%;
+  height: 99%;
   text-align: center;
 	background-color: rgba(0,0,0,0.25);
-  border-bottom-left-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
 }
 
 .showCardButton:hover {

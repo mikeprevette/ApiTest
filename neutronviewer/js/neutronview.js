@@ -2,7 +2,7 @@
 
 /* ####################################----PLAYPLEX----#################################### */
 const imageParams = '&height=640';
-const neutronSRootURL = 'http://neutron-api.viacom.tech-s.mtvi.com/feeds/networkapp/intl';
+const neutronSRootURL = 'http://staging-neutron-api.viacom.tech/feeds/networkapp/intl';
 const neutronQARootURL = 'http://qa-neutron-api.viacom.tech/feeds/networkapp/intl';
 const neutronLiveRootURL = 'http://neutron-api.viacom.tech/feeds/networkapp/intl';
 const corsProxy = 'https://viamprevette.herokuapp.com/';
@@ -444,6 +444,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
           var hasMovie = false;
           var hasShortform = false;
           var hasLongform = false;
+          var hasSimilarContent = false;
           var linksError = false;
           var promoError = false;
           var playable = true;
@@ -456,6 +457,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
           var videoLink;
           var movieLink;
           var playlistLink;
+          var similarContentLink;
           var entityType = cardVal.entityType;
           var seriesTitle = cardVal.title.replace(/ /g, "_");
           var propertyCardID = screenUUID + '_' + cardVal.id + '_' + z + i;
@@ -713,6 +715,13 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               hasLongform = true;
             } else {
               hasLongform = false;
+            }            
+            if (cardVal.links.hasOwnProperty("similarContent")) {
+              // 					console.log(cardVal.links.movie);
+              similarContentLink = cardVal.links.similarContent;
+              hasSimilarContent = true;
+            } else {
+              hasSimilarContent = false;
             }
             if (cardVal.links.hasOwnProperty("collection")) {
               // 					console.log(cardVal.links.movie);
@@ -749,30 +758,30 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
             }).appendTo('#' + propertyCardID);
           }
 
-          if (hasEpisodes === true || hasVideos === true || hasPlaylists === true || hasMovie === true || hasShortform === true || hasLongform === true || hasMixedContent === true) {
+          if (hasEpisodes === true || hasVideos === true || hasPlaylists === true || hasMovie === true || hasShortform === true || hasLongform === true || hasMixedContent === true || hasSimilarContent === true) {
             $('<div />', {
               'id': 'showCardButtonBar_' + propertyCardID,
               'class': 'showCardButtons',
             }).appendTo('#' + propertyCardID);
 
             if (hasVideos === true) {
-              $('<p />', {
+              $('<div />', {
                 'id': 'showCardButtons_Video' + z + i,
                 'class': 'showCardButton',
                 'text': 'Videos',
-                'onclick': 'loadContentLink("' + videoLink + '","video","' + seriesTitle + '","' + seasonLink + '");'
+                'onclick': 'loadContentLink("' + videoLink + '","videos","' + seriesTitle + '","' + seasonLink + '");'
               }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
             }
             if (hasEpisodes === true) {
-              $('<p />', {
+              $('<div />', {
                 'id': 'showCardButtons_Episode' + z + i,
                 'class': 'showCardButton',
                 'text': 'Episodes',
-                'onclick': 'loadContentLink("' + episodeLink + '","episode","' + seriesTitle + '","' + seasonLink + '");'
+                'onclick': 'loadContentLink("' + episodeLink + '","episodes","' + seriesTitle + '","' + seasonLink + '");'
               }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
             }
             if (hasPlaylists === true) {
-              $('<p />', {
+              $('<div />', {
                 'id': 'showCardButtons_Playlist' + z + i,
                 'class': 'showCardButton',
                 'text': 'Playlists',
@@ -780,15 +789,15 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
             }
             if (hasMovie === true) {
-              $('<p />', {
+              $('<div />', {
                 'id': 'showCardButtons_Movie' + z + i,
                 'class': 'showCardButton',
                 'text': 'Movie',
-                'onclick': 'loadContentLink("' + movieLink + '","movie","' + seriesTitle + '");'
+                'onclick': 'loadContentLink("' + movieLink + '","movies","' + seriesTitle + '");'
               }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
             }
             if (hasShortform === true) {
-              $('<p />', {
+              $('<div />', {
                 'id': 'showCardButtons_ShortForm' + z + i,
                 'class': 'showCardButton',
                 'text': 'ShortForm',
@@ -796,7 +805,7 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
             }
             if (hasLongform === true) {
-              $('<p />', {
+              $('<div />', {
                 'id': 'showCardButtons_ShortForm' + z + i,
                 'class': 'showCardButton',
                 'text': 'LongForm',
@@ -804,11 +813,19 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
             }
             if (hasMixedContent === true) {
-              $('<p />', {
+              $('<div />', {
                 'id': 'showCardButtons_ShortForm' + z + i,
                 'class': 'showCardButton',
                 'text': 'Mixed Collection',
-                'onclick': 'loadContentLink("' + mixedContentLink + '","Mixed Item","' + seriesTitle + '");'
+                'onclick': 'loadContentLink("' + mixedContentLink + '","Mixed Items","' + seriesTitle + '");'
+              }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
+            }
+            if (hasSimilarContent === true) {
+              $('<div />', {
+                'id': 'showCardButtons_Similar' + z + i,
+                'class': 'showCardButton',
+                'text': 'Related',
+                'onclick': 'loadContentLink("' + similarContentLink + '","Related","' + seriesTitle + '");'
               }).appendTo('#' + 'showCardButtonBar_' + propertyCardID);
             }
           } else if (playable !== true){
@@ -890,7 +907,7 @@ function loadContentLink(contentLink, contentType, seriesTitle, seasonLink) {
   $('<span />', {
     'id': 'contentContainerHeaderTitle',
     'class':'containerHeaderText',
-    'text': ' ' + contentType +'s'
+    'text': ' ' + contentType
   }).appendTo('#contentContainerHeader');
 
   if (seasonLink !== undefined) {
@@ -986,6 +1003,7 @@ function fillContentModule(contentLink) {
       card[contentCardVal.mgid];
       card[contentCardVal.mgid] = contentCardVal;
       var link = uuidMaker(contentCardVal.id);
+      var aspectRatio;
       var imgUrl = "";
       var tve = "false";
       var imgError = "";
@@ -996,9 +1014,12 @@ function fillContentModule(contentLink) {
         tve = "true";
       }
 
-
+      if (contentCardVal.entityType === "series" || contentCardVal.entityType === "movie") {
+        aspectRatio = "2:3";
+      } else {
       //Since this is only for Content, Lets assume we're always 16:9
-      var aspectRatio = "16:9";
+        aspectRatio = "16:9";
+      }
       //Set the imag URL based on the aspecRatio
 
       if (contentCardVal.hasOwnProperty("images") && contentCardVal.images.length > 0) {
@@ -1035,11 +1056,20 @@ function fillContentModule(contentLink) {
         imageError: imgError
       });
       
+      // Pick which content card to use
+      if (aspectRatio === "2:3") {
       $('<div />', {
         'id': link,
-        'class': 'contentCard',
+        'class': 'contentCard2x3',
         'style': 'background-image: url(' + imgUrl + ')'
       }).appendTo('#contentContainerItems');
+      } else {
+        $('<div />', {
+        'id': link,
+        'class': 'contentCard16x9',
+        'style': 'background-image: url(' + imgUrl + ')'
+      }).appendTo('#contentContainerItems');
+      }
 
       $('<div />', {
         'id': 'contentErrorbox_' + link,
@@ -1067,7 +1097,7 @@ function fillContentModule(contentLink) {
         'html': contentCardVal.title + '<br/>'
       }).appendTo('#CardMeta_' + link);
       
-      if (contentCardVal.entityType !== "movie") {
+      if (contentCardVal.entityType === "episode" || contentCardVal.entityType == "video") {
         if (contentCardVal.hasOwnProperty("seasonNumber")) {
           $('<span />', {
             'id': 'CardSubHeader_' + link,
