@@ -331,7 +331,7 @@ function getScreen(screenURL, screenID, screenIndex) {
      // ----- --  Do normal carosels
 
       $.each(playplexHome.data.screen.modules, function(z, modules) {
-        if (modules.module.templateType == 'pp_continueWatchingCarousel'){
+        if (modules.module.templateType == 'pp_continueWatchingCarousel' || modules.module.templateType == 'crossPlatformContinueWatching'){
           return;
         }
         var target = modules.module.dataSource;
@@ -703,35 +703,39 @@ function getModule19(moduleURL, screenID, containerId, z, aspectRatio, cellSize)
               hasMovie = false;
             }
             if (cardVal.links.hasOwnProperty("shortForm")) {
-              // 					console.log(cardVal.links.movie);
               shortFormLink = cardVal.links.shortForm;
               hasShortform = true;
             } else {
               hasShortform = false;
             }
             if (cardVal.links.hasOwnProperty("longForm")) {
-              // 					console.log(cardVal.links.movie);
               LongFormLink = cardVal.links.longForm;
               hasLongform = true;
             } else {
               hasLongform = false;
-            }            
+            }      
+            // Similar Content
             if (cardVal.links.hasOwnProperty("similarContent")) {
-              // 					console.log(cardVal.links.movie);
+//                 var proxiedSimilarLink = corsProxy + cardVal.links.similarContent;
+//                 $.getJSON(proxiedSimilarLink, function(similar) {
+//                    if (similar.metadata.pagination.totalItems >= 1) {
+//                        similarContentLink = cardVal.links.similarContent;
+//                        hasSimilarContent = true;
+//                    }
+//                 })
               similarContentLink = cardVal.links.similarContent;
               hasSimilarContent = true;
             } else {
               hasSimilarContent = false;
             }
+            
             if (cardVal.links.hasOwnProperty("collection")) {
-              // 					console.log(cardVal.links.movie);
               mixedContentLink = cardVal.links.collection;
               hasMixedContent = true;
             } else {
               hasMixedContent = false;
             }
             if (cardVal.links.hasOwnProperty("season")) {
-              // 					console.log(cardVal.links.movie);
               seasonLink = cardVal.links.season;
               hasSeasons = true;
             } else {
