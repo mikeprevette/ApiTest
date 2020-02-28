@@ -1,73 +1,295 @@
 {
-  "apps": [
-    {
+  "apps": [{
       "app": {
-        "name": "---",
+        "name": "-- Start Here! --",
         "brand": "mtvplus",
-        "platform": "ios",
-        "country": "GB",
-        "stage": "neutron-qa",
-        "arcSpace": "mtv-plus-intl-uk-authoring",
-        "apiVersion": "1.9",
-        "appVersion": "25.0.0"
+        "platform": ["ios"],
+        "country": [{
+          "countryCode": "GB",
+          "arcSpace": "mtv-plus-intl-uk-authoring",
+          "appRating": "OFCOM"
+        }],
+        "stage": ["qa"],
+        "apiVersion": "2.2",
+        "appVersion": "39.0.0"
       }
     },
     {
       "app": {
-        "name": "MTV PLUS Testing - Enabled",
+        "name": "MTV+",
         "brand": "mtvplus",
-        "platform": "ios",
-        "country": "GB",
-        "stage": "neutron-qa",
-        "arcSpace": "mtv-plus-intl-uk-authoring",
-        "apiVersion": "1.9",
-        "appVersion": "25.0.0"
+        "platform": ["ios", "android", "virginstb"],
+        "country": [{
+          "countryCode": "GB",
+          "arcSpace": "mtv-plus-intl-uk-authoring",
+          "appRating": "OFCOM"
+        }],
+        "stage": ["qa", "live", "staging"],
+        "apiVersion": "2.3",
+        "appVersion": "39.0.0"
       }
-    },    
+    },
     {
       "app": {
-        "name": "Paramount PLUS BR",
+        "name": "PARAMOUNT+",
         "brand": "paramountplus",
-        "platform": "ios",
-        "country": "BR",
-        "stage": "neutron-qa",
-        "arcSpace": "paramountplus-brazil",
-        "apiVersion": "1.9",
-        "appVersion": "25.0.0"
+        "platform": ["ios", "android"],
+        "country": [{
+            "countryCode": "br",
+            "arcSpace": "paramountplus-brazil",
+            "appRating": "ANCINE"
+          },
+          {
+            "countryCode": "mx",
+            "arcSpace": "paramountplus-latam",
+            "appRating": ""
+          },
+          {
+            "countryCode": "ar",
+            "arcSpace": "paramountplus-latam",
+            "appRating": ""
+          },
+          {
+            "countryCode": "se",
+            "arcSpace": "paramountplus-latam",
+            "appRating": ""
+          }
+        ],
+        "stage": ["qa", "live", "staging"],
+        "apiVersion": "2.3",
+        "appVersion": "39.0.0"
       }
     },
     {
       "app": {
-        "name": "BET PLUS US",
+        "name": "BET+",
         "brand": "betplus",
-        "platform": "ios",
-        "country": "US",
-        "stage": "neutron-qa",
-        "arcSpace": "bet",
-        "apiVersion": "1.9",
-        "appVersion": "25.0.0"
+        "platform": ["ios", "android", "appletv", "roku", "androidtv"],
+        "country": [{
+          "countryCode": "US",
+          "arcSpace": "bet",
+          "appRating": "TVPG"
+        }],
+        "stage": ["qa", "live", "staging"],
+        "apiVersion": "2.3",
+        "appVersion": "39.0.0"
+      }
+    },
+    {
+      "app": {
+        "name": "MTV US",
+        "brand": "mtv",
+        "platform": ["ios", "android", "appletv", "roku", "androidtv"],
+        "country": [{
+          "countryCode": "US",
+          "arcSpace": "mtv-authoring-site",
+          "appRating": "TVPG"
+        }],
+        "stage": ["qa", "live", "staging"],
+        "apiVersion": "2.3",
+        "appVersion": "42.0.0"
+      }
+    },
+    {
+      "app": {
+        "name": "MTV INTL",
+        "brand": "mtv",
+        "platform": ["ios", "android"],
+        "country": [{
+          "countryCode": "ar",
+          "arcSpace": "mtv-intl-latam-authoring",
+          "appRating": ""
+        },{
+          "countryCode": "mx",
+          "arcSpace": "mtv-intl-latam-authoring",
+          "appRating": ""
+        },{
+          "countryCode": "de",
+          "arcSpace": "mtv-intl-germany",
+          "appRating": ""
+        },{
+          "countryCode": "dk",
+          "arcSpace": "mtv-intl-dk",
+          "appRating": ""
+        },{
+          "countryCode": "be",
+          "arcSpace": "mtv-intl-be",
+          "appRating": ""
+        },{
+          "countryCode": "no",
+          "arcSpace": "mtv-intl-no-authoring",
+          "appRating": ""
+        },{
+          "countryCode": "sg",
+          "arcSpace": "mtv-intl-asia-authoring",
+          "appRating": ""
+        },{
+          "countryCode": "br",
+          "arcSpace": "mtv-intl-br-authoring",
+          "appRating": "ANCINE"
+        },{
+          "countryCode": "es",
+          "arcSpace": "mtv-intl-Spain-authoring",
+          "appRating": ""
+        }
+        ],
+        "stage": ["qa", "live", "staging"],
+        "apiVersion": "2.3",
+        "appVersion": "42.0.0"
+      }
+    },
+    {
+      "app": {
+        "name": "NICK US",
+        "brand": "nick",
+        "platform": ["appletv", "roku", "androidtv"],
+        "country": [{
+          "countryCode": "us",
+          "arcSpace": "arc-nick-site",
+          "appRating": "TVPG"
+        }],
+        "stage": ["qa", "live", "staging"],
+        "apiVersion": "2.3",
+        "appVersion": "42.0.0"
+      }
+    },
+    {
+      "app": {
+        "name": "NOGGIN+ US",
+        "brand": "noggin",
+        "platform": ["ios", "android", "appletv", "roku", "androidtv"],
+        "country": [{
+          "countryCode": "us",
+          "arcSpace": "noggin",
+          "appRating": "TVPG"
+        }],
+        "stage": ["qa", "live", "staging"],
+        "apiVersion": "2.3",
+        "appVersion": "42.0.0"
+      }
+    },
+    {
+      "app": {
+        "name": "NOGGIN+ INTL",
+        "brand": "noggin",
+        "platform": ["ios", "android"],
+        "country": [{
+            "countryCode": "br",
+            "arcSpace": "noggin.intl",
+            "appRating": "ANCINE"
+          },
+          {
+            "countryCode": "de",
+            "arcSpace": "noggin.intl",
+            "appRating": ""
+          },
+          {
+            "countryCode": "mx",
+            "arcSpace": "noggin.intl",
+            "appRating": ""
+          }
+        ],
+        "stage": ["qa", "live", "staging"],
+        "apiVersion": "2.3",
+        "appVersion": "42.0.0"
+      }
+    },
+    {
+      "app": {
+        "name": "VH1",
+        "brand": "vh1",
+        "platform": ["appletv", "roku", "androidtv"],
+        "country": [{
+          "countryCode": "US",
+          "arcSpace": "vh1-authoring",
+          "appRating": "TVPG"
+        }],
+        "stage": ["qa", "live", "staging"],
+        "apiVersion": "2.3",
+        "appVersion": "42.0.0"
+      }
+    },
+    {
+      "app": {
+        "name": "PARAMOUNT NETWORK",
+        "brand": "paramountnetwork",
+        "platform": ["ios", "android", "appletv", "roku", "androidtv"],
+        "country": [{
+          "countryCode": "US",
+          "arcSpace": "arc-ent-paramount-network",
+          "appRating": "TVPG"
+        }],
+        "stage": ["qa", "live", "staging"],
+        "apiVersion": "2.3",
+        "appVersion": "42.0.0"
+      }
+    },
+    {
+      "app": {
+        "name": "COMEDY CENTRAL",
+        "brand": "cc",
+        "platform": ["appletv", "roku"],
+        "country": [{
+          "countryCode": "US",
+          "arcSpace": "comedycentral",
+          "appRating": "TVPG"
+        }],
+        "stage": ["qa", "live", "staging"],
+        "apiVersion": "2.3",
+        "appVersion": "42.0.0"
+      }
+    },
+    {
+      "app": {
+        "name": "COMEDY INTL",
+        "brand": "cc",
+        "platform": ["ios", "android"],
+        "country": [{
+          "countryCode": "ar",
+          "arcSpace": "comedy-intl-latam-authoring",
+          "appRating": ""
+        },{
+          "countryCode": "mx",
+          "arcSpace": "comedy-intl-latam-authoring",
+          "appRating": ""
+        },{
+          "countryCode": "sg",
+          "arcSpace": "comedy-intl-asia-authoring",
+          "appRating": ""
+        },{
+          "countryCode": "br",
+          "arcSpace": "comedy-intl-brazil-authoring",
+          "appRating": "ANCINE"
+        }
+        ],
+        "stage": ["qa", "live", "staging"],
+        "apiVersion": "2.3",
+        "appVersion": "42.0.0"
       }
     }
   ],
   "countries": [
-    "--","GB","BR","US"
+    "--", "GB", "BR", "US", "CA", "at", "ar", "be", "ch", "de", "dk", "es", "mx", "nl", "no", "pl", "sg", "ch", "se"
   ],
   "brands": [
-    "--","mtvplus","betplus","paramountplus"
+    "--", "mtvplus", "betplus", "paramountplus", "mtv", "cc", "vh1", "bet", "paramountnetwork", "nick", "noggin"
   ],
   "stages": [
-    "--","neutron-live","neutron-qa","neutron-s"
+    "--", "live", "qa", "staging"
   ],
   "platforms": [
-    "--","ios", "android"
+    "--", "ios", "android", "roku", "appletv", "androidtv", "virginstb"
   ],
-    "arcSpaces": [
-    "--","mtv-plus-intl-uk-authoring","arc-ent-paramount-network-site","bet","paramountplus-brazil"
+  "arcSpaces": [
+    "--", "mtv-plus-intl-uk-authoring", "arc-ent-paramount-network-site", "bet", "paramountplus-brazil", "mtv-authoring-site", "arcmig-nickjr-site", "arc-nick-site", "comedycentral", "arc-ent-paramount-network", "vh1-authoring", "vh1-authoring-site", "tvland-authoring-site", "arc-ent-paramount-network-site", "cmt-authoring-site", "comedycentral"
   ],
-    "appVersions": [
-    "--","25.0.0"
+  "appVersions": [
+    "--", "42.0.0", "36.0.0", "37.0.0", "39.0.0", "50.0.0"
   ],
-    "apiVersions": [
-    "--","1.9"
+  "apiVersions": [
+    "--", "1.9", "2.0", "2.2", "2.3", "2.4"
+  ],
+  "appRatings": [
+    "--", "ANCINE", "OFCOM", "TVPG"
   ]
 }

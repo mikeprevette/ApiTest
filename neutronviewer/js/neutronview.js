@@ -115,7 +115,7 @@ function makeTheScreen(mode) {
   // 	});
   if (firstRun === true && mode == "live") {
     //alert("Hello! This is an unsupported tool, and will likely break often. \n\n Things to note: \n -- error if you change brands while its still loading");
-    appsJsonFile = "apps_alt.json";
+    appsJsonFile = "apps.json";
   } else {
     console.log("Dev Mode");
     appsJsonFile = "dev_apps.json";
@@ -210,7 +210,7 @@ function getPlayPlexConfig() {
 
   if (stage == 'qa' || stage == "neutron-qa") {
     apiUrl = neutronQARootURL + mainPath + params;
-  } else if (stage == 's' || stage == "neutron-s") {
+  } else if (stage == 's' || stage == "staging") {
     apiUrl = neutronSRootURL + mainPath + params;
   } else { 
     apiUrl = neutronLiveRootURL + mainPath + params;
