@@ -33,7 +33,7 @@
       "app": {
         "name": "PARAMOUNT+",
         "brand": "paramountplus",
-        "platform": ["ios", "android"],
+        "platform": ["ios", "android", "androidtv", "roku", "appletv"],
         "country": [{
             "countryCode": "br",
             "arcSpace": "paramountplus-brazil",
