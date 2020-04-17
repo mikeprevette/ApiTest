@@ -198,7 +198,7 @@
       "app": {
         "name": "VH1",
         "brand": "vh1",
-        "platform": ["appletv", "roku", "androidtv"],
+        "platform": ["ios", "android", "appletv", "roku", "androidtv"],
         "country": [{
           "countryCode": "US",
           "arcSpace": "vh1-authoring",
@@ -228,7 +228,7 @@
       "app": {
         "name": "COMEDY CENTRAL",
         "brand": "cc",
-        "platform": ["appletv", "roku"],
+        "platform": ["ios","android","appletv", "roku", "androidtv"],
         "country": [{
           "countryCode": "US",
           "arcSpace": "comedycentral",
