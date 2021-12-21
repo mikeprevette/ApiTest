@@ -2,14 +2,15 @@
 
 /* ####################################----PLAYPLEX----#################################### */
 const imageParams = '&height=640';
-const neutronSRootURL = 'http://staging-neutron-api.viacom.tech/feeds/networkapp/intl';
-const neutronQARootURL = 'http://qa-neutron-api.viacom.tech/feeds/networkapp/intl';
-const neutronLiveRootURL = 'http://neutron-api.viacom.tech/feeds/networkapp/intl';
+const neutronSRootURL = 'http://staging-neutron-api.viacom.tech/api';
+const neutronQARootURL = 'http://qa-neutron-api.viacom.tech/api';
+const neutronLiveRootURL = 'http://neutron-api.viacom.tech/api';
 const corsProxy = 'https://viamprevette.herokuapp.com/';
 const mtvPlusDeeplinkRoot = 'mtvplayuk://';
 const betPlusDeeplinkRoot = 'betplus://';
 const paramountPlusDeeplinkRoot = 'paramountplus://';
 const nogginPlusIntlDeeplinkRoot = 'nogginplusintl://';
+const nogginDeeplinkRoot = 'noggin://'
 const mtvintlDeeplinkRoot = 'mtvplay://';
 const mtvusDeeplinkRoot = 'mtvnetworkapp://';
 const cctntlDeeplinkRoot = 'ccplay://';
@@ -205,7 +206,7 @@ function getPlayPlexConfig() {
   firstRun = false;
   getCustomParamValues();
   isisURL = 'http://isis.mtvnservices.com/Isis.html#module=content&site=' + arcSpace + '&id=';
-  var mainPath = '/main/' + apiVersion + '/';
+  var mainPath = '/' + apiVersion + '/config/';
   var params = '?brand=' + brand + '&platform=' + platform + '&region=' + region;
 
   if (stage == 'qa' || stage == "neutron-qa") {
@@ -245,25 +246,25 @@ function loadPlayPlexConfig(){
       $('#mainApiButton').show();
       $('#brandScreenSelector').empty();
   // if enabled brands is longer than 1
-      if (playPlexMainConfig.data.appConfiguration.enabledBrands.length > 1) {
-          $('#multiBrandSelector').show();
-        } else {
-          $('#multiBrandSelector').hide();
-      }
-      $.each(playPlexMainConfig.data.appConfiguration.enabledBrands, function(z, enabledBrand) { 
-        console.log('found a brand named - ' + enabledBrand.brandName + ' whose type is ' + enabledBrand.brandType);
-        $('#brandScreenSelector')
-          .append($("<option></option>")
-            .attr("value", enabledBrand.brandType + "," + enabledBrand.brandName)
-            .text(enabledBrand.brandName));
-        });
-        $.each(playPlexMainConfig.data.appConfiguration.screens, function(z, screens) { 
+      // if (playPlexMainConfig.data.appConfiguration.enabledBrands.length > 1) {
+      //     $('#multiBrandSelector').show();
+      //   } else {
+      //     $('#multiBrandSelector').hide();
+      // }
+      // $.each(playPlexMainConfig.data.appConfiguration.enabledBrands, function(z, enabledBrand) { 
+      //   console.log('found a brand named - ' + enabledBrand.brandName + ' whose type is ' + enabledBrand.brandType);
+      //   $('#brandScreenSelector')
+      //     .append($("<option></option>")
+      //       .attr("value", enabledBrand.brandType + "," + enabledBrand.brandName)
+      //       .text(enabledBrand.brandName));
+      //   });
+        $.each(playPlexMainConfig.data.appConfiguration.screens, function(z, screen) { 
          nuclear();
-         if (screens.screen.name == "adult" || screens.screen.name == "home" || screens.screen.name == "pav" || screens.screen.name == "ebook" ) { //REWORK THIS TO USE ENABLED BRANDS || screens.screen.name == "offline"
-            var toLoad = screens.screen.url;
-            var screenID = screens.screen.id;
+         if (screen.name == "adult" || screen.name == "home" || screen.name == "pav" || screen.name == "ebook" ) { //REWORK THIS TO USE ENABLED BRANDS || screens.screen.name == "offline"
+            var toLoad = screen.url;
+            var screenID = screen.id;
             getScreen(toLoad, screenID, z);
-            console.log(screens.screen.name + ' ' + toLoad);
+            console.log(screen.name + ' ' + toLoad);
           }
         })
 }
@@ -276,9 +277,9 @@ function brandScreenSelectorFunction(brandScreenValue) {
   var brandScreenType = splitValue[0];
   var brandScreenName = splitValue[1];
   $.each(playPlexMainConfig.data.appConfiguration.screens, function(z, screens) {
-    if (screens.screen.type == brandScreenType) {
-        var toLoad = screens.screen.url + "&selectedBrand=" + brandScreenName;
-        var screenID = screens.screen.id;
+    if (screens.type == brandScreenType) {
+        var toLoad = screens.url + "&selectedBrand=" + brandScreenName;
+        var screenID = screens.id;
         nuclear();
         getScreen(toLoad, screenID, z);
         }
@@ -331,15 +332,15 @@ function getScreen(screenURL, screenID, screenIndex) {
      // ----- --  Do normal carosels
 
       $.each(playplexHome.data.screen.modules, function(z, modules) {
-        if (modules.module.templateType == 'pp_continueWatchingCarousel' || modules.module.templateType == 'crossPlatformContinueWatching'){
+        if (modules.templateType == 'pp_continueWatchingCarousel' || modules.templateType == 'crossPlatformContinueWatching'){
           return;
         }
-        var target = modules.module.dataSource;
-        if (modules.module.hasOwnProperty('parameters')) {
-          if (modules.module.parameters.hasOwnProperty('cellSize')) {
-            cellSize = modules.module.parameters.cellSize;
+        var target = modules.dataSource;
+        if (modules.hasOwnProperty('parameters')) {
+          if (modules.parameters.hasOwnProperty('cellSize')) {
+            cellSize = modules.parameters.cellSize;
             //console.log(cellSize);
-          } else if(modules.module.parameters.hasOwnProperty('aspectRatio')) {
+          } else if(modules.parameters.hasOwnProperty('aspectRatio')) {
             cellSize = "M";
           } else {
           cellSize = "nogginContentSquare";
@@ -364,7 +365,7 @@ function getScreen(screenURL, screenID, screenIndex) {
         
         
         //build the container Header
-        var containerId = uuidMaker(modules.module.id) + '_s' + screenIndex + 'm' + z;
+        var containerId = modules.id + '_s' + screenIndex + 'm' + z;
 
         $('<div />', {
           'id': 'moduleHeader_' + containerId,
@@ -377,10 +378,10 @@ function getScreen(screenURL, screenID, screenIndex) {
         }).appendTo('#containers');
 
         //add Text to the container Header
-        if (modules.module.title != "") {
-          containerHeaderText = modules.module.title;
-        } else if (modules.module.layout.name != "") {
-          containerHeaderText = playplexHome.data.screen.title + " | " + modules.module.layout.name;
+        if (modules.title != "") {
+          containerHeaderText = modules.title;
+        } else if (modules.layout.name != "") {
+          containerHeaderText = playplexHome.data.screen.title + " | " + modules.layout.name;
         } else {
           containerHeaderText = playplexHome.data.screen.title;
         }
@@ -1451,6 +1452,14 @@ function makeDeeplink(mgid) {
     path = 'content/';
   } else if (mgid.indexOf("editorial") !== -1) {
     path = 'content/';
+  }  else if (mgid.indexOf("category") !== -1) {
+    path = 'content/';
+  } else if (mgid.indexOf("videogame") !== -1) {
+    path = 'content/';
+  } else if (mgid.indexOf("game") !== -1) {
+    path = 'content/';
+  } else if (mgid.indexOf("ebook") !== -1) {
+    path = 'content/';
   }
   
   var postString = path + mgid + "?xrs=" + deepLinkXrs; 
@@ -1461,13 +1470,15 @@ function makeDeeplink(mgid) {
     deeplink = paramountPlusDeeplinkRoot + postString;
   } else if (brand == "betplus") {
     deeplink = betPlusDeeplinkRoot + postString;       
-  } else if (brand == "noggin" && region != 'US') {
+  } else if (brand == "noggin" && region.toUpperCase() != 'US') {
     deeplink = nogginPlusIntlDeeplinkRoot + postString;
-  } else if (brand == 'mtv' && region !='US') {
+  } else if (brand == "noggin" && region.toUpperCase() == 'US') {
+    deeplink = nogginDeeplinkRoot + postString;
+  } else if (brand == 'mtv' && region.toUpperCase() !='US') {
     deeplink = mtvintlDeeplinkRoot + postString;
-  } else if (brand == 'mtv' && region =='US') {
+  } else if (brand == 'mtv' && region.toUpperCase() =='US') {
     deeplink = mtvusDeeplinkRoot + postString;
-  } else if (brand == 'cc' && region != 'US'){
+  } else if (brand == 'cc' && region.toUpperCase() != 'US'){
     deeplink = cctntlDeeplinkRoot + postString;
   } else {
     deeplink = "DEEPLINK FOR THIS APP NOT AVAILABLE IN THE TOOL YET";

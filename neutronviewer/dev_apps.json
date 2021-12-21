@@ -10,8 +10,8 @@
           "appRating": "OFCOM"
         }],
         "stage": ["qa"],
-        "apiVersion": "2.2",
-        "appVersion": "39.0.0"
+        "apiVersion": "3.0",
+        "appVersion": "100.0.0"
       }
     },
     {
@@ -25,8 +25,8 @@
           "appRating": "OFCOM"
         }],
         "stage": ["qa", "live", "staging"],
-        "apiVersion": "2.3",
-        "appVersion": "39.0.0"
+        "apiVersion": "3.0",
+        "appVersion": "100.0.0"
       }
     },
     {
@@ -56,8 +56,8 @@
           }
         ],
         "stage": ["qa", "live", "staging"],
-        "apiVersion": "2.3",
-        "appVersion": "39.0.0"
+        "apiVersion": "3.0",
+        "appVersion": "100.0.0"
       }
     },
     {
@@ -71,8 +71,8 @@
           "appRating": "TVPG"
         }],
         "stage": ["qa", "live", "staging"],
-        "apiVersion": "2.3",
-        "appVersion": "39.0.0"
+        "apiVersion": "3.0",
+        "appVersion": "100.0.0"
       }
     },
     {
@@ -86,8 +86,8 @@
           "appRating": "TVPG"
         }],
         "stage": ["qa", "live", "staging"],
-        "apiVersion": "2.3",
-        "appVersion": "42.0.0"
+        "apiVersion": "3.0",
+        "appVersion": "100.0.0"
       }
     },
     {
@@ -134,8 +134,8 @@
         }
         ],
         "stage": ["qa", "live", "staging"],
-        "apiVersion": "2.3",
-        "appVersion": "42.0.0"
+        "apiVersion": "3.0",
+        "appVersion": "100.0.0"
       }
     },
     {
@@ -149,8 +149,8 @@
           "appRating": "TVPG"
         }],
         "stage": ["qa", "live", "staging"],
-        "apiVersion": "2.3",
-        "appVersion": "42.0.0"
+        "apiVersion": "3.0",
+        "appVersion": "100.0.0"
       }
     },
     {
@@ -164,8 +164,8 @@
           "appRating": "TVPG"
         }],
         "stage": ["qa", "live", "staging"],
-        "apiVersion": "2.3",
-        "appVersion": "42.0.0"
+        "apiVersion": "3.0",
+        "appVersion": "100.0.0"
       }
     },
     {
@@ -190,8 +190,8 @@
           }
         ],
         "stage": ["qa", "live", "staging"],
-        "apiVersion": "2.3",
-        "appVersion": "42.0.0"
+        "apiVersion": "3.0",
+        "appVersion": "100.0.0"
       }
     },
     {
@@ -205,8 +205,8 @@
           "appRating": "TVPG"
         }],
         "stage": ["qa", "live", "staging"],
-        "apiVersion": "2.3",
-        "appVersion": "42.0.0"
+        "apiVersion": "3.0",
+        "appVersion": "100.0.0"
       }
     },
     {
@@ -220,8 +220,8 @@
           "appRating": "TVPG"
         }],
         "stage": ["qa", "live", "staging"],
-        "apiVersion": "2.3",
-        "appVersion": "42.0.0"
+        "apiVersion": "3.0",
+        "appVersion": "100.0.0"
       }
     },
     {
@@ -235,8 +235,8 @@
           "appRating": "TVPG"
         }],
         "stage": ["qa", "live", "staging"],
-        "apiVersion": "2.3",
-        "appVersion": "42.0.0"
+        "apiVersion": "3.0",
+        "appVersion": "100.0.0"
       }
     },
     {
@@ -263,8 +263,8 @@
         }
         ],
         "stage": ["qa", "live", "staging"],
-        "apiVersion": "2.3",
-        "appVersion": "42.0.0"
+        "apiVersion": "3.0",
+        "appVersion": "100.0.0"
       }
     }
   ],
@@ -284,10 +284,10 @@
     "--", "mtv-plus-intl-uk-authoring", "arc-ent-paramount-network-site", "bet", "paramountplus-brazil", "mtv-authoring-site", "arcmig-nickjr-site", "arc-nick-site", "comedycentral", "arc-ent-paramount-network", "vh1-authoring", "vh1-authoring-site", "tvland-authoring-site", "arc-ent-paramount-network-site", "cmt-authoring-site", "comedycentral"
   ],
   "appVersions": [
-    "--", "42.0.0", "36.0.0", "37.0.0", "39.0.0", "50.0.0"
+    "--", "42.0.0", "36.0.0", "37.0.0", "39.0.0", "50.0.0", "100.0.0"
   ],
   "apiVersions": [
-    "--", "1.9", "2.0", "2.2", "2.3", "2.4"
+    "--", "1.9", "2.0", "2.2", "2.3", "2.4", "3.0"
   ],
   "appRatings": [
     "--", "ANCINE", "OFCOM", "TVPG"
