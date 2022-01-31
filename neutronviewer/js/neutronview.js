@@ -1473,7 +1473,7 @@ function makeDeeplink(mgid) {
   } else if (brand == "betplus") {
     deeplink = betPlusDeeplinkRoot + postString;
   } else if (brand == "bet") {
-    deeplink = betUsDeeplinkRoot + postString
+    deeplink = betUsDeeplinkRoot + postString;
   } else if (brand == "noggin" && region.toUpperCase() != 'US') {
     deeplink = nogginPlusIntlDeeplinkRoot + postString;
   } else if (brand == "noggin" && region.toUpperCase() == 'US') {
