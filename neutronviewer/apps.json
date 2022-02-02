@@ -77,6 +77,21 @@
     },
     {
       "app": {
+        "name": "BET US",
+        "brand": "bet",
+        "platform": ["ios", "android", "appletv", "roku", "androidtv"],
+        "country": [{
+          "countryCode": "US",
+          "arcSpace": "bet",
+          "appRating": "TVPG"
+        }],
+        "stage": ["qa", "live", "staging"],
+        "apiVersion": "3.0",
+        "appVersion": "100.0.0"
+      }
+    },
+    {
+      "app": {
         "name": "MTV US",
         "brand": "mtv",
         "platform": ["ios", "android", "appletv", "roku", "androidtv"],
@@ -266,13 +281,28 @@
         "apiVersion": "3.0",
         "appVersion": "100.0.0"
       }
+    },
+    {
+      "app": {
+        "name": "My5",
+        "brand": "my5",
+        "platform": ["ios", "android", "appletv", "roku", "androidtv"],
+        "country": [{
+          "countryCode": "GB",
+          "arcSpace": "my5",
+          "appRating": "TVPG"
+        }],
+        "stage": ["qa", "live", "staging"],
+        "apiVersion": "3.0",
+        "appVersion": "100.0.0"
+      }
     }
   ],
   "countries": [
     "--", "GB", "BR", "US", "CA", "at", "ar", "be", "ch", "de", "dk", "es", "mx", "nl", "no", "pl", "sg", "ch", "se"
   ],
   "brands": [
-    "--", "mtvplus", "betplus", "paramountplus", "mtv", "cc", "vh1", "bet", "paramountnetwork", "nick", "noggin"
+    "--", "mtvplus", "betplus", "paramountplus", "mtv", "cc", "vh1", "bet", "paramountnetwork", "nick", "noggin", "my5"
   ],
   "stages": [
     "--", "live", "qa", "staging"
@@ -281,7 +311,7 @@
     "--", "ios", "android", "roku", "appletv", "androidtv", "virginstb"
   ],
   "arcSpaces": [
-    "--", "mtv-plus-intl-uk-authoring", "arc-ent-paramount-network-site", "bet", "paramountplus-brazil", "mtv-authoring-site", "arcmig-nickjr-site", "arc-nick-site", "comedycentral", "arc-ent-paramount-network", "vh1-authoring", "vh1-authoring-site", "tvland-authoring-site", "arc-ent-paramount-network-site", "cmt-authoring-site", "comedycentral"
+    "--", "mtv-plus-intl-uk-authoring", "arc-ent-paramount-network-site", "bet", "paramountplus-brazil", "mtv-authoring-site", "arcmig-nickjr-site", "arc-nick-site", "comedycentral", "arc-ent-paramount-network", "vh1-authoring", "vh1-authoring-site", "tvland-authoring-site", "arc-ent-paramount-network-site", "cmt-authoring-site", "comedycentral", "my5"
   ],
   "appVersions": [
     "--", "42.0.0", "36.0.0", "37.0.0", "39.0.0", "50.0.0", "100.0.0"

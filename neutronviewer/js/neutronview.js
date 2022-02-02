@@ -8,12 +8,14 @@ const neutronLiveRootURL = 'http://neutron-api.viacom.tech/api';
 const corsProxy = 'https://viamprevette.herokuapp.com/';
 const mtvPlusDeeplinkRoot = 'mtvplayuk://';
 const betPlusDeeplinkRoot = 'betplus://';
+const betUsDeeplinkRoot = 'betnetworkapp://';
 const paramountPlusDeeplinkRoot = 'paramountplus://';
 const nogginPlusIntlDeeplinkRoot = 'nogginplusintl://';
 const nogginDeeplinkRoot = 'noggin://';
 const mtvintlDeeplinkRoot = 'mtvplay://';
 const mtvusDeeplinkRoot = 'mtvnetworkapp://';
 const cctntlDeeplinkRoot = 'ccplay://';
+const my5DeeplinkRoot = 'my5://';
 const deepLinkXrs = 'mikesTestSite';
 var firstRun = true;
 var brand, platform, region, stage, isisURL, params, appVersion, apiVersion, appRating, apiUrl;
@@ -1469,7 +1471,9 @@ function makeDeeplink(mgid) {
   } else if (brand == "paramountplus"){
     deeplink = paramountPlusDeeplinkRoot + postString;
   } else if (brand == "betplus") {
-    deeplink = betPlusDeeplinkRoot + postString;       
+    deeplink = betPlusDeeplinkRoot + postString;
+  } else if (brand == "bet") {
+    deeplink = betUsDeeplinkRoot + postString;
   } else if (brand == "noggin" && region.toUpperCase() != 'US') {
     deeplink = nogginPlusIntlDeeplinkRoot + postString;
   } else if (brand == "noggin" && region.toUpperCase() == 'US') {
@@ -1480,6 +1484,8 @@ function makeDeeplink(mgid) {
     deeplink = mtvusDeeplinkRoot + postString;
   } else if (brand == 'cc' && region.toUpperCase() != 'US'){
     deeplink = cctntlDeeplinkRoot + postString;
+  } else if (brand == 'my5'){
+    deeplink = my5DeeplinkRoot + postString;
   } else {
     deeplink = "DEEPLINK FOR THIS APP NOT AVAILABLE IN THE TOOL YET";
   }
